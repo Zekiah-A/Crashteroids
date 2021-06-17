@@ -1,0 +1,53 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/zekiah/Crashteroids/Crashteroids.csproj": {}
+  },
+  "projects": {
+    "/home/zekiah/Crashteroids/Crashteroids.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/zekiah/Crashteroids/Crashteroids.csproj",
+        "projectName": "Crashteroids",
+        "projectPath": "/home/zekiah/Crashteroids/Crashteroids.csproj",
+        "packagesPath": "/home/zekiah/.nuget/packages/",
+        "outputPath": "/home/zekiah/Crashteroids/.mono/temp/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/zekiah/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

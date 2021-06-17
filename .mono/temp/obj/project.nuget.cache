@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "AeR3RNtQnIv0lAf1OjGzRXCMoQ9c99jAyZomDG/kkXqA0ANjVepN/hpogc8ydgLXt8Fc50xaBl4CSTjzqOu+9w==",
+  "success": true,
+  "projectFilePath": "/home/zekiah/Crashteroids/Crashteroids.csproj",
+  "expectedPackageFiles": [
+    "/home/zekiah/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/microsoft.netframework.referenceassemblies.net472/1.0.0/microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
