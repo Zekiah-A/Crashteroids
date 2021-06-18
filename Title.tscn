@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://shaders/text_gradient.shader" type="Shader" id=2]
@@ -99,6 +99,8 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxFlat" id=20]
 
+[sub_resource type="StyleBoxEmpty" id=26]
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -117,6 +119,7 @@ __meta__ = {
 [node name="Background Rect" type="ColorRect" parent="Main Panel"]
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_pivot_offset = Vector2( 0, 300 )
 color = Color( 0.180392, 0.305882, 0.490196, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -560,7 +563,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Left Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "Local 2 Player:"
 align = 1
 valign = 1
@@ -568,12 +571,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Gamemode Panel/Left Panel"]
+[node name="Rect Tween" type="Tween" parent="Gamemode Panel/Left Panel"]
+
+[node name="TextureButton" type="TextureButton" parent="Gamemode Panel/Left Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture = ExtResource( 14 )
+texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -592,7 +597,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Centre Left Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "Player vs AI:"
 align = 1
 valign = 1
@@ -600,12 +605,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="Gamemode Panel/Centre Left Panel"]
+[node name="TextureButton2" type="TextureButton" parent="Gamemode Panel/Centre Left Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture = ExtResource( 14 )
+texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -624,7 +629,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Centre Right Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "Multiplayer:"
 align = 1
 valign = 1
@@ -632,12 +637,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect3" type="TextureRect" parent="Gamemode Panel/Centre Right Panel"]
+[node name="TextureButton3" type="TextureButton" parent="Gamemode Panel/Centre Right Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture = ExtResource( 14 )
+texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -656,7 +661,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Right Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 13 )
 text = "Level designer:"
 align = 1
 valign = 1
@@ -664,12 +669,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect4" type="TextureRect" parent="Gamemode Panel/Right Panel"]
+[node name="TextureButton4" type="TextureButton" parent="Gamemode Panel/Right Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture = ExtResource( 14 )
+texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -978,8 +983,23 @@ margin_left = 672.0
 margin_top = 128.0
 margin_right = 1024.0
 margin_bottom = 600.0
+custom_styles/panel = SubResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Matchsettings Panel/Right Panel"]
+anchor_left = 0.181818
+anchor_top = 0.813559
+anchor_right = 0.818182
+anchor_bottom = 0.949153
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/normal = ExtResource( 9 )
+custom_fonts/font = ExtResource( 10 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": true
 }
 
 [node name="Screenshot_20210616_211651" type="Sprite" parent="."]
@@ -998,4 +1018,8 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="Settings Panel/Left Panel/High" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Settings Panel/Left Panel/Sublime" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Gamemode Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="Gamemode Panel/Left Panel/TextureButton" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="Gamemode Panel/Centre Left Panel/TextureButton2" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]

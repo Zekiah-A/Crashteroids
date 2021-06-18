@@ -7,15 +7,21 @@ public class TitleUiManager : Node
 	private Panel _settingsPanel;
 	private Panel _gamemodePanel;
 	private Panel _matchsettingsPanel;
-	private Tween _mainTween;
-	
+
+	private Tween _settingsTween;
+	private Tween _gamemodeTween;
+	private Tween _matchsettingsTween;
+
 	public override void _Ready()
 	{
 		_mainPanel = (Panel) GetParent().GetNode("Main Panel");
 		_settingsPanel = (Panel) GetParent().GetNode("Settings Panel");
 		_gamemodePanel = (Panel) GetParent().GetNode("Gamemode Panel");
 		_matchsettingsPanel = (Panel) GetParent().GetNode("Matchsettings Panel");
-		_mainTween = (Tween) GetParent().GetNode("Main Panel").GetNode("Panel Tween");
+		
+		_settingsTween = (Tween) GetParent().GetNode("Settings Panel").GetNode("Panel Tween");
+		_gamemodeTween = (Tween) GetParent().GetNode("Gamemode Panel").GetNode("Panel Tween");
+		_matchsettingsTween = (Tween) GetParent().GetNode("Matchsettings Panel").GetNode("Panel Tween");
 		
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
@@ -25,10 +31,56 @@ public class TitleUiManager : Node
 	
 	//TODO: in future use something fancy like tween
 	#region SIGNALS
-	private void _on_Gamemode_pressed() =>
+	private void _on_Gamemode_pressed()
+	{
 		_gamemodePanel.Visible = true;
-	private void _on_Settings_pressed() =>
+		
+		_gamemodeTween.InterpolateProperty (
+			_gamemodePanel, //Object
+			"rect_position", //Property being tweened
+			new Vector2(1024, 0), //from
+			new Vector2(0,0), //to
+			1, //speed
+			Tween.TransitionType.Cubic,
+			Tween.EaseType.Out
+		);
+		_gamemodeTween.Start();
+	}
+	private void _on_GamemodeOption_pressed(int _index)
+	{	//NOTE: use index if i am not doing any fancy transitions with this :(
+		GD.Print($"Panel {_index} was pressed.");
+		_matchsettingsPanel.Visible = true;
+
+		_matchsettingsTween.InterpolateProperty (
+			_matchsettingsPanel, //Object
+			"rect_position", //Property being tweened
+			new Vector2(1024, 0), //from
+			new Vector2(0,0), //to
+			1, //speed
+			Tween.TransitionType.Cubic,
+			Tween.EaseType.Out
+		);
+		_matchsettingsTween.Start();
+	}
+	//Panel _gamemodePanel = (Panel) GetParent().GetNode("Gamemode Panel").GetNode("Left Panel");
+	//Tween _gamemodeOptionTween = (Tween) GetParent().GetNode("Gamemode Panel").GetNode("Left Panel").GetNode("Rect Tween");
+
+	private void _on_Settings_pressed()
+	{
 		_settingsPanel.Visible = true;
+
+		_settingsTween.InterpolateProperty (
+			_settingsPanel, //Object
+			"rect_position", //Property being tweened
+			new Vector2(-1024, 0), //from
+			new Vector2(0,0), //to
+			1, //speed
+			Tween.TransitionType.Cubic,
+			Tween.EaseType.Out
+		);
+		_settingsTween.Start();
+	}
+	
 	private void _on_Back_pressed(int _index) //add a field to say which button
 	{//TODO: Button scene (tscn)
 		switch (_index)
