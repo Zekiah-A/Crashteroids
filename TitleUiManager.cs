@@ -46,6 +46,7 @@ public class TitleUiManager : Node
 		);
 		_gamemodeTween.Start();
 	}
+	
 	private void _on_GamemodeOption_pressed(int _index)
 	{	//NOTE: use index if i am not doing any fancy transitions with this :(
 		GD.Print($"Panel {_index} was pressed.");

@@ -4,7 +4,6 @@
 [ext_resource path="res://shaders/text_gradient.shader" type="Shader" id=2]
 [ext_resource path="res://fonts/title_font_outline.tres" type="DynamicFont" id=3]
 [ext_resource path="res://fonts/typefaces/arial.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Screenshot_20210616_211651.png" type="Texture" id=5]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=6]
 [ext_resource path="res://styles/grey_button_pressed_style.tres" type="StyleBox" id=7]
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=8]
@@ -100,6 +99,8 @@ shader_param/translucency = 1.0
 [sub_resource type="StyleBoxFlat" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxEmpty" id=27]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -1002,10 +1003,265 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Screenshot_20210616_211651" type="Sprite" parent="."]
-position = Vector2( 512, 944 )
-scale = Vector2( 1.64469, 1.70798 )
-texture = ExtResource( 5 )
+[node name="Editor Panel" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background Rect" type="ColorRect" parent="Editor Panel"]
+material = SubResource( 19 )
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.380392, 0.380392, 0.380392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Editor Panel"]
+margin_right = 272.0
+margin_bottom = 72.0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 17 )
+custom_fonts/font = ExtResource( 11 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings Title" type="Label" parent="Editor Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 144.0
+custom_fonts/font = ExtResource( 10 )
+text = "Rocket Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings Title Outline" type="Label" parent="Editor Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 144.0
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+text = "Rocket Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel Tween" type="Tween" parent="Editor Panel"]
+
+[node name="Main Panel" type="Panel" parent="Editor Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -511.499
+margin_top = -472.0
+margin_right = 511.501
+margin_bottom = -0.000244141
+custom_styles/panel = SubResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Editor Panel/Main Panel"]
+margin_left = 383.0
+margin_right = 637.0
+margin_bottom = 168.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Editor Panel/Main Panel"]
+margin_left = 647.0
+margin_top = 8.0
+margin_right = 759.0
+margin_bottom = 168.0
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="Editor Panel/Main Panel"]
+margin_left = 263.0
+margin_top = 8.0
+margin_right = 374.0
+margin_bottom = 168.0
+text = "<"
+
+[node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
+margin_top = 192.0
+margin_right = 1023.0
+margin_bottom = 472.0
+
+[node name="TextureButton" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 71.4986
+margin_top = 9.0
+margin_right = 183.499
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton2" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 199.499
+margin_top = 9.0
+margin_right = 311.499
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton3" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 327.499
+margin_top = 9.0
+margin_right = 439.499
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton4" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 455.499
+margin_top = 9.0
+margin_right = 567.499
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton5" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 583.499
+margin_top = 9.0
+margin_right = 695.499
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton6" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 711.499
+margin_top = 9.0
+margin_right = 823.499
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton7" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 839.0
+margin_top = 9.0
+margin_right = 951.0
+margin_bottom = 121.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton8" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 71.4986
+margin_top = 137.0
+margin_right = 183.499
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton9" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 199.499
+margin_top = 137.0
+margin_right = 311.499
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton10" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 327.499
+margin_top = 137.0
+margin_right = 439.499
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton11" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 455.499
+margin_top = 137.0
+margin_right = 567.499
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton14" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 839.0
+margin_top = 137.0
+margin_right = 951.0
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton13" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 711.499
+margin_top = 137.0
+margin_right = 823.499
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton12" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+margin_left = 583.499
+margin_top = 137.0
+margin_right = 695.499
+margin_bottom = 249.0
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TitleUIManager" type="Node" parent="."]
 script = ExtResource( 15 )
@@ -1023,3 +1279,4 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]

@@ -1,0 +1,8 @@
+/home/zekiah/Crashteroids/.mono/temp/bin/ExportDebug/Crashteroids.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/ExportDebug/Crashteroids.pdb
+/home/zekiah/Crashteroids/.mono/temp/obj/ExportDebug/Crashteroids.csprojAssemblyReference.cache
+/home/zekiah/Crashteroids/.mono/temp/obj/ExportDebug/Crashteroids.AssemblyInfoInputs.cache
+/home/zekiah/Crashteroids/.mono/temp/obj/ExportDebug/Crashteroids.AssemblyInfo.cs
+/home/zekiah/Crashteroids/.mono/temp/obj/ExportDebug/Crashteroids.csproj.CoreCompileInputs.cache
+/home/zekiah/Crashteroids/.mono/temp/obj/ExportDebug/Crashteroids.dll
+/home/zekiah/Crashteroids/.mono/temp/obj/ExportDebug/Crashteroids.pdb
