@@ -1087,185 +1087,210 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Editor Panel/Main Panel"]
-margin_left = 647.0
-margin_top = 8.0
-margin_right = 759.0
-margin_bottom = 168.0
+[node name="Button Forward" type="Button" parent="Editor Panel/Main Panel"]
+anchor_left = 0.632454
+anchor_top = 0.0169492
+anchor_right = 0.741935
+anchor_bottom = 0.355932
 text = ">"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Button2" type="Button" parent="Editor Panel/Main Panel"]
-margin_left = 263.0
-margin_top = 8.0
-margin_right = 374.0
-margin_bottom = 168.0
+[node name="Button Back" type="Button" parent="Editor Panel/Main Panel"]
+anchor_left = 0.257087
+anchor_top = 0.0169492
+anchor_right = 0.365591
+anchor_bottom = 0.355932
 text = "<"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
-margin_top = 192.0
-margin_right = 1023.0
-margin_bottom = 472.0
-
-[node name="TextureButton" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 71.4986
-margin_top = 9.0
-margin_right = 183.499
-margin_bottom = 121.0
-texture_normal = ExtResource( 14 )
-expand = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -511.5
+margin_top = -280.0
+margin_right = 511.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton2" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 199.499
-margin_top = 9.0
-margin_right = 311.499
-margin_bottom = 121.0
+[node name="1" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.0698911
+anchor_top = 0.0321429
+anchor_right = 0.179373
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton3" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 327.499
-margin_top = 9.0
-margin_right = 439.499
-margin_bottom = 121.0
+[node name="2" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.195013
+anchor_top = 0.0321429
+anchor_right = 0.304495
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton4" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 455.499
-margin_top = 9.0
-margin_right = 567.499
-margin_bottom = 121.0
+[node name="3" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.320135
+anchor_top = 0.0321429
+anchor_right = 0.429617
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton5" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 583.499
-margin_top = 9.0
-margin_right = 695.499
-margin_bottom = 121.0
+[node name="4" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.445258
+anchor_top = 0.0321429
+anchor_right = 0.55474
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton6" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 711.499
-margin_top = 9.0
-margin_right = 823.499
-margin_bottom = 121.0
+[node name="5" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.57038
+anchor_top = 0.0321429
+anchor_right = 0.679862
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton7" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 839.0
-margin_top = 9.0
-margin_right = 951.0
-margin_bottom = 121.0
+[node name="6" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.695502
+anchor_top = 0.0321429
+anchor_right = 0.804984
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton8" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 71.4986
-margin_top = 137.0
-margin_right = 183.499
-margin_bottom = 249.0
+[node name="7" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.820137
+anchor_top = 0.0321429
+anchor_right = 0.929619
+anchor_bottom = 0.432143
+margin_top = -9.53674e-07
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton9" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 199.499
-margin_top = 137.0
-margin_right = 311.499
-margin_bottom = 249.0
+[node name="8" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.0698911
+anchor_top = 0.489286
+anchor_right = 0.179373
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton10" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 327.499
-margin_top = 137.0
-margin_right = 439.499
-margin_bottom = 249.0
+[node name="9" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.195013
+anchor_top = 0.489286
+anchor_right = 0.304495
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton11" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 455.499
-margin_top = 137.0
-margin_right = 567.499
-margin_bottom = 249.0
+[node name="10" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.320135
+anchor_top = 0.489286
+anchor_right = 0.429617
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton14" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 839.0
-margin_top = 137.0
-margin_right = 951.0
-margin_bottom = 249.0
+[node name="11" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.445258
+anchor_top = 0.489286
+anchor_right = 0.55474
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton13" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 711.499
-margin_top = 137.0
-margin_right = 823.499
-margin_bottom = 249.0
+[node name="12" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.57038
+anchor_top = 0.489286
+anchor_right = 0.679862
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="TextureButton12" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 583.499
-margin_top = 137.0
-margin_right = 695.499
-margin_bottom = 249.0
+[node name="13" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.695502
+anchor_top = 0.489286
+anchor_right = 0.804984
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
 texture_normal = ExtResource( 14 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
+}
+
+[node name="14" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel"]
+anchor_left = 0.820137
+anchor_top = 0.489286
+anchor_right = 0.929619
+anchor_bottom = 0.889286
+margin_bottom = -1.52588e-05
+texture_normal = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
 }
 
 [node name="TitleUIManager" type="Node" parent="."]
 script = ExtResource( 15 )
 
+[connection signal="pressed" from="Main Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
 [connection signal="pressed" from="Main Panel/Play Button" to="TitleUIManager" method="_on_Gamemode_pressed"]
 [connection signal="pressed" from="Main Panel/Settings" to="TitleUIManager" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Settings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 1 ]]
@@ -1279,4 +1304,4 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
