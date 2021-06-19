@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://shaders/text_gradient.shader" type="Shader" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://TitleUiManager.cs" type="Script" id=15]
 [ext_resource path="res://shaders/blur.shader" type="Shader" id=16]
 [ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=17]
+[ext_resource path="res://Iteratebox.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -96,6 +97,8 @@ shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxEmpty" id=28]
 
 [sub_resource type="StyleBoxEmpty" id=26]
 
@@ -765,6 +768,9 @@ anchor_bottom = 1.0
 margin_right = 0.0
 margin_bottom = 0.0
 
+[node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="1"]
+text = "Random map"
+
 [node name="Checkbox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 5 )]
 anchor_left = 0.0909091
 anchor_top = 0.305085
@@ -777,55 +783,50 @@ anchor_bottom = 1.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="Checkbox3" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 5 )]
-anchor_left = 0.0909091
-anchor_top = 0.474576
-anchor_right = 0.0909091
-anchor_bottom = 0.474576
+[node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" index="1"]
+text = "Special Abilitities"
 
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox3/Checkbox" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="Iteratebox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 18 )]
+anchor_left = 0.091
+anchor_top = 0.475
+anchor_right = 0.091
+anchor_bottom = 0.475
+margin_left = -0.0320015
+margin_top = -0.200012
+margin_right = 223.968
+margin_bottom = 63.8
 
-[node name="Checkbox4" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 5 )]
-anchor_left = 0.0909091
-anchor_top = 0.644068
-anchor_right = 0.0909091
-anchor_bottom = 0.644068
+[node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" index="1"]
+text = "Rocket Bounces"
 
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox4/Checkbox" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="Iteratebox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 18 )]
+anchor_left = 0.091
+anchor_top = 0.644
+anchor_right = 0.091
+anchor_bottom = 0.644
+margin_left = -0.0320015
+margin_top = 0.0319824
+margin_right = 223.968
+margin_bottom = 64.032
 
-[node name="Checkbox5" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 5 )]
-anchor_left = 0.0909091
-anchor_top = 0.813559
-anchor_right = 0.0909091
-anchor_bottom = 0.813559
-
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox5/Checkbox" index="0"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" index="1"]
+text = "Rounds"
 
 [node name="Centre Panel" type="Panel" parent="Matchsettings Panel"]
 margin_left = 352.0
 margin_top = 128.0
 margin_right = 672.0
 margin_bottom = 600.0
+custom_styles/panel = SubResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Matchsettings Panel/Centre Panel"]
-anchor_top = 0.135593
-anchor_right = 1.0
-anchor_bottom = 0.813559
+anchor_left = 0.025
+anchor_top = 0.118644
+anchor_right = 0.975
+anchor_bottom = 0.79661
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1183,10 +1184,10 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
 
 [editable path="Matchsettings Panel/Left Panel/Checkbox"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox2"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox3"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox4"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox5"]
+[editable path="Matchsettings Panel/Left Panel/Iteratebox"]
+[editable path="Matchsettings Panel/Left Panel/Iteratebox2"]
