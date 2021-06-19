@@ -880,7 +880,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Matchsettings Panel/Right Panel"]
+[node name="Start" type="Button" parent="Matchsettings Panel/Right Panel"]
 anchor_left = 0.181818
 anchor_top = 0.813559
 anchor_right = 0.818182
@@ -1201,6 +1201,7 @@ script = ExtResource( 8 )
 [connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
 [connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
 [connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
+[connection signal="pressed" from="Matchsettings Panel/Right Panel/Start" to="TitleUIManager" method="_on_Start_pressed"]
 [connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
 
 [editable path="Matchsettings Panel/Left Panel/Checkbox"]

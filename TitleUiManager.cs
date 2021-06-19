@@ -128,24 +128,30 @@ public class TitleUiManager : Node
 		_editorTween.Start();
 	}
 	#region MATCH CONFIGURATION
-	private void _on_Matchconfig_update(int _configId, bool _newValue)
-	{
-		GD.Print($"Signal custom recieved {_configId}, {_newValue}");
-		
-		if (_configId == 1)
-			GameConfig.Match.RandomMap = _newValue;
-		if (_configId == 2)
-			GameConfig.Match.SpecialAbilities = _newValue;
-	}
 	private void _on_Matchconfig_update(int _configId, int _newValue)
 	{
 		GD.Print($"Signal custom recieved {_configId}, {_newValue}");
 		
+		if (_configId == 1)
+			GameConfig.Match.RandomMap = Convert.ToBoolean(_newValue);
+		if (_configId == 2)
+			GameConfig.Match.SpecialAbilities = Convert.ToBoolean(_newValue);
 		if (_configId == 3)
 			GameConfig.Match.RocketBounces = _newValue;
 		if (_configId == 4)
 			GameConfig.Match.Rounds = _newValue;
 	}
 	#endregion
+	
+	private void _on_Start_pressed()
+	{
+		GD.Print("Starting Game with configuration:");
+		GD.Print($"Random Map: {GameConfig.Match.RandomMap}");
+		GD.Print($"Special Abilities: {GameConfig.Match.SpecialAbilities}");
+		GD.Print($"Rocket Bounces: {GameConfig.Match.RocketBounces}");
+		GD.Print($"Rounds: {GameConfig.Match.Rounds}");
+		
+		GetTree().ChangeScene("res://scenes/Game.tscn");
+	}
 	#endregion
 }

@@ -8,9 +8,9 @@ public class GameConfig
 
 	public struct Match
 	{
-		public bool RandomMap;
-		public bool SpecialAbilities;
-		public int RocketBounces;
-		public int Rounds;
+		public static bool RandomMap;
+		public static bool SpecialAbilities;
+		public static int RocketBounces;
+		public static int Rounds;
 	}
 }
