@@ -1,23 +1,23 @@
 [gd_scene load_steps=46 format=2]
 
-[ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=1]
-[ext_resource path="res://shaders/text_gradient.shader" type="Shader" id=2]
-[ext_resource path="res://fonts/title_font_outline.tres" type="DynamicFont" id=3]
-[ext_resource path="res://fonts/typefaces/arial.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Checkbox.tscn" type="PackedScene" id=5]
-[ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=6]
-[ext_resource path="res://styles/grey_button_pressed_style.tres" type="StyleBox" id=7]
-[ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=8]
-[ext_resource path="res://styles/green_button_style.tres" type="StyleBox" id=9]
-[ext_resource path="res://fonts/large_title_font.tres" type="DynamicFont" id=10]
-[ext_resource path="res://fonts/large_title_font_outline.tres" type="DynamicFont" id=11]
-[ext_resource path="res://fonts/smaller_title_font.tres" type="DynamicFont" id=12]
-[ext_resource path="res://fonts/smaller_title_font_outline.tres" type="DynamicFont" id=13]
-[ext_resource path="res://icon.png" type="Texture" id=14]
-[ext_resource path="res://TitleUiManager.cs" type="Script" id=15]
-[ext_resource path="res://shaders/blur.shader" type="Shader" id=16]
-[ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=17]
-[ext_resource path="res://Iteratebox.tscn" type="PackedScene" id=18]
+[ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
+[ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
+[ext_resource path="res://shaders/blur.shader" type="Shader" id=3]
+[ext_resource path="res://styles/grey_button_pressed_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://styles/green_button_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://fonts/typefaces/arial.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
+[ext_resource path="res://TitleUiManager.cs" type="Script" id=8]
+[ext_resource path="res://shaders/text_gradient.shader" type="Shader" id=9]
+[ext_resource path="res://fonts/smaller_title_font_outline.tres" type="DynamicFont" id=10]
+[ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=11]
+[ext_resource path="res://fonts/title_font_outline.tres" type="DynamicFont" id=12]
+[ext_resource path="res://fonts/large_title_font_outline.tres" type="DynamicFont" id=13]
+[ext_resource path="res://fonts/large_title_font.tres" type="DynamicFont" id=14]
+[ext_resource path="res://fonts/smaller_title_font.tres" type="DynamicFont" id=15]
+[ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=16]
+[ext_resource path="res://scenes/Checkbox.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -26,10 +26,10 @@ size = 24
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 6 )
 
 [sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 2 )
+shader = ExtResource( 9 )
 shader_param/intensity = 2.0
 shader_param/x = false
 shader_param/r_horizontal = 0.0
@@ -41,7 +41,7 @@ shader_param/g_vertical = 10.0
 shader_param/b_vertical = 4.0
 
 [sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 2 )
+shader = ExtResource( 9 )
 shader_param/intensity = 3.0
 shader_param/x = null
 shader_param/r_horizontal = null
@@ -55,7 +55,7 @@ shader_param/b_vertical = 10.0
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 16 )
+shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
@@ -65,40 +65,40 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
-[sub_resource type="StyleBoxEmpty" id=22]
-
 [sub_resource type="StyleBoxEmpty" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="StyleBoxEmpty" id=23]
-
 [sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=14]
-
-[sub_resource type="StyleBoxEmpty" id=24]
 
 [sub_resource type="StyleBoxEmpty" id=15]
 
 [sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="StyleBoxEmpty" id=25]
-
 [sub_resource type="StyleBoxEmpty" id=17]
 
 [sub_resource type="StyleBoxEmpty" id=18]
 
-[sub_resource type="ShaderMaterial" id=19]
-shader = ExtResource( 16 )
-shader_param/blur_amount = 5.0
-shader_param/translucency = 1.0
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="StyleBoxEmpty" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=21]
 
-[sub_resource type="StyleBoxEmpty" id=28]
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 3 )
+shader_param/blur_amount = 5.0
+shader_param/translucency = 1.0
+
+[sub_resource type="StyleBoxEmpty" id=24]
+
+[sub_resource type="StyleBoxEmpty" id=25]
 
 [sub_resource type="StyleBoxEmpty" id=26]
 
@@ -147,9 +147,9 @@ margin_left = -72.0
 margin_top = -56.0
 margin_right = 72.0
 rect_pivot_offset = Vector2( 90, 70 )
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 8 )
-custom_styles/normal = ExtResource( 8 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -175,9 +175,9 @@ margin_top = -40.0
 margin_right = 110.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 110, 40 )
-custom_styles/hover = ExtResource( 6 )
-custom_styles/pressed = ExtResource( 9 )
-custom_styles/normal = ExtResource( 9 )
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -186,7 +186,7 @@ __meta__ = {
 material = SubResource( 3 )
 margin_right = 220.0
 margin_bottom = 80.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Play"
 align = 1
@@ -198,7 +198,7 @@ __meta__ = {
 [node name="Outline" type="Label" parent="Main Panel/Play Button"]
 margin_right = 220.0
 margin_bottom = 80.0
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Play"
 align = 1
@@ -225,7 +225,7 @@ margin_top = 64.0
 margin_right = 192.0
 margin_bottom = 160.0
 rect_pivot_offset = Vector2( -352, 24 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Crashteroids"
 align = 1
@@ -242,7 +242,7 @@ margin_top = 64.0
 margin_right = 192.0
 margin_bottom = 160.0
 rect_pivot_offset = Vector2( -352, 24 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Crashteroids"
 align = 1
@@ -272,10 +272,10 @@ __meta__ = {
 [node name="Back" type="Button" parent="Settings Panel"]
 margin_right = 272.0
 margin_bottom = 72.0
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 17 )
-custom_styles/normal = ExtResource( 17 )
-custom_fonts/font = ExtResource( 11 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -288,7 +288,7 @@ margin_left = -128.0
 margin_top = 64.0
 margin_right = 128.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 14 )
 text = "Settings"
 align = 1
 valign = 1
@@ -303,7 +303,7 @@ margin_left = -128.0
 margin_top = 64.0
 margin_right = 128.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Settings"
 align = 1
@@ -324,7 +324,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Settings Panel/Left Panel"]
 margin_right = 352.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 15 )
 text = "Graphics Quality:"
 align = 1
 valign = 1
@@ -338,9 +338,9 @@ margin_right = 352.0
 margin_bottom = 164.0
 custom_styles/hover = SubResource( 8 )
 custom_styles/pressed = SubResource( 9 )
-custom_styles/focus = SubResource( 22 )
-custom_styles/normal = SubResource( 10 )
-custom_fonts/font = ExtResource( 13 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.572549, 0.258824, 0.239216, 1 )
 text = "Low"
 __meta__ = {
@@ -351,11 +351,11 @@ __meta__ = {
 margin_top = 164.0
 margin_right = 352.0
 margin_bottom = 264.0
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/focus = SubResource( 23 )
-custom_styles/normal = SubResource( 10 )
-custom_fonts/font = ExtResource( 13 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.513726, 0.384314, 0.184314, 1 )
 text = "Medium"
 __meta__ = {
@@ -366,11 +366,11 @@ __meta__ = {
 margin_top = 264.0
 margin_right = 352.0
 margin_bottom = 364.0
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 14 )
-custom_styles/focus = SubResource( 24 )
-custom_styles/normal = SubResource( 10 )
-custom_fonts/font = ExtResource( 13 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.556863, 0.682353, 0.294118, 1 )
 text = "High"
 __meta__ = {
@@ -381,11 +381,11 @@ __meta__ = {
 margin_top = 364.0
 margin_right = 352.0
 margin_bottom = 464.0
-custom_styles/hover = SubResource( 15 )
-custom_styles/pressed = SubResource( 16 )
-custom_styles/focus = SubResource( 25 )
-custom_styles/normal = SubResource( 10 )
-custom_fonts/font = ExtResource( 13 )
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 20 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.0941176, 0.356863, 0.129412, 1 )
 text = "Sublime"
 __meta__ = {
@@ -397,7 +397,7 @@ margin_left = 352.0
 margin_top = 128.0
 margin_right = 680.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 17 )
+custom_styles/panel = SubResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -405,7 +405,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Settings Panel/Centre Panel"]
 margin_right = 328.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 15 )
 text = "Audio:"
 align = 1
 valign = 1
@@ -418,7 +418,7 @@ margin_left = 96.0
 margin_top = 64.0
 margin_right = 224.0
 margin_bottom = 128.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 15 )
 text = "Music"
 align = 1
 valign = 1
@@ -428,7 +428,7 @@ margin_left = 96.0
 margin_top = 192.0
 margin_right = 224.0
 margin_bottom = 256.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 15 )
 text = "Sound FX"
 align = 1
 valign = 1
@@ -442,7 +442,7 @@ anchor_top = 0.135593
 anchor_right = 0.292683
 anchor_bottom = 0.271186
 margin_left = 1.90735e-06
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -453,7 +453,7 @@ anchor_top = 0.40678
 anchor_right = 0.292683
 anchor_bottom = 0.542373
 margin_left = 1.90735e-06
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -463,7 +463,7 @@ margin_left = 680.0
 margin_top = 128.0
 margin_right = 1024.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 18 )
+custom_styles/panel = SubResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -471,7 +471,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Settings Panel/Right Panel"]
 margin_right = 344.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 15 )
 text = "Controls:"
 align = 1
 valign = 1
@@ -484,7 +484,7 @@ margin_left = 104.0
 margin_top = 144.0
 margin_right = 288.0
 margin_bottom = 344.0
-custom_fonts/font = ExtResource( 12 )
+custom_fonts/font = ExtResource( 15 )
 text = "OPTIONS WILL BE ADDED SOON"
 autowrap = true
 __meta__ = {
@@ -503,7 +503,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="ColorRect" parent="Gamemode Panel"]
-material = SubResource( 19 )
+material = SubResource( 23 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -514,10 +514,10 @@ __meta__ = {
 [node name="Back" type="Button" parent="Gamemode Panel"]
 margin_right = 272.0
 margin_bottom = 72.0
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 17 )
-custom_styles/normal = ExtResource( 17 )
-custom_fonts/font = ExtResource( 11 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -530,7 +530,7 @@ margin_left = -139.5
 margin_top = 64.0
 margin_right = 139.5
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 14 )
 text = "Pick Mode"
 align = 1
 valign = 1
@@ -545,7 +545,7 @@ margin_left = -139.5
 margin_top = 64.0
 margin_right = 139.5
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Pick Mode"
 align = 1
@@ -566,7 +566,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Left Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 10 )
 text = "Local 2 Player:"
 align = 1
 valign = 1
@@ -581,7 +581,7 @@ anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -600,7 +600,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Centre Left Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 10 )
 text = "Player vs AI:"
 align = 1
 valign = 1
@@ -613,7 +613,7 @@ anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -632,7 +632,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Centre Right Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 10 )
 text = "Multiplayer:"
 align = 1
 valign = 1
@@ -645,7 +645,7 @@ anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -664,7 +664,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Gamemode Panel/Right Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 10 )
 text = "Level designer:"
 align = 1
 valign = 1
@@ -677,7 +677,7 @@ anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -694,7 +694,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="ColorRect" parent="Matchsettings Panel"]
-material = SubResource( 19 )
+material = SubResource( 23 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -705,10 +705,10 @@ __meta__ = {
 [node name="Back" type="Button" parent="Matchsettings Panel"]
 margin_right = 272.0
 margin_bottom = 72.0
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 17 )
-custom_styles/normal = ExtResource( 17 )
-custom_fonts/font = ExtResource( 11 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -721,7 +721,7 @@ margin_left = -208.0
 margin_top = 64.0
 margin_right = 208.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 14 )
 text = "Match Settings"
 align = 1
 valign = 1
@@ -736,7 +736,7 @@ margin_left = -208.0
 margin_top = 64.0
 margin_right = 208.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Match Settings"
 align = 1
@@ -751,12 +751,12 @@ __meta__ = {
 margin_top = 128.0
 margin_right = 352.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 21 )
+custom_styles/panel = SubResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 5 )]
+[node name="Checkbox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
 anchor_left = 0.0909091
 anchor_top = 0.135593
 anchor_right = 0.0909091
@@ -771,7 +771,7 @@ margin_bottom = 0.0
 [node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="1"]
 text = "Random map"
 
-[node name="Checkbox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 5 )]
+[node name="Checkbox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
 anchor_left = 0.0909091
 anchor_top = 0.305085
 anchor_right = 0.0909091
@@ -817,7 +817,7 @@ margin_left = 352.0
 margin_top = 128.0
 margin_right = 672.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 28 )
+custom_styles/panel = SubResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -840,9 +840,9 @@ margin_left = -72.0
 margin_top = -56.0
 margin_right = 72.0
 rect_pivot_offset = Vector2( 90, 70 )
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 8 )
-custom_styles/normal = ExtResource( 8 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -873,10 +873,10 @@ anchor_left = 0.181818
 anchor_top = 0.813559
 anchor_right = 0.818182
 anchor_bottom = 0.949153
-custom_styles/hover = ExtResource( 7 )
-custom_styles/pressed = ExtResource( 9 )
-custom_styles/normal = ExtResource( 9 )
-custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 14 )
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -892,7 +892,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="ColorRect" parent="Editor Panel"]
-material = SubResource( 19 )
+material = SubResource( 23 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -903,10 +903,10 @@ __meta__ = {
 [node name="Back" type="Button" parent="Editor Panel"]
 margin_right = 272.0
 margin_bottom = 72.0
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 17 )
-custom_styles/normal = ExtResource( 17 )
-custom_fonts/font = ExtResource( 11 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -919,7 +919,7 @@ margin_left = -192.0
 margin_top = 64.0
 margin_right = 192.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 10 )
+custom_fonts/font = ExtResource( 14 )
 text = "Rocket Editor"
 align = 1
 valign = 1
@@ -934,7 +934,7 @@ margin_left = -192.0
 margin_top = 64.0
 margin_right = 192.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Rocket Editor"
 align = 1
@@ -1005,7 +1005,7 @@ anchor_top = 0.0321429
 anchor_right = 0.179373
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1017,7 +1017,7 @@ anchor_top = 0.0321429
 anchor_right = 0.304495
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1029,7 +1029,7 @@ anchor_top = 0.0321429
 anchor_right = 0.429617
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1041,7 +1041,7 @@ anchor_top = 0.0321429
 anchor_right = 0.55474
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1053,7 +1053,7 @@ anchor_top = 0.0321429
 anchor_right = 0.679862
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1065,7 +1065,7 @@ anchor_top = 0.0321429
 anchor_right = 0.804984
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1077,7 +1077,7 @@ anchor_top = 0.0321429
 anchor_right = 0.929619
 anchor_bottom = 0.432143
 margin_top = -9.53674e-07
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1089,7 +1089,7 @@ anchor_top = 0.489286
 anchor_right = 0.179373
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1101,7 +1101,7 @@ anchor_top = 0.489286
 anchor_right = 0.304495
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1113,7 +1113,7 @@ anchor_top = 0.489286
 anchor_right = 0.429617
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1125,7 +1125,7 @@ anchor_top = 0.489286
 anchor_right = 0.55474
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1137,7 +1137,7 @@ anchor_top = 0.489286
 anchor_right = 0.679862
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1149,7 +1149,7 @@ anchor_top = 0.489286
 anchor_right = 0.804984
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1161,14 +1161,14 @@ anchor_top = 0.489286
 anchor_right = 0.929619
 anchor_bottom = 0.889286
 margin_bottom = -1.52588e-05
-texture_normal = ExtResource( 14 )
+texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="TitleUIManager" type="Node" parent="."]
-script = ExtResource( 15 )
+script = ExtResource( 8 )
 
 [connection signal="pressed" from="Main Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
 [connection signal="pressed" from="Main Panel/Play Button" to="TitleUIManager" method="_on_Gamemode_pressed"]

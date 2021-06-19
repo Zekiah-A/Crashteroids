@@ -4,7 +4,7 @@
 [ext_resource path="res://Iteratebox.cs" type="Script" id=2]
 [ext_resource path="res://fonts/typefaces/arial.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://checkbox_empty.png" type="Texture" id=5]
+[ext_resource path="res://resources/image/checkbox_empty.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20

@@ -11,8 +11,7 @@ config_version=4
 [application]
 
 config/name="Crashteroids"
-run/main_scene="res://Title.tscn"
-boot_splash/image="res://Screenshot_20210616_211651.png"
+run/main_scene="res://scenes/Title.tscn"
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
