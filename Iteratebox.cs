@@ -18,6 +18,8 @@ public class Iteratebox : Control
 		_number = (Label) GetNode("Texture Button").GetNode("Number"); 
 		
 		_number.Text = Current.ToString();
+		//HACK: To ensure that default value is set if just "Play" pressed.
+		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, Current);
 	}
 
 	private void _on_Click()

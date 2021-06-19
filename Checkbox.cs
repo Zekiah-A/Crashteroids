@@ -17,6 +17,8 @@ public class Checkbox : Control
 		_image = (TextureButton) GetNode("Texture Button");
 		_checkboxEmpty = ResourceLoader.Load("res://resources/image/checkbox_empty.png") as Texture;
 		_checkboxFull = ResourceLoader.Load("res://resources/image/checkbox_full.png") as Texture;
+		//HACK: To ensure that default value is set if just "Play" pressed.
+		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
 	}
 
 	private void _on_Click()
