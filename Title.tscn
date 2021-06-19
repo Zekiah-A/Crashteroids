@@ -1184,7 +1184,7 @@ script = ExtResource( 15 )
 [connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
 [connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
 
 [editable path="Matchsettings Panel/Left Panel/Checkbox"]
