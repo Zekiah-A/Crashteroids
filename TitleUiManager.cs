@@ -109,6 +109,7 @@ public class TitleUiManager : Node
 	private void _on_GraphicsQuality_pressed(int _index)
 	{
 		GD.Print($"Graphics quality level set to {_index}");
+		GameConfig.GraphicsQualitySetting = _index;
 	}
 	
 	private void _on_Editor_pressed()
@@ -125,6 +126,17 @@ public class TitleUiManager : Node
 			Tween.EaseType.Out
 		);
 		_editorTween.Start();
+	}
+	
+	private void _on_Matchconfig_update(int _configId, int _newValue)
+	{
+		GD.Print($"Signal custom recieved {_configId}, {_newValue}");
+		
+	}
+	private void _on_Matchconfig_update(int _configId, bool _newValue)
+	{
+		GD.Print($"Signal custom recieved {_configId}, {_newValue}");
+
 	}
 	#endregion
 }

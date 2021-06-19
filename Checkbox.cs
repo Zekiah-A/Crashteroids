@@ -4,6 +4,10 @@ using System;
 public class Checkbox : Control
 {
 	public bool IsEnabled = false;
+	
+	[Export] public int ConfigId;
+	[Signal] public delegate void _on_Matchconfig_update(int _configId, bool _isEnabled);
+
 	private TextureButton _image;
 	private Texture _checkboxEmpty;
 	private Texture _checkboxFull;
@@ -27,5 +31,7 @@ public class Checkbox : Control
 			_image.SetNormalTexture(_checkboxFull);
 			IsEnabled = true;
 		}
+		
+		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
 	}
 }

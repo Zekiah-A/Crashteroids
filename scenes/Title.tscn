@@ -762,6 +762,9 @@ anchor_top = 0.135593
 anchor_right = 0.0909091
 anchor_bottom = 0.135593
 
+[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Checkbox" index="0"]
+ConfigId = 1
+
 [node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -776,6 +779,9 @@ anchor_left = 0.0909091
 anchor_top = 0.305085
 anchor_right = 0.0909091
 anchor_bottom = 0.305085
+
+[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Checkbox2" index="0"]
+ConfigId = 2
 
 [node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" index="0"]
 anchor_right = 1.0
@@ -796,6 +802,9 @@ margin_top = -0.200012
 margin_right = 223.968
 margin_bottom = 63.8
 
+[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Iteratebox" index="0"]
+ConfigId = 3
+
 [node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" index="1"]
 text = "Rocket Bounces"
 
@@ -808,6 +817,9 @@ margin_left = -0.0320015
 margin_top = 0.0319824
 margin_right = 223.968
 margin_bottom = 64.032
+
+[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Iteratebox2" index="0"]
+ConfigId = 4
 
 [node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" index="1"]
 text = "Rounds"
@@ -1184,6 +1196,10 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
 [connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
+[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
+[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
+[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
+[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
 [connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
 [connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
 
