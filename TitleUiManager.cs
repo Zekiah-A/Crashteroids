@@ -127,19 +127,32 @@ public class TitleUiManager : Node
 		);
 		_editorTween.Start();
 	}
-	#region MATCH CONFIGURATION
+	#region MATCH CONFIGURATION //NOTE: + General configuration (for the time being)
 	private void _on_Matchconfig_update(int _configId, int _newValue)
 	{
 		GD.Print($"Signal custom recieved {_configId}, {_newValue}");
 		
-		if (_configId == 1)
-			GameConfig.Match.RandomMap = Convert.ToBoolean(_newValue);
-		if (_configId == 2)
-			GameConfig.Match.SpecialAbilities = Convert.ToBoolean(_newValue);
-		if (_configId == 3)
-			GameConfig.Match.RocketBounces = _newValue;
-		if (_configId == 4)
-			GameConfig.Match.Rounds = _newValue;
+		switch (_configId)
+		{
+			case 1:
+				GameConfig.Match.RandomMap = Convert.ToBoolean(_newValue);
+				break;
+			case 2:
+				GameConfig.Match.SpecialAbilities = Convert.ToBoolean(_newValue);
+				break;
+			case 3:
+				GameConfig.Match.RocketBounces = _newValue;
+				break;
+			case 4:
+				GameConfig.Match.Rounds = _newValue;
+				break;
+			case 5:
+				GameConfig.Music = Convert.ToBoolean(_newValue);
+				break;
+			case 6:
+				GameConfig.SoundEffects = Convert.ToBoolean(_newValue);
+				break;
+		}
 	}
 	#endregion
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://icon_grey.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Rocket.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/RocketEditor.cs" type="Script" id=21]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -90,6 +91,10 @@ shader_param/translucency = 1.0
 [sub_resource type="StyleBoxEmpty" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=30]
 
 [sub_resource type="StyleBoxEmpty" id=22]
 
@@ -260,7 +265,6 @@ __meta__ = {
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -421,50 +425,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Settings Panel/Centre Panel"]
-margin_left = 96.0
-margin_top = 64.0
-margin_right = 224.0
-margin_bottom = 128.0
-custom_fonts/font = ExtResource( 15 )
-text = "Music"
-align = 1
-valign = 1
-
-[node name="Label2" type="Label" parent="Settings Panel/Centre Panel"]
-margin_left = 96.0
-margin_top = 192.0
-margin_right = 224.0
-margin_bottom = 256.0
-custom_fonts/font = ExtResource( 15 )
-text = "Sound FX"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureButton" type="TextureButton" parent="Settings Panel/Centre Panel"]
-anchor_left = 0.097561
+[node name="Checkbox" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
+anchor_left = 0.146341
 anchor_top = 0.135593
-anchor_right = 0.292683
+anchor_right = 0.829268
 anchor_bottom = 0.271186
-margin_left = 1.90735e-06
-texture_normal = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
-[node name="TextureButton2" type="TextureButton" parent="Settings Panel/Centre Panel"]
-anchor_left = 0.097561
-anchor_top = 0.40678
-anchor_right = 0.292683
-anchor_bottom = 0.542373
-margin_left = 1.90735e-06
-texture_normal = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox" index="0"]
+custom_styles/panel = SubResource( 29 )
+ConfigId = 5
+
+[node name="Label" parent="Settings Panel/Centre Panel/Checkbox/Checkbox" index="1"]
+text = "Music"
+
+[node name="Checkbox2" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
+anchor_left = 0.146341
+anchor_top = 0.271186
+anchor_right = 0.829268
+anchor_bottom = 0.40678
+
+[node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox2" index="0"]
+custom_styles/panel = SubResource( 30 )
+ConfigId = 6
+
+[node name="Label" parent="Settings Panel/Centre Panel/Checkbox2/Checkbox" index="1"]
+text = "Sound Effects"
 
 [node name="Right Panel" type="Panel" parent="Settings Panel"]
 margin_left = 680.0
@@ -908,6 +893,7 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -984,14 +970,15 @@ __meta__ = {
 }
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Editor Panel/Main Panel"]
-margin_left = 383.0
-margin_right = 637.0
-margin_bottom = 168.0
+margin_left = 447.499
+margin_top = 16.0
+margin_right = 575.499
+margin_bottom = 160.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Node2D" parent="Editor Panel/Main Panel/ViewportContainer" instance=ExtResource( 20 )]
+[node name="Rocket display" parent="Editor Panel/Main Panel/ViewportContainer" instance=ExtResource( 20 )]
 position = Vector2( 0.498993, 8.00002 )
 
 [node name="Button Forward" type="Button" parent="Editor Panel/Main Panel"]
@@ -1023,6 +1010,7 @@ margin_left = -511.5
 margin_top = -288.0
 margin_right = 511.5
 margin_bottom = 0.000244141
+script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1304,6 +1292,8 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Settings Panel/Left Panel/Medium" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="Settings Panel/Left Panel/High" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Settings Panel/Left Panel/Sublime" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 4 ]]
+[connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
+[connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
 [connection signal="pressed" from="Gamemode Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="Gamemode Panel/Left Panel/TextureButton" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="Gamemode Panel/Centre Left Panel/TextureButton2" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 2 ]]
@@ -1317,7 +1307,23 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
 [connection signal="pressed" from="Matchsettings Panel/Right Panel/Start" to="TitleUIManager" method="_on_Start_pressed"]
 [connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/1/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 1 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/2/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 2 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/3/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 3 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/4/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 4 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/5/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 5 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/6/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 6 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/7/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 7 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/8/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 8 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/9/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 9 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/10/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 10 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/11/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 11 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/12/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 12 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 13 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 14 ]]
 
+[editable path="Settings Panel/Centre Panel/Checkbox"]
+[editable path="Settings Panel/Centre Panel/Checkbox2"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox2"]
 [editable path="Matchsettings Panel/Left Panel/Iteratebox"]
