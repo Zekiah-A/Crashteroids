@@ -5,7 +5,7 @@ public class Player : KinematicBody2D
 {
 	public float Speed = 100;
 	
-	private KinematicBody2D _kb; //rm?
+	private KinematicBody2D _kb; //NOTE: redundant!
 	private Sprite _player;
 	private RayCast2D _rayCast;
 	
@@ -26,23 +26,8 @@ public class Player : KinematicBody2D
 		if (_collision != null)
 		{
 			_velocity = _velocity.Bounce(_collision.Normal);
-			Rotation += _velocity.Angle(); //maybe rot degrees bad???  //maybe =+??/
+			///<summary>I spent hours trying to figure out something this easy.</summary>
+			_player.Rotation = _velocity.Angle(); 
 		} 
 	}
-/*
-\     /
- \   /
-   o
-----------
-*/
-
-
-/*
-var laser_coll_point = laser2d.get_collision_point()
-var laser_coll_normal = laser2d.get_collision_normal()
-bounce_one.global_position = laser_coll_point
-var forward = laser_coll_point - laser2d.global_position
-var reflection = -forward.reflect(laser_coll_normal)
-bounce_one.global_rotation = reflection.angle()
-*/
 }
