@@ -16,10 +16,10 @@ colors = PoolColorArray( 0.0625, 0.0625, 0.0625, 1 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=3]
 radius = 2.0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -46,7 +46,6 @@ scale = Vector2( 4, 4 )
 script = ExtResource( 8 )
 
 [node name="P1_Display" type="Sprite" parent="P1"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="RayCast2D" type="RayCast2D" parent="P1/P1_Display"]
@@ -55,14 +54,24 @@ rotation = -3.14159
 cast_to = Vector2( 0, 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="P1"]
-scale = Vector2( 1, 1 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
-[node name="P2" type="Sprite" parent="."]
+[node name="P2" type="KinematicBody2D" parent="."]
 position = Vector2( 928, 288 )
-rotation = -1.57079
+rotation = 1.57079
 scale = Vector2( 4, 4 )
+script = ExtResource( 8 )
+
+[node name="P1_Display" type="Sprite" parent="P2"]
 texture = ExtResource( 1 )
+
+[node name="RayCast2D" type="RayCast2D" parent="P2/P1_Display"]
+visible = false
+rotation = -3.14159
+cast_to = Vector2( 0, 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="P2"]
+shape = SubResource( 3 )
 
 [node name="Control" type="Control" parent="."]
 margin_right = 1024.0
@@ -94,7 +103,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Object4" type="Sprite" parent="."]
 position = Vector2( 856, 80 )
@@ -106,7 +115,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object4/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Object2" type="Sprite" parent="."]
 position = Vector2( 264, 400 )
@@ -118,7 +127,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object2/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Object3" type="Sprite" parent="."]
 position = Vector2( 728, 472 )
@@ -130,7 +139,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object3/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="Control2" parent="." instance=ExtResource( 7 )]
 

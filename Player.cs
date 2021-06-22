@@ -3,7 +3,7 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	public float Speed = 100;
+	public float Speed = 800;
 	
 	private KinematicBody2D _kb; //NOTE: redundant!
 	private Sprite _player;
