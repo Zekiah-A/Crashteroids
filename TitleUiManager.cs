@@ -53,8 +53,8 @@ public class TitleUiManager : Node
 	}
 	
 	private void _on_GamemodeOption_pressed(int _index)
-	{	//NOTE: use index if i am not doing any fancy transitions with this :(
-		GD.Print($"Panel {_index} was pressed.");
+	{
+		GameConfig.Gamemode = _index;
 		_matchsettingsPanel.Visible = true;
 
 		_matchsettingsTween.InterpolateProperty (
@@ -159,12 +159,14 @@ public class TitleUiManager : Node
 	private void _on_Start_pressed()
 	{
 		GD.Print("Starting Game with configuration:");
+		//GD.Print($"Gamemode: {(Gamemodes) GameConfig.Gamemode}.");
 		GD.Print($"Random Map: {GameConfig.Match.RandomMap}");
 		GD.Print($"Special Abilities: {GameConfig.Match.SpecialAbilities}");
 		GD.Print($"Rocket Bounces: {GameConfig.Match.RocketBounces}");
 		GD.Print($"Rounds: {GameConfig.Match.Rounds}");
 		
 		GetTree().ChangeScene("res://scenes/Game.tscn");
+		//NOTE: Starting match is called from button signal
 	}
 	#endregion
 }

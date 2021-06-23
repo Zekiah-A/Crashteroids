@@ -8,6 +8,7 @@ public class GameConfig
 	public static bool SoundEffects = true;
 	
 	public static int Gamemode;
+	
 	public struct Match
 	{
 		public static bool RandomMap;
@@ -15,4 +16,12 @@ public class GameConfig
 		public static int RocketBounces;
 		public static int Rounds;
 	}
+}
+
+public enum Gamemodes
+{
+	TwoPlayer = 1,
+	AiPlayer,
+	Multiplayer,
+	Designer
 }
