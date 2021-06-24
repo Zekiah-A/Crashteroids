@@ -141,7 +141,7 @@ texture = ExtResource( 6 )
 scale = Vector2( 0.031, 0.031 )
 shape = SubResource( 4 )
 
-[node name="TurnUI" parent="." instance=ExtResource( 7 )]
+[node name="Turn UI" parent="." instance=ExtResource( 7 )]
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2( 512, 320 )
@@ -164,4 +164,4 @@ shape = SubResource( 7 )
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_Back_pressed"]
 
-[editable path="TurnUI"]
+[editable path="Turn UI"]

@@ -1,8 +1,9 @@
 using Godot;
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 
-public class Match //: Node
+public class Match
 {
 	public int CurrentTurn;
 	//private Label _turnUI;
@@ -14,23 +15,25 @@ public class Match //: Node
 	}
 
 	public void SwitchTurn(int _finishedTurn)
-	{
+	{	///<summary> Stop current player from moving </summary>
+		GameManager.Players[CurrentTurn].IsCurrent = false;
+		///<summary> Switch the current player for the match </summary>
 		if (GameConfig.Gamemode == (int) Gamemodes.TwoPlayer)
 		{
-			if (_finishedTurn == 0)
-				CurrentTurn = 1;
-			else
-				CurrentTurn = 0;
+			switch (_finishedTurn)
+			{
+				case 0:
+					CurrentTurn = 1;
+					break;
+				case 1:
+					CurrentTurn = 0;
+					break;
+			}
 		}
-		
-		foreach (Player _player in GameManager.Players)
-		{
-			if (_player.Id == CurrentTurn)
-				GameManager.Players[CurrentTurn].IsCurrent = true;
-			else
-				GameManager.Players[CurrentTurn].IsCurrent = false;
-		}
-		
-		//_turnUI.Text = "Player " + CurrentTurn +"'s turn.";
+		///<summary>Re-set the new current player to be able to move</summary>
+		GameManager.Players[CurrentTurn].IsCurrent = true;
+		///<note> Add 1 to current turn in order to not confuse players. </note>
+		GameManager.TurnUI.Text = "Player " + (CurrentTurn + 1) +"'s turn.";
 	}
 }
+//TODO: Shift player numbers up 1, and 1 back for arrays.

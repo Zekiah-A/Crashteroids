@@ -33,13 +33,8 @@ public class Player : KinematicBody2D
 				///<summary>I spent hours trying to figure out something this easy.</summary>
 				_player.Rotation = _velocity.Angle();
 				
-				_bounces++;
-				if(_bounces >= GameConfig.Match.RocketBounces)
-				{
-					GameManager.GameMatch.SwitchTurn(Id);
-					_bounces = 0;
-				}
+				GameManager.GameMatch.SwitchTurn(Id); //HACK:
 			}
-		} 
+		}
 	}
 }
