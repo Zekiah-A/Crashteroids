@@ -488,7 +488,6 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
 
 [node name="Gamemode Panel" type="Panel" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -684,6 +683,7 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="Gamemode Panel"]
 
 [node name="Matchsettings Panel" type="Panel" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )

@@ -8,12 +8,10 @@ public class GameManager : Node2D
 	public static List<Player> Players = new List<Player>();
 	public static Label TurnUI;
 	
-	public override void _Ready() =>
-		TurnUI = (Label) GetNode("Turn UI").GetNode("Label");
-	
 	///<summary> Called when the scene is created (match started). </sumamry>
-	public override void _EnterTree()
+	public override void _Ready()
 	{
+		TurnUI = (Label) GetNode("Turn UI").GetNode("Label");
 		if (GameConfig.Gamemode == (int) Gamemodes.TwoPlayer)
 		{
 			Players.Add(GetNode("P1") as Player);

@@ -35,5 +35,10 @@ public class Match
 		///<note> Add 1 to current turn in order to not confuse players. </note>
 		GameManager.TurnUI.Text = "Player " + (CurrentTurn + 1) +"'s turn.";
 	}
+	
+	public void EndMatch()
+	{
+		
+	}
 }
 //TODO: Shift player numbers up 1, and 1 back for arrays.

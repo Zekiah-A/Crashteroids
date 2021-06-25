@@ -11,7 +11,8 @@ public class Player : KinematicBody2D
 	private KinematicBody2D _kb; //NOTE: redundant!
 	private Sprite _player;
 	private RayCast2D _rayCast;
-	private Vector2 _velocity = new Vector2(1, 0); //HACK: 1 for testing //Vector2.Zero;
+	//private Vector2 _velocity; //= new Vector2(1, 0); //HACK: 1 for testing //Vector2.Zero;
+	private Vector2 _touchPosition;
 	private int _bounces;
 	
 	public override void _Ready()
@@ -23,17 +24,50 @@ public class Player : KinematicBody2D
 	
 	public override void _Process(float _delta)
 	{
-		//TODO: Velocity = SINGLE tap pos, after tap, set "lock" var - imposed by game manager during your go
+		//TODO: Velocity = SINGLE tap pos, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
 		if (IsCurrent)
 		{
-			var _collision = MoveAndCollide(_velocity * Speed * _delta);
+			var _collision = MoveAndCollide(_touchPosition * Speed * _delta);
 			if (_collision != null)
 			{
-				_velocity = _velocity.Bounce(_collision.Normal);
+				_touchPosition = _touchPosition.Bounce(_collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
-				_player.Rotation = _velocity.Angle();
+				_player.Rotation = _touchPosition.Angle();
 				
-				GameManager.GameMatch.SwitchTurn(Id); //HACK:
+				_bounces++;
+				if (_bounces >= GameConfig.Match.RocketBounces)
+				{
+					GameManager.GameMatch.SwitchTurn(Id);
+					_bounces = 0;
+				}
+			}
+		}
+		
+	}
+	
+	public override void _Input(InputEvent _event)
+	{
+		if (IsCurrent)
+		{
+			if (_event is InputEventScreenTouch _inputTouch)
+			{
+				_touchPosition = new Vector2(
+					(_inputTouch.Position.x / 1024) - (_kb.Position.x / 1024),
+					(_inputTouch.Position.y / 600) - (_kb.Position.y / 600)
+					).Normalized();
+				_player.Rotation = _touchPosition.Angle();
+				GD.Print(_event);
+				GD.Print(_touchPosition);
+			}
+			else if (_event is InputEventMouseButton _inputMouse)
+			{
+				_touchPosition = new Vector2(
+					(_inputMouse.Position.x / 1024) - (_kb.Position.x / 1024),
+					(_inputMouse.Position.y / 600) - (_kb.Position.y / 600)
+					).Normalized();
+				_player.Rotation = _touchPosition.Angle();
+				GD.Print(_event);
+				GD.Print(_touchPosition);
 			}
 		}
 	}
