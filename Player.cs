@@ -7,9 +7,9 @@ public class Player : KinematicBody2D
 	[Export] public int Id;
 	
 	public bool IsCurrent;
-	
+	public Sprite _player;
 	private KinematicBody2D _kb; //NOTE: redundant!
-	private Sprite _player;
+	
 	private RayCast2D _rayCast;
 	//private Vector2 _velocity; //= new Vector2(1, 0); //HACK: 1 for testing //Vector2.Zero;
 	private Vector2 _touchPosition;
@@ -74,5 +74,10 @@ public class Player : KinematicBody2D
 				_debounce = true;
 			}
 		}
+	}
+	
+	public void UpdateSkin()
+	{
+		_player.Texture = Picker.RocketTextures[GameConfig.SkinID];
 	}
 }

@@ -12,6 +12,7 @@ public class Match
 	{	//HACK: Remove until found a way
 		//_turnUI = GetNode<Label>("/root/Node2D/TurnUI/Label");
 		GameManager.Players[0].IsCurrent = true;
+		GameManager.Players[0].UpdateSkin();
 	}
 
 	public void SwitchTurn(int _finishedTurn)
@@ -38,7 +39,7 @@ public class Match
 	
 	public void EndMatch()
 	{
-		
+		//TODO: Destroy this instance
 	}
 }
 //TODO: Shift player numbers up 1, and 1 back for arrays.

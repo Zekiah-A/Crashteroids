@@ -1,9 +1,10 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public class Picker : Control
 {
-	public Texture[] RocketTextures;
+	public static Texture[] RocketTextures;
 	
 	private Button _1;
 	private Button _2;
@@ -26,7 +27,7 @@ public class Picker : Control
 		};
 	}
 	
-	private void _on_Button_pressed(int _index)
+	private async void _on_Button_pressed(int _index)
 	{
 		
 		///<note> Forward button = 1 </note>
@@ -44,10 +45,11 @@ public class Picker : Control
 			else
 				_currentIndex--;
 		}
-		UpdateTexture(_index);
+		
+		await UpdateTexture(_index);
 	}
 	
-	private async void UpdateTexture(int _index)
+	private async Task UpdateTexture(int _index)
 	{
 		if (_index == 1)
 		{
@@ -79,7 +81,7 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(410, 16), //from
+				new Vector2(400, 16), //from
 				new Vector2(192, 16), //to
 				0.5f, //speed
 				Tween.TransitionType.Cubic,
@@ -103,7 +105,7 @@ public class Picker : Control
 				_rocket, //Object
 				"rect_position", //Property being tweened
 				new Vector2(192, 16), //from
-				new Vector2(410, 16), //to
+				new Vector2(400, 16), //to
 				0.5f, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
