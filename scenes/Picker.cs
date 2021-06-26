@@ -48,11 +48,11 @@ public class Picker : Control
 		UpdateTexture(_index);
 	}
 	
-	private void UpdateTexture(int _index)
+	private async void UpdateTexture(int _index)
 	{
 		if (_index == 1)
 		{
-			//come off before coming on tween
+			//<summary> Come off before coming on tween </summary>
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
@@ -63,9 +63,11 @@ public class Picker : Control
 				Tween.EaseType.In
 			);
 			_rocketTween.Start();
+			///<summary> Wait for the rocket to move out of view and change texture</summary>
+			await ToSignal(_rocketTween, "tween_completed");
+			_rocket.Texture = RocketTextures[_currentIndex];
 			
-			//_rocket.Texture = RocketTextures[_currentIndex];
-				
+			//<summary> "New" rocket comes on the screen </summary>
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
@@ -73,14 +75,14 @@ public class Picker : Control
 				new Vector2(192, 32), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out,
-				1
+				Tween.EaseType.Out//,
+				//1
 			);
 			_rocketTween.Start();
 		}
 		else
 		{
-			//come off before coming on tween
+			//<summary> Come off before coming on tween </summary>
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
@@ -91,9 +93,11 @@ public class Picker : Control
 				Tween.EaseType.In
 			);
 			_rocketTween.Start();
+			///<summary> Wait for the rocket to move out of view and change texture</summary>
+			await ToSignal(_rocketTween, "tween_completed");
+			_rocket.Texture = RocketTextures[_currentIndex];
 			
-			//_rocket.Texture = RocketTextures[_currentIndex];
-				
+			//<summary> "New" rocket comes on the screen </summary>
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
@@ -101,8 +105,8 @@ public class Picker : Control
 				new Vector2(192, 32), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out,
-				1
+				Tween.EaseType.Out//,
+				//1
 			);
 			_rocketTween.Start();
 		}
