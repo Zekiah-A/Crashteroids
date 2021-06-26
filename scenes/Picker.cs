@@ -19,7 +19,7 @@ public class Picker : Control
 		_rocket = GetNode<TextureRect>("Rocket");
 		_rocketTween = GetNode("Rocket").GetNode<Tween>("Tween");
 		
-		RocketTextures = new Texture[] //TODO: Better name
+		RocketTextures = new Texture[]
 		{
 			ResourceLoader.Load("res://resources/rockets/rocket_retro_1.png") as Texture,
 			ResourceLoader.Load("res://resources/rockets/rocket_retro_2.png") as Texture,
@@ -75,8 +75,7 @@ public class Picker : Control
 				new Vector2(192, 32), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out//,
-				//1
+				Tween.EaseType.Out
 			);
 			_rocketTween.Start();
 		}
@@ -105,8 +104,7 @@ public class Picker : Control
 				new Vector2(192, 32), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out//,
-				//1
+				Tween.EaseType.Out
 			);
 			_rocketTween.Start();
 		}
