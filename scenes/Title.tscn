@@ -489,7 +489,6 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
 
 [node name="Gamemode Panel" type="Panel" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -907,6 +906,7 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -1233,9 +1233,9 @@ __meta__ = {
 
 [node name="Picker" parent="Editor Panel" instance=ExtResource( 20 )]
 margin_left = 256.0
-margin_top = 120.0
+margin_top = 136.0
 margin_right = -256.0
-margin_bottom = -288.0
+margin_bottom = -296.0
 
 [node name="Settings Title" type="Label" parent="Editor Panel"]
 anchor_left = 0.5

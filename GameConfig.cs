@@ -7,6 +7,8 @@ public class GameConfig
 	public static bool Music = true;
 	public static bool SoundEffects = true;
 	
+	public static int SkinID = 0;
+	
 	public static int Gamemode;
 	
 	public struct Match

@@ -3,7 +3,6 @@ using System;
 
 public class Picker : Control
 {
-	public Texture Current;
 	public Texture[] RocketTextures;
 	
 	private Button _1;
@@ -56,9 +55,18 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(192, 24), //from
-				new Vector2(0, 24), //to
-				1, //speed
+				new Vector2(192, 16), //from
+				new Vector2(0, 16), //to
+				0.5f, //speed
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.In
+			);
+			_rocketTween.InterpolateProperty (
+				_rocket, //Object
+				"rect_rotation", //Property being tweened
+				0, //from
+				-20, //to
+				0.5f, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
 			);
@@ -71,9 +79,18 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(415, 24), //from
-				new Vector2(192, 24), //to
-				1, //speed
+				new Vector2(410, 16), //from
+				new Vector2(192, 16), //to
+				0.5f, //speed
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.Out
+			);
+			_rocketTween.InterpolateProperty (
+				_rocket, //Object
+				"rect_rotation", //Property being tweened
+				-20, //from
+				0, //to
+				0.5f, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
@@ -85,9 +102,18 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(192, 24), //from
-				new Vector2(415, 24), //to
-				1, //speed
+				new Vector2(192, 16), //from
+				new Vector2(410, 16), //to
+				0.5f, //speed
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.In
+			);
+			_rocketTween.InterpolateProperty (
+				_rocket, //Object
+				"rect_rotation", //Property being tweened
+				0, //from
+				20, //to
+				0.5f, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
 			);
@@ -100,13 +126,24 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(0, 24), //from
-				new Vector2(192, 24), //to
-				1, //speed
+				new Vector2(0, 16), //from
+				new Vector2(192, 16), //to
+				0.5f, //speed
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.Out
+			);
+			_rocketTween.InterpolateProperty (
+				_rocket, //Object
+				"rect_rotation", //Property being tweened
+				20, //from
+				0, //to
+				0.5f, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
 			_rocketTween.Start();
 		}
+		
+		GameConfig.SkinID = Array.IndexOf(RocketTextures, _rocket.Texture);
 	}
 }
