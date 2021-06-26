@@ -12,17 +12,19 @@ material = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -512.0
-margin_bottom = -408.0
+margin_bottom = -424.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Rocket" type="TextureRect" parent="."]
-margin_left = 192.0
-margin_top = 32.0
-margin_right = 320.0
-margin_bottom = 160.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.0
+margin_top = 24.0
+margin_right = 64.0
+margin_bottom = 152.0
 texture = ExtResource( 1 )
 expand = true
 __meta__ = {
@@ -32,14 +34,9 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Rocket"]
 
 [node name="Button Forward" type="Button" parent="."]
-anchor_left = 1.29542
-anchor_top = 0.0529662
-anchor_right = 1.51417
-anchor_bottom = 1.05297
-margin_left = -263.257
-margin_top = -10.1695
-margin_right = -263.257
-margin_bottom = -10.1695
+anchor_left = 0.78125
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/normal = ExtResource( 4 )
@@ -49,20 +46,14 @@ __meta__ = {
 }
 
 [node name="Button Back" type="Button" parent="."]
-anchor_left = 0.257087
-anchor_top = 0.0169492
-anchor_right = 0.365591
-anchor_bottom = 0.355932
-margin_left = -131.629
-margin_top = -3.25425
-margin_right = -75.1826
-margin_bottom = 123.661
+anchor_right = 0.21875
+anchor_bottom = 1.0
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/normal = ExtResource( 4 )
 text = "<"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [connection signal="pressed" from="Button Forward" to="." method="_on_Button_pressed" binds= [ 1 ]]

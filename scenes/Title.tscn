@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://scenes/Checkbox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://icon_grey.png" type="Texture" id=19]
+[ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/RocketEditor.cs" type="Script" id=21]
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 
@@ -934,37 +935,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title" type="Label" parent="Editor Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -192.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 144.0
-custom_fonts/font = ExtResource( 14 )
-text = "Rocket Editor"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Settings Title Outline" type="Label" parent="Editor Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -192.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 144.0
-custom_fonts/font = ExtResource( 13 )
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-text = "Rocket Editor"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Panel Tween" type="Tween" parent="Editor Panel"]
 
 [node name="Main Panel" type="Panel" parent="Editor Panel"]
@@ -1257,6 +1227,43 @@ margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Picker" parent="Editor Panel" instance=ExtResource( 20 )]
+margin_left = 256.0
+margin_top = 120.0
+margin_right = -256.0
+margin_bottom = -288.0
+
+[node name="Settings Title" type="Label" parent="Editor Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 144.0
+custom_fonts/font = ExtResource( 14 )
+text = "Rocket Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings Title Outline" type="Label" parent="Editor Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -192.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 144.0
+custom_fonts/font = ExtResource( 13 )
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+text = "Rocket Editor"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

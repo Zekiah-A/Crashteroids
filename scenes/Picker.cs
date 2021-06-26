@@ -56,8 +56,8 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(192, 32), //from
-				new Vector2(0, 32), //to
+				new Vector2(192, 24), //from
+				new Vector2(0, 24), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
@@ -71,8 +71,8 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(415, 32), //from
-				new Vector2(192, 32), //to
+				new Vector2(415, 24), //from
+				new Vector2(192, 24), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
@@ -85,8 +85,8 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(192, 32), //from
-				new Vector2(415, 32), //to
+				new Vector2(192, 24), //from
+				new Vector2(415, 24), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
@@ -100,8 +100,8 @@ public class Picker : Control
 			_rocketTween.InterpolateProperty (
 				_rocket, //Object
 				"rect_position", //Property being tweened
-				new Vector2(0, 32), //from
-				new Vector2(192, 32), //to
+				new Vector2(0, 24), //from
+				new Vector2(192, 24), //to
 				1, //speed
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
