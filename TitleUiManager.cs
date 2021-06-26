@@ -32,7 +32,6 @@ public class TitleUiManager : Node
 		_matchsettingsPanel.Visible = false;
 		_editorPanel.Visible = false;
 	}
-//  public override void _Process(float delta) {}
 	
 	//TODO: in future use something fancy like tween
 	#region SIGNALS

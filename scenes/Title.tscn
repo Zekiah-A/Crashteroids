@@ -19,8 +19,8 @@
 [ext_resource path="res://scenes/Checkbox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://icon_grey.png" type="Texture" id=19]
-[ext_resource path="res://scenes/Rocket.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/RocketEditor.cs" type="Script" id=21]
+[ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -488,6 +488,7 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
 
 [node name="Gamemode Panel" type="Panel" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -575,7 +576,7 @@ anchor_top = 0.20339
 anchor_right = 0.875
 anchor_bottom = 0.881356
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 19 )
+texture_pressed = ExtResource( 22 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -832,15 +833,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Matchsettings Panel/Centre Panel"]
-anchor_left = 0.025
-anchor_top = 0.118644
-anchor_right = 0.975
-anchor_bottom = 0.79661
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="Rocket Editor Button" type="Button" parent="Matchsettings Panel/Centre Panel"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -862,6 +854,27 @@ margin_right = 144.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 2 )
 text = "Rocket Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Matchsettings Panel/Centre Panel"]
+margin_left = 32.0
+margin_top = 64.0
+margin_right = 288.0
+margin_bottom = 256.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Matchsettings Panel/Centre Panel/Panel"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 192.0
+margin_bottom = 128.0
+text = "MAP / Theme"
 align = 1
 valign = 1
 __meta__ = {
@@ -893,7 +906,6 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
@@ -967,38 +979,6 @@ margin_bottom = -0.000244141
 custom_styles/panel = SubResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
-}
-
-[node name="ViewportContainer" type="ViewportContainer" parent="Editor Panel/Main Panel"]
-margin_left = 447.499
-margin_top = 16.0
-margin_right = 575.499
-margin_bottom = 160.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Rocket display" parent="Editor Panel/Main Panel/ViewportContainer" instance=ExtResource( 20 )]
-position = Vector2( 0.498993, 8.00002 )
-
-[node name="Button Forward" type="Button" parent="Editor Panel/Main Panel"]
-anchor_left = 0.632454
-anchor_top = 0.0169492
-anchor_right = 0.741935
-anchor_bottom = 0.355932
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Button Back" type="Button" parent="Editor Panel/Main Panel"]
-anchor_left = 0.257087
-anchor_top = 0.0169492
-anchor_right = 0.365591
-anchor_bottom = 0.355932
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": true
 }
 
 [node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
