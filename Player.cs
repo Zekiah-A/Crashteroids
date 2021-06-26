@@ -14,6 +14,7 @@ public class Player : KinematicBody2D
 	//private Vector2 _velocity; //= new Vector2(1, 0); //HACK: 1 for testing //Vector2.Zero;
 	private Vector2 _touchPosition;
 	private int _bounces;
+	private bool _debounce = false;
 	
 	public override void _Ready()
 	{
@@ -25,7 +26,7 @@ public class Player : KinematicBody2D
 	public override void _Process(float _delta)
 	{
 		//TODO: Velocity = SINGLE tap pos, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
-		if (IsCurrent)
+		if (IsCurrent && _debounce == true)
 		{
 			var _collision = MoveAndCollide(_touchPosition * Speed * _delta);
 			if (_collision != null)
@@ -39,6 +40,7 @@ public class Player : KinematicBody2D
 				{
 					GameManager.GameMatch.SwitchTurn(Id);
 					_bounces = 0;
+					_debounce = false;
 				}
 			}
 		}
@@ -49,25 +51,27 @@ public class Player : KinematicBody2D
 	{
 		if (IsCurrent)
 		{
-			if (_event is InputEventScreenTouch _inputTouch)
+			if (_event is InputEventScreenTouch _inputTouch && _debounce == false)
 			{
 				_touchPosition = new Vector2(
-					(_inputTouch.Position.x / 1024) - (_kb.Position.x / 1024),
-					(_inputTouch.Position.y / 600) - (_kb.Position.y / 600)
+					(_inputTouch.Position.x) - (_kb.Position.x),
+					(_inputTouch.Position.y) - (_kb.Position.y)
 					).Normalized();
 				_player.Rotation = _touchPosition.Angle();
 				GD.Print(_event);
 				GD.Print(_touchPosition);
+				_debounce = true;
 			}
-			else if (_event is InputEventMouseButton _inputMouse)
+			else if (_event is InputEventMouseButton _inputMouse && _debounce == false)
 			{
 				_touchPosition = new Vector2(
-					(_inputMouse.Position.x / 1024) - (_kb.Position.x / 1024),
-					(_inputMouse.Position.y / 600) - (_kb.Position.y / 600)
+					(_inputMouse.Position.x) - (_kb.Position.x),
+					(_inputMouse.Position.y) - (_kb.Position.y)
 					).Normalized();
 				_player.Rotation = _touchPosition.Angle();
 				GD.Print(_event);
 				GD.Print(_touchPosition);
+				_debounce = true;
 			}
 		}
 	}
