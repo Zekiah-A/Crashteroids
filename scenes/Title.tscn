@@ -1311,7 +1311,6 @@ __meta__ = {
 }
 
 [node name="Help Panel" type="Panel" parent="."]
-visible = false
 material = SubResource( 31 )
 margin_left = 384.0
 margin_top = 120.0
@@ -1370,7 +1369,7 @@ margin_top = 168.0
 margin_right = 256.0
 margin_bottom = 304.0
 bbcode_enabled = true
-bbcode_text = "[wave amp=20 freq=5][color=yellow][center]Playing the game:[/center][/color][/wave]
+bbcode_text = "[shake rate=5 level=10][color=yellow][center]Playing the game:[/center][/color][/shake]
  - Click / press to move the rocket in a certain direction.
  - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
  - Crash into your opponent in order to win."
