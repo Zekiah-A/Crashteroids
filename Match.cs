@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class Match : Node
 {
@@ -9,8 +10,7 @@ public class Match : Node
 	public float MatchLength;
 	
 	public Match()
-	{	//HACK: Remove until found a way
-		//_turnUI = GetNode<Label>("/root/Node2D/TurnUI/Label");
+	{
 		GameManager.Players[0].IsCurrent = true;
 		GameManager.Players[0].UpdateSkin();
 		GameManager.TimerNode.Connect("timeout", this, nameof(_on_Timer_timeout));
@@ -39,11 +39,13 @@ public class Match : Node
 		GameManager.TurnUI.Text = "Player " + (CurrentTurn + 1) +"'s turn.";
 	}
 	
-	private void _on_Timer_timeout()
-	{//HACK: FOR TESTING
-		MatchLength += GameManager.TimerNode.WaitTime;
+	public void Crash(/*Player _sender*/)
+	{
 		EndMatch();
 	}
+	
+	private void _on_Timer_timeout() =>
+		MatchLength += GameManager.TimerNode.WaitTime;
 	
 	public void EndMatch()
 	{

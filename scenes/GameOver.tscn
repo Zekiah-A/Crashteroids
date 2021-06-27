@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://shaders/blur.shader" type="Shader" id=1]
 [ext_resource path="res://fonts/smaller_title_font_outline.tres" type="DynamicFont" id=2]
@@ -13,6 +13,14 @@
 shader = ExtResource( 1 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 40
@@ -53,6 +61,15 @@ margin_left = 384.0
 margin_top = 152.0
 margin_right = 640.0
 margin_bottom = 448.0
+rect_pivot_offset = Vector2( 128, 148 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="Panel" parent="Panel"]
+margin_right = 256.0
+margin_bottom = 296.0
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -127,6 +144,8 @@ Match Length:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="Panel"]
 
 [connection signal="pressed" from="Panel/Again" to="." method="_on_Button_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="Panel/Quit" to="." method="_on_Button_pressed" binds= [ 2 ]]

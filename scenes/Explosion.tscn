@@ -39,3 +39,9 @@ amount = 100
 lifetime = 0.6
 explosiveness = 0.5
 process_material = SubResource( 5 )
+
+[node name="Particles2D Smoke" type="Particles2D" parent="Particles2D"]
+amount = 100
+lifetime = 0.6
+explosiveness = 0.5
+process_material = SubResource( 5 )

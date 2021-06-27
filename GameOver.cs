@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public class GameOver : Control
 {
 	private static Panel _panel;
+	private static Tween _panelTween;
 	private static Label _winner;
 	private static Label _winnerOutline;
 	private static RichTextLabel _details;
@@ -15,6 +17,7 @@ public class GameOver : Control
 		_panel = GetNode<Panel>("Panel");
 		_panel.Visible = false;
 		
+		_panelTween = GetNode("Panel").GetNode<Tween>("Tween");
 		_winner = GetNode("Panel").GetNode<Label>("Winner");
 		_winnerOutline = GetNode("Panel").GetNode<Label>("Winner Outline");
 		_details = GetNode("Panel").GetNode<RichTextLabel>("Details");
@@ -22,10 +25,20 @@ public class GameOver : Control
 		_quit = GetNode("Panel").GetNode<Button>("Quit");
 	}
 	
-	public static void InitialiseGameOver()
-	{	//HACK: This may not always be correct
+	public static async void InitialiseGameOver()
+	{	
 		_panel.Visible = true;
-		
+		_panelTween.InterpolateProperty (
+			_panel, //Object
+			"rect_scale", //Property being tweened
+			new Vector2(0, 0), //from
+			new Vector2(1, 1), //to
+			1, //speed
+			Tween.TransitionType.Back,
+			Tween.EaseType.Out
+		);
+		_panelTween.Start();
+		//HACK: This may not always be correct
 		_winner.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
 		_winnerOutline.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
 		

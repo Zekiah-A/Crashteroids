@@ -31,6 +31,14 @@ public class Player : KinematicBody2D
 			var _collision = MoveAndCollide(_touchPosition * Speed * _delta);
 			if (_collision != null)
 			{
+				var _hit = (Godot.Node2D)_collision.Collider;
+				GD.Print(_hit.GetName());
+				//HACK: Bad code, fix later for non 2player gamemodes
+				if (_hit.GetName() == "P1" || _hit.GetName() == "P2")
+				{
+					GameManager.GameMatch.Crash();
+				}
+				
 				_touchPosition = _touchPosition.Bounce(_collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
 				_player.Rotation = _touchPosition.Angle();
