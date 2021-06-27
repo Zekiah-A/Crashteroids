@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -99,12 +99,12 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=24]
 
-[sub_resource type="ShaderMaterial" id=25]
+[sub_resource type="StyleBoxEmpty" id=25]
+
+[sub_resource type="ShaderMaterial" id=26]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=26]
 
 [sub_resource type="StyleBoxEmpty" id=27]
 
@@ -112,18 +112,20 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=29]
 
-[sub_resource type="StyleBoxFlat" id=30]
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="StyleBoxFlat" id=31]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=31]
+[sub_resource type="ShaderMaterial" id=32]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=32]
+[sub_resource type="StyleBoxFlat" id=33]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -508,24 +510,24 @@ __meta__ = {
 margin_right = 344.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 15 )
-text = "Controls:"
+text = "Other"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Settings Panel/Right Panel"]
-margin_left = 104.0
-margin_top = 144.0
-margin_right = 288.0
-margin_bottom = 344.0
-custom_fonts/font = ExtResource( 15 )
-text = "OPTIONS WILL BE ADDED SOON"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Checkbox" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
+anchor_left = 0.209302
+anchor_top = 0.135593
+anchor_right = 0.428052
+anchor_bottom = 0.24226
+
+[node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox" index="0"]
+custom_styles/panel = SubResource( 25 )
+
+[node name="Label" parent="Settings Panel/Right Panel/Checkbox/Checkbox" index="1"]
+text = "Help button active"
 
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
 
@@ -539,7 +541,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="ColorRect" parent="Gamemode Panel"]
-material = SubResource( 25 )
+material = SubResource( 26 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -735,7 +737,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="ColorRect" parent="Matchsettings Panel"]
-material = SubResource( 25 )
+material = SubResource( 26 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -792,7 +794,7 @@ __meta__ = {
 margin_top = 128.0
 margin_right = 352.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 26 )
+custom_styles/panel = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -870,7 +872,7 @@ margin_left = 352.0
 margin_top = 128.0
 margin_right = 672.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 27 )
+custom_styles/panel = SubResource( 28 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -928,7 +930,7 @@ margin_left = 672.0
 margin_top = 128.0
 margin_right = 1024.0
 margin_bottom = 600.0
-custom_styles/panel = SubResource( 28 )
+custom_styles/panel = SubResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -957,7 +959,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="ColorRect" parent="Editor Panel"]
-material = SubResource( 25 )
+material = SubResource( 26 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -988,7 +990,7 @@ margin_left = -511.499
 margin_top = -472.0
 margin_right = 511.501
 margin_bottom = -0.000244141
-custom_styles/panel = SubResource( 29 )
+custom_styles/panel = SubResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1012,7 +1014,7 @@ margin_left = 71.0
 margin_top = 24.0
 margin_right = 183.0
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1031,7 +1033,7 @@ margin_left = 199.499
 margin_top = 24.0
 margin_right = 311.499
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1050,7 +1052,7 @@ margin_left = 327.499
 margin_top = 24.0
 margin_right = 439.499
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1069,7 +1071,7 @@ margin_left = 455.499
 margin_top = 24.0
 margin_right = 567.499
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1088,7 +1090,7 @@ margin_left = 583.499
 margin_top = 24.0
 margin_right = 695.499
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1107,7 +1109,7 @@ margin_left = 711.499
 margin_top = 24.0001
 margin_right = 823.499
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1126,7 +1128,7 @@ margin_left = 839.499
 margin_top = 24.0
 margin_right = 951.499
 margin_bottom = 136.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1145,7 +1147,7 @@ margin_left = 71.499
 margin_top = 152.0
 margin_right = 183.499
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1164,7 +1166,7 @@ margin_left = 199.998
 margin_top = 152.0
 margin_right = 311.998
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1183,7 +1185,7 @@ margin_left = 327.499
 margin_top = 152.0
 margin_right = 439.499
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1202,7 +1204,7 @@ margin_left = 455.499
 margin_top = 152.0
 margin_right = 567.499
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1221,7 +1223,7 @@ margin_left = 583.499
 margin_top = 152.0
 margin_right = 695.499
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1240,7 +1242,7 @@ margin_left = 711.499
 margin_top = 152.0
 margin_right = 823.499
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1259,7 +1261,7 @@ margin_left = 839.499
 margin_top = 152.0
 margin_right = 951.499
 margin_bottom = 264.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1311,7 +1313,8 @@ __meta__ = {
 }
 
 [node name="Help Panel" type="Panel" parent="."]
-material = SubResource( 31 )
+visible = false
+material = SubResource( 32 )
 margin_left = 384.0
 margin_top = 120.0
 margin_right = 640.0
@@ -1324,7 +1327,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="Help Panel"]
 margin_right = 256.0
 margin_bottom = 360.0
-custom_styles/panel = SubResource( 32 )
+custom_styles/panel = SubResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1428,6 +1431,7 @@ script = ExtResource( 8 )
 
 [editable path="Settings Panel/Centre Panel/Checkbox"]
 [editable path="Settings Panel/Centre Panel/Checkbox2"]
+[editable path="Settings Panel/Right Panel/Checkbox"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox2"]
 [editable path="Matchsettings Panel/Left Panel/Iteratebox"]
