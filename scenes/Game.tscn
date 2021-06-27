@@ -4,7 +4,7 @@
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
 [ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=3]
 [ext_resource path="res://fonts/large_title_font_outline.tres" type="DynamicFont" id=4]
-[ext_resource path="res://scenes/GameManager.cs" type="Script" id=5]
+[ext_resource path="res://GameManager.cs" type="Script" id=5]
 [ext_resource path="res://resources/image/square.png" type="Texture" id=6]
 [ext_resource path="res://scenes/PlayerTurn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player.cs" type="Script" id=8]
@@ -18,19 +18,19 @@ colors = PoolColorArray( 0.0625, 0.0625, 0.0625, 1 )
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 512, 8 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 512, 8 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 512, 8 )
-
-[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 300 )
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=7]
 radius = 2.0
 
 [node name="Node2D" type="Node2D"]
@@ -70,7 +70,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Object4" type="Sprite" parent="."]
 position = Vector2( 856, 80 )
@@ -82,7 +82,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object4/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Object2" type="Sprite" parent="."]
 position = Vector2( 264, 400 )
@@ -94,7 +94,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object2/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Object3" type="Sprite" parent="."]
 position = Vector2( 728, 472 )
@@ -106,7 +106,7 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object3/StaticBody2D"]
 scale = Vector2( 0.031, 0.031 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( -72, -8 )
@@ -124,19 +124,19 @@ position = Vector2( 512, 320 )
 
 [node name="Top" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 0, -328 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 0, 288 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 520, -20 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="Left" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -520, -20 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 
 [node name="P1" type="KinematicBody2D" parent="."]
 position = Vector2( 96, 288 )
@@ -153,7 +153,7 @@ rotation = -3.14159
 cast_to = Vector2( 0, 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="P1"]
-shape = SubResource( 3 )
+shape = SubResource( 7 )
 
 [node name="Explosion" parent="P1" instance=ExtResource( 9 )]
 position = Vector2( 3.8147e-06, 3.05176e-05 )
@@ -175,9 +175,11 @@ rotation = -3.14159
 cast_to = Vector2( 0, 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="P2"]
-shape = SubResource( 3 )
+shape = SubResource( 7 )
 
 [node name="Control2" parent="." instance=ExtResource( 10 )]
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_Back_pressed"]
 

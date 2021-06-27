@@ -7,11 +7,13 @@ public class GameManager : Node2D
 	public static Match GameMatch;
 	public static List<Player> Players = new List<Player>();
 	public static Label TurnUI;
+	public static Timer TimerNode;
 	
 	///<summary> Called when the scene is created (match started). </sumamry>
 	public override void _Ready()
 	{
 		TurnUI = (Label) GetNode("Turn UI").GetNode("Label");
+		TimerNode =  (Timer) GetNode("Timer");
 		if (GameConfig.Gamemode == (int) Gamemodes.TwoPlayer)
 		{
 			Players.Add(GetNode("P1") as Player);
@@ -25,5 +27,5 @@ public class GameManager : Node2D
 		GameMatch = null;
 	
 	private void _on_Back_pressed() =>
-		GetTree().ChangeScene("res://scenes/Title.tscn"); //TODO: Make match finish screen, pause, etc
+		GameOver.InitialiseGameOver();
 }

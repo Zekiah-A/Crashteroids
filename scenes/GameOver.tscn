@@ -1,16 +1,48 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://shaders/blur.shader" type="Shader" id=1]
 [ext_resource path="res://fonts/smaller_title_font_outline.tres" type="DynamicFont" id=2]
+[ext_resource path="res://shaders/text_gradient.shader" type="Shader" id=3]
+[ext_resource path="res://fonts/typefaces/arial.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://styles/grey_button_pressed_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://styles/green_button_style.tres" type="StyleBox" id=6]
+[ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=7]
+[ext_resource path="res://GameOver.cs" type="Script" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[node name="Control" type="Control"]
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/intensity = 1.885
+shader_param/x = false
+shader_param/r_horizontal = 0.0
+shader_param/g_horizontal = 0.0
+shader_param/b_horizontal = null
+shader_param/y = true
+shader_param/r_vertical = null
+shader_param/g_vertical = 8.006
+shader_param/b_vertical = null
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="Game Over" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,10 +57,76 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Game Over" type="Label" parent="Panel"]
 margin_right = 256.0
 margin_bottom = 41.0
 custom_fonts/font = ExtResource( 2 )
 text = "Game Over"
 align = 1
 valign = 1
+
+[node name="Winner Outline" type="Label" parent="Panel"]
+margin_top = 41.0
+margin_right = 256.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+text = "Player 1 won!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Winner" type="Label" parent="Panel"]
+material = SubResource( 3 )
+margin_top = 41.0
+margin_right = 256.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 4 )
+text = "Player 1 won!"
+align = 1
+
+[node name="Again" type="Button" parent="Panel"]
+margin_left = 32.0
+margin_top = 176.0
+margin_right = 224.0
+margin_bottom = 224.0
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+custom_fonts/font = ExtResource( 2 )
+text = "Play Again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Panel"]
+margin_left = 32.0
+margin_top = 240.0
+margin_right = 224.0
+margin_bottom = 288.0
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 7 )
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+
+[node name="Details" type="RichTextLabel" parent="Panel"]
+margin_top = 88.0
+margin_right = 256.0
+margin_bottom = 168.0
+bbcode_enabled = true
+bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave]
+Rounds: 
+Bounces:
+Match Length:"
+text = "Details:
+Rounds: 
+Bounces:
+Match Length:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Panel/Again" to="." method="_on_Button_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_Button_pressed" binds= [ 2 ]]

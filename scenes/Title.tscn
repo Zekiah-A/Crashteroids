@@ -20,7 +20,7 @@
 [ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://icon_grey.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/RocketEditor.cs" type="Script" id=21]
+[ext_resource path="res://RocketEditor.cs" type="Script" id=21]
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -266,6 +266,7 @@ __meta__ = {
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 5 )
