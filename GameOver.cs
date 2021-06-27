@@ -38,7 +38,7 @@ public class GameOver : Control
 			Tween.EaseType.Out
 		);
 		_panelTween.Start();
-		//HACK: This may not always be correct
+		//HACK: This may not always be correct - winner var in match
 		_winner.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
 		_winnerOutline.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
 		

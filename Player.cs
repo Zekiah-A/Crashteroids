@@ -7,14 +7,17 @@ public class Player : KinematicBody2D
 	[Export] public int Id;
 	
 	public bool IsCurrent;
-	public Sprite _player;
-	private KinematicBody2D _kb; //NOTE: redundant!
+	public bool IsDead;
 	
+	private Sprite _player;
+	private KinematicBody2D _kb;
 	private RayCast2D _rayCast;
-	//private Vector2 _velocity; //= new Vector2(1, 0); //HACK: 1 for testing //Vector2.Zero;
 	private Vector2 _touchPosition;
 	private int _bounces;
 	private bool _debounce = false;
+	
+	private Random _random = new Random();
+	private Vector2 _hitAngle;
 	
 	public override void _Ready()
 	{
@@ -26,7 +29,7 @@ public class Player : KinematicBody2D
 	public override void _Process(float _delta)
 	{
 		//TODO: Velocity = SINGLE tap pos, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
-		if (IsCurrent && _debounce == true)
+		if (IsCurrent && _debounce == true && !IsDead)
 		{
 			var _collision = MoveAndCollide(_touchPosition * Speed * _delta);
 			if (_collision != null)
@@ -52,6 +55,17 @@ public class Player : KinematicBody2D
 				}
 			}
 		}
+		else if (IsDead)
+		{ //TODO: Use direction of impact with random
+			_player.Rotate(_delta * 10);
+			var _collision = MoveAndCollide(_hitAngle * 100 * _delta);
+			if (_collision != null)
+			{
+				var _hit = (Godot.Node2D)_collision.Collider;
+				if (_hit.GetName() == "Walls")
+					GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+			}
+		}
 		
 	}
 	
@@ -66,8 +80,6 @@ public class Player : KinematicBody2D
 					(_inputTouch.Position.y) - (_kb.Position.y)
 					).Normalized();
 				_player.Rotation = _touchPosition.Angle();
-				GD.Print(_event);
-				GD.Print(_touchPosition);
 				_debounce = true;
 			}
 			else if (_event is InputEventMouseButton _inputMouse && _debounce == false)
@@ -77,15 +89,18 @@ public class Player : KinematicBody2D
 					(_inputMouse.Position.y) - (_kb.Position.y)
 					).Normalized();
 				_player.Rotation = _touchPosition.Angle();
-				GD.Print(_event);
-				GD.Print(_touchPosition);
 				_debounce = true;
 			}
 		}
 	}
 	
-	public void UpdateSkin()
-	{
+	public void UpdateSkin() =>
 		_player.Texture = Picker.RocketTextures[GameConfig.SkinID];
+	
+	public void Explode()
+	{ //TODO: Fix janky code
+		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10,10));
+		GetNode<Node2D>("Explosion").Visible = true;
+		IsDead = true;
 	}
 }

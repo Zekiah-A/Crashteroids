@@ -8,11 +8,13 @@ public class TitleUiManager : Node
 	private Panel _gamemodePanel;
 	private Panel _matchsettingsPanel;
 	private Panel _editorPanel;
+	private Panel _helpPanel;
 
 	private Tween _settingsTween;
 	private Tween _gamemodeTween;
 	private Tween _matchsettingsTween;
 	private Tween _editorTween;
+	private Tween _helpTween;
 
 	public override void _Ready()
 	{
@@ -21,16 +23,19 @@ public class TitleUiManager : Node
 		_gamemodePanel = (Panel) GetParent().GetNode("Gamemode Panel");
 		_matchsettingsPanel = (Panel) GetParent().GetNode("Matchsettings Panel");
 		_editorPanel = (Panel) GetParent().GetNode("Editor Panel");
+		_helpPanel = (Panel) GetParent().GetNode("Help Panel");
 		
 		_settingsTween = (Tween) GetParent().GetNode("Settings Panel").GetNode("Panel Tween");
 		_gamemodeTween = (Tween) GetParent().GetNode("Gamemode Panel").GetNode("Panel Tween");
 		_matchsettingsTween = (Tween) GetParent().GetNode("Matchsettings Panel").GetNode("Panel Tween");
 		_editorTween = (Tween) GetParent().GetNode("Editor Panel").GetNode("Panel Tween");
+		_helpTween = (Tween) GetParent().GetNode("Help Panel").GetNode("Panel Tween");
 		
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
 		_matchsettingsPanel.Visible = false;
 		_editorPanel.Visible = false;
+		_helpPanel.Visible = false;
 	}
 	
 	//TODO: in future use something fancy like tween
@@ -102,6 +107,9 @@ public class TitleUiManager : Node
 			case 4:
 				_editorPanel.Visible = false;
 				break;
+			case 5:
+				_helpPanel.Visible = false;
+				break;
 		}
 	}
 	
@@ -126,6 +134,22 @@ public class TitleUiManager : Node
 		);
 		_editorTween.Start();
 	}
+	
+	private void _on_Help_pressed()
+	{
+		_helpPanel.Visible = true;
+		_helpTween.InterpolateProperty (
+			_helpPanel, //Object
+			"rect_scale", //Property being tweened
+			new Vector2(0, 0), //from
+			new Vector2(1, 1), //to
+			1, //speed
+			Tween.TransitionType.Back,
+			Tween.EaseType.Out
+		);
+		_helpTween.Start();
+	}
+	
 	#region MATCH CONFIGURATION //NOTE: + General configuration (for the time being)
 	private void _on_Matchconfig_update(int _configId, int _newValue)
 	{

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -118,6 +118,19 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="ShaderMaterial" id=31]
+shader = ExtResource( 3 )
+shader_param/blur_amount = 5.0
+shader_param/translucency = 1.0
+
+[sub_resource type="StyleBoxFlat" id=32]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -173,6 +186,34 @@ margin_right = 144.0
 margin_bottom = 56.0
 custom_fonts/font = SubResource( 2 )
 text = "Rocket Editor"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Button" parent="Main Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = 52.0
+margin_right = 80.0
+margin_bottom = 108.0
+rect_pivot_offset = Vector2( 72, 27 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Main Panel/Help"]
+margin_right = 160.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 2 )
+text = "Help"
 align = 1
 valign = 1
 __meta__ = {
@@ -1269,10 +1310,85 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Help Panel" type="Panel" parent="."]
+visible = false
+material = SubResource( 31 )
+margin_left = 384.0
+margin_top = 120.0
+margin_right = 640.0
+margin_bottom = 480.0
+rect_pivot_offset = Vector2( 128, 148 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="Panel" parent="Help Panel"]
+margin_right = 256.0
+margin_bottom = 360.0
+custom_styles/panel = SubResource( 32 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Help Panel"]
+margin_right = 256.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 10 )
+text = "Game info:"
+align = 1
+valign = 1
+
+[node name="Quit" type="Button" parent="Help Panel"]
+margin_left = 80.0
+margin_top = 304.0
+margin_right = 184.0
+margin_bottom = 345.0
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 10 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Details" type="RichTextLabel" parent="Help Panel"]
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 168.0
+bbcode_enabled = true
+bbcode_text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
+Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game."
+text = "The background:
+Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Details2" type="RichTextLabel" parent="Help Panel"]
+margin_top = 168.0
+margin_right = 256.0
+margin_bottom = 304.0
+bbcode_enabled = true
+bbcode_text = "[wave amp=20 freq=5][color=yellow][center]Playing the game:[/center][/color][/wave]
+ - Click / press to move the rocket in a certain direction.
+ - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
+ - Crash into your opponent in order to win."
+text = "Playing the game:
+ - Click / press to move the rocket in a certain direction.
+ - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
+ - Crash into your opponent in order to win."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel Tween" type="Tween" parent="Help Panel"]
+
 [node name="TitleUIManager" type="Node" parent="."]
 script = ExtResource( 8 )
 
 [connection signal="pressed" from="Main Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
+[connection signal="pressed" from="Main Panel/Help" to="TitleUIManager" method="_on_Help_pressed"]
 [connection signal="pressed" from="Main Panel/Play Button" to="TitleUIManager" method="_on_Gamemode_pressed"]
 [connection signal="pressed" from="Main Panel/Settings" to="TitleUIManager" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Settings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 1 ]]
@@ -1309,6 +1425,7 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/12/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 12 ]]
 [connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 13 ]]
 [connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 14 ]]
+[connection signal="pressed" from="Help Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 5 ]]
 
 [editable path="Settings Panel/Centre Panel/Checkbox"]
 [editable path="Settings Panel/Centre Panel/Checkbox2"]

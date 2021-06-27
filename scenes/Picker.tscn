@@ -60,5 +60,5 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[connection signal="pressed" from="Button Forward" to="." method="_on_Button_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Button Back" to="." method="_on_Button_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="Button Forward" to="." method="_on_Button_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="Button Back" to="." method="_on_Button_pressed" binds= [ 1 ]]

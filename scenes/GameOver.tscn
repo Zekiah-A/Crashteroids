@@ -14,7 +14,7 @@ shader = ExtResource( 1 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -22,14 +22,14 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 3 )
 shader_param/intensity = 1.885
 shader_param/x = false
@@ -41,7 +41,7 @@ shader_param/r_vertical = null
 shader_param/g_vertical = 8.006
 shader_param/b_vertical = null
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 40
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
@@ -69,7 +69,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="Panel"]
 margin_right = 256.0
 margin_bottom = 296.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,7 +86,7 @@ valign = 1
 margin_top = 41.0
 margin_right = 256.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Player 1 won!"
 align = 1
@@ -95,11 +95,11 @@ __meta__ = {
 }
 
 [node name="Winner" type="Label" parent="Panel"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 margin_top = 41.0
 margin_right = 256.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Player 1 won!"
 align = 1
 

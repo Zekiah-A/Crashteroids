@@ -156,6 +156,7 @@ cast_to = Vector2( 0, 20 )
 shape = SubResource( 7 )
 
 [node name="Explosion" parent="P1" instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 3.8147e-06, 3.05176e-05 )
 rotation = -1.57079
 
@@ -176,6 +177,11 @@ cast_to = Vector2( 0, 20 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="P2"]
 shape = SubResource( 7 )
+
+[node name="Explosion" parent="P2" instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 3.8147e-06, 3.05176e-05 )
+rotation = -1.57079
 
 [node name="Control2" parent="." instance=ExtResource( 10 )]
 
