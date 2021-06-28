@@ -1,4 +1,5 @@
 using Godot;
+using Crashteroids;
 using System;
 
 public class TitleUiManager : Node
@@ -9,6 +10,7 @@ public class TitleUiManager : Node
 	private Panel _matchsettingsPanel;
 	private Panel _editorPanel;
 	private Panel _helpPanel;
+	private Panel _helpCreditsPanel;
 
 	private Tween _settingsTween;
 	private Tween _gamemodeTween;
@@ -24,6 +26,7 @@ public class TitleUiManager : Node
 		_matchsettingsPanel = (Panel) GetParent().GetNode("Matchsettings Panel");
 		_editorPanel = (Panel) GetParent().GetNode("Editor Panel");
 		_helpPanel = (Panel) GetParent().GetNode("Help Panel");
+		_helpCreditsPanel = (Panel) GetParent().GetNode("Help Panel").GetNode("Credits Panel");
 		
 		_settingsTween = (Tween) GetParent().GetNode("Settings Panel").GetNode("Panel Tween");
 		_gamemodeTween = (Tween) GetParent().GetNode("Gamemode Panel").GetNode("Panel Tween");
@@ -36,6 +39,7 @@ public class TitleUiManager : Node
 		_matchsettingsPanel.Visible = false;
 		_editorPanel.Visible = false;
 		_helpPanel.Visible = false;
+		_helpCreditsPanel.Visible = false;
 	}
 	
 	//TODO: in future use something fancy like tween
@@ -110,6 +114,9 @@ public class TitleUiManager : Node
 			case 5:
 				_helpPanel.Visible = false;
 				break;
+			case 6:
+				_helpCreditsPanel.Visible = false;
+				break;
 		}
 	}
 	
@@ -150,6 +157,9 @@ public class TitleUiManager : Node
 		_helpTween.Start();
 	}
 	
+	private void _on_Credits_pressed() =>
+		_helpCreditsPanel.Visible = true;
+
 	#region MATCH CONFIGURATION //NOTE: + General configuration (for the time being)
 	private void _on_Matchconfig_update(int _configId, int _newValue)
 	{

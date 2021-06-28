@@ -6,3 +6,14 @@
 /home/zekiah/Crashteroids/.mono/temp/obj/Debug/Crashteroids.csproj.CoreCompileInputs.cache
 /home/zekiah/Crashteroids/.mono/temp/obj/Debug/Crashteroids.dll
 /home/zekiah/Crashteroids/.mono/temp/obj/Debug/Crashteroids.pdb
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/Microsoft.Bcl.AsyncInterfaces.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Buffers.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Json.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Memory.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Numerics.Vectors.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Runtime.CompilerServices.Unsafe.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Text.Encodings.Web.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Text.Json.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.Threading.Tasks.Extensions.dll
+/home/zekiah/Crashteroids/.mono/temp/bin/Debug/System.ValueTuple.dll
+/home/zekiah/Crashteroids/.mono/temp/obj/Debug/Crashteroids.csproj.CopyComplete

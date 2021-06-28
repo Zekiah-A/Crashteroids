@@ -1,4 +1,5 @@
 using Godot;
+using Crashteroids;
 using System;
 using System.Collections.Generic;
 
@@ -21,6 +22,10 @@ public class GameManager : Node2D
 		}
 		
 		GameMatch = new Match();
+		
+		//TODO: Hack
+		
+		GameSaveData.Test();
 	}
 	
 	public override void _ExitTree() =>

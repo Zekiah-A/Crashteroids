@@ -43,6 +43,14 @@
               "target": "Package",
               "version": "[1.0.0, )",
               "autoReferenced": true
+            },
+            "System.Json": {
+              "target": "Package",
+              "version": "[4.7.1, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[6.0.0-preview.5.21301.5, )"
             }
           },
           "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.202/RuntimeIdentifierGraph.json"

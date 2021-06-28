@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -132,6 +132,13 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -1313,7 +1320,6 @@ __meta__ = {
 }
 
 [node name="Help Panel" type="Panel" parent="."]
-visible = false
 material = SubResource( 32 )
 margin_left = 384.0
 margin_top = 120.0
@@ -1341,9 +1347,9 @@ align = 1
 valign = 1
 
 [node name="Quit" type="Button" parent="Help Panel"]
-margin_left = 80.0
+margin_left = 16.0
 margin_top = 304.0
-margin_right = 184.0
+margin_right = 120.0
 margin_bottom = 345.0
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
@@ -1354,29 +1360,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Details" type="RichTextLabel" parent="Help Panel"]
-margin_top = 40.0
-margin_right = 256.0
-margin_bottom = 168.0
-bbcode_enabled = true
-bbcode_text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
-Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game."
-text = "The background:
-Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game."
+[node name="Credits" type="Button" parent="Help Panel"]
+margin_left = 136.0
+margin_top = 304.0
+margin_right = 240.0
+margin_bottom = 345.0
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = SubResource( 34 )
+text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Details2" type="RichTextLabel" parent="Help Panel"]
-margin_top = 168.0
+[node name="Details" type="RichTextLabel" parent="Help Panel"]
+margin_top = 40.0
 margin_right = 256.0
 margin_bottom = 304.0
 bbcode_enabled = true
-bbcode_text = "[shake rate=5 level=10][color=yellow][center]Playing the game:[/center][/color][/shake]
+bbcode_text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
+Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game.
+[shake rate=5 level=10][color=yellow][center]Playing the game:[/center][/color][/shake]
  - Click / press to move the rocket in a certain direction.
  - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
  - Crash into your opponent in order to win."
-text = "Playing the game:
+text = "The background:
+Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game.
+Playing the game:
  - Click / press to move the rocket in a certain direction.
  - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
  - Crash into your opponent in order to win."
@@ -1385,6 +1396,53 @@ __meta__ = {
 }
 
 [node name="Panel Tween" type="Tween" parent="Help Panel"]
+
+[node name="Credits Panel" type="Panel" parent="Help Panel"]
+material = SubResource( 32 )
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 128, 148 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Border" type="Panel" parent="Help Panel/Credits Panel"]
+margin_top = -40.0
+margin_right = 256.0
+margin_bottom = 320.0
+custom_styles/panel = SubResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="Help Panel/Credits Panel"]
+margin_left = 72.0
+margin_top = 264.0
+margin_right = 184.0
+margin_bottom = 305.0
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 10 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Details" type="RichTextLabel" parent="Help Panel/Credits Panel"]
+margin_right = 256.0
+margin_bottom = 264.0
+bbcode_enabled = true
+bbcode_text = "[tornado radius=2 freq=2][color=yellow][center]Credits:[/center][/color][/tornado]
+ - StarlkYT,  big brain power.
+ - Zekiah-A, main development."
+text = "Credits:
+ - StarlkYT,  big brain power.
+ - Zekiah-A, main development."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TitleUIManager" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -1428,6 +1486,8 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 13 ]]
 [connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 14 ]]
 [connection signal="pressed" from="Help Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 5 ]]
+[connection signal="pressed" from="Help Panel/Credits" to="TitleUIManager" method="_on_Credits_pressed"]
+[connection signal="pressed" from="Help Panel/Credits Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 6 ]]
 
 [editable path="Settings Panel/Centre Panel/Checkbox"]
 [editable path="Settings Panel/Centre Panel/Checkbox2"]
