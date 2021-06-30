@@ -3,22 +3,22 @@ using System;
 
 namespace Crashteroids
 {
-	public static class GameConfig
+	public class GameConfig
 	{
-		public static int GraphicsQualitySetting;
-		public static bool Music = true;
-		public static bool SoundEffects = true;
+		public static GameConfig Instance = new GameConfig();
 		
-		public static int SkinID = 0;
+		public int GraphicsQualitySetting { get; set; }
+		public bool Music { get; set; }
+		public bool SoundEffects { get; set; }
+		public int SkinID { get; set; }
 		
-		public static int Gamemode;
-		
+		public static int Gamemode { get; set; }
 		public struct Match
 		{
-			public static bool RandomMap;
-			public static bool SpecialAbilities;
-			public static int RocketBounces;
-			public static int Rounds;
+			public static bool RandomMap { get; set; }
+			public static bool SpecialAbilities { get; set; }
+			public static int RocketBounces { get; set; }
+			public static int Rounds { get; set; }
 		}
 	}
 }

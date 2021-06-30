@@ -23,8 +23,7 @@ public class GameManager : Node2D
 		
 		GameMatch = new Match();
 		
-		//TODO: Hack
-		
+		//TEST:
 		GameSaveData.Test();
 	}
 	

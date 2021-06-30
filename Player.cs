@@ -96,7 +96,7 @@ public class Player : KinematicBody2D
 	}
 	
 	public void UpdateSkin() =>
-		_player.Texture = Picker.RocketTextures[GameConfig.SkinID];
+		_player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
 	
 	public void Explode()
 	{ //TODO: Fix janky code

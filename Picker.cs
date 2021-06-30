@@ -147,6 +147,6 @@ public class Picker : Control
 			_rocketTween.Start();
 		}
 		
-		GameConfig.SkinID = Array.IndexOf(RocketTextures, _rocket.Texture);
+		GameConfig.Instance.SkinID = Array.IndexOf(RocketTextures, _rocket.Texture);
 	}
 }

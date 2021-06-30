@@ -123,7 +123,7 @@ public class TitleUiManager : Node
 	private void _on_GraphicsQuality_pressed(int _index)
 	{
 		GD.Print($"Graphics quality level set to {_index}");
-		GameConfig.GraphicsQualitySetting = _index;
+		GameConfig.Instance.GraphicsQualitySetting = _index;
 	}
 	
 	private void _on_Editor_pressed()
@@ -180,10 +180,10 @@ public class TitleUiManager : Node
 				GameConfig.Match.Rounds = _newValue;
 				break;
 			case 5:
-				GameConfig.Music = Convert.ToBoolean(_newValue);
+				GameConfig.Instance.Music = Convert.ToBoolean(_newValue);
 				break;
 			case 6:
-				GameConfig.SoundEffects = Convert.ToBoolean(_newValue);
+				GameConfig.Instance.SoundEffects = Convert.ToBoolean(_newValue);
 				break;
 		}
 	}
