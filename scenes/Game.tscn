@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://resources/rockets/rocket_retro_1.png" type="Texture" id=1]
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
@@ -32,6 +32,17 @@ extents = Vector2( 8, 300 )
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 2.0
+
+[sub_resource type="Environment" id=8]
+background_mode = 4
+background_energy = 0.0
+ambient_light_energy = 0.0
+tonemap_exposure = 1.14
+tonemap_white = 0.0
+dof_blur_near_distance = 2.25
+glow_enabled = true
+glow_intensity = 1.0
+glow_bloom = 1.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 5 )
@@ -117,6 +128,14 @@ polygon = PoolVector2Array( 408, 208, 432, 112, 448, 168, 504, 160, 488, 248, 43
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D"]
 polygon = PoolVector2Array( 352, 232, 408, 208, 432, 112, 448, 168, 504, 160, 488, 248, 432, 248, 384, 264 )
 
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D"]
+polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D/Polygon2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/Polygon2D/StaticBody2D"]
+polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
+
 [node name="Turn UI" parent="." instance=ExtResource( 7 )]
 
 [node name="Walls" type="StaticBody2D" parent="."]
@@ -184,6 +203,9 @@ position = Vector2( 3.8147e-06, 3.05176e-05 )
 rotation = -1.57079
 
 [node name="Control2" parent="." instance=ExtResource( 10 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
 
 [node name="Timer" type="Timer" parent="."]
 

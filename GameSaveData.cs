@@ -8,8 +8,8 @@ using System.Text.Json.Serialization;
 
 public class GameSaveData
 {
-	//public GameConfig Config = new GameConfig();
-
+	private static string _appDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+ 
 	public static async void Test()
 	{
 		var _config = new GameConfig
@@ -24,13 +24,13 @@ public class GameSaveData
 		string _jsonConfig = JsonSerializer.Serialize(_config, _options);
 		GD.Print(_jsonConfig);
 		
-		string fileName = "GameConfig.json";
-		FileStream createStream = System.IO.File.Create(fileName);
-		await JsonSerializer.SerializeAsync(createStream, _config, _options);
-		//await createStream.DisposeAsync();
+		string _fileName = "GameConfig.json";
+		FileStream _createStream = System.IO.File.Create(System.IO.Path.Combine(_appDataFolder, _fileName));
+		await JsonSerializer.SerializeAsync(_createStream, _config, _options);
+		//await _createStream.DisposeAsync();
 		
-		GameConfig weatherForecast = JsonSerializer.Deserialize<GameConfig>(_jsonConfig);
-		GD.Print(weatherForecast);
+		GameConfig _newConfig = JsonSerializer.Deserialize<GameConfig>(_jsonConfig);
+		GD.Print(_newConfig);
 	}
 /*
 	public async Task WriteData()

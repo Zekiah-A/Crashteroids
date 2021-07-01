@@ -192,7 +192,7 @@ public class TitleUiManager : Node
 	private void _on_Start_pressed()
 	{
 		GD.Print("Starting Game with configuration:");
-		//GD.Print($"Gamemode: {(Gamemodes) GameConfig.Gamemode}.");
+		GD.Print($"Gamemode: {(Gamemodes) GameConfig.Gamemode}.");
 		GD.Print($"Random Map: {GameConfig.Match.RandomMap}");
 		GD.Print($"Special Abilities: {GameConfig.Match.SpecialAbilities}");
 		GD.Print($"Rocket Bounces: {GameConfig.Match.RocketBounces}");

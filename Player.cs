@@ -59,15 +59,9 @@ public class Player : KinematicBody2D
 		else if (IsDead)
 		{ //TODO: Use direction of impact with random
 			_player.Rotate(_delta * 10);
-			var _collision = MoveAndCollide(_hitAngle * 100 * _delta);
-			if (_collision != null)
-			{
-				var _hit = (Godot.Node2D)_collision.Collider;
-				if (_hit.GetName() == "Walls")
-					GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
-			}
+			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+			MoveAndCollide(_hitAngle * 100 * _delta);
 		}
-		
 	}
 	
 	public override void _Input(InputEvent _event)
@@ -100,7 +94,7 @@ public class Player : KinematicBody2D
 	
 	public void Explode()
 	{ //TODO: Fix janky code
-		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10,10));
+		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10,10)).Normalized();
 		GetNode<Node2D>("Explosion").Visible = true;
 		IsDead = true;
 	}
