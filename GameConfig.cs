@@ -11,7 +11,7 @@ namespace Crashteroids
 		public bool Music { get; set; }
 		public bool SoundEffects { get; set; }
 		public int SkinID { get; set; }
-		//void gen new config (constrcutor), with new data, called from gameconfig
+		
 		public static int Gamemode { get; set; }
 		public struct Match
 		{
@@ -20,6 +20,8 @@ namespace Crashteroids
 			public static int RocketBounces { get; set; }
 			public static int Rounds { get; set; }
 		}
+		
+		public static void GenerateInstance(GameConfig _newConfig) => Instance = _newConfig;
 	}
 }
 public enum Gamemodes

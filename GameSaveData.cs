@@ -9,42 +9,33 @@ using System.Text.Json.Serialization;
 public class GameSaveData
 {
 	private static string _appDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
- 
-	public static async void Test()
-	{
-		var _config = new GameConfig
-		{
-			GraphicsQualitySetting = GameConfig.Instance.GraphicsQualitySetting,
-			Music = GameConfig.Instance.Music,
-			SoundEffects = GameConfig.Instance.SoundEffects,
-			SkinID = GameConfig.Instance.SkinID
-		};
+	
+	private const string FileName = "GameConfigCrashteroids.json";
+	
+	public static async void Save()
+	{  //Easier than assigning all variables independantly
+		var _config = GameConfig.Instance; 
 		
+		//SERIALISATION
 		var _options = new JsonSerializerOptions { WriteIndented = true };
 		string _jsonConfig = JsonSerializer.Serialize(_config, _options);
 		GD.Print(_jsonConfig);
 		
-		string _fileName = "GameConfig.json";
-		FileStream _createStream = System.IO.File.Create(System.IO.Path.Combine(_appDataFolder, _fileName));
+		//FILE CREATIONN
+		FileStream _createStream = System.IO.File.Create(System.IO.Path.Combine(_appDataFolder, FileName));
 		await JsonSerializer.SerializeAsync(_createStream, _config, _options);
-		//await _createStream.DisposeAsync();
-		
-		GameConfig _newConfig = JsonSerializer.Deserialize<GameConfig>(_jsonConfig);
-		GD.Print(_newConfig);
-	}
-/*
-	public async Task WriteData()
-	{
-		return;
+		_createStream.Dispose(); //make aync / use "use"
 	}
 	
-	public async Task ReadData()
+	public static async void Load()
 	{
-		return;
+		//DESERIALISATION
+		string _stream = System.IO.File.ReadAllText(System.IO.Path.Combine(_appDataFolder, FileName));
+		GameConfig _newConfig = JsonSerializer.Deserialize<GameConfig>(_stream);
+		GD.Print(_newConfig);
+		
+		//APPLYING TO CLASS
+		GameConfig.GenerateInstance(_newConfig);
+		//TODO: Broadcast signal to all to update UI with new config.
 	}
-	public Task<string>GetData()
-	{
-		return null;
-	}
-*/
 }

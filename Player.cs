@@ -4,7 +4,7 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	[Export] public float Speed = 800;
+	[Export] public float Speed = 2000;
 	[Export] public int Id;
 	
 	public bool IsCurrent;
