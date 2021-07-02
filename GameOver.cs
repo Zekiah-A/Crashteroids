@@ -42,7 +42,7 @@ public class GameOver : Control
 		_winner.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
 		_winnerOutline.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
 		
-		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: NULL \n Bounces: NULL \n Match Length: {GameManager.GameMatch.MatchLength}";
+		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: NULL \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
 	}
 	
 	private void _on_Button_pressed(int _index)

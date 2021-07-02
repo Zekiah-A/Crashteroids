@@ -9,6 +9,7 @@ public class Match : Node
 {
 	public int CurrentTurn;
 	public float MatchLength;
+	public List<int> TotalBounces = new List<int>() { 0, 0 };
 	
 	public Match()
 	{

@@ -22,7 +22,6 @@ public class GameManager : Node2D
 		}
 		
 		GameMatch = new Match();
-		
 		GameSaveData.Save();
 	}
 	

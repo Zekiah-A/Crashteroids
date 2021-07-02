@@ -4,7 +4,7 @@ using System;
 
 public class Player : KinematicBody2D
 {
-	[Export] public float Speed = 2000;
+	[Export] public float Speed = 1000;
 	[Export] public int Id;
 	
 	public bool IsCurrent;
@@ -54,6 +54,8 @@ public class Player : KinematicBody2D
 					_bounces = 0;
 					_debounce = false;
 				}
+				
+				GameManager.GameMatch.TotalBounces[Id] += 1;
 			}
 		}
 		else if (IsDead)
