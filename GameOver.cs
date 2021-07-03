@@ -38,15 +38,15 @@ public class GameOver : Control
 			Tween.EaseType.Out
 		);
 		_panelTween.Start();
-		//HACK: This may not always be correct - winner var in match
-		_winner.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
-		_winnerOutline.Text = "Player " + GameManager.GameMatch.CurrentTurn + " won!";
+
+		_winner.Text = "Player " + (GameManager.GameMatch.CurrentTurn + 1) + " won!";
+		_winnerOutline.Text = "Player " + (GameManager.GameMatch.CurrentTurn + 1) + " won!";
 		
 		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: NULL \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
 	}
 	
 	private void _on_Button_pressed(int _index)
-	{	//<note> _index 1 = Again </note>
+	{	///<note> _index 1 = Again </note>
 		if (_index == 1)
 		{
 			//TODO: Tell game to restart match

@@ -41,11 +41,11 @@ public class Match : Node
 		GameManager.TurnUI.Text = "Player " + (CurrentTurn + 1) +"'s turn.";
 	}
 	
-	public void Crash(/*Player _sender, string _hit*/)
+	public void Crash(Player _playerHit)
 	{
 		EndMatch();
 		//HACK: User curplr - not correct!
-		GameManager.Players[CurrentTurn].Explode();
+		GameManager.Players[_playerHit.Id].Explode();
 	}
 	
 	private void _on_Timer_timeout() =>
