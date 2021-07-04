@@ -12,26 +12,28 @@ public class GameSaveData
 	
 	private const string FileName = "GameConfigCrashteroids.json";
 	
-	public static async void Save()
-	{  //Easier than assigning all variables independantly
+	public static async Task Save()
+	{	//Easier than assigning all variables independantly
 		var _config = GameConfig.Instance; 
 		
-		//SERIALISATION
+		//CONFIG
 		var _options = new JsonSerializerOptions { WriteIndented = true };
-		string _jsonConfig = JsonSerializer.Serialize(_config, _options);
-		GD.Print(_jsonConfig);
 		
-		//FILE CREATIONN
-		FileStream _createStream = System.IO.File.Create(System.IO.Path.Combine(_appDataFolder, FileName));
-		await JsonSerializer.SerializeAsync(_createStream, _config, _options);
-		_createStream.Dispose(); //make aync / use "use"
+		//FILE CREATION & SERIALISATION
+		using (FileStream _createStream = System.IO.File.Create(System.IO.Path.Combine(_appDataFolder, FileName)))
+		{
+			await JsonSerializer.SerializeAsync(_createStream, _config, _options);
+			_createStream.Close();
+			_createStream.Dispose();
+		}
 	}
 	
-	public static async void Load()
+	public static void Load()
 	{
 		//DESERIALISATION
 		string _stream = System.IO.File.ReadAllText(System.IO.Path.Combine(_appDataFolder, FileName));
 		GameConfig _newConfig = JsonSerializer.Deserialize<GameConfig>(_stream);
+
 		GD.Print(_newConfig);
 		
 		//APPLYING TO CLASS

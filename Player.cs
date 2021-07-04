@@ -36,9 +36,9 @@ public class Player : KinematicBody2D
 			if (_collision != null)
 			{
 				var _hit = (Godot.Node2D)_collision.Collider;
-				GD.Print(_hit.GetName());
+				GD.Print(_hit.Name);
 				//HACK: Bad code, fix later for non 2player gamemodes
-				if (_hit.GetName() == "P1" || _hit.GetName() == "P2")
+				if (_hit.Name == "P1" || _hit.Name == "P2")
 				{
 					GameManager.GameMatch.Crash(_hit as Player);
 				}

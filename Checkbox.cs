@@ -25,12 +25,12 @@ public class Checkbox : Control
 	{
 		if (IsEnabled)
 		{
-			_image.SetNormalTexture(_checkboxEmpty);
+			_image.TextureNormal = _checkboxEmpty;
 			IsEnabled = false;
 		}
 		else
 		{
-			_image.SetNormalTexture(_checkboxFull);
+			_image.TextureNormal = _checkboxFull;
 			IsEnabled = true;
 		}
 		

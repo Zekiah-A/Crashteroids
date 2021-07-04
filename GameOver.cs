@@ -25,7 +25,7 @@ public class GameOver : Control
 		_quit = GetNode("Panel").GetNode<Button>("Quit");
 	}
 	
-	public static async void InitialiseGameOver()
+	public static void InitialiseGameOver()
 	{	
 		_panel.Visible = true;
 		_panelTween.InterpolateProperty (
