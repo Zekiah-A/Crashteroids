@@ -202,12 +202,16 @@ visible = false
 position = Vector2( 3.8147e-06, 3.05176e-05 )
 rotation = -1.57079
 
-[node name="Control2" parent="." instance=ExtResource( 10 )]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 8 )
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Game Over" parent="." instance=ExtResource( 10 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
 
 [connection signal="pressed" from="Control/Back" to="." method="_on_Back_pressed"]
 

@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 public class Match : Node
 {
 	public int CurrentTurn;
-	public float MatchLength;
+	public int MatchLength;
 	public List<int> TotalBounces = new List<int>() { 0, 0 };
+	public Dictionary<RewardsType, int> GameOverRewards = new Dictionary<RewardsType, int>();
+	private Random _rand = new Random();
 	
 	public Match()
 	{
@@ -49,11 +51,34 @@ public class Match : Node
 	}
 	
 	private void _on_Timer_timeout() =>
-		MatchLength += GameManager.TimerNode.WaitTime;
+		MatchLength += (int) GameManager.TimerNode.WaitTime;
 	
+	//make destructor 
 	public void EndMatch()
 	{
-		//TODO: Destroy this instance
+		//TODO: Destroy this instance - lazy hack for winner too
+		switch((Gamemodes) GameConfig.Gamemode)
+		{
+			case Gamemodes.TwoPlayer:
+				GameOverRewards.Add(RewardsType.GameWin, 10);
+				GameOverRewards.Add(RewardsType.Random, _rand.Next(0, 100));
+				GameOverRewards.Add(RewardsType.Bounces, TotalBounces[CurrentTurn]);
+				GameOverRewards.Add(RewardsType.Rounds, 0); //for now
+				GameOverRewards.Add(RewardsType.MatchLength, MatchLength);
+				GameOverRewards.Add(RewardsType.SpecialAbilities, GameConfig.Match.Rounds);
+				
+				foreach(var _reward in GameOverRewards)
+				{
+					GameConfig.Instance.Money += _reward.Value;
+					GameConfig.Match.MatchMoney += _reward.Value;
+				}
+				break;
+			case Gamemodes.AiPlayer:
+				break;
+			case Gamemodes.Multiplayer:
+				break;
+		}
+
 		GameOver.InitialiseGameOver();
 	}
 }

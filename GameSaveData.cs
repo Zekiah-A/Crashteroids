@@ -8,17 +8,18 @@ using System.Text.Json.Serialization;
 
 public class GameSaveData
 {
+	public static event Action GameConfigUpdate;
+
 	private static string _appDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-	
 	private const string FileName = "GameConfigCrashteroids.json";
-	
+
 	public static async Task Save()
-	{	//Easier than assigning all variables independantly
-		var _config = GameConfig.Instance; 
-		
+	{   //Easier than assigning all variables independantly
+		var _config = GameConfig.Instance;
+
 		//CONFIG
 		var _options = new JsonSerializerOptions { WriteIndented = true };
-		
+
 		//FILE CREATION & SERIALISATION
 		using (FileStream _createStream = System.IO.File.Create(System.IO.Path.Combine(_appDataFolder, FileName)))
 		{
@@ -27,7 +28,7 @@ public class GameSaveData
 			_createStream.Dispose();
 		}
 	}
-	
+
 	public static void Load()
 	{
 		//DESERIALISATION
@@ -35,9 +36,10 @@ public class GameSaveData
 		GameConfig _newConfig = JsonSerializer.Deserialize<GameConfig>(_stream);
 
 		GD.Print(_newConfig);
-		
+
 		//APPLYING TO CLASS
 		GameConfig.GenerateInstance(_newConfig);
-		//TODO: Broadcast signal to all to update UI with new config.
+		//~~TODO: action to all to update UI with new config.~~
+		GameConfigUpdate?.Invoke();
 	}
 }

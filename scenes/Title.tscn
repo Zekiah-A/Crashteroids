@@ -330,7 +330,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Main Panel"]
+[node name="Money" type="Label" parent="Main Panel"]
 margin_left = 832.0
 margin_right = 1024.0
 margin_bottom = 64.0

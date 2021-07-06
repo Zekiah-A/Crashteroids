@@ -6,13 +6,14 @@ namespace Crashteroids
 	public class GameConfig
 	{
 		public static GameConfig Instance = new GameConfig();
-		
+
 		public int GraphicsQualitySetting { get; set; }
 		public bool Music { get; set; }
 		public bool SoundEffects { get; set; }
 		public int SkinID { get; set; }
-		
-#region MATCH
+		public int Money;
+
+		#region MATCH
 		public static int Gamemode { get; set; }
 		public struct Match
 		{
@@ -20,9 +21,10 @@ namespace Crashteroids
 			public static bool SpecialAbilities { get; set; }
 			public static int RocketBounces { get; set; }
 			public static int Rounds { get; set; }
+			public static int MatchMoney { get; set; }
 		}
-#endregion
-		
+		#endregion
+
 		public static void GenerateInstance(GameConfig _newConfig) => Instance = _newConfig;
 	}
 }
@@ -32,4 +34,14 @@ public enum Gamemodes
 	AiPlayer,
 	Multiplayer,
 	Designer
+}
+
+public enum RewardsType
+{
+	GameWin = 1,
+	Random,
+	Bounces,
+	Rounds,
+	MatchLength,
+	SpecialAbilities
 }

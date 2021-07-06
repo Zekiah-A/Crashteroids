@@ -40,6 +40,8 @@ public class TitleUiManager : Node
 		_editorPanel.Visible = false;
 		_helpPanel.Visible = false;
 		_helpCreditsPanel.Visible = false;
+
+		//GameConfigUpdate += //TODO: If index = 0, update instead for all functions.
 	}
 	
 	//TODO: in future use something fancy like tween
