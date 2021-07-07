@@ -18,6 +18,8 @@ public class TitleUiManager : Node
 	private Tween _editorTween;
 	private Tween _helpTween;
 
+	private Label _moneyLabel;
+
 	public override void _Ready()
 	{
 		_mainPanel = (Panel) GetParent().GetNode("Main Panel");
@@ -34,6 +36,8 @@ public class TitleUiManager : Node
 		_editorTween = (Tween) GetParent().GetNode("Editor Panel").GetNode("Panel Tween");
 		_helpTween = (Tween) GetParent().GetNode("Help Panel").GetNode("Panel Tween");
 		
+		_moneyLabel = (Label) GetParent().GetNode("Main Panel").GetNode("Money");
+
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
 		_matchsettingsPanel.Visible = false;
@@ -42,6 +46,11 @@ public class TitleUiManager : Node
 		_helpCreditsPanel.Visible = false;
 
 		//GameConfigUpdate += //TODO: If index = 0, update instead for all functions.
+		
+		//TODO: Is ready called multiple times? - Make a function that subscribes for money change, (money change called by config update event too)
+		//BUG: Loads too early, must call load before to wait for cofig
+
+		GameSaveData.GameConfigUpdate += gameConfigUpdate;
 	}
 	
 	//TODO: in future use something fancy like tween
@@ -204,4 +213,9 @@ public class TitleUiManager : Node
 		//NOTE: Starting match is called from button signal
 	}
 	#endregion
+
+	private void gameConfigUpdate()
+	{
+		GD.Print("UPDATE RECEIVED - but should be sent to all functions with index 0");
+	}
 }
