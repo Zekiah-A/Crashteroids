@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://RocketEditor.cs" type="Script" id=21]
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 [ext_resource path="res://resources/save_cog_2_icon.svg" type="Texture" id=23]
+[ext_resource path="res://styles/lineedit_style.tres" type="StyleBox" id=24]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -109,6 +110,12 @@ shader_param/translucency = 1.0
 [sub_resource type="StyleBoxEmpty" id=28]
 
 [sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="DynamicFont" id=39]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
 
 [sub_resource type="ShaderMaterial" id=30]
 shader = ExtResource( 3 )
@@ -342,7 +349,6 @@ __meta__ = {
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
-visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 9 )
@@ -563,13 +569,17 @@ custom_styles/panel = SubResource( 29 )
 text = "Help Btn Enabled"
 
 [node name="LineEdit" type="LineEdit" parent="Settings Panel/Right Panel"]
-margin_left = 72.0
-margin_top = 128.0
-margin_right = 288.0
-margin_bottom = 192.0
+anchor_left = 0.209302
+anchor_top = 0.271186
+anchor_right = 0.837209
+anchor_bottom = 0.40678
+custom_styles/focus = ExtResource( 24 )
+custom_styles/normal = ExtResource( 24 )
+custom_fonts/font = SubResource( 39 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 placeholder_text = "Username.."
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
