@@ -568,7 +568,7 @@ custom_styles/panel = SubResource( 29 )
 [node name="Label" parent="Settings Panel/Right Panel/Checkbox/Checkbox" index="1"]
 text = "Help Btn Enabled"
 
-[node name="LineEdit" type="LineEdit" parent="Settings Panel/Right Panel"]
+[node name="Username Edit" type="LineEdit" parent="Settings Panel/Right Panel"]
 anchor_left = 0.209302
 anchor_top = 0.271186
 anchor_right = 0.837209
@@ -576,7 +576,7 @@ anchor_bottom = 0.40678
 custom_styles/focus = ExtResource( 24 )
 custom_styles/normal = ExtResource( 24 )
 custom_fonts/font = SubResource( 39 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0.27451, 0.27451, 0.27451, 1 )
 placeholder_text = "Username.."
 __meta__ = {
 "_edit_use_anchors_": true
