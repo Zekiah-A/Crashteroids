@@ -19,6 +19,9 @@ public class TitleUiManager : Node
 	private Tween _helpTween;
 
 	private Label _moneyLabel;
+	private LineEdit _usernameEdit;
+
+	const int MaxUsernameLength = 10;
 
 	public override void _Ready()
 	{
@@ -37,6 +40,7 @@ public class TitleUiManager : Node
 		_helpTween = (Tween) GetParent().GetNode("Help Panel").GetNode("Panel Tween");
 		
 		_moneyLabel = (Label) GetParent().GetNode("Main Panel").GetNode("Money");
+		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Username Edit");
 
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
@@ -170,11 +174,21 @@ public class TitleUiManager : Node
 	
 	private void _on_Credits_pressed() =>
 		_helpCreditsPanel.Visible = true;
+	
+	private void _on_Username_Edit_text_entered(String _newText)
+	{
+		if (_newText.Length <= MaxUsernameLength)
+			GameConfig.Instance.Username = _newText;
+		else
+			GameConfig.Instance.Username = _newText.Substring(0, MaxUsernameLength);
+		GD.Print($"Player username set to {GameConfig.Instance.Username}");
 
+	}
+	
 	#region MATCH CONFIGURATION //NOTE: + General configuration (for the time being)
 	private void _on_Matchconfig_update(int _configId, int _newValue)
 	{
-		GD.Print($"Signal custom recieved {_configId}, {_newValue}");
+		GD.Print($"Signal custom recieved for match config {_configId}, {_newValue}");
 		
 		switch (_configId)
 		{

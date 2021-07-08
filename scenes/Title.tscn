@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -116,6 +116,8 @@ size = 20
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=40]
 
 [sub_resource type="ShaderMaterial" id=30]
 shader = ExtResource( 3 )
@@ -570,9 +572,9 @@ text = "Help Btn Enabled"
 
 [node name="Username Edit" type="LineEdit" parent="Settings Panel/Right Panel"]
 anchor_left = 0.209302
-anchor_top = 0.271186
+anchor_top = 0.525424
 anchor_right = 0.837209
-anchor_bottom = 0.40678
+anchor_bottom = 0.661017
 custom_styles/focus = ExtResource( 24 )
 custom_styles/normal = ExtResource( 24 )
 custom_fonts/font = SubResource( 39 )
@@ -581,6 +583,18 @@ placeholder_text = "Username.."
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="Checkbox2" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
+anchor_left = 0.209302
+anchor_top = 0.271186
+anchor_right = 0.428052
+anchor_bottom = 0.377853
+
+[node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox2" index="0"]
+custom_styles/panel = SubResource( 40 )
+
+[node name="Label" parent="Settings Panel/Right Panel/Checkbox2/Checkbox" index="1"]
+text = "Advertisements"
 
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
 
@@ -1506,6 +1520,7 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Settings Panel/Left Panel/Sublime" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 4 ]]
 [connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
 [connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
+[connection signal="text_entered" from="Settings Panel/Right Panel/Username Edit" to="TitleUIManager" method="_on_Username_Edit_text_entered"]
 [connection signal="pressed" from="Gamemode Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="Gamemode Panel/Left Panel/TextureButton" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="Gamemode Panel/Centre Left Panel/TextureButton2" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 2 ]]
@@ -1540,6 +1555,7 @@ script = ExtResource( 8 )
 [editable path="Settings Panel/Centre Panel/Checkbox"]
 [editable path="Settings Panel/Centre Panel/Checkbox2"]
 [editable path="Settings Panel/Right Panel/Checkbox"]
+[editable path="Settings Panel/Right Panel/Checkbox2"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox"]
 [editable path="Matchsettings Panel/Left Panel/Checkbox2"]
 [editable path="Matchsettings Panel/Left Panel/Iteratebox"]

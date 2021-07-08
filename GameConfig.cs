@@ -6,12 +6,13 @@ namespace Crashteroids
 	public class GameConfig
 	{
 		public static GameConfig Instance = new GameConfig();
-
+		
 		public int GraphicsQualitySetting { get; set; }
 		public bool Music { get; set; }
 		public bool SoundEffects { get; set; }
 		public int SkinID { get; set; }
 		public int Money;
+		public string Username { get; set;}
 
 		#region MATCH
 		public static int Gamemode { get; set; }
