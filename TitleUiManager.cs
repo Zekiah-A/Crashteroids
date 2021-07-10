@@ -17,9 +17,11 @@ public class TitleUiManager : Node
 	private Tween _matchsettingsTween;
 	private Tween _editorTween;
 	private Tween _helpTween;
+	private Tween _usernameTween;
 
 	private Label _moneyLabel;
 	private LineEdit _usernameEdit;
+	private RichTextLabel _usernameLabel;
 
 	const int MaxUsernameLength = 10;
 
@@ -38,9 +40,11 @@ public class TitleUiManager : Node
 		_matchsettingsTween = (Tween) GetParent().GetNode("Matchsettings Panel").GetNode("Panel Tween");
 		_editorTween = (Tween) GetParent().GetNode("Editor Panel").GetNode("Panel Tween");
 		_helpTween = (Tween) GetParent().GetNode("Help Panel").GetNode("Panel Tween");
+		_usernameTween = (Tween) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Tween");
 		
 		_moneyLabel = (Label) GetParent().GetNode("Main Panel").GetNode("Money");
-		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Username Edit");
+		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
+		_usernameLabel = (RichTextLabel) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
 
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
@@ -181,8 +185,22 @@ public class TitleUiManager : Node
 			GameConfig.Instance.Username = _newText;
 		else
 			GameConfig.Instance.Username = _newText.Substring(0, MaxUsernameLength);
+		
+		_usernameLabel.Visible = true;
+		_usernameTween.InterpolateProperty (
+			_usernameLabel, //Object
+			"rect_position", //Property being tweened
+			new Vector2(0, 32), //from
+			new Vector2(0, 64), //to
+			0.5f, //speed
+			Tween.TransitionType.Cubic,
+			Tween.EaseType.Out
+		);
+		_usernameTween.Start();
+		
+		_usernameLabel.BbcodeText = $"[color=yellow]Username set to: {GameConfig.Instance.Username}[/color]";
+		
 		GD.Print($"Player username set to {GameConfig.Instance.Username}");
-
 	}
 	
 	#region MATCH CONFIGURATION //NOTE: + General configuration (for the time being)
