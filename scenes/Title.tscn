@@ -18,7 +18,7 @@
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=16]
 [ext_resource path="res://scenes/Checkbox.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
-[ext_resource path="res://icon_grey.png" type="Texture" id=19]
+[ext_resource path="res://resources/disabled_banner.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://RocketEditor.cs" type="Script" id=21]
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
@@ -344,7 +344,6 @@ margin_left = 832.0
 margin_right = 1024.0
 margin_bottom = 64.0
 custom_fonts/font = ExtResource( 10 )
-text = "Money: 100"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

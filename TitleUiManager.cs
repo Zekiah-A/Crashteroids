@@ -22,11 +22,20 @@ public class TitleUiManager : Node
 	private Label _moneyLabel;
 	private LineEdit _usernameEdit;
 	private RichTextLabel _usernameLabel;
+	
+	private Checkbox _musicCheckbox;
+	private Checkbox  _sfxCheckbox;
+	private Checkbox  _helpBtnCheckbox;
+	private Checkbox  _advertisementsCheckbox;
+	
 
 	const int MaxUsernameLength = 10;
 
 	public override void _Ready()
 	{
+		GameSaveData.Load();
+		GameSaveDataUpdate();
+		
 		_mainPanel = (Panel) GetParent().GetNode("Main Panel");
 		_settingsPanel = (Panel) GetParent().GetNode("Settings Panel");
 		_gamemodePanel = (Panel) GetParent().GetNode("Gamemode Panel");
@@ -46,6 +55,11 @@ public class TitleUiManager : Node
 		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
 		_usernameLabel = (RichTextLabel) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
 
+		_musicCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox");
+		_sfxCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox2");
+		_helpBtnCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox");
+		_advertisementsCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox2");
+
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
 		_matchsettingsPanel.Visible = false;
@@ -57,8 +71,8 @@ public class TitleUiManager : Node
 		
 		//TODO: Is ready called multiple times? - Make a function that subscribes for money change, (money change called by config update event too)
 		//BUG: Loads too early, must call load before to wait for cofig
-
-		GameSaveData.GameConfigUpdate += gameConfigUpdate;
+		
+		/*GameSaveData.GameSaveDataUpdate += gameSaveDataUpdate;*/
 	}
 	
 	//TODO: in future use something fancy like tween
@@ -112,6 +126,8 @@ public class TitleUiManager : Node
 			Tween.EaseType.Out
 		);
 		_settingsTween.Start();
+		
+		GameSaveData.Load();
 	}
 	
 	private void _on_Back_pressed(int _index) //add a field to say which button
@@ -120,6 +136,7 @@ public class TitleUiManager : Node
 		{
 			case 1:
 				_settingsPanel.Visible = false;
+				GameSaveData.Save();
 				break;
 			case 2:
 				_gamemodePanel.Visible = false;
@@ -179,6 +196,7 @@ public class TitleUiManager : Node
 	private void _on_Credits_pressed() =>
 		_helpCreditsPanel.Visible = true;
 	
+	//General config: Save after changes from ui!
 	private void _on_Username_Edit_text_entered(String _newText)
 	{
 		if (_newText.Length <= MaxUsernameLength)
@@ -222,6 +240,7 @@ public class TitleUiManager : Node
 			case 4:
 				GameConfig.Match.Rounds = _newValue;
 				break;
+			//General config: Save after changes from UI.
 			case 5:
 				GameConfig.Instance.Music = Convert.ToBoolean(_newValue);
 				break;
@@ -246,8 +265,16 @@ public class TitleUiManager : Node
 	}
 	#endregion
 
-	private void gameConfigUpdate()
+	//When the game's config is loaded, update all UI elements to reflect that of the setting
+	public void GameSaveDataUpdate(/*object sender, EventArgs e*/)
 	{
-		GD.Print("UPDATE RECEIVED - but should be sent to all functions with index 0");
+		GD.Print("GameSaveData update received. ----------------------------------------");
+		
+	
+		_musicCheckbox.SetCurrent(GameConfig.Instance.Music);
+		_sfxCheckbox.SetCurrent(GameConfig.Instance.SoundEffects);
+		//_helpBtnCheckbox.SetCurrent();
+		//_advertisementsCheckbox.SetCurrent();
+		_on_Username_Edit_text_entered(GameConfig.Instance.Username);
 	}
 }

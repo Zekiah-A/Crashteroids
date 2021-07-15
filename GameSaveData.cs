@@ -8,8 +8,8 @@ using System.Text.Json.Serialization;
 
 public class GameSaveData
 {
-	public static event Action GameConfigUpdate;
-
+	/*public static event EventHandler GameSaveDataUpdate;*/
+		
 	private static string _appDataFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
 	private const string FileName = "GameConfigCrashteroids.json";
 
@@ -39,7 +39,9 @@ public class GameSaveData
 
 		//APPLYING TO CLASS
 		GameConfig.GenerateInstance(_newConfig);
+		
 		//~~TODO: action to all to update UI with new config.~~
-		GameConfigUpdate?.Invoke();
+		/*EventHandler _handler = GameSaveDataUpdate;*/
+		/*_handler?.Invoke(null, null); //new GameSaveData -> "this" can't be used as static | null -> no args!*/
 	}
 }

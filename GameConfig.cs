@@ -11,7 +11,7 @@ namespace Crashteroids
 		public bool Music { get; set; }
 		public bool SoundEffects { get; set; }
 		public int SkinID { get; set; }
-		public int Money;
+		public int Money { get; set; }
 		public string Username { get; set;}
 
 		#region MATCH

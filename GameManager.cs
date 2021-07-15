@@ -23,8 +23,6 @@ public class GameManager : Node2D
 		}
 
 		GameMatch = new Match();
-		GameSaveData.Save();
-		//GameSaveData.Load();
 	}
 
 	public override void _ExitTree() =>

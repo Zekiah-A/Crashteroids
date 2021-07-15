@@ -36,4 +36,20 @@ public class Checkbox : Control
 		
 		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
 	}
+	
+	public void SetCurrent(bool _enabled)
+	{
+		IsEnabled = _enabled;
+		
+		if (IsEnabled)
+		{
+			_image.TextureNormal = _checkboxEmpty;
+			IsEnabled = false;
+		}
+		else
+		{
+			_image.TextureNormal = _checkboxFull;
+			IsEnabled = true;
+		}
+	}
 }
