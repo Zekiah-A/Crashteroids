@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 [ext_resource path="res://resources/save_cog_2_icon.svg" type="Texture" id=23]
 [ext_resource path="res://styles/lineedit_style.tres" type="StyleBox" id=24]
+[ext_resource path="res://resources/backgrounds/space_title.png" type="Texture" id=25]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -119,12 +120,14 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="StyleBoxEmpty" id=31]
 
-[sub_resource type="ShaderMaterial" id=32]
+[sub_resource type="DynamicFont" id=32]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=33]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=33]
 
 [sub_resource type="StyleBoxEmpty" id=34]
 
@@ -132,18 +135,20 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=36]
 
-[sub_resource type="StyleBoxFlat" id=37]
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="StyleBoxFlat" id=38]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=38]
+[sub_resource type="ShaderMaterial" id=39]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=39]
+[sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -151,7 +156,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=40]
+[sub_resource type="DynamicFont" id=41]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -166,18 +171,18 @@ __meta__ = {
 }
 
 [node name="Main Panel" type="Panel" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Main Panel"]
+[node name="Background Rect" type="TextureRect" parent="Main Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 300 )
-color = Color( 0.180392, 0.305882, 0.490196, 1 )
+texture = ExtResource( 25 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -193,106 +198,95 @@ __meta__ = {
 }
 
 [node name="Rocket Editor Button" type="Button" parent="Main Panel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchor_left = 0.429688
+anchor_top = 0.906667
+anchor_right = 0.570312
 anchor_bottom = 1.0
-margin_left = -72.0
-margin_top = -56.0
-margin_right = 72.0
 rect_pivot_offset = Vector2( 90, 70 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/normal = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Text" type="Label" parent="Main Panel/Rocket Editor Button"]
-margin_right = 144.0
-margin_bottom = 56.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "Rocket Editor"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Help" type="Button" parent="Main Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -80.0
-margin_top = 52.0
-margin_right = 80.0
-margin_bottom = 108.0
+anchor_left = 0.421875
+anchor_top = 0.586667
+anchor_right = 0.578125
+anchor_bottom = 0.68
 rect_pivot_offset = Vector2( 72, 27 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/normal = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Text" type="Label" parent="Main Panel/Help"]
-margin_right = 160.0
-margin_bottom = 56.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "Help"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Play Button" type="Button" parent="Main Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -40.0
-margin_right = 110.0
-margin_bottom = 40.0
+anchor_left = 0.392578
+anchor_top = 0.433333
+anchor_right = 0.607422
+anchor_bottom = 0.566667
 rect_pivot_offset = Vector2( 110, 40 )
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Text" type="Label" parent="Main Panel/Play Button"]
 material = SubResource( 3 )
-margin_right = 220.0
-margin_bottom = 80.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Play"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Outline" type="Label" parent="Main Panel/Play Button"]
-margin_right = 220.0
-margin_bottom = 80.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Play"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Settings" type="Button" parent="Main Panel"]
-margin_top = 536.0
-margin_right = 64.0
-margin_bottom = 600.0
+anchor_top = 0.893333
+anchor_right = 0.0625
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 100 )
 custom_styles/hover = SubResource( 4 )
 custom_styles/pressed = SubResource( 5 )
@@ -301,7 +295,7 @@ custom_styles/normal = SubResource( 7 )
 icon = ExtResource( 23 )
 expand_icon = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Title" type="Label" parent="Main Panel"]
@@ -323,12 +317,11 @@ __meta__ = {
 }
 
 [node name="Title Outline" type="Label" parent="Main Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -192.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 160.0
+anchor_left = 0.3125
+anchor_top = 0.106667
+anchor_right = 0.6875
+anchor_bottom = 0.266667
+margin_bottom = -1.52588e-05
 rect_pivot_offset = Vector2( -352, 24 )
 custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
@@ -336,7 +329,7 @@ text = "Crashteroids"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Money" type="Label" parent="Main Panel"]
@@ -350,8 +343,9 @@ __meta__ = {
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -359,8 +353,8 @@ __meta__ = {
 
 [node name="Background Rect" type="ColorRect" parent="Settings Panel"]
 material = SubResource( 10 )
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -379,43 +373,39 @@ __meta__ = {
 }
 
 [node name="Settings Title" type="Label" parent="Settings Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -128.0
-margin_top = 64.0
-margin_right = 128.0
-margin_bottom = 144.0
+anchor_left = 0.375
+anchor_top = 0.106667
+anchor_right = 0.625
+anchor_bottom = 0.24
 custom_fonts/font = ExtResource( 14 )
 text = "Settings"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Settings Title Outline" type="Label" parent="Settings Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -128.0
-margin_top = 64.0
-margin_right = 128.0
-margin_bottom = 144.0
+anchor_left = 0.375
+anchor_top = 0.106667
+anchor_right = 0.625
+anchor_bottom = 0.24
 custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Settings"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Left Panel" type="Panel" parent="Settings Panel"]
-margin_top = 128.0
-margin_right = 352.0
-margin_bottom = 600.0
+anchor_top = 0.213333
+anchor_right = 0.34375
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Title" type="Label" parent="Settings Panel/Left Panel"]
@@ -426,7 +416,7 @@ text = "Graphics Quality:"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Low" type="Button" parent="Settings Panel/Left Panel"]
@@ -441,7 +431,7 @@ custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.572549, 0.258824, 0.239216, 1 )
 text = "Low"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Medium" type="Button" parent="Settings Panel/Left Panel"]
@@ -456,7 +446,7 @@ custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.513726, 0.384314, 0.184314, 1 )
 text = "Medium"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="High" type="Button" parent="Settings Panel/Left Panel"]
@@ -471,7 +461,7 @@ custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.556863, 0.682353, 0.294118, 1 )
 text = "High"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Sublime" type="Button" parent="Settings Panel/Left Panel"]
@@ -486,17 +476,17 @@ custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.0941176, 0.356863, 0.129412, 1 )
 text = "Sublime"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Centre Panel" type="Panel" parent="Settings Panel"]
-margin_left = 352.0
-margin_top = 128.0
-margin_right = 680.0
-margin_bottom = 600.0
+anchor_left = 0.34375
+anchor_top = 0.213333
+anchor_right = 0.664062
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 25 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Title" type="Label" parent="Settings Panel/Centre Panel"]
@@ -507,7 +497,7 @@ text = "Audio:"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Checkbox" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
@@ -537,13 +527,13 @@ ConfigId = 6
 text = "Sound Effects"
 
 [node name="Right Panel" type="Panel" parent="Settings Panel"]
-margin_left = 680.0
-margin_top = 128.0
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_left = 0.664062
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 28 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Title" type="Label" parent="Settings Panel/Right Panel"]
@@ -554,7 +544,7 @@ text = "Other"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Checkbox" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
@@ -571,9 +561,9 @@ text = "Help Btn Enabled"
 
 [node name="Username Edit" type="LineEdit" parent="Settings Panel/Right Panel"]
 anchor_left = 0.209302
-anchor_top = 0.40678
+anchor_top = 0.474576
 anchor_right = 0.837209
-anchor_bottom = 0.542373
+anchor_bottom = 0.610169
 custom_styles/focus = ExtResource( 24 )
 custom_styles/normal = ExtResource( 24 )
 custom_fonts/font = SubResource( 30 )
@@ -610,67 +600,86 @@ custom_styles/panel = SubResource( 31 )
 [node name="Label" parent="Settings Panel/Right Panel/Checkbox2/Checkbox" index="1"]
 text = "Advertisements"
 
+[node name="Username Label" type="Label" parent="Settings Panel/Right Panel"]
+anchor_left = 0.209302
+anchor_top = 0.40678
+anchor_right = 0.860465
+anchor_bottom = 0.474576
+custom_fonts/font = SubResource( 32 )
+text = "Set player username:"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Username Underline" type="ColorRect" parent="Settings Panel/Right Panel/Username Label"]
+anchor_top = 0.75
+anchor_bottom = 0.75
+margin_left = 0.00012207
+margin_top = 4.76837e-05
+margin_right = 192.0
+margin_bottom = 2.00005
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Panel Tween" type="Tween" parent="Settings Panel"]
 
 [node name="Gamemode Panel" type="Panel" parent="."]
 visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Gamemode Panel"]
-material = SubResource( 32 )
-margin_right = 1024.0
-margin_bottom = 600.0
+material = SubResource( 33 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Back" type="Button" parent="Gamemode Panel"]
-margin_right = 272.0
-margin_bottom = 72.0
+anchor_right = 0.265625
+anchor_bottom = 0.12
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 11 )
 custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Settings Title" type="Label" parent="Gamemode Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -139.5
-margin_top = 64.0
-margin_right = 139.5
-margin_bottom = 144.0
+anchor_left = 0.36377
+anchor_top = 0.106667
+anchor_right = 0.63623
+anchor_bottom = 0.24
 custom_fonts/font = ExtResource( 14 )
 text = "Pick Mode"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Settings Title Outline" type="Label" parent="Gamemode Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -139.5
-margin_top = 64.0
-margin_right = 139.5
-margin_bottom = 144.0
+anchor_left = 0.36377
+anchor_top = 0.106667
+anchor_right = 0.63623
+anchor_bottom = 0.24
 custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Pick Mode"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Left Panel" type="Panel" parent="Gamemode Panel"]
@@ -690,7 +699,7 @@ text = "Local 2 Player:"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Rect Tween" type="Tween" parent="Gamemode Panel/Left Panel"]
@@ -725,7 +734,7 @@ text = "Player vs AI:"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="TextureButton2" type="TextureButton" parent="Gamemode Panel/Centre Left Panel"]
@@ -758,7 +767,7 @@ text = "Multiplayer:"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="TextureButton3" type="TextureButton" parent="Gamemode Panel/Centre Right Panel"]
@@ -791,7 +800,7 @@ text = "Level designer:"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="TextureButton4" type="TextureButton" parent="Gamemode Panel/Right Panel"]
@@ -810,17 +819,17 @@ __meta__ = {
 
 [node name="Matchsettings Panel" type="Panel" parent="."]
 visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Matchsettings Panel"]
-material = SubResource( 32 )
-margin_right = 1024.0
-margin_bottom = 600.0
+material = SubResource( 33 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -839,45 +848,41 @@ __meta__ = {
 }
 
 [node name="Settings Title" type="Label" parent="Matchsettings Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -208.0
-margin_top = 64.0
-margin_right = 208.0
-margin_bottom = 144.0
+anchor_left = 0.296875
+anchor_top = 0.106667
+anchor_right = 0.703125
+anchor_bottom = 0.24
 custom_fonts/font = ExtResource( 14 )
 text = "Match Settings"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Settings Title Outline" type="Label" parent="Matchsettings Panel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -208.0
-margin_top = 64.0
-margin_right = 208.0
-margin_bottom = 144.0
+anchor_left = 0.296875
+anchor_top = 0.106667
+anchor_right = 0.703125
+anchor_bottom = 0.24
 custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Match Settings"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel Tween" type="Tween" parent="Matchsettings Panel"]
 
 [node name="Left Panel" type="Panel" parent="Matchsettings Panel"]
-margin_top = 128.0
-margin_right = 352.0
-margin_bottom = 600.0
-custom_styles/panel = SubResource( 33 )
+anchor_top = 0.213333
+anchor_right = 0.34375
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 34 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Checkbox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
@@ -949,71 +954,68 @@ ConfigId = 4
 text = "Rounds"
 
 [node name="Centre Panel" type="Panel" parent="Matchsettings Panel"]
-margin_left = 352.0
-margin_top = 128.0
-margin_right = 672.0
-margin_bottom = 600.0
-custom_styles/panel = SubResource( 34 )
+anchor_left = 0.34375
+anchor_top = 0.213333
+anchor_right = 0.65625
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 35 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Rocket Editor Button" type="Button" parent="Matchsettings Panel/Centre Panel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchor_left = 0.275
+anchor_top = 0.881356
+anchor_right = 0.725
 anchor_bottom = 1.0
-margin_left = -72.0
-margin_top = -56.0
-margin_right = 72.0
 rect_pivot_offset = Vector2( 90, 70 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 1 )
 custom_styles/normal = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Text" type="Label" parent="Matchsettings Panel/Centre Panel/Rocket Editor Button"]
-margin_right = 144.0
-margin_bottom = 56.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 2 )
 text = "Rocket Editor"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel" type="Panel" parent="Matchsettings Panel/Centre Panel"]
-margin_left = 32.0
-margin_top = 64.0
-margin_right = 288.0
-margin_bottom = 256.0
+anchor_left = 0.1
+anchor_top = 0.135593
+anchor_right = 0.9
+anchor_bottom = 0.542373
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Label" type="Label" parent="Matchsettings Panel/Centre Panel/Panel"]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 128.0
+anchor_left = 0.25
+anchor_top = 0.333333
+anchor_right = 0.75
+anchor_bottom = 0.666667
 text = "MAP / Theme"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Right Panel" type="Panel" parent="Matchsettings Panel"]
-margin_left = 672.0
-margin_top = 128.0
-margin_right = 1024.0
-margin_bottom = 600.0
-custom_styles/panel = SubResource( 35 )
+anchor_left = 0.65625
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 36 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Start" type="Button" parent="Matchsettings Panel/Right Panel"]
@@ -1032,17 +1034,17 @@ __meta__ = {
 
 [node name="Editor Panel" type="Panel" parent="."]
 visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Editor Panel"]
-material = SubResource( 32 )
-margin_right = 1024.0
-margin_bottom = 600.0
+material = SubResource( 33 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1071,33 +1073,29 @@ margin_left = -511.499
 margin_top = -472.0
 margin_right = 511.501
 margin_bottom = -0.000244141
-custom_styles/panel = SubResource( 36 )
+custom_styles/panel = SubResource( 37 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchor_top = 0.38983
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -511.5
-margin_top = -288.0
-margin_right = 511.5
-margin_bottom = 0.000244141
+margin_bottom = 3.05176e-05
 script = ExtResource( 21 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="1" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 71.0
-margin_top = 24.0
-margin_right = 183.0
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.0694037
+anchor_top = 0.0833333
+anchor_right = 0.178886
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/1"]
@@ -1110,13 +1108,13 @@ __meta__ = {
 }
 
 [node name="2" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 199.499
-margin_top = 24.0
-margin_right = 311.499
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.195014
+anchor_top = 0.0833333
+anchor_right = 0.304496
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/2"]
@@ -1129,13 +1127,13 @@ __meta__ = {
 }
 
 [node name="3" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 327.499
-margin_top = 24.0
-margin_right = 439.499
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.320136
+anchor_top = 0.0833333
+anchor_right = 0.429618
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/3"]
@@ -1148,13 +1146,13 @@ __meta__ = {
 }
 
 [node name="4" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 455.499
-margin_top = 24.0
-margin_right = 567.499
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.445258
+anchor_top = 0.0833333
+anchor_right = 0.55474
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/4"]
@@ -1167,13 +1165,13 @@ __meta__ = {
 }
 
 [node name="5" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 583.499
-margin_top = 24.0
-margin_right = 695.499
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.57038
+anchor_top = 0.0833333
+anchor_right = 0.679862
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/5"]
@@ -1186,13 +1184,13 @@ __meta__ = {
 }
 
 [node name="6" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 711.499
-margin_top = 24.0001
-margin_right = 823.499
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.695502
+anchor_top = 0.0833336
+anchor_right = 0.804984
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/6"]
@@ -1205,13 +1203,13 @@ __meta__ = {
 }
 
 [node name="7" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 839.499
-margin_top = 24.0
-margin_right = 951.499
-margin_bottom = 136.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.820625
+anchor_top = 0.0833333
+anchor_right = 0.930107
+anchor_bottom = 0.472222
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/7"]
@@ -1224,13 +1222,13 @@ __meta__ = {
 }
 
 [node name="8" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 71.499
-margin_top = 152.0
-margin_right = 183.499
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.0698915
+anchor_top = 0.527777
+anchor_right = 0.179373
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/8"]
@@ -1243,13 +1241,13 @@ __meta__ = {
 }
 
 [node name="9" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 199.998
-margin_top = 152.0
-margin_right = 311.998
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.195501
+anchor_top = 0.527777
+anchor_right = 0.304983
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/9"]
@@ -1262,13 +1260,13 @@ __meta__ = {
 }
 
 [node name="10" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 327.499
-margin_top = 152.0
-margin_right = 439.499
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.320136
+anchor_top = 0.527777
+anchor_right = 0.429618
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/10"]
@@ -1281,13 +1279,13 @@ __meta__ = {
 }
 
 [node name="11" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 455.499
-margin_top = 152.0
-margin_right = 567.499
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.445258
+anchor_top = 0.527777
+anchor_right = 0.55474
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/11"]
@@ -1300,13 +1298,13 @@ __meta__ = {
 }
 
 [node name="12" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 583.499
-margin_top = 152.0
-margin_right = 695.499
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.57038
+anchor_top = 0.527777
+anchor_right = 0.679862
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/12"]
@@ -1319,13 +1317,13 @@ __meta__ = {
 }
 
 [node name="13" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 711.499
-margin_top = 152.0
-margin_right = 823.499
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.695502
+anchor_top = 0.527777
+anchor_right = 0.804984
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/13"]
@@ -1338,13 +1336,13 @@ __meta__ = {
 }
 
 [node name="14" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-margin_left = 839.499
-margin_top = 152.0
-margin_right = 951.499
-margin_bottom = 264.0
-custom_styles/panel = SubResource( 37 )
+anchor_left = 0.820625
+anchor_top = 0.527777
+anchor_right = 0.930107
+anchor_bottom = 0.916666
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/14"]
@@ -1357,10 +1355,12 @@ __meta__ = {
 }
 
 [node name="Picker" parent="Editor Panel" instance=ExtResource( 20 )]
-margin_left = 256.0
-margin_top = 136.0
-margin_right = -256.0
-margin_bottom = -296.0
+anchor_left = 0.25
+anchor_top = 0.226667
+anchor_right = 0.75
+anchor_bottom = 0.506667
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="Settings Title" type="Label" parent="Editor Panel"]
 anchor_left = 0.5
@@ -1395,64 +1395,67 @@ __meta__ = {
 
 [node name="Help Panel" type="Panel" parent="."]
 visible = false
-material = SubResource( 38 )
-margin_left = 384.0
-margin_top = 120.0
-margin_right = 640.0
-margin_bottom = 480.0
+material = SubResource( 39 )
+anchor_left = 0.375
+anchor_top = 0.2
+anchor_right = 0.625
+anchor_bottom = 0.8
 rect_pivot_offset = Vector2( 128, 148 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Border" type="Panel" parent="Help Panel"]
-margin_right = 256.0
-margin_bottom = 360.0
-custom_styles/panel = SubResource( 39 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Title" type="Label" parent="Help Panel"]
-margin_right = 256.0
-margin_bottom = 41.0
+anchor_right = 1.0
+anchor_bottom = 0.113889
 custom_fonts/font = ExtResource( 10 )
 text = "Game info:"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Quit" type="Button" parent="Help Panel"]
-margin_left = 16.0
-margin_top = 304.0
-margin_right = 120.0
-margin_bottom = 345.0
+anchor_left = 0.0625
+anchor_top = 0.844444
+anchor_right = 0.46875
+anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
 custom_fonts/font = ExtResource( 10 )
 text = "Close"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Credits" type="Button" parent="Help Panel"]
-margin_left = 136.0
-margin_top = 304.0
-margin_right = 240.0
-margin_bottom = 345.0
+anchor_left = 0.53125
+anchor_top = 0.844444
+anchor_right = 0.9375
+anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 40 )
+custom_fonts/font = SubResource( 41 )
 text = "Credits"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Details" type="RichTextLabel" parent="Help Panel"]
-margin_top = 40.0
-margin_right = 256.0
-margin_bottom = 304.0
+anchor_top = 0.111111
+anchor_right = 1.0
+anchor_bottom = 0.844444
 bbcode_enabled = true
 bbcode_text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
 Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game.
@@ -1467,48 +1470,48 @@ Playing the game:
  - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
  - Crash into your opponent in order to win."
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel Tween" type="Tween" parent="Help Panel"]
 
 [node name="Credits Panel" type="Panel" parent="Help Panel"]
 visible = false
-material = SubResource( 38 )
-margin_top = 40.0
-margin_right = 256.0
-margin_bottom = 360.0
+material = SubResource( 39 )
+anchor_top = 0.111111
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 128, 148 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Border" type="Panel" parent="Help Panel/Credits Panel"]
-margin_top = -40.0
-margin_right = 256.0
-margin_bottom = 320.0
-custom_styles/panel = SubResource( 39 )
+anchor_top = -0.125
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Quit" type="Button" parent="Help Panel/Credits Panel"]
-margin_left = 72.0
-margin_top = 264.0
-margin_right = 184.0
-margin_bottom = 305.0
+anchor_left = 0.28125
+anchor_top = 0.825
+anchor_right = 0.71875
+anchor_bottom = 0.953125
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
 custom_fonts/font = ExtResource( 10 )
 text = "Close"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Details" type="RichTextLabel" parent="Help Panel/Credits Panel"]
-margin_right = 256.0
-margin_bottom = 264.0
+anchor_right = 1.0
+anchor_bottom = 0.825
 bbcode_enabled = true
 bbcode_text = "[tornado radius=2 freq=2][color=yellow][center]Credits:[/center][/color][/tornado]
  - StarlkYT,  big brain power.
@@ -1517,7 +1520,7 @@ text = "Credits:
  - StarlkYT,  big brain power.
  - Zekiah-A, main development."
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="TitleUIManager" type="Node" parent="."]

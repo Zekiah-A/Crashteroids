@@ -1,8 +1,8 @@
 [remap]
 
 importer="texture"
-type="StreamTexture2D"
-path="res://.godot/imported/two_player_banner.png-a2cb0ebe270d4c31c3d68701714f1ce9.stex"
+type="StreamTexture"
+path="res://.import/two_player_banner.png-a2cb0ebe270d4c31c3d68701714f1ce9.stex"
 metadata={
 "vram_texture": false
 }
@@ -10,25 +10,25 @@ metadata={
 [deps]
 
 source_file="res://resources/two_player_banner.png"
-dest_files=["res://.godot/imported/two_player_banner.png-a2cb0ebe270d4c31c3d68701714f1ce9.stex"]
+dest_files=[ "res://.import/two_player_banner.png-a2cb0ebe270d4c31c3d68701714f1ce9.stex" ]
 
 [params]
 
 compress/mode=0
 compress/lossy_quality=0.7
-compress/hdr_compression=1
+compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-compress/channel_pack=0
-compress/streamed=false
-mipmaps/generate=false
-mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/normal_map_invert_y=false
 process/HDR_as_SRGB=false
-process/size_limit=0
-detect_3d/compress_to=1
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
 svg/scale=1.0

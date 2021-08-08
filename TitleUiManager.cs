@@ -33,8 +33,8 @@ public class TitleUiManager : Node
 
 	public override void _Ready()
 	{
-		GameSaveData.Load();
-		GameSaveDataUpdate();
+		//GameSaveData.Load();
+		//GameSaveDataUpdate();
 		
 		_mainPanel = (Panel) GetParent().GetNode("Main Panel");
 		_settingsPanel = (Panel) GetParent().GetNode("Settings Panel");
@@ -55,10 +55,10 @@ public class TitleUiManager : Node
 		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
 		_usernameLabel = (RichTextLabel) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
 
-		_musicCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox");
-		_sfxCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox2");
-		_helpBtnCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox");
-		_advertisementsCheckbox = (Checkbox) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox2");
+		_musicCheckbox = GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox") as Checkbox;
+		_sfxCheckbox = GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox2") as Checkbox;
+		_helpBtnCheckbox = GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox") as Checkbox;
+		_advertisementsCheckbox = GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox2") as Checkbox;
 
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;

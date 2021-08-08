@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rocket_dart_1.png-6c6161fba511781079149a651e93e35e.stex"
+path="res://.import/splash.png-4a99ad878c1ff9f7e7a33686bcacd572.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/rockets/rocket_dart_1.png"
-dest_files=[ "res://.import/rocket_dart_1.png-6c6161fba511781079149a651e93e35e.stex" ]
+source_file="res://resources/splash.png"
+dest_files=[ "res://.import/splash.png-4a99ad878c1ff9f7e7a33686bcacd572.stex" ]
 
 [params]
 
