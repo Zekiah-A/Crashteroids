@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -24,9 +24,19 @@
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 [ext_resource path="res://resources/save_cog_2_icon.svg" type="Texture" id=23]
 [ext_resource path="res://styles/lineedit_style.tres" type="StyleBox" id=24]
-[ext_resource path="res://resources/backgrounds/space_title.png" type="Texture" id=25]
+[ext_resource path="res://resources/backgrounds/space_title_stars.png" type="Texture" id=25]
+[ext_resource path="res://shaders/warp.shader" type="Shader" id=26]
+[ext_resource path="res://resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="ShaderMaterial" id=42]
+shader = ExtResource( 26 )
+shader_param/speed = 3.0
+
+[sub_resource type="ShaderMaterial" id=43]
+shader = ExtResource( 26 )
+shader_param/speed = -3.0
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
@@ -179,9 +189,20 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="TextureRect" parent="Main Panel"]
+material = SubResource( 42 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layer1 Rect" type="TextureRect" parent="Main Panel"]
+material = SubResource( 43 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 27 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
