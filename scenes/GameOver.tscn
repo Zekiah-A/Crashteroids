@@ -11,17 +11,17 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/blur_amount = 5.0
+shader_param/blur_amount = 4.0
 shader_param/translucency = 1.0
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )
 shader_param/intensity = 1.885
 shader_param/x = false
@@ -33,22 +33,22 @@ shader_param/r_vertical = null
 shader_param/g_vertical = 8.006
 shader_param/b_vertical = null
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 40
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
-shader_param/blur_amount = 5.0
+shader_param/blur_amount = 4.0
 shader_param/translucency = 1.0
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=6]
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -79,7 +79,7 @@ anchor_right = 0.625
 anchor_bottom = 0.746667
 rect_pivot_offset = Vector2( 128, 148 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Game Over" type="Label" parent="Panel"]
@@ -94,7 +94,7 @@ valign = 1
 margin_top = 41.0
 margin_right = 256.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Player 1 won!"
 align = 1
@@ -103,11 +103,11 @@ __meta__ = {
 }
 
 [node name="Winner" type="Label" parent="Panel"]
-material = SubResource( 4 )
+material = SubResource( 3 )
 margin_top = 41.0
 margin_right = 256.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Player 1 won!"
 align = 1
 
@@ -157,13 +157,13 @@ __meta__ = {
 }
 
 [node name="Panel2" type="Panel" parent="."]
-material = SubResource( 6 )
+material = SubResource( 5 )
 anchor_left = 0.375
 anchor_top = 0.373333
 anchor_right = 0.625
 anchor_bottom = 0.746667
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Done" type="Button" parent="Panel2"]
@@ -184,7 +184,7 @@ __meta__ = {
 margin_top = -32.0
 margin_right = 256.0
 margin_bottom = 152.0
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Awards:[/center][/color][/wave]
 "
@@ -200,9 +200,9 @@ anchor_top = 0.213333
 anchor_right = 0.625
 anchor_bottom = 0.746667
 mouse_filter = 2
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Tween" type="Tween" parent="."]

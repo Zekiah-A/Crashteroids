@@ -636,10 +636,9 @@ __meta__ = {
 [node name="Username Underline" type="ColorRect" parent="Settings Panel/Right Panel/Username Label"]
 anchor_top = 0.75
 anchor_bottom = 0.75
-margin_left = 0.00012207
-margin_top = 4.76837e-05
+margin_top = 2.00021
 margin_right = 192.0
-margin_bottom = 2.00005
+margin_bottom = 3.00021
 __meta__ = {
 "_edit_use_anchors_": false
 }
