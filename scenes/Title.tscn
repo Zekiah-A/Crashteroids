@@ -30,22 +30,22 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="ShaderMaterial" id=42]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 26 )
 shader_param/speed = 3.0
 
-[sub_resource type="ShaderMaterial" id=43]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 26 )
 shader_param/speed = -3.0
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 24
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 9 )
 shader_param/intensity = 2.0
 shader_param/x = false
@@ -57,15 +57,15 @@ shader_param/r_vertical = 4.0
 shader_param/g_vertical = 10.0
 shader_param/b_vertical = 4.0
 
-[sub_resource type="StyleBoxEmpty" id=4]
-
-[sub_resource type="StyleBoxEmpty" id=5]
-
 [sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 9 )
 shader_param/intensity = 3.0
 shader_param/x = null
@@ -77,16 +77,12 @@ shader_param/r_vertical = 10.0
 shader_param/g_vertical = 10.0
 shader_param/b_vertical = 10.0
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=11]
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=12]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=11]
-
-[sub_resource type="StyleBoxEmpty" id=12]
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -122,43 +118,47 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=29]
 
-[sub_resource type="DynamicFont" id=30]
-size = 20
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[sub_resource type="StyleBoxEmpty" id=30]
 
 [sub_resource type="StyleBoxEmpty" id=31]
 
 [sub_resource type="DynamicFont" id=32]
 size = 20
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
 font_data = ExtResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=33]
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="DynamicFont" id=34]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=35]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=34]
-
-[sub_resource type="StyleBoxEmpty" id=35]
 
 [sub_resource type="StyleBoxEmpty" id=36]
 
 [sub_resource type="StyleBoxEmpty" id=37]
 
-[sub_resource type="StyleBoxFlat" id=38]
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="StyleBoxEmpty" id=39]
+
+[sub_resource type="StyleBoxFlat" id=40]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=39]
+[sub_resource type="ShaderMaterial" id=41]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=40]
+[sub_resource type="StyleBoxFlat" id=42]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -166,7 +166,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=41]
+[sub_resource type="DynamicFont" id=43]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -189,7 +189,7 @@ __meta__ = {
 }
 
 [node name="Background Rect" type="TextureRect" parent="Main Panel"]
-material = SubResource( 42 )
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 25 )
@@ -199,7 +199,7 @@ __meta__ = {
 }
 
 [node name="Layer1 Rect" type="TextureRect" parent="Main Panel"]
-material = SubResource( 43 )
+material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 27 )
@@ -234,7 +234,7 @@ __meta__ = {
 [node name="Text" type="Label" parent="Main Panel/Rocket Editor Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Rocket Editor"
 align = 1
 valign = 1
@@ -258,7 +258,7 @@ __meta__ = {
 [node name="Text" type="Label" parent="Main Panel/Help"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Help"
 align = 1
 valign = 1
@@ -280,7 +280,7 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="Main Panel/Play Button"]
-material = SubResource( 3 )
+material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 16 )
@@ -309,10 +309,10 @@ anchor_top = 0.893333
 anchor_right = 0.0625
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 100 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
 icon = ExtResource( 23 )
 expand_icon = true
 __meta__ = {
@@ -320,7 +320,7 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="Main Panel"]
-material = SubResource( 8 )
+material = SubResource( 10 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -192.0
@@ -367,13 +367,13 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Settings Panel"]
-material = SubResource( 10 )
+material = SubResource( 12 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -424,7 +424,7 @@ __meta__ = {
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -444,10 +444,10 @@ __meta__ = {
 margin_top = 64.0
 margin_right = 352.0
 margin_bottom = 164.0
-custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 14 )
-custom_styles/normal = SubResource( 15 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/focus = SubResource( 16 )
+custom_styles/normal = SubResource( 17 )
 custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.572549, 0.258824, 0.239216, 1 )
 text = "Low"
@@ -459,10 +459,10 @@ __meta__ = {
 margin_top = 164.0
 margin_right = 352.0
 margin_bottom = 264.0
-custom_styles/hover = SubResource( 16 )
-custom_styles/pressed = SubResource( 17 )
-custom_styles/focus = SubResource( 18 )
-custom_styles/normal = SubResource( 15 )
+custom_styles/hover = SubResource( 18 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/focus = SubResource( 20 )
+custom_styles/normal = SubResource( 17 )
 custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.513726, 0.384314, 0.184314, 1 )
 text = "Medium"
@@ -474,10 +474,10 @@ __meta__ = {
 margin_top = 264.0
 margin_right = 352.0
 margin_bottom = 364.0
-custom_styles/hover = SubResource( 19 )
-custom_styles/pressed = SubResource( 20 )
-custom_styles/focus = SubResource( 21 )
-custom_styles/normal = SubResource( 15 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/focus = SubResource( 23 )
+custom_styles/normal = SubResource( 17 )
 custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.556863, 0.682353, 0.294118, 1 )
 text = "High"
@@ -489,10 +489,10 @@ __meta__ = {
 margin_top = 364.0
 margin_right = 352.0
 margin_bottom = 464.0
-custom_styles/hover = SubResource( 22 )
-custom_styles/pressed = SubResource( 23 )
-custom_styles/focus = SubResource( 24 )
-custom_styles/normal = SubResource( 15 )
+custom_styles/hover = SubResource( 24 )
+custom_styles/pressed = SubResource( 25 )
+custom_styles/focus = SubResource( 26 )
+custom_styles/normal = SubResource( 17 )
 custom_fonts/font = ExtResource( 10 )
 custom_colors/font_color = Color( 0.0941176, 0.356863, 0.129412, 1 )
 text = "Sublime"
@@ -505,7 +505,7 @@ anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.664062
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 25 )
+custom_styles/panel = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -528,7 +528,7 @@ anchor_right = 0.829268
 anchor_bottom = 0.271186
 
 [node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox" index="0"]
-custom_styles/panel = SubResource( 26 )
+custom_styles/panel = SubResource( 28 )
 ConfigId = 5
 
 [node name="Label" parent="Settings Panel/Centre Panel/Checkbox/Checkbox" index="1"]
@@ -541,7 +541,7 @@ anchor_right = 0.829268
 anchor_bottom = 0.40678
 
 [node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox2" index="0"]
-custom_styles/panel = SubResource( 27 )
+custom_styles/panel = SubResource( 29 )
 ConfigId = 6
 
 [node name="Label" parent="Settings Panel/Centre Panel/Checkbox2/Checkbox" index="1"]
@@ -552,7 +552,7 @@ anchor_left = 0.664062
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 28 )
+custom_styles/panel = SubResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -575,7 +575,7 @@ anchor_right = 0.428052
 anchor_bottom = 0.24226
 
 [node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox" index="0"]
-custom_styles/panel = SubResource( 29 )
+custom_styles/panel = SubResource( 31 )
 
 [node name="Label" parent="Settings Panel/Right Panel/Checkbox/Checkbox" index="1"]
 text = "Help Btn Enabled"
@@ -587,7 +587,7 @@ anchor_right = 0.837209
 anchor_bottom = 0.610169
 custom_styles/focus = ExtResource( 24 )
 custom_styles/normal = ExtResource( 24 )
-custom_fonts/font = SubResource( 30 )
+custom_fonts/font = SubResource( 32 )
 custom_colors/font_color = Color( 0.27451, 0.27451, 0.27451, 1 )
 placeholder_text = "Username.."
 __meta__ = {
@@ -616,7 +616,7 @@ anchor_right = 0.428052
 anchor_bottom = 0.377853
 
 [node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox2" index="0"]
-custom_styles/panel = SubResource( 31 )
+custom_styles/panel = SubResource( 33 )
 
 [node name="Label" parent="Settings Panel/Right Panel/Checkbox2/Checkbox" index="1"]
 text = "Advertisements"
@@ -626,7 +626,7 @@ anchor_left = 0.209302
 anchor_top = 0.40678
 anchor_right = 0.860465
 anchor_bottom = 0.474576
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 34 )
 text = "Set player username:"
 valign = 2
 __meta__ = {
@@ -649,13 +649,13 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Gamemode Panel"]
-material = SubResource( 33 )
+material = SubResource( 35 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -706,7 +706,7 @@ __meta__ = {
 anchor_top = 0.213333
 anchor_right = 0.25
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -741,7 +741,7 @@ anchor_left = 0.25
 anchor_top = 0.213333
 anchor_right = 0.5
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -774,7 +774,7 @@ anchor_left = 0.5
 anchor_top = 0.213333
 anchor_right = 0.75
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -807,7 +807,7 @@ anchor_left = 0.75
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -841,13 +841,13 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Matchsettings Panel"]
-material = SubResource( 33 )
+material = SubResource( 35 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -900,7 +900,7 @@ __meta__ = {
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 34 )
+custom_styles/panel = SubResource( 36 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -978,7 +978,7 @@ anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.65625
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 35 )
+custom_styles/panel = SubResource( 37 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -999,7 +999,7 @@ __meta__ = {
 [node name="Text" type="Label" parent="Matchsettings Panel/Centre Panel/Rocket Editor Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Rocket Editor"
 align = 1
 valign = 1
@@ -1033,7 +1033,7 @@ anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 36 )
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1056,13 +1056,13 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Background Rect" type="ColorRect" parent="Editor Panel"]
-material = SubResource( 33 )
+material = SubResource( 35 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -1093,7 +1093,7 @@ margin_left = -511.499
 margin_top = -472.0
 margin_right = 511.501
 margin_bottom = -0.000244141
-custom_styles/panel = SubResource( 37 )
+custom_styles/panel = SubResource( 39 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1113,7 +1113,7 @@ anchor_left = 0.0694037
 anchor_top = 0.0833333
 anchor_right = 0.178886
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1132,7 +1132,7 @@ anchor_left = 0.195014
 anchor_top = 0.0833333
 anchor_right = 0.304496
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1151,7 +1151,7 @@ anchor_left = 0.320136
 anchor_top = 0.0833333
 anchor_right = 0.429618
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1170,7 +1170,7 @@ anchor_left = 0.445258
 anchor_top = 0.0833333
 anchor_right = 0.55474
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1189,7 +1189,7 @@ anchor_left = 0.57038
 anchor_top = 0.0833333
 anchor_right = 0.679862
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1208,7 +1208,7 @@ anchor_left = 0.695502
 anchor_top = 0.0833336
 anchor_right = 0.804984
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1227,7 +1227,7 @@ anchor_left = 0.820625
 anchor_top = 0.0833333
 anchor_right = 0.930107
 anchor_bottom = 0.472222
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1246,7 +1246,7 @@ anchor_left = 0.0698915
 anchor_top = 0.527777
 anchor_right = 0.179373
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1265,7 +1265,7 @@ anchor_left = 0.195501
 anchor_top = 0.527777
 anchor_right = 0.304983
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1284,7 +1284,7 @@ anchor_left = 0.320136
 anchor_top = 0.527777
 anchor_right = 0.429618
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1303,7 +1303,7 @@ anchor_left = 0.445258
 anchor_top = 0.527777
 anchor_right = 0.55474
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1322,7 +1322,7 @@ anchor_left = 0.57038
 anchor_top = 0.527777
 anchor_right = 0.679862
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1341,7 +1341,7 @@ anchor_left = 0.695502
 anchor_top = 0.527777
 anchor_right = 0.804984
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1360,7 +1360,7 @@ anchor_left = 0.820625
 anchor_top = 0.527777
 anchor_right = 0.930107
 anchor_bottom = 0.916666
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1415,7 +1415,7 @@ __meta__ = {
 
 [node name="Help Panel" type="Panel" parent="."]
 visible = false
-material = SubResource( 39 )
+material = SubResource( 41 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -1428,7 +1428,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="Help Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 40 )
+custom_styles/panel = SubResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1466,7 +1466,7 @@ anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 41 )
+custom_fonts/font = SubResource( 43 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1497,7 +1497,7 @@ __meta__ = {
 
 [node name="Credits Panel" type="Panel" parent="Help Panel"]
 visible = false
-material = SubResource( 39 )
+material = SubResource( 41 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1510,7 +1510,7 @@ __meta__ = {
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 40 )
+custom_styles/panel = SubResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": true
 }

@@ -23,10 +23,10 @@ public class TitleUiManager : Node
 	private LineEdit _usernameEdit;
 	private RichTextLabel _usernameLabel;
 	
-	private Checkbox _musicCheckbox;
-	private Checkbox  _sfxCheckbox;
-	private Checkbox  _helpBtnCheckbox;
-	private Checkbox  _advertisementsCheckbox;
+	private Control _musicCheckbox;
+	private Control  _sfxCheckbox;
+	private Control  _helpBtnCheckbox;
+	private Control  _advertisementsCheckbox;
 	
 
 	const int MaxUsernameLength = 10;
@@ -55,10 +55,10 @@ public class TitleUiManager : Node
 		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
 		_usernameLabel = (RichTextLabel) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
 
-		_musicCheckbox = GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox") as Checkbox;
-		_sfxCheckbox = GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox2") as Checkbox;
-		_helpBtnCheckbox = GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox") as Checkbox;
-		_advertisementsCheckbox = GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox2") as Checkbox;
+		_musicCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox").GetNode("Checkbox");
+		_sfxCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox2").GetNode("Checkbox");
+		_helpBtnCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox").GetNode("Checkbox");
+		_advertisementsCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox2").GetNode("Checkbox");
 
 		_settingsPanel.Visible = false;
 		_gamemodePanel.Visible = false;
@@ -127,16 +127,17 @@ public class TitleUiManager : Node
 		);
 		_settingsTween.Start();
 		
-		GameSaveData.Load();
+		if (GameSaveData.Load())
+			GameSaveDataUpdate();
 	}
 	
-	private void _on_Back_pressed(int _index) //add a field to say which button
+	private async void _on_Back_pressed(int _index) //add a field to say which button
 	{//TODO: Button scene (tscn)
 		switch (_index)
 		{
 			case 1:
 				_settingsPanel.Visible = false;
-				GameSaveData.Save();
+				await GameSaveData.Save();
 				break;
 			case 2:
 				_gamemodePanel.Visible = false;
@@ -266,15 +267,22 @@ public class TitleUiManager : Node
 	#endregion
 
 	//When the game's config is loaded, update all UI elements to reflect that of the setting
-	public void GameSaveDataUpdate(/*object sender, EventArgs e*/)
+	public void GameSaveDataUpdate() //CALL THIS!
 	{
-		GD.Print("GameSaveData update received. ----------------------------------------");
+		GD.Print("GameSaveData update received.");
 		
-	
-		_musicCheckbox.SetCurrent(GameConfig.Instance.Music);
-		_sfxCheckbox.SetCurrent(GameConfig.Instance.SoundEffects);
-		//_helpBtnCheckbox.SetCurrent();
-		//_advertisementsCheckbox.SetCurrent();
-		_on_Username_Edit_text_entered(GameConfig.Instance.Username);
+		try{
+			(_musicCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Music;
+			(_sfxCheckbox as Checkbox).IsEnabled = GameConfig.Instance.SoundEffects;
+			(_helpBtnCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
+			//TODO: There is no void to actually update this, so that needs to be done.
+			(_advertisementsCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
+			_usernameEdit.Text = GameConfig.Instance.Username;
+			//_on_Username_Edit_text_entered(GameConfig.Instance.Username);
+		}
+		catch(Exception e)
+		{
+			GD.PrintErr($"Could not update game save data \n {e}");
+		}
 	}
 }

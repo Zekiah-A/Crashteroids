@@ -9,7 +9,7 @@ public class Match : Node
 {
 	public int CurrentTurn;
 	public int MatchLength;
-	public List<int> TotalBounces = new List<int>() { 0, 0 };
+	public List<int> TotalBounces = new List<int>() { 0, 0 }; //could be a fixed array as two?
 	public Dictionary<RewardsType, int> GameOverRewards = new Dictionary<RewardsType, int>();
 	private Random _rand = new Random();
 	
@@ -19,34 +19,30 @@ public class Match : Node
 		GameManager.Players[0].UpdateSkin();
 		GameManager.TimerNode.Connect("timeout", this, nameof(_on_Timer_timeout));
 		GameManager.TimerNode.Start();
+		if (GameConfig.Instance.Username != null)
+			GameManager.TurnUI.Text = $"Player {GameConfig.Instance.Username} {CurrentTurn + 1}'s turn.";
 	}
 
 	public void SwitchTurn(int _finishedTurn)
 	{	///<summary> Stop current player from moving </summary>
 		GameManager.Players[CurrentTurn].IsCurrent = false;
-		///<summary> Switch the current player for the match </summary>
-		if (GameConfig.Gamemode == (int) Gamemodes.TwoPlayer)
-		{
-			switch (_finishedTurn)
-			{
-				case 0:
-					CurrentTurn = 1;
-					break;
-				case 1:
-					CurrentTurn = 0;
-					break;
-			}
-		}
+		///<summary> Switch the current player for the match. Scales for different player amounts.</summary>
+		if (_finishedTurn + 1 < GameManager.Players.Count)
+			CurrentTurn++;
+		else
+			CurrentTurn = 0;
 		///<summary>Re-set the new current player to be able to move</summary>
 		GameManager.Players[CurrentTurn].IsCurrent = true;
 		///<note> Add 1 to current turn in order to not confuse players. </note>
-		GameManager.TurnUI.Text = "Player " + (CurrentTurn + 1) +"'s turn.";
+		if (GameConfig.Instance.Username != null)
+			GameManager.TurnUI.Text = $"Player {GameConfig.Instance.Username} {CurrentTurn + 1}'s turn.";
+		else
+			GameManager.TurnUI.Text = $"Player {CurrentTurn + 1}'s turn.";
 	}
 	
 	public void Crash(Player _playerHit)
 	{
 		EndMatch();
-		//HACK: User curplr - not correct!
 		GameManager.Players[_playerHit.Id].Explode();
 	}
 	

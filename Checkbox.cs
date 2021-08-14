@@ -3,7 +3,19 @@ using System;
 
 public class Checkbox : Control
 {
-	public bool IsEnabled = false;
+	public bool IsEnabled
+	{
+		get { return _enabled; }
+		set
+		{
+			_enabled = value;
+
+			if (_enabled)
+				_image.TextureNormal = _checkboxFull;
+			else
+				_image.TextureNormal = _checkboxEmpty;
+		}
+	}
 	
 	[Export] public int ConfigId;
 	[Signal] public delegate void _on_Matchconfig_update(int _configId, bool _isEnabled);
@@ -11,6 +23,7 @@ public class Checkbox : Control
 	private TextureButton _image;
 	private Texture _checkboxEmpty;
 	private Texture _checkboxFull;
+	private bool _enabled;
 
 	public override void _Ready()
 	{
@@ -35,21 +48,5 @@ public class Checkbox : Control
 		}
 		
 		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
-	}
-	
-	public void SetCurrent(bool _enabled)
-	{
-		IsEnabled = _enabled;
-		
-		if (IsEnabled)
-		{
-			_image.TextureNormal = _checkboxEmpty;
-			IsEnabled = false;
-		}
-		else
-		{
-			_image.TextureNormal = _checkboxFull;
-			IsEnabled = true;
-		}
 	}
 }

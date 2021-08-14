@@ -13,6 +13,7 @@ namespace Crashteroids
 		public int SkinID { get; set; }
 		public int Money { get; set; }
 		public string Username { get; set;}
+		public bool Advertisements { get; set; }
 
 		#region MATCH
 		public static int Gamemode { get; set; }

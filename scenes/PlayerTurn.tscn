@@ -4,15 +4,14 @@
 
 [node name="PlayerTurn" type="Control"]
 anchor_right = 1.0
-anchor_bottom = 0.12
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-anchor_left = 0.25
-anchor_right = 0.75
-anchor_bottom = 0.944444
+anchor_right = 1.0
+anchor_bottom = 0.113333
 custom_fonts/font = ExtResource( 1 )
 text = "Player 1's turn."
 align = 1
@@ -22,12 +21,11 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="."]
-anchor_left = 0.328125
-anchor_top = 0.888889
-anchor_right = 0.649414
-anchor_bottom = 1.08333
-margin_right = -11.0
+anchor_top = 0.106667
+anchor_right = 1.0
+anchor_bottom = 0.133333
 text = "Make the colour here replicate their rocket colour ^"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
