@@ -27,7 +27,7 @@ public class Match : Node
 		GameManager.TimerNode.Connect("timeout", this, nameof(_on_Timer_timeout));
 		GameManager.TimerNode.Start();
 		if (GameConfig.Instance.Username != null)
-			GameManager.TurnUI.Text = $"Player {GameConfig.Instance.Username} {CurrentTurn + 1}'s turn.";
+			GameManager.TurnUI.Text = $"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0,1)} {CurrentTurn + 1}'s turn.";
 	}
 
 	public void SwitchTurn(int _finishedTurn)
@@ -42,7 +42,7 @@ public class Match : Node
 		GameManager.Players[CurrentTurn].IsCurrent = true;
 		///<note> Add 1 to current turn in order to not confuse players. </note>
 		if (GameConfig.Instance.Username != null)
-			GameManager.TurnUI.Text = $"Player {GameConfig.Instance.Username} {CurrentTurn + 1}'s turn.";
+			GameManager.TurnUI.Text = $"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0,1)} {CurrentTurn + 1}'s turn.";
 		else
 			GameManager.TurnUI.Text = $"Player {CurrentTurn + 1}'s turn.";
 	}

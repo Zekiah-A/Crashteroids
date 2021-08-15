@@ -272,7 +272,7 @@ public class TitleUiManager : Node
 			//TODO: There is no void to actually update this, so that needs to be done.
 			(_advertisementsCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
 			_usernameEdit.Text = GameConfig.Instance.Username;
-			
+
 			StringBuilder stringBuilder = new StringBuilder(GameConfig.Instance.Money.ToString());
 			int commasAdded = 0;
 			for (int index = 0; index < stringBuilder.Length; index++)
