@@ -21,6 +21,7 @@ public class TitleUiManager : Node
 	private Tween _usernameTween;
 
 	private Label _moneyLabel;
+	private Label _editorMoneyLabel;
 	private LineEdit _usernameEdit;
 	private RichTextLabel _usernameLabel;
 	
@@ -50,6 +51,7 @@ public class TitleUiManager : Node
 		_usernameTween = (Tween) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Tween");
 		
 		_moneyLabel = (Label) GetParent().GetNode("Main Panel").GetNode("Money Label");
+		_editorMoneyLabel = (Label) GetParent().GetNode("Editor Panel").GetNode("Money Label");
 		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
 		_usernameLabel = (RichTextLabel) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
 
@@ -284,6 +286,7 @@ public class TitleUiManager : Node
 				}
 			}
 			_moneyLabel.Text = $"£{stringBuilder}";
+			_editorMoneyLabel.Text = _moneyLabel.Text;
 		}
 		catch(Exception e)
 		{

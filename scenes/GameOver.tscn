@@ -98,6 +98,7 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Player 1 won!"
 align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -110,6 +111,7 @@ margin_bottom = 96.0
 custom_fonts/font = SubResource( 4 )
 text = "Player 1 won!"
 align = 1
+clip_text = true
 
 [node name="Again" type="Button" parent="Panel"]
 margin_left = 32.0

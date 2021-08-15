@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://resources/backgrounds/space_title_stars.png" type="Texture" id=25]
 [ext_resource path="res://shaders/warp.shader" type="Shader" id=26]
 [ext_resource path="res://resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
+[ext_resource path="res://resources/image/laser_TEST.png" type="Texture" id=28]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -152,6 +153,24 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id=45]
+bg_color = Color( 0.0156863, 0.701961, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="ShaderMaterial" id=41]
 shader = ExtResource( 3 )
@@ -365,7 +384,6 @@ __meta__ = {
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
@@ -1054,7 +1072,6 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
@@ -1086,17 +1103,15 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="Editor Panel"]
 
 [node name="Main Panel" type="Panel" parent="Editor Panel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchor_left = 0.000489265
+anchor_top = 0.52
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -511.499
-margin_top = -472.0
-margin_right = 511.501
-margin_bottom = -0.000244141
+margin_top = -184.0
+margin_right = -0.499023
 custom_styles/panel = SubResource( 39 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
@@ -1123,7 +1138,20 @@ __meta__ = {
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_normal = ExtResource( 28 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/1"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 44 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1143,6 +1171,18 @@ margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/2"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 45 )
+text = "Lazer - Equipped"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1412,6 +1452,18 @@ align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="Money Label" type="Label" parent="Editor Panel"]
+anchor_left = 0.8125
+anchor_right = 0.999023
+anchor_bottom = 0.106667
+custom_fonts/font = ExtResource( 10 )
+text = "£0"
+align = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
 }
 
 [node name="Help Panel" type="Panel" parent="."]
