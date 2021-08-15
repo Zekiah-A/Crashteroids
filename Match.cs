@@ -13,8 +13,15 @@ public class Match : Node
 	public Dictionary<RewardsType, int> GameOverRewards = new Dictionary<RewardsType, int>();
 	private Random _rand = new Random();
 	
-	public Match()
+	public Match() //all unecessary, could just attach manager to node that reloads
 	{
+		GD.Print("Match instance generated.");
+
+		foreach (Player player in GameManager.Players)
+		{
+			player.IsDead = false;
+			player.Id = GameManager.Players.IndexOf(player);
+		}
 		GameManager.Players[0].IsCurrent = true;
 		GameManager.Players[0].UpdateSkin();
 		GameManager.TimerNode.Connect("timeout", this, nameof(_on_Timer_timeout));
@@ -50,7 +57,7 @@ public class Match : Node
 		MatchLength += (int) GameManager.TimerNode.WaitTime;
 	
 	//make destructor 
-	public void EndMatch()
+	public async void EndMatch()
 	{
 		//TODO: Destroy this instance - lazy hack for winner too
 		switch((Gamemodes) GameConfig.Gamemode)
@@ -67,7 +74,8 @@ public class Match : Node
 				{
 					GameConfig.Instance.Money += _reward.Value;
 					GameConfig.Match.MatchMoney += _reward.Value;
-				}
+				} //lol when does the lobby load this
+				await GameSaveData.Save();
 				break;
 			case Gamemodes.AiPlayer:
 				break;

@@ -32,10 +32,7 @@ public class TitleUiManager : Node
 	const int MaxUsernameLength = 10;
 
 	public override void _Ready()
-	{
-		//GameSaveData.Load();
-		//GameSaveDataUpdate();
-		
+	{	
 		_mainPanel = (Panel) GetParent().GetNode("Main Panel");
 		_settingsPanel = (Panel) GetParent().GetNode("Settings Panel");
 		_gamemodePanel = (Panel) GetParent().GetNode("Gamemode Panel");
@@ -51,7 +48,7 @@ public class TitleUiManager : Node
 		_helpTween = (Tween) GetParent().GetNode("Help Panel").GetNode("Panel Tween");
 		_usernameTween = (Tween) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Tween");
 		
-		_moneyLabel = (Label) GetParent().GetNode("Main Panel").GetNode("Money");
+		_moneyLabel = (Label) GetParent().GetNode("Main Panel").GetNode("Money Label");
 		_usernameEdit = (LineEdit) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
 		_usernameLabel = (RichTextLabel) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
 
@@ -66,13 +63,9 @@ public class TitleUiManager : Node
 		_editorPanel.Visible = false;
 		_helpPanel.Visible = false;
 		_helpCreditsPanel.Visible = false;
-
-		//GameConfigUpdate += //TODO: If index = 0, update instead for all functions.
-		
-		//TODO: Is ready called multiple times? - Make a function that subscribes for money change, (money change called by config update event too)
-		//BUG: Loads too early, must call load before to wait for cofig
-		
-		/*GameSaveData.GameSaveDataUpdate += gameSaveDataUpdate;*/
+		GD.Print("Initial loading game data.");
+		if (GameSaveData.Load())
+			GameSaveDataUpdate();
 	}
 	
 	//TODO: in future use something fancy like tween
@@ -278,7 +271,7 @@ public class TitleUiManager : Node
 			//TODO: There is no void to actually update this, so that needs to be done.
 			(_advertisementsCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
 			_usernameEdit.Text = GameConfig.Instance.Username;
-			//_on_Username_Edit_text_entered(GameConfig.Instance.Username);
+			_moneyLabel.Text = $"£{GameConfig.Instance.Money.ToString()}";
 		}
 		catch(Exception e)
 		{

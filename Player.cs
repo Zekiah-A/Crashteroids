@@ -8,14 +8,14 @@ public class Player : KinematicBody2D
 	[Export] public int Id;
 	
 	public bool IsCurrent;
-	public bool IsDead;
+	public bool IsDead = false;
 	
 	private Sprite _player;
 	private KinematicBody2D _kb;
 	private RayCast2D _rayCast;
 	private Vector2 _touchPosition;
 	private int _bounces;
-	private bool _debounce = false;
+	private bool _debounce;
 	
 	private Random _random = new Random();
 	private Vector2 _hitAngle;
@@ -29,7 +29,7 @@ public class Player : KinematicBody2D
 	
 	public override void _Process(float _delta)
 	{
-		//TODO: Velocity = SINGLE tap pos, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
+		//TODO: Velocity = SINGLE tap poDoes, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
 		if (IsCurrent && _debounce == true && !IsDead)
 		{
 			var _collision = MoveAndCollide(_touchPosition * Speed * _delta);
@@ -98,6 +98,7 @@ public class Player : KinematicBody2D
 	{ //TODO: Fix janky code
 		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10,10)).Normalized();
 		GetNode<Node2D>("Explosion").Visible = true;
+		_debounce = false;
 		IsDead = true;
 	}
 }

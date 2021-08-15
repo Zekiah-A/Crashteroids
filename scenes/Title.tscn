@@ -321,12 +321,11 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="Main Panel"]
 material = SubResource( 10 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -192.0
-margin_top = 64.0
-margin_right = 192.0
-margin_bottom = 160.0
+anchor_left = 0.3125
+anchor_top = 0.106667
+anchor_right = 0.6875
+anchor_bottom = 0.266667
+margin_bottom = -1.52588e-05
 rect_pivot_offset = Vector2( -352, 24 )
 custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
@@ -334,7 +333,7 @@ text = "Crashteroids"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Title Outline" type="Label" parent="Main Panel"]
@@ -353,14 +352,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Money" type="Label" parent="Main Panel"]
-margin_left = 832.0
-margin_right = 1024.0
-margin_bottom = 64.0
+[node name="Money Label" type="Label" parent="Main Panel"]
+anchor_left = 0.8125
+anchor_right = 0.999023
+anchor_bottom = 0.106667
 custom_fonts/font = ExtResource( 10 )
-valign = 1
+text = "£0"
+align = 2
+clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
