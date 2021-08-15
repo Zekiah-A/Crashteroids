@@ -47,9 +47,9 @@ public class Match : Node
 			GameManager.TurnUI.Text = $"Player {CurrentTurn + 1}'s turn.";
 	}
 	
-	public void Crash(Player _playerHit)
+	public void Crash(Player _playerHit, Player _sender)
 	{
-		EndMatch();
+		EndMatch(_sender); //wrong!, pass playerhit?
 		GameManager.Players[_playerHit.Id].Explode();
 	}
 	
@@ -57,7 +57,7 @@ public class Match : Node
 		MatchLength += (int) GameManager.TimerNode.WaitTime;
 	
 	//make destructor 
-	public async void EndMatch()
+	public async void EndMatch(Player _sender)
 	{
 		//TODO: Destroy this instance - lazy hack for winner too
 		switch((Gamemodes) GameConfig.Gamemode)
@@ -74,7 +74,7 @@ public class Match : Node
 				{
 					GameConfig.Instance.Money += _reward.Value;
 					GameConfig.Match.MatchMoney += _reward.Value;
-				} //lol when does the lobby load this
+				}
 				await GameSaveData.Save();
 				break;
 			case Gamemodes.AiPlayer:
@@ -83,7 +83,7 @@ public class Match : Node
 				break;
 		}
 
-		GameOver.InitialiseGameOver();
+		GameOver.InitialiseGameOver(_sender);
 	}
 }
 //TODO: Shift player numbers up 1, and 1 back for arrays.

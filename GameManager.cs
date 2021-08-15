@@ -31,5 +31,5 @@ public class GameManager : Node2D
 		GameMatch = null;
 
 	private void _on_Back_pressed() =>
-		GameOver.InitialiseGameOver();
+		GameOver.InitialiseGameOver(Players[GameMatch.CurrentTurn]);
 }

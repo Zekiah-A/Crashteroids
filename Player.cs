@@ -40,7 +40,7 @@ public class Player : KinematicBody2D
 				//HACK: Bad code, fix later for non 2player gamemodes
 				if (_hit.Name == "P1" || _hit.Name == "P2")
 				{
-					GameManager.GameMatch.Crash(_hit as Player);
+					GameManager.GameMatch.Crash(_hit as Player, this);
 				}
 				
 				_touchPosition = _touchPosition.Bounce(_collision.Normal);
