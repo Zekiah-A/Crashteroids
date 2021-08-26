@@ -91,7 +91,7 @@ public class GameOver : Control
 		///<note> _index 1 = Again </note>
 		if (_index == 1)
 		{
-			//TODO: Tell game to restart match
+			GetTree().ReloadCurrentScene();
 		}
 		else
 		{

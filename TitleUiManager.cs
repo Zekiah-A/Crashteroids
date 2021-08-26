@@ -225,7 +225,10 @@ public class TitleUiManager : Node
 			}  
 			catch(Exception e)
 			{ 
-				GD.Print($"Error requesting username filter {e}, accepting unfiltered username.");
+				if (e is HttpRequestException)
+					GD.Print($"Could not acess API to request username filter, internet connection lost? {e}\nAccepting unfiltered username.");
+				else
+					GD.Print($"Error requesting username filter {e}, accepting unfiltered username.");
 			}
 		}
 
@@ -293,13 +296,12 @@ public class TitleUiManager : Node
 		GD.Print($"Rounds: {GameConfig.Match.Rounds}");
 
 		GetTree().ChangeScene("res://scenes/Game.tscn");
-		//NOTE: Starting match is called from button signal
 	}
 
 	#endregion
 
-	//When the game's config is loaded, update all UI elements to reflect that of the setting
-	public void GameSaveDataUpdate() //CALL THIS!
+	///<summary> When the game's config is loaded, update all UI elements to reflect that of the settings in config </summary>
+	public void GameSaveDataUpdate()
 	{
 		GD.Print("GameSaveData update received.");
 
