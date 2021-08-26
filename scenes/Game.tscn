@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://resources/rockets/rocket_retro_1.png" type="Texture" id=1]
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Player.cs" type="Script" id=8]
 [ext_resource path="res://scenes/Explosion.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/GameOver.tscn" type="PackedScene" id=10]
+[ext_resource path="res://resources/backgrounds/walls_horizontal.png" type="Texture" id=11]
+[ext_resource path="res://resources/backgrounds/walls_vertical.png" type="Texture" id=12]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -41,12 +43,14 @@ position = Vector2( 512, 300 )
 scale = Vector2( 0.5, 600 )
 texture = SubResource( 2 )
 
-[node name="Control" type="Control" parent="."]
+[node name="Back" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Back" type="Button" parent="Control"]
+[node name="Back" type="Button" parent="Back"]
 margin_right = 80.0
 margin_bottom = 72.0
 custom_styles/hover = ExtResource( 2 )
@@ -137,17 +141,37 @@ position = Vector2( 512, 320 )
 position = Vector2( 0, -328 )
 shape = SubResource( 4 )
 
+[node name="TopSprite" type="Sprite" parent="Walls"]
+position = Vector2( -2.67029e-05, -328 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 0, 288 )
 shape = SubResource( 5 )
+
+[node name="BottomSprite" type="Sprite" parent="Walls"]
+position = Vector2( 0, 288 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
 
 [node name="Right" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 520, -20 )
 shape = SubResource( 6 )
 
+[node name="RightSprite" type="Sprite" parent="Walls"]
+position = Vector2( -520, -20 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
 [node name="Left" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -520, -20 )
 shape = SubResource( 6 )
+
+[node name="LeftSprite" type="Sprite" parent="Walls"]
+position = Vector2( 520, -20 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
 
 [node name="P1" type="KinematicBody2D" parent="."]
 position = Vector2( 96, 288 )
@@ -212,6 +236,6 @@ offset = Vector2( 7, 0 )
 current = true
 smoothing_enabled = true
 
-[connection signal="pressed" from="Control/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Back/Back" to="." method="_on_Back_pressed"]
 
 [editable path="Turn UI"]

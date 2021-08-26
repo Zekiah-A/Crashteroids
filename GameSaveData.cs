@@ -27,15 +27,14 @@ public class GameSaveData
 				default:
 					return "null";
 			}
-		}	
+		}
 	}
+
 	public static string _platform
 	{
-		get
-		{
-			return OS.GetName();
-		}	
+		get { return OS.GetName(); }
 	}
+
 	private const string FileName = "GameConfigCrashteroids.json";
 
 	public static async Task Save()
@@ -55,14 +54,16 @@ public class GameSaveData
 			}
 		}
 		catch
-		{ GD.PrintErr("Could not save data"); }
+		{
+			GD.PrintErr("Could not save data");
+		}
 	}
 
 	public static bool Load() //won't always have a sender, needs managing
 	{
 		//<summary>Locating file & deserislisation.</summary>
 		try
-		{ 
+		{
 			GD.Print(_appDataFolder);
 			GD.Print(_platform);
 			string _stream = System.IO.File.ReadAllText(System.IO.Path.Combine(_appDataFolder, FileName));
@@ -80,5 +81,4 @@ public class GameSaveData
 			return false;
 		}
 	}
-
 }

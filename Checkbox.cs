@@ -16,9 +16,11 @@ public class Checkbox : Control
 				_image.TextureNormal = _checkboxEmpty;
 		}
 	}
-	
+
 	[Export] public int ConfigId;
-	[Signal] public delegate void _on_Matchconfig_update(int _configId, bool _isEnabled);
+
+	[Signal]
+	public delegate void _on_Matchconfig_update(int _configId, bool _isEnabled);
 
 	private TextureButton _image;
 	private Texture _checkboxEmpty;
@@ -27,7 +29,7 @@ public class Checkbox : Control
 
 	public override void _Ready()
 	{
-		_image = (TextureButton) GetNode("Texture Button");
+		_image = (TextureButton)GetNode("Texture Button");
 		_checkboxEmpty = ResourceLoader.Load("res://resources/image/checkbox_empty.png") as Texture;
 		_checkboxFull = ResourceLoader.Load("res://resources/image/checkbox_full.png") as Texture;
 		//HACK: To ensure that default value is set if just "Play" pressed.
@@ -46,7 +48,7 @@ public class Checkbox : Control
 			_image.TextureNormal = _checkboxFull;
 			IsEnabled = true;
 		}
-		
+
 		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
 	}
 }

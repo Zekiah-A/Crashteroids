@@ -16,10 +16,10 @@ public class GameOver : Control
 	private static Button _done;
 	private static Button _again;
 	private static Button _quit;
-	
+
 	public override void _Ready()
 	{
-		_control = (Control) this;
+		_control = (Control)this;
 		_control.Visible = true;
 
 		_panel = GetNode<Panel>("Panel");
@@ -35,11 +35,11 @@ public class GameOver : Control
 
 		Visible = false;
 	}
-	
+
 	public static async void InitialiseGameOver(Player _sender)
-	{	
+	{
 		_control.Visible = true;
-		_controlTween.InterpolateProperty (
+		_controlTween.InterpolateProperty(
 			_control, //Object
 			"rect_scale", //Property being tweened
 			new Vector2(0, 0), //from
@@ -52,7 +52,7 @@ public class GameOver : Control
 
 		//TODO: Play a typewrite sound or something
 
-		foreach(var _reward in GameManager.GameMatch.GameOverRewards)
+		foreach (var _reward in GameManager.GameMatch.GameOverRewards)
 		{
 			string _title = _reward.Key.ToString();
 			int _value = _reward.Value;
@@ -61,7 +61,7 @@ public class GameOver : Control
 
 		_moneyDetails.AppendBbcode($"[rainbow freq=0.2 sat=10 val=20]Total: £{GameConfig.Match.MatchMoney}[/rainbow]");
 
-		_controlTween.InterpolateProperty (
+		_controlTween.InterpolateProperty(
 			_moneyDetails, //object
 			"percent_visible", //property
 			0, //from
@@ -73,19 +73,22 @@ public class GameOver : Control
 		_controlTween.Start();
 
 		if (GameConfig.Instance.Username != null)
-			_winner.Text = $"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0,1)} {GameManager.Players.IndexOf(_sender) + 1} won!";
+			_winner.Text =
+				$"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0, 1)} {GameManager.Players.IndexOf(_sender) + 1} won!";
 		else
 			_winner.Text = $"Player {GameManager.Players.IndexOf(_sender) + 1} won!"; //wrong!
 		_winnerOutline.Text = _winner.Text;
-		
-		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: 0 \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
+
+		_details.BbcodeText =
+			$"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: 0 \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
 	}
-	
+
 	private void _on_Done_pressed() =>
 		_moneyPanel.Visible = false;
 
 	private void _on_Button_pressed(int _index)
-	{	///<note> _index 1 = Again </note>
+	{
+		///<note> _index 1 = Again </note>
 		if (_index == 1)
 		{
 			//TODO: Tell game to restart match

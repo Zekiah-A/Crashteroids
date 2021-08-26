@@ -6,27 +6,27 @@ public class Player : KinematicBody2D
 {
 	[Export] public float Speed = 1000;
 	[Export] public int Id;
-	
+
 	public bool IsCurrent;
 	public bool IsDead = false;
-	
+
 	private Sprite _player;
 	private KinematicBody2D _kb;
 	private RayCast2D _rayCast;
 	private Vector2 _touchPosition;
 	private int _bounces;
 	private bool _debounce;
-	
+
 	private Random _random = new Random();
 	private Vector2 _hitAngle;
-	
+
 	public override void _Ready()
 	{
-		_kb = (KinematicBody2D) this;
+		_kb = (KinematicBody2D)this;
 		_player = GetNode<Sprite>("P1_Display");
 		_rayCast = GetNode("P1_Display").GetNode<RayCast2D>("RayCast2D");
 	}
-	
+
 	public override void _Process(float _delta)
 	{
 		//TODO: Velocity = SINGLE tap poDoes, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
@@ -42,11 +42,11 @@ public class Player : KinematicBody2D
 				{
 					GameManager.GameMatch.Crash(_hit as Player, this);
 				}
-				
+
 				_touchPosition = _touchPosition.Bounce(_collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
 				_player.Rotation = _touchPosition.Angle();
-				
+
 				_bounces++;
 				if (_bounces >= GameConfig.Match.RocketBounces)
 				{
@@ -54,18 +54,19 @@ public class Player : KinematicBody2D
 					_bounces = 0;
 					_debounce = false;
 				}
-				
+
 				GameManager.GameMatch.TotalBounces[Id] += 1;
 			}
 		}
 		else if (IsDead)
-		{ //TODO: Use direction of impact with random
+		{
+			//TODO: Use direction of impact with random
 			_player.Rotate(_delta * 10);
 			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
 			MoveAndCollide(_hitAngle * 100 * _delta);
 		}
 	}
-	
+
 	public override void _Input(InputEvent _event)
 	{
 		if (IsCurrent)
@@ -75,7 +76,7 @@ public class Player : KinematicBody2D
 				_touchPosition = new Vector2(
 					(_inputTouch.Position.x) - (_kb.Position.x),
 					(_inputTouch.Position.y) - (_kb.Position.y)
-					).Normalized();
+				).Normalized();
 				_player.Rotation = _touchPosition.Angle();
 				_debounce = true;
 			}
@@ -84,19 +85,20 @@ public class Player : KinematicBody2D
 				_touchPosition = new Vector2(
 					(_inputMouse.Position.x) - (_kb.Position.x),
 					(_inputMouse.Position.y) - (_kb.Position.y)
-					).Normalized();
+				).Normalized();
 				_player.Rotation = _touchPosition.Angle();
 				_debounce = true;
 			}
 		}
 	}
-	
+
 	public void UpdateSkin() =>
 		_player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
-	
+
 	public void Explode()
-	{ //TODO: Fix janky code
-		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10,10)).Normalized();
+	{
+		//TODO: Fix janky code
+		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10, 10)).Normalized();
 		GetNode<Node2D>("Explosion").Visible = true;
 		_debounce = false;
 		IsDead = true;

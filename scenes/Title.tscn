@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://shaders/warp.shader" type="Shader" id=26]
 [ext_resource path="res://resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
 [ext_resource path="res://resources/image/laser_TEST.png" type="Texture" id=28]
+[ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
+[ext_resource path="res://EditorItem.cs" type="Script" id=30]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -154,7 +156,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=44]
+[sub_resource type="StyleBoxFlat" id=41]
 bg_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -163,21 +165,12 @@ border_width_bottom = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id=45]
-bg_color = Color( 0.0156863, 0.701961, 0, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="ShaderMaterial" id=41]
+[sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=42]
+[sub_resource type="StyleBoxFlat" id=43]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -185,7 +178,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=43]
+[sub_resource type="DynamicFont" id=44]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -627,6 +620,10 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="Settings Panel/Right Panel/Username Edit"]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Settings Panel/Right Panel/Username Edit"]
+download_file = "res://resources/username_filtered.xml"
+use_threads = true
 
 [node name="Checkbox2" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
 anchor_left = 0.209302
@@ -1072,6 +1069,7 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
@@ -1130,15 +1128,25 @@ anchor_top = 0.0833333
 anchor_right = 0.178886
 anchor_bottom = 0.472222
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/1"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/1"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
-texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1148,7 +1156,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 44 )
+custom_styles/normal = SubResource( 41 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1158,18 +1166,30 @@ __meta__ = {
 
 [node name="2" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.195014
-anchor_top = 0.0833333
+anchor_top = 0.0833342
 anchor_right = 0.304496
-anchor_bottom = 0.472222
+anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 1
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/2"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/2"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1179,8 +1199,8 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 45 )
-text = "Lazer - Equipped"
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
@@ -1189,228 +1209,516 @@ __meta__ = {
 
 [node name="3" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.320136
-anchor_top = 0.0833333
+anchor_top = 0.0833342
 anchor_right = 0.429618
-anchor_bottom = 0.472222
+anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 2
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/3"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/3"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/3"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="4" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.445258
-anchor_top = 0.0833333
+anchor_top = 0.0833342
 anchor_right = 0.55474
-anchor_bottom = 0.472222
+anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 3
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/4"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/4"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/4"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="5" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.57038
-anchor_top = 0.0833333
-anchor_right = 0.679862
-anchor_bottom = 0.472222
+anchor_top = 0.0833342
+anchor_right = 0.679863
+anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 4
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/5"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/5"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/5"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="6" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.695502
-anchor_top = 0.0833336
-anchor_right = 0.804984
-anchor_bottom = 0.472222
+anchor_left = 0.695503
+anchor_top = 0.0833342
+anchor_right = 0.804985
+anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 5
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/6"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/6"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/6"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="7" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.820625
-anchor_top = 0.0833333
+anchor_top = 0.0833342
 anchor_right = 0.930107
-anchor_bottom = 0.472222
+anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 6
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/7"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/7"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/7"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="8" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.0698915
-anchor_top = 0.527777
-anchor_right = 0.179373
-anchor_bottom = 0.916666
+anchor_top = 0.527778
+anchor_right = 0.179374
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 7
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/8"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/8"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/8"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="9" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.195501
-anchor_top = 0.527777
-anchor_right = 0.304983
-anchor_bottom = 0.916666
+anchor_left = 0.195014
+anchor_top = 0.527778
+anchor_right = 0.304496
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 8
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/9"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/9"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/9"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="10" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.320136
-anchor_top = 0.527777
+anchor_top = 0.527778
 anchor_right = 0.429618
-anchor_bottom = 0.916666
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 9
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/10"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/10"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/10"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="11" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.445258
-anchor_top = 0.527777
+anchor_top = 0.527778
 anchor_right = 0.55474
-anchor_bottom = 0.916666
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 10
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/11"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/11"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/11"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="12" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.57038
-anchor_top = 0.527777
-anchor_right = 0.679862
-anchor_bottom = 0.916666
+anchor_top = 0.527778
+anchor_right = 0.679863
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 11
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/12"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/12"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/12"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="13" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.695502
-anchor_top = 0.527777
-anchor_right = 0.804984
-anchor_bottom = 0.916666
+anchor_left = 0.695503
+anchor_top = 0.527778
+anchor_right = 0.804985
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 12
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/13"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/13"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/13"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="14" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
 anchor_left = 0.820625
-anchor_top = 0.527777
+anchor_top = 0.527778
 anchor_right = 0.930107
-anchor_bottom = 0.916666
+anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
+script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+Id = 13
+
+[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/14"]
+margin_right = 112.0
+margin_bottom = 112.0
+texture = ExtResource( 28 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/14"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
+texture_pressed = ExtResource( 29 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/14"]
+margin_top = 88.0
+margin_right = 112.0
+margin_bottom = 112.0
+custom_styles/normal = SubResource( 41 )
+text = "Laser - Buy £200"
+align = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1468,7 +1776,7 @@ __meta__ = {
 
 [node name="Help Panel" type="Panel" parent="."]
 visible = false
-material = SubResource( 41 )
+material = SubResource( 42 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -1481,7 +1789,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="Help Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 42 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1519,7 +1827,7 @@ anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 43 )
+custom_fonts/font = SubResource( 44 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1550,7 +1858,7 @@ __meta__ = {
 
 [node name="Credits Panel" type="Panel" parent="Help Panel"]
 visible = false
-material = SubResource( 41 )
+material = SubResource( 42 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1563,7 +1871,7 @@ __meta__ = {
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 42 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1624,20 +1932,20 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
 [connection signal="pressed" from="Matchsettings Panel/Right Panel/Start" to="TitleUIManager" method="_on_Start_pressed"]
 [connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/1/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 1 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/2/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 2 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/3/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 3 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/4/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 4 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/5/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 5 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/6/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 6 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/7/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 7 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/8/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 8 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/9/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 9 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/10/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 10 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/11/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 11 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/12/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 12 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 13 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="_on_Item_click" binds= [ 14 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/1/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 0 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/2/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 1 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/3/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 2 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/4/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 3 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/5/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 4 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/6/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 5 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/7/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 6 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/8/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 7 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/9/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 8 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/10/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 9 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/11/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 10 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/12/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 11 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 12 ]]
+[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 13 ]]
 [connection signal="pressed" from="Help Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 5 ]]
 [connection signal="pressed" from="Help Panel/Credits" to="TitleUIManager" method="_on_Credits_pressed"]
 [connection signal="pressed" from="Help Panel/Credits Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 6 ]]
