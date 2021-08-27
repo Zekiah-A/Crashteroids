@@ -72,15 +72,13 @@ public class GameOver : Control
 		);
 		_controlTween.Start();
 
-		if (GameConfig.Instance.Username != null)
-			_winner.Text =
-				$"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0, 1)} {GameManager.Players.IndexOf(_sender) + 1} won!";
+		if (!string.IsNullOrEmpty(GameConfig.Instance.Username))
+			_winner.Text = $"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0, 1)} {GameManager.Players.IndexOf(_sender) + 1} won!";
 		else
 			_winner.Text = $"Player {GameManager.Players.IndexOf(_sender) + 1} won!"; //wrong!
 		_winnerOutline.Text = _winner.Text;
 
-		_details.BbcodeText =
-			$"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: 0 \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
+		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: 0 \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
 	}
 
 	private void _on_Done_pressed() =>
@@ -90,12 +88,8 @@ public class GameOver : Control
 	{
 		///<note> _index 1 = Again </note>
 		if (_index == 1)
-		{
 			GetTree().ReloadCurrentScene();
-		}
 		else
-		{
 			GetTree().ChangeScene("res://scenes/Title.tscn");
-		}
 	}
 }
