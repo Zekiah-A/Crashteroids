@@ -5,7 +5,8 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class Match : Node
+/// <summary> Match inherits 'Reference' in order to auto GC when no longer needed </summary>
+public class Match : Reference
 {
 	public int CurrentTurn;
 	public int MatchLength;
