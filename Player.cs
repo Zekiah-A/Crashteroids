@@ -5,7 +5,9 @@ using System;
 public class Player : KinematicBody2D
 {
 	[Export] public float Speed = 1000;
+	[Export] public float RotateSpeed = 0.2f;
 	[Export] public int Id;
+	[Export] public int DragClamp = 30;
 
 	public bool IsCurrent;
 	public bool IsDead = false;
@@ -83,15 +85,6 @@ public class Player : KinematicBody2D
 				).Normalized();
 				player.Rotation = touchPosition.Angle();
 
-				Vector2[] linePositions =
-				{
-					inputTouch.Position - kb.Position,
-					Vector2.Zero
-				};
-				dragLine.Points = linePositions; 
-				//dragLine.AddPoint(Vector2.Zero);
-
-				GD.Print(inputTouch.Position, this.Position);
 				debounce = true;
 			}
 
@@ -102,7 +95,14 @@ public class Player : KinematicBody2D
 					mouse.Position.y - (kb.Position.y)
 				).Normalized();
 
-				player.Rotation = mousePosition.Angle();
+				Vector2[] linePositions =
+				{	// v SHOULD BE USING CLAMP MAGNITUDE! (For a circular clamp), check implementation.
+					ClampMagnitude(ToLocal(mouse.Position), DragClamp), //make v2 a var
+					Vector2.Zero
+				};
+				dragLine.Points = linePositions; 
+
+				player.Rotation = Mathf.Lerp(player.Rotation, mousePosition.Angle(), RotateSpeed);
 			}
 		}
 	}
@@ -118,4 +118,23 @@ public class Player : KinematicBody2D
 		debounce = false;
 		IsDead = true;
 	}
+
+		///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
+		public static Vector2 ClampMagnitude(Vector2 vector, float maxLength)
+		{
+			float sqrMagnitude = (vector.x * vector.x) + (vector.y * vector.y);
+			if (sqrMagnitude > maxLength * maxLength)
+			{
+				float mag = (float)Math.Sqrt(sqrMagnitude);
+
+				//these intermediate variables force the intermediate result to be
+				//of float precision. without this, the intermediate result can be of higher
+				//precision, which changes behavior.
+				float normalized_x = vector.x / mag;
+				float normalized_y = vector.y / mag;
+				return new Vector2(normalized_x * maxLength,
+					normalized_y * maxLength);
+			}
+			return vector;
+		}
 }
