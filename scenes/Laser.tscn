@@ -8,7 +8,7 @@ script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 0.5
-default_color = Color( 1, 0.00392157, 0.00392157, 1 )
+default_color = Color( 1, 0.00392157, 0.00392157, 0.392157 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
