@@ -10,49 +10,52 @@ public class Player : KinematicBody2D
 	public bool IsCurrent;
 	public bool IsDead = false;
 
-	private Sprite _player;
-	private KinematicBody2D _kb;
-	private RayCast2D _rayCast;
-	private Vector2 _touchPosition;
-	private int _bounces;
-	private bool _debounce;
+	private Sprite player;
+	private KinematicBody2D kb;
+	private RayCast2D rayCast;
+	private Line2D dragLine;
+	private Vector2 touchPosition;
+	private Vector2 mousePosition;
+	private int bounces;
+	private bool debounce;
 
-	private Random _random = new Random();
-	private Vector2 _hitAngle;
+	private Random random = new Random();
+	private Vector2 hitAngle;
 
 	public override void _Ready()
 	{
-		_kb = (KinematicBody2D)this;
-		_player = GetNode<Sprite>("P1_Display");
-		_rayCast = GetNode("P1_Display").GetNode<RayCast2D>("RayCast2D");
+		kb = (KinematicBody2D)this;
+		player = GetNode<Sprite>("P1_Display");
+		rayCast = GetNode("P1_Display").GetNode<RayCast2D>("RayCast2D");
+		dragLine = GetNode<Line2D>($"DragLine");
 	}
 
-	public override void _Process(float _delta)
+	public override void _Process(float delta)
 	{
 		//TODO: Velocity = SINGLE tap poDoes, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
-		if (IsCurrent && _debounce == true && !IsDead)
+		if (IsCurrent && debounce == true && !IsDead)
 		{
-			var _collision = MoveAndCollide(_touchPosition * Speed * _delta);
-			if (_collision != null)
+			var collision = MoveAndCollide(touchPosition * Speed * delta);
+			if (collision != null)
 			{
-				var _hit = (Godot.Node2D)_collision.Collider;
-				GD.Print(_hit.Name);
+				var hit = (Godot.Node2D)collision.Collider;
+				GD.Print(hit.Name);
 				//HACK: Bad code, fix later for non 2player gamemodes
-				if (_hit.Name == "P1" || _hit.Name == "P2")
+				if (hit.Name == "P1" || hit.Name == "P2")
 				{
-					GameManager.GameMatch.Crash(_hit as Player, this);
+					GameManager.GameMatch.Crash(hit as Player, this);
 				}
 
-				_touchPosition = _touchPosition.Bounce(_collision.Normal);
+				touchPosition = touchPosition.Bounce(collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
-				_player.Rotation = _touchPosition.Angle();
+				player.Rotation = touchPosition.Angle();
 
-				_bounces++;
-				if (_bounces >= GameConfig.Match.RocketBounces)
+				bounces++;
+				if (bounces >= GameConfig.Match.RocketBounces)
 				{
 					GameManager.GameMatch.SwitchTurn(Id);
-					_bounces = 0;
-					_debounce = false;
+					bounces = 0;
+					debounce = false;
 				}
 
 				GameManager.GameMatch.TotalBounces[Id] += 1;
@@ -61,46 +64,58 @@ public class Player : KinematicBody2D
 		else if (IsDead)
 		{
 			//TODO: Use direction of impact with random
-			_player.Rotate(_delta * 10);
+			player.Rotate(delta * 10);
 			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
-			MoveAndCollide(_hitAngle * 100 * _delta);
+			MoveAndCollide(hitAngle * 100 * delta);
 		}
 	}
 
-	public override void _Input(InputEvent _event)
+	public override void _Input(InputEvent @event)
 	{
-		if (IsCurrent)
+		//TODO: Make/press down action, so that it is drag, not just click
+		if (IsCurrent && !IsDead)
 		{
-			if (_event is InputEventScreenTouch _inputTouch && _debounce == false)
+			if (@event is InputEventMouseButton inputTouch && debounce == false) //|| @event is InputEventMouseButton inputMouse //InputEventScreenTouchInputEventScreenTouch
 			{
-				_touchPosition = new Vector2(
-					(_inputTouch.Position.x) - (_kb.Position.x),
-					(_inputTouch.Position.y) - (_kb.Position.y)
+				touchPosition = new Vector2( //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
+					inputTouch.Position.x - (kb.Position.x),
+					inputTouch.Position.y - (kb.Position.y)
 				).Normalized();
-				_player.Rotation = _touchPosition.Angle();
-				_debounce = true;
+				player.Rotation = touchPosition.Angle();
+
+				Vector2[] linePositions =
+				{
+					inputTouch.Position - kb.Position,
+					Vector2.Zero
+				};
+				dragLine.Points = linePositions; 
+				//dragLine.AddPoint(Vector2.Zero);
+
+				GD.Print(inputTouch.Position, this.Position);
+				debounce = true;
 			}
-			else if (_event is InputEventMouseButton _inputMouse && _debounce == false)
+
+			if (@event is InputEventMouseMotion mouse)
 			{
-				_touchPosition = new Vector2(
-					(_inputMouse.Position.x) - (_kb.Position.x),
-					(_inputMouse.Position.y) - (_kb.Position.y)
+				mousePosition = new Vector2( 
+					mouse.Position.x- (kb.Position.x),
+					mouse.Position.y - (kb.Position.y)
 				).Normalized();
-				_player.Rotation = _touchPosition.Angle();
-				_debounce = true;
+
+				player.Rotation = mousePosition.Angle();
 			}
 		}
 	}
-
+	
 	public void UpdateSkin() =>
-		_player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
+		player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
 
 	public void Explode()
 	{
 		//TODO: Fix janky code
-		_hitAngle = new Vector2(_random.Next(-10, 10), _random.Next(-10, 10)).Normalized();
+		hitAngle = new Vector2(random.Next(-10, 10), random.Next(-10, 10)).Normalized();
 		GetNode<Node2D>("Explosion").Visible = true;
-		_debounce = false;
+		debounce = false;
 		IsDead = true;
 	}
 }
