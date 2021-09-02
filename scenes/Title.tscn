@@ -377,6 +377,7 @@ __meta__ = {
 }
 
 [node name="Settings Panel" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
@@ -1069,7 +1070,6 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
@@ -1132,6 +1132,7 @@ script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+Price = 10000
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/1"]
 margin_right = 112.0
@@ -1175,6 +1176,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 Id = 1
+Price = 15000
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/2"]
 margin_right = 112.0
@@ -1218,6 +1220,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 Id = 2
+Price = 999999
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/3"]
 margin_right = 112.0

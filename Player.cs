@@ -126,7 +126,7 @@ public class Player : KinematicBody2D
 	}
 
 		///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
-		public static Vector2 ClampMagnitude(Vector2 vector, float maxLength)
+		public static Vector2 ClampMagnitude(Vector2 vector, float maxLength) //TODO: Utils.ClampMagnitude function
 		{
 			float sqrMagnitude = (vector.x * vector.x) + (vector.y * vector.y);
 			if (sqrMagnitude > maxLength * maxLength)

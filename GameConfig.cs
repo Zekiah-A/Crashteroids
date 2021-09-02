@@ -60,18 +60,18 @@ public enum RewardsType
 
 public enum EditorIds
 {
-	Null = 0,
-	Laser,
-	Other2,
-	Other3,
-	Other4,
-	Other5,
-	Other6,
-	Other7,
-	Other8,
-	Other9,
-	Other10,
-	Other11,
-	Other12,
-	Other13
+	Laser = 0,
+	Warp,
+	ComingSoon2,
+	ComingSoon3,
+	ComingSoon4,
+	ComingSoon5,
+	ComingSoon6,
+	ComingSoon7,
+	ComingSoon8,
+	ComingSoon9,
+	ComingSoon10,
+	ComingSoon11,
+	ComingSoon12,
+	ComingSoon13
 }

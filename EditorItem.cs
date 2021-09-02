@@ -4,6 +4,7 @@ using System;
 public class EditorItem : Node
 {
 	[Export] public int Id = 0;
+	[Export] public int Price = 0;
 
 	[Export]
 	public bool Bought
@@ -40,6 +41,8 @@ public class EditorItem : Node
 		//boughtStyle = GetNode<>
 		//equippedStyle = GetNode<>
 		description = GetNode<Label>("Description");
+		//TODO: Utils.AddCommasToNumbers function
+		description.Text = $"{Enum.GetName(typeof(EditorIds), Id)} - Buy £{Price}";
 	}
 
 	public void BoughtChanged()
