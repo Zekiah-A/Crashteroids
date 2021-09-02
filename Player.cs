@@ -77,7 +77,7 @@ public class Player : KinematicBody2D
 		//TODO: Make/press down action, so that it is drag, not just click
 		if (IsCurrent && !IsDead)
 		{
-			if (@event is InputEventMouseButton inputTouch && debounce == false) //|| @event is InputEventMouseButton inputMouse //InputEventScreenTouchInputEventScreenTouch
+			if (@event is InputEventMouseButton inputTouch && debounce == false)
 			{
 				touchPosition = new Vector2( //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
 					inputTouch.Position.x - (kb.Position.x),
@@ -96,8 +96,8 @@ public class Player : KinematicBody2D
 				).Normalized();
 
 				Vector2[] linePositions =
-				{	// v SHOULD BE USING CLAMP MAGNITUDE! (For a circular clamp), check implementation.
-					ClampMagnitude(ToLocal(mouse.Position), DragClamp), //make v2 a var
+				{
+					ClampMagnitude(ToLocal(mouse.Position), DragClamp),
 					Vector2.Zero
 				};
 				dragLine.Points = linePositions; 
@@ -105,6 +105,12 @@ public class Player : KinematicBody2D
 				player.Rotation = Mathf.Lerp(player.Rotation, mousePosition.Angle(), RotateSpeed);
 			}
 		}
+
+		///<note> Stupid but works! </note>
+		if (IsCurrent)
+			dragLine.Visible = true;
+		else if (!IsCurrent || IsDead)
+			dragLine.Visible = false;
 	}
 	
 	public void UpdateSkin() =>

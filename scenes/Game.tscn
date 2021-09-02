@@ -171,6 +171,7 @@ position = Vector2( 3.8147e-06, 3.05176e-05 )
 rotation = -1.57079
 
 [node name="DragLine" type="Line2D" parent="P1"]
+visible = false
 width = 1.5
 width_curve = SubResource( 9 )
 gradient = SubResource( 8 )
@@ -204,6 +205,7 @@ position = Vector2( 3.8147e-06, 3.05176e-05 )
 rotation = -1.57079
 
 [node name="DragLine" type="Line2D" parent="P2"]
+visible = false
 width = 1.5
 width_curve = SubResource( 10 )
 gradient = SubResource( 8 )
