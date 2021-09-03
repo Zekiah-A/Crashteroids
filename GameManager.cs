@@ -20,8 +20,11 @@ public class GameManager : Node2D
 		Players.Clear();
 		if (GameConfig.Gamemode == (int)Gamemodes.TwoPlayer)
 		{
-			Players.Add(GetNode("P1") as Player);
-			Players.Add(GetNode("P2") as Player);
+			foreach (Node node in GetTree().CurrentScene.GetChildren())
+			{
+				if (node.IsInGroup("Player"))
+					Players.Add(node as Player);
+			}
 		}
 
 		GameMatch = new Match();
