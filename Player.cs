@@ -43,10 +43,8 @@ public class Player : KinematicBody2D
 				var hit = (Godot.Node2D)collision.Collider;
 				GD.Print(hit.Name);
 				//HACK: Bad code, fix later for non 2player gamemodes
-				if (hit.Name == "P1" || hit.Name == "P2")
-				{
+				if (hit.IsInGroup("Player"))
 					GameManager.GameMatch.Crash(hit as Player, this);
-				}
 
 				touchPosition = touchPosition.Bounce(collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
@@ -77,8 +75,6 @@ public class Player : KinematicBody2D
 		//TODO: Make/press down action, so that it is drag, not just click
 		if (IsCurrent && !IsDead)
 		{
-			dragLine.Visible = false;
-
 			if (@event is InputEventMouseButton inputTouch && debounce == false)
 			{
 				touchPosition = new Vector2( //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
