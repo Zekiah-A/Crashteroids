@@ -77,6 +77,8 @@ public class Player : KinematicBody2D
 		//TODO: Make/press down action, so that it is drag, not just click
 		if (IsCurrent && !IsDead)
 		{
+			dragLine.Visible = false;
+
 			if (@event is InputEventMouseButton inputTouch && debounce == false)
 			{
 				touchPosition = new Vector2( //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
@@ -87,9 +89,10 @@ public class Player : KinematicBody2D
 
 				debounce = true;
 			}
-
-			if (@event is InputEventMouseMotion mouse)
+			else if (@event is InputEventMouseMotion mouse)
 			{
+				dragLine.Visible = true;
+
 				mousePosition = new Vector2( 
 					mouse.Position.x- (kb.Position.x),
 					mouse.Position.y - (kb.Position.y)
@@ -104,13 +107,15 @@ public class Player : KinematicBody2D
 
 				player.Rotation = Mathf.Lerp(player.Rotation, mousePosition.Angle(), RotateSpeed);
 			}
+			else
+			{
+				dragLine.Visible = false;
+			}
 		}
-
-		///<note> Stupid but works! </note>
-		if (IsCurrent)
-			dragLine.Visible = true;
-		else if (!IsCurrent || IsDead)
+		else
+		{
 			dragLine.Visible = false;
+		}
 	}
 	
 	public void UpdateSkin() =>
@@ -125,22 +130,22 @@ public class Player : KinematicBody2D
 		IsDead = true;
 	}
 
-		///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
-		public static Vector2 ClampMagnitude(Vector2 vector, float maxLength) //TODO: Utils.ClampMagnitude function
+	///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
+	public static Vector2 ClampMagnitude(Vector2 vector, float maxLength) //TODO: Utils.ClampMagnitude function
+	{
+		float sqrMagnitude = (vector.x * vector.x) + (vector.y * vector.y);
+		if (sqrMagnitude > maxLength * maxLength)
 		{
-			float sqrMagnitude = (vector.x * vector.x) + (vector.y * vector.y);
-			if (sqrMagnitude > maxLength * maxLength)
-			{
-				float mag = (float)Math.Sqrt(sqrMagnitude);
+			float mag = (float)Math.Sqrt(sqrMagnitude);
 
-				//these intermediate variables force the intermediate result to be
-				//of float precision. without this, the intermediate result can be of higher
-				//precision, which changes behavior.
-				float normalized_x = vector.x / mag;
-				float normalized_y = vector.y / mag;
-				return new Vector2(normalized_x * maxLength,
-					normalized_y * maxLength);
-			}
-			return vector;
+			//these intermediate variables force the intermediate result to be
+			//of float precision. without this, the intermediate result can be of higher
+			//precision, which changes behavior.
+			float normalized_x = vector.x / mag;
+			float normalized_y = vector.y / mag;
+			return new Vector2(normalized_x * maxLength,
+				normalized_y * maxLength);
 		}
+		return vector;
+	}
 }

@@ -30,6 +30,7 @@
 [ext_resource path="res://resources/image/laser_TEST.png" type="Texture" id=28]
 [ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
 [ext_resource path="res://EditorItem.cs" type="Script" id=30]
+[ext_resource path="res://styles/editoritem_available.tres" type="StyleBox" id=31]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -155,15 +156,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id=41]
-bg_color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
 
 [sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 3 )
@@ -1157,7 +1149,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1201,7 +1193,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1220,7 +1212,6 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 Id = 2
-Price = 999999
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/3"]
 margin_right = 112.0
@@ -1245,7 +1236,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1288,7 +1279,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1331,7 +1322,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1374,7 +1365,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1417,7 +1408,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1460,7 +1451,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1503,7 +1494,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1546,7 +1537,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1589,7 +1580,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1632,7 +1623,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1675,7 +1666,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
@@ -1718,7 +1709,7 @@ __meta__ = {
 margin_top = 88.0
 margin_right = 112.0
 margin_bottom = 112.0
-custom_styles/normal = SubResource( 41 )
+custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true

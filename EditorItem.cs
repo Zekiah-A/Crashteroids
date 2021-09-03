@@ -37,9 +37,10 @@ public class EditorItem : Node
 
 	public override void _Ready()
 	{
-		//defaultStyle = GetNode<>
-		//boughtStyle = GetNode<>
-		//equippedStyle = GetNode<>
+		defaultStyle = ResourceLoader.Load("res://styles/editoritem_available.tres") as StyleBoxFlat;
+		boughtStyle = ResourceLoader.Load("res://styles/editoritem_bought.tres") as StyleBoxFlat;
+		equippedStyle = ResourceLoader.Load("res://styles/editoritem_equipped.tres") as StyleBoxFlat;
+
 		description = GetNode<Label>("Description");
 		//TODO: Utils.AddCommasToNumbers function
 		description.Text = $"{Enum.GetName(typeof(EditorIds), Id)} - Buy £{Price}";
@@ -48,16 +49,28 @@ public class EditorItem : Node
 	public void BoughtChanged()
 	{
 		if (bought)
+		{
 			description.Text = "Bought";
+			description.AddStyleboxOverride("normal", boughtStyle);
+		}
 		else
+		{
 			description.Text = "Not bought";
+			description.AddStyleboxOverride("normal", defaultStyle);
+		}
 	}
 
 	public void EquippedChanged()
 	{
 		if (equipped)
+		{
 			description.Text = "Equipped";
+			description.AddStyleboxOverride("normal", equippedStyle);
+		}
 		else
+		{
 			description.Text = "Bought";
+			description.AddStyleboxOverride("normal", boughtStyle);
+		}
 	}
 }
