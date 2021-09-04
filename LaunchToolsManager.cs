@@ -13,20 +13,29 @@ public class LaunchToolsManager : Control
 	{
 		buttonRect = GetNode("Panel").GetNode<TextureRect>("TextureRect");
 		
-		launchTools = ResourceLoader.Load<Texture>();
-		launchPressed = ResourceLoader.Load<Texture>();
-		toolsPressed = ResourceLoader.Load<Texture>();
+		launchTools = ResourceLoader.Load<Texture>("res://resources/ui/tools_launch/tools_launch_button.png");
+		launchPressed = ResourceLoader.Load<Texture>("res://resources/ui/tools_launch/launched_button_pressed.png");
+		toolsPressed = ResourceLoader.Load<Texture>("res://resources/ui/tools_launch/tools_button_pressed.png");
 		
 		buttonTimer = GetNode<Timer>("ButtonTimer");
+
+		buttonRect.Texture = launchTools;
 	}
 	
 	private void LaunchPressed()
 	{
-		
+		buttonRect.Texture = launchPressed;
+		//buttonTimer.Start();
 	}
 	
 	private void ToolsPressed()
 	{
-		
+		buttonRect.Texture = toolsPressed;
+		//buttonTimer.Start();
+	}
+
+	private void ButtonTimerTimeout()
+	{
+		buttonRect.Texture = launchTools;
 	}
 }
