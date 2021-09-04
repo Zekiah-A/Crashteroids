@@ -10,7 +10,8 @@ public class Match : Reference
 {
 	public int CurrentTurn;
 	public int MatchLength;
-	public List<int> TotalBounces = new List<int>() { 0, 0 }; //could be a fixed array as two?
+	//public List<int> TotalBounces = new List<int>() { 0, 0 }; //could be a fixed array as two?
+	public int[] TotalBounces;
 	public Dictionary<RewardsType, int> GameOverRewards = new Dictionary<RewardsType, int>();
 	private Random _rand = new Random();
 
@@ -24,6 +25,7 @@ public class Match : Reference
 			player.Id = GameManager.Players.IndexOf(player);
 		}
 
+		TotalBounces = new int[GameManager.Players.Count];
 		GameManager.Players[0].IsCurrent = true;
 		GameManager.Players[0].UpdateSkin();
 		GameManager.TimerNode.Connect("timeout", this, nameof(_on_Timer_timeout));
@@ -32,14 +34,13 @@ public class Match : Reference
 			GameManager.TurnUI.Text = $"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0, 1)} {CurrentTurn + 1}'s turn.";
 	}
 
-	public void SwitchTurn(int _finishedTurn)
+	public void SwitchTurn(int _finishedTurn) //TODO: Finishedturn obsolete?
 	{
 		///<summary> Stop current player from moving </summary>
 		GameManager.Players[CurrentTurn].IsCurrent = false;
 		///<summary> Switch the current player for the match. Scales for different player amounts.</summary>
-		if (_finishedTurn + 1 < GameManager.Players.Count)
-			CurrentTurn++;
-		else
+		CurrentTurn++;
+		if (CurrentTurn >= GameManager.Players.Count)
 			CurrentTurn = 0;
 		///<summary>Re-set the new current player to be able to move</summary>
 		GameManager.Players[CurrentTurn].IsCurrent = true;

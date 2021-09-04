@@ -157,12 +157,12 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=42]
+[sub_resource type="ShaderMaterial" id=41]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=43]
+[sub_resource type="StyleBoxFlat" id=42]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -170,7 +170,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=44]
+[sub_resource type="DynamicFont" id=43]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -1771,7 +1771,7 @@ __meta__ = {
 
 [node name="Help Panel" type="Panel" parent="."]
 visible = false
-material = SubResource( 42 )
+material = SubResource( 41 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -1784,7 +1784,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="Help Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1822,7 +1822,7 @@ anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 44 )
+custom_fonts/font = SubResource( 43 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1853,7 +1853,7 @@ __meta__ = {
 
 [node name="Credits Panel" type="Panel" parent="Help Panel"]
 visible = false
-material = SubResource( 42 )
+material = SubResource( 41 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1866,7 +1866,7 @@ __meta__ = {
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": true
 }

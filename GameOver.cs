@@ -78,7 +78,7 @@ public class GameOver : Control
 			_winner.Text = $"Player {GameManager.Players.IndexOf(_sender) + 1} won!"; //wrong!
 		_winnerOutline.Text = _winner.Text;
 
-		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Rounds: 0 \n Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
+		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Game Rounds: 0 \n Winner Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
 	}
 
 	private void _on_Done_pressed() =>
