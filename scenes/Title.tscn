@@ -1128,12 +1128,13 @@ __meta__ = {
 Price = 10000
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/1"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999997
+anchor_bottom = 1.0
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/1"]
@@ -1147,15 +1148,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/1"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.999997
+anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="2" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1172,12 +1173,13 @@ Id = 1
 Price = 15000
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/2"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/2"]
@@ -1191,15 +1193,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/2"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="3" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1215,12 +1217,13 @@ __meta__ = {
 Id = 2
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/3"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/3"]
@@ -1234,15 +1237,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/3"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="4" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1258,12 +1261,13 @@ __meta__ = {
 Id = 3
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/4"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/4"]
@@ -1277,15 +1281,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/4"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="5" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1301,12 +1305,13 @@ __meta__ = {
 Id = 4
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/5"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.99999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/5"]
@@ -1320,15 +1325,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/5"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.99999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="6" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1344,12 +1349,13 @@ __meta__ = {
 Id = 5
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/6"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/6"]
@@ -1363,15 +1369,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/6"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="7" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1387,12 +1393,13 @@ __meta__ = {
 Id = 6
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/7"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/7"]
@@ -1406,15 +1413,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/7"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="8" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1430,12 +1437,13 @@ __meta__ = {
 Id = 7
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/8"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999995
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/8"]
@@ -1449,15 +1457,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/8"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.999995
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="9" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1473,12 +1481,13 @@ __meta__ = {
 Id = 8
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/9"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/9"]
@@ -1492,15 +1501,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/9"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="10" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1516,12 +1525,13 @@ __meta__ = {
 Id = 9
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/10"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/10"]
@@ -1535,15 +1545,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/10"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="11" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1559,12 +1569,13 @@ __meta__ = {
 Id = 10
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/11"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/11"]
@@ -1578,15 +1589,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/11"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="12" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1602,12 +1613,13 @@ __meta__ = {
 Id = 11
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/12"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.99999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/12"]
@@ -1621,15 +1633,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/12"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.99999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="13" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1645,12 +1657,13 @@ __meta__ = {
 Id = 12
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/13"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/13"]
@@ -1664,15 +1677,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/13"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="14" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
@@ -1688,12 +1701,13 @@ __meta__ = {
 Id = 13
 
 [node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/14"]
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 texture = ExtResource( 28 )
 expand = true
+stretch_mode = 6
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/14"]
@@ -1707,15 +1721,15 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/14"]
-margin_top = 88.0
-margin_right = 112.0
-margin_bottom = 112.0
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £200"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Picker" parent="Editor Panel" instance=ExtResource( 20 )]

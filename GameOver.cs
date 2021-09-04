@@ -36,7 +36,7 @@ public class GameOver : Control
 		Visible = false;
 	}
 
-	public static async void InitialiseGameOver(Player _sender)
+	public static void InitialiseGameOver(Player _sender)
 	{
 		_control.Visible = true;
 		_controlTween.InterpolateProperty(
