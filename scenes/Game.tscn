@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://resources/rockets/rocket_retro_1.png" type="Texture" id=1]
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://resources/backgrounds/walls_horizontal.png" type="Texture" id=11]
 [ext_resource path="res://resources/backgrounds/walls_vertical.png" type="Texture" id=12]
 [ext_resource path="res://scenes/Laser.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/LaunchTools.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0 )
@@ -52,25 +53,6 @@ script = ExtResource( 5 )
 position = Vector2( 512, 300 )
 scale = Vector2( 0.5, 600 )
 texture = SubResource( 2 )
-
-[node name="Back" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Back" type="Button" parent="Back"]
-margin_right = 80.0
-margin_bottom = 72.0
-custom_styles/hover = ExtResource( 2 )
-custom_styles/pressed = ExtResource( 3 )
-custom_styles/normal = ExtResource( 3 )
-custom_fonts/font = ExtResource( 4 )
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Object" type="Sprite" parent="."]
 position = Vector2( 536, 288 )
@@ -255,6 +237,29 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 12 )
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Back" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Back" type="Button" parent="Back"]
+margin_right = 80.0
+margin_bottom = 72.0
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LaunchTools" parent="." instance=ExtResource( 14 )]
+margin_right = 1024.0
+margin_bottom = 600.0
 
 [node name="Game Over" parent="." instance=ExtResource( 10 )]
 anchor_left = 0.0

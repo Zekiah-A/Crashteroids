@@ -11,7 +11,7 @@ public class RocketEditor : Panel
 		UpdateEditorItems();
 	}
 
-	public virtual async void UpdateEditorItems()
+	public virtual async void UpdateEditorItems() //EDIT: WHY IS THIS a separarte function?, COMBINE with the itemclick function
 	{
 		foreach (Node node in GetChildren())
 		{
@@ -34,8 +34,8 @@ public class RocketEditor : Panel
 					$"Item {item.Id} ({Enum.GetName(typeof(EditorIds), item.Id)}) added, with bought: {item.Bought} and enabled: {item.Equipped} | in BoughtItems: {GameConfig.Instance.BoughtItems.Contains(item.Id)} and in EquippedItems: {GameConfig.Instance.EquippedItems.Contains(item.Id)}");
 			}
 		}
-		//if (GameSaveData.Load())
-		//	await GameSaveData.Save();
+		if (GameSaveData.Load())
+			GameSaveData.Save();
 	}
 
 	private void OnItemClick(int selected)
@@ -56,7 +56,10 @@ public class RocketEditor : Panel
 							item.Equipped = true;
 					}
 					else
+					{
 						item.Bought = true;
+						GameConfig.Instance.Money -= item.Price;
+					}
 				}
 			}
 		}

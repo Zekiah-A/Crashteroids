@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Crashteroids;
 
 public class EditorItem : Node
 {
@@ -52,11 +53,6 @@ public class EditorItem : Node
 		{
 			description.Text = "Bought";
 			description.AddStyleboxOverride("normal", boughtStyle);
-		}
-		else
-		{
-			description.Text = "Not bought";
-			description.AddStyleboxOverride("normal", defaultStyle);
 		}
 	}
 

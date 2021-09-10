@@ -85,6 +85,7 @@ public class Player : KinematicBody2D
 
 				debounce = true;
 			}
+			//mousedown var
 			else if (@event is InputEventMouseMotion mouse)
 			{
 				dragLine.Visible = true;
