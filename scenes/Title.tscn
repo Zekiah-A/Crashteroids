@@ -27,7 +27,7 @@
 [ext_resource path="res://resources/backgrounds/space_title_stars.png" type="Texture" id=25]
 [ext_resource path="res://shaders/warp.shader" type="Shader" id=26]
 [ext_resource path="res://resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
-[ext_resource path="res://resources/image/laser_TEST.png" type="Texture" id=28]
+[ext_resource path="res://resources/tools/laser.png" type="Texture" id=28]
 [ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
 [ext_resource path="res://EditorItem.cs" type="Script" id=30]
 [ext_resource path="res://styles/editoritem_available.tres" type="StyleBox" id=31]
@@ -206,6 +206,8 @@ __meta__ = {
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
 texture = ExtResource( 27 )
 expand = true
 __meta__ = {
@@ -260,8 +262,9 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="Main Panel/Help"]
+anchor_top = -3.81471e-06
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.999996
 custom_fonts/font = SubResource( 4 )
 text = "Help"
 align = 1
@@ -285,7 +288,9 @@ __meta__ = {
 
 [node name="Text" type="Label" parent="Main Panel/Play Button"]
 material = SubResource( 5 )
-anchor_right = 1.0
+anchor_left = -0.00909034
+anchor_top = 2.28881e-06
+anchor_right = 0.99091
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -297,7 +302,9 @@ __meta__ = {
 }
 
 [node name="Outline" type="Label" parent="Main Panel/Play Button"]
-anchor_right = 1.0
+anchor_left = -0.00909034
+anchor_top = 2.28881e-06
+anchor_right = 0.99091
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
@@ -1062,7 +1069,6 @@ __meta__ = {
 }
 
 [node name="Editor Panel" type="Panel" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )

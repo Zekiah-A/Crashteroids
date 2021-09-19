@@ -11,31 +11,33 @@ public class RocketEditor : Panel
 		UpdateEditorItems();
 	}
 
-	public virtual async void UpdateEditorItems() //EDIT: WHY IS THIS a separarte function?, COMBINE with the itemclick function
+	public async void UpdateEditorItems() //EDIT: WHY IS THIS a separarte function?, COMBINE with the itemclick function
 	{
-		foreach (Node node in GetChildren())
+		if (GameSaveData.Load())//jankest thing ever, must do for now!
 		{
-			if (node is EditorItem item)
+			foreach (Node node in GetChildren())
 			{
-				if (!GameConfig.Instance.BoughtItems.Contains(item.Id))
+				if (node is EditorItem item)
 				{
-					if (item.Bought)
-						GameConfig.Instance.BoughtItems.Add(item.Id);
-					else
-						GameConfig.Instance.BoughtItems.Remove(item.Id);
+					if (!GameConfig.Instance.BoughtItems.Contains(item.Id))
+					{
+						if (item.Bought)
+						{	
+							GameConfig.Instance.BoughtItems.Add(item.Id);
+						}
+						else
+							GameConfig.Instance.BoughtItems.Remove(item.Id);
+					}
 
-					if (item.Equipped)
-						GameConfig.Instance.EquippedItems.Add(item.Id);
-					else
-						GameConfig.Instance.EquippedItems.Remove(item.Id);
+					GD.Print($"Item {item.Id} ({Enum.GetName(typeof(EditorIds), item.Id)}) added, with bought: {item.Bought} | in BoughtItems: {GameConfig.Instance.BoughtItems.Contains(item.Id)}");
 				}
-
-				GD.Print(
-					$"Item {item.Id} ({Enum.GetName(typeof(EditorIds), item.Id)}) added, with bought: {item.Bought} and enabled: {item.Equipped} | in BoughtItems: {GameConfig.Instance.BoughtItems.Contains(item.Id)} and in EquippedItems: {GameConfig.Instance.EquippedItems.Contains(item.Id)}");
 			}
+			await GameSaveData.Save();
 		}
-		if (GameSaveData.Load())
-			GameSaveData.Save();
+		/*
+		if (GameSaveData.Load()) //when it does this load check, all new data is eradicated, either make that local to here as well, or don't check first!
+			await GameSaveData.Save();
+		*/
 	}
 
 	private void OnItemClick(int selected)
@@ -48,23 +50,13 @@ public class RocketEditor : Panel
 			{
 				if (item.Id == selected)
 				{
-					if (item.Bought == true)
-					{
-						if (item.Equipped)
-							item.Equipped = false;
-						else
-							item.Equipped = true;
-					}
-					else
-					{
-						item.Bought = true;
-						GameConfig.Instance.Money -= item.Price;
-					}
+					item.Bought = true;
+					GameConfig.Instance.Money -= item.Price;
 				}
 			}
 		}
 
-		//ineffifient, especially this foreach!
+		//TODO: ineffifient and stupid, especially this foreach, just add it!
 		UpdateEditorItems();
 	}
 }

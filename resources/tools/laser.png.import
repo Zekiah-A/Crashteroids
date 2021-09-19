@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/laser_TEST.png-e11b9185c1c89fea527e93f54ded3bfc.stex"
+path="res://.import/laser.png-46c5eae35bc9ace5244f10fdc4f5b1d6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/image/laser_TEST.png"
-dest_files=[ "res://.import/laser_TEST.png-e11b9185c1c89fea527e93f54ded3bfc.stex" ]
+source_file="res://resources/tools/laser.png"
+dest_files=[ "res://.import/laser.png-46c5eae35bc9ace5244f10fdc4f5b1d6.stex" ]
 
 [params]
 

@@ -18,29 +18,17 @@ public class EditorItem : Node
 		}
 	}
 
-	[Export]
-	public bool Equipped
-	{
-		get { return equipped; }
-		set
-		{
-			equipped = value;
-			EquippedChanged();
-		}
-	}
-
 	private bool bought;
-	private bool equipped;
 	private StyleBoxFlat defaultStyle;
 	private StyleBoxFlat boughtStyle;
-	private StyleBoxFlat equippedStyle;
+	/*private StyleBoxFlat equippedStyle;*/
 	private Label description;
 
 	public override void _Ready()
 	{
 		defaultStyle = ResourceLoader.Load("res://styles/editoritem_available.tres") as StyleBoxFlat;
 		boughtStyle = ResourceLoader.Load("res://styles/editoritem_bought.tres") as StyleBoxFlat;
-		equippedStyle = ResourceLoader.Load("res://styles/editoritem_equipped.tres") as StyleBoxFlat;
+		/*equippedStyle = ResourceLoader.Load("res://styles/editoritem_equipped.tres") as StyleBoxFlat;*/
 
 		description = GetNode<Label>("Description");
 		//TODO: Utils.AddCommasToNumbers function
@@ -55,7 +43,7 @@ public class EditorItem : Node
 			description.AddStyleboxOverride("normal", boughtStyle);
 		}
 	}
-
+/*
 	public void EquippedChanged()
 	{
 		if (equipped)
@@ -69,4 +57,5 @@ public class EditorItem : Node
 			description.AddStyleboxOverride("normal", boughtStyle);
 		}
 	}
+*/
 }

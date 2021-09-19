@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Crashteroids
 {
+	[Serializable]
 	public class GameConfig
 	{
 		public static GameConfig Instance = new GameConfig();
@@ -18,11 +19,10 @@ namespace Crashteroids
 		public bool Advertisements { get; set; }
 
 		//public List<EditorItem>EditorItems {get; set;}
-		public List<int> BoughtItems = new List<int>();
-		public List<int> EquippedItems = new List<int>();
+		public List<int> BoughtItems { get; set; } = new List<int>();
+		//public List<int> EquippedItems = new List<int>();
 
 		#region MATCH
-
 		public static int Gamemode { get; set; }
 
 		public struct Match

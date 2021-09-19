@@ -72,7 +72,6 @@ public class GameSaveData
 
 			//<summary>Applying to class</summary>
 			GameConfig.GenerateInstance(_newConfig);
-			//this won't work because , just need a signal :angry:
 			return true;
 		}
 		catch (Exception exep)
