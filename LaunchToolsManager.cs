@@ -34,7 +34,7 @@ public class LaunchToolsManager : Control
 				newButton.GetNode<Label>("Description").Text = Enum.GetName(typeof(EditorIds), id);
 				try { //experimental!
 					newButton.GetNode<TextureRect>("IconTexture").Texture = ResourceLoader.Load<Texture>($"res://resources/tools/{Enum.GetName(typeof(EditorIds), id).ToLower()}.png");
-				} catch (Exception e) {/*fix later - maybe a "null / error" image here?*/}
+				} catch {/*fix later - maybe a "null / error" image here?*/}
 			}
 		}
 		else
