@@ -8,7 +8,8 @@ public class RocketEditor : Panel
 {
 	public override void _Ready()
 	{
-		UpdateEditorItems();
+		//TODO: Can't update editor items on start, because of some stupid exception due to saving and loading at the same time
+		//UpdateEditorItems();
 	}
 
 	public async void UpdateEditorItems() //EDIT: WHY IS THIS a separarte function?, COMBINE with the itemclick function
