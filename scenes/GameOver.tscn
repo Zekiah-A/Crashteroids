@@ -57,18 +57,12 @@ border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
 [node name="Game Over" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 300 )
 script = ExtResource( 8 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel" type="Panel" parent="."]
@@ -83,68 +77,76 @@ __meta__ = {
 }
 
 [node name="Game Over" type="Label" parent="Panel"]
-margin_right = 256.0
-margin_bottom = 41.0
+anchor_right = 1.0
+anchor_bottom = 0.128125
 custom_fonts/font = ExtResource( 2 )
 text = "Game Over"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Winner Outline" type="Label" parent="Panel"]
-margin_top = 41.0
-margin_right = 256.0
-margin_bottom = 96.0
+anchor_top = 0.128125
+anchor_right = 1.0
+anchor_bottom = 0.3
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 text = "Player 1 won!"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Winner" type="Label" parent="Panel"]
 material = SubResource( 3 )
-margin_top = 41.0
-margin_right = 256.0
-margin_bottom = 96.0
+anchor_top = 0.128125
+anchor_right = 1.0
+anchor_bottom = 0.3
 custom_fonts/font = SubResource( 4 )
 text = "Player 1 won!"
 align = 1
 clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="Again" type="Button" parent="Panel"]
-margin_left = 32.0
-margin_top = 192.0
-margin_right = 224.0
-margin_bottom = 240.0
+anchor_left = 0.125
+anchor_top = 0.599999
+anchor_right = 0.875
+anchor_bottom = 0.749999
 custom_styles/hover = ExtResource( 6 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 6 )
 custom_fonts/font = ExtResource( 2 )
 text = "Play Again"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Quit" type="Button" parent="Panel"]
-margin_left = 32.0
-margin_top = 256.0
-margin_right = 224.0
-margin_bottom = 304.0
+anchor_left = 0.125
+anchor_top = 0.799999
+anchor_right = 0.875
+anchor_bottom = 0.949999
 custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 2 )
 text = "Quit"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Details" type="RichTextLabel" parent="Panel"]
-margin_top = 88.0
-margin_right = 256.0
-margin_bottom = 184.0
+anchor_top = 0.275
+anchor_right = 1.0
+anchor_bottom = 0.574999
+margin_top = 7.62939e-06
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave]
 Rounds: 
@@ -155,7 +157,7 @@ Rounds:
 Bounces:
 Match Length:"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Panel2" type="Panel" parent="."]
@@ -169,31 +171,32 @@ __meta__ = {
 }
 
 [node name="Done" type="Button" parent="Panel2"]
-margin_left = 32.0
-margin_top = 152.0
-margin_right = 224.0
-margin_bottom = 200.0
+anchor_left = 0.125
+anchor_top = 0.67857
+anchor_right = 0.875
+anchor_bottom = 0.892856
 custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 2 )
 text = "Done"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Details" type="RichTextLabel" parent="Panel2"]
-margin_top = -32.0
-margin_right = 256.0
-margin_bottom = 152.0
+anchor_top = -0.142857
+anchor_right = 1.0
+anchor_bottom = 0.67857
 custom_fonts/normal_font = SubResource( 6 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Awards:[/center][/color][/wave]
 "
 text = "Awards:
 "
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Border" type="Panel" parent="."]

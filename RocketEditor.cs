@@ -34,10 +34,6 @@ public class RocketEditor : Panel
 			}
 			await GameSaveData.Save();
 		}
-		/*
-		if (GameSaveData.Load()) //when it does this load check, all new data is eradicated, either make that local to here as well, or don't check first!
-			await GameSaveData.Save();
-		*/
 	}
 
 	private void OnItemClick(int selected)

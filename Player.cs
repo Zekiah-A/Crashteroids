@@ -70,34 +70,31 @@ public class Player : KinematicBody2D
 		}
 	}
 
-	public override void _Input(InputEvent @event)
+	///<summary> Handle inputs on PhysicsProcess, (could also be handled on process?) </summary>
+	public override void _PhysicsProcess(float _delta)
 	{
-		//TODO: Make/press down action, so that it is drag, not just click
 		if (IsCurrent && !IsDead)
 		{
-			if (@event is InputEventMouseButton inputTouch && debounce == false)
+			if (Input.IsKeyPressed((int) KeyList.Space) && debounce == false) //or GUI launch button pressed (routed through Match.cs, so that the correct instance can be found)
 			{
-				touchPosition = new Vector2( //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
-					inputTouch.Position.x - (kb.Position.x),
-					inputTouch.Position.y - (kb.Position.y)
-				).Normalized();
+				touchPosition = mousePosition; //TODO: This is MESSY, remove touch position, and combine both
 				player.Rotation = touchPosition.Angle();
-
 				debounce = true;
 			}
-			//mousedown var
-			else if (@event is InputEventMouseMotion mouse)
+
+			///<sumamry> Only rotate on finger or mouse drag </summary>
+			if (Input.IsMouseButtonPressed(1)) //or touched screen
 			{
 				dragLine.Visible = true;
 
 				mousePosition = new Vector2( 
-					mouse.Position.x- (kb.Position.x),
-					mouse.Position.y - (kb.Position.y)
+					GetViewport().GetMousePosition().x- (kb.Position.x), //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
+					GetViewport().GetMousePosition().y - (kb.Position.y)
 				).Normalized();
 
 				Vector2[] linePositions =
 				{
-					ClampMagnitude(ToLocal(mouse.Position), DragClamp),
+					ClampMagnitude(ToLocal(GetViewport().GetMousePosition()), DragClamp),
 					Vector2.Zero
 				};
 				dragLine.Points = linePositions; 
@@ -109,12 +106,8 @@ public class Player : KinematicBody2D
 				dragLine.Visible = false;
 			}
 		}
-		else
-		{
-			dragLine.Visible = false;
-		}
 	}
-	
+
 	public void UpdateSkin() =>
 		player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
 
@@ -128,7 +121,7 @@ public class Player : KinematicBody2D
 	}
 
 	///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
-	public static Vector2 ClampMagnitude(Vector2 vector, float maxLength) //TODO: Utils.ClampMagnitude function
+	private Vector2 ClampMagnitude(Vector2 vector, float maxLength) //TODO: Utils.ClampMagnitude function
 	{
 		float sqrMagnitude = (vector.x * vector.x) + (vector.y * vector.y);
 		if (sqrMagnitude > maxLength * maxLength)

@@ -41,6 +41,8 @@ public class EditorItem : Node
 		{
 			description.Text = "Bought";
 			description.AddStyleboxOverride("normal", boughtStyle);
+			//play bought animation (maybe make a fun gloss shader for these as well when item is available)
+			
 		}
 	}
 /*

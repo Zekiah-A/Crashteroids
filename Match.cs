@@ -70,9 +70,9 @@ public class Match : Reference
 				GameOverRewards.Add(RewardsType.GameWin, 10);
 				GameOverRewards.Add(RewardsType.Random, _rand.Next(0, 100));
 				GameOverRewards.Add(RewardsType.Bounces, TotalBounces[CurrentTurn]);
-				GameOverRewards.Add(RewardsType.Rounds, 0); //for now
+				GameOverRewards.Add(RewardsType.Rounds, GameConfig.Match.Rounds);
 				GameOverRewards.Add(RewardsType.MatchLength, MatchLength);
-				GameOverRewards.Add(RewardsType.SpecialAbilities, GameConfig.Match.Rounds);
+				GameOverRewards.Add(RewardsType.SpecialAbilities, 0); //for now
 
 				foreach (var _reward in GameOverRewards)
 				{
