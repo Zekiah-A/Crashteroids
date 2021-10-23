@@ -310,7 +310,7 @@ public class TitleUiManager : Node
 			(_musicCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Music;
 			(_sfxCheckbox as Checkbox).IsEnabled = GameConfig.Instance.SoundEffects;
 			(_helpBtnCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
-			//TODO: There is no void to actually update this, so that needs to be done.
+			//TODO: There is no function to actually update advertisements, so that needs to be done.
 			(_advertisementsCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
 			_usernameEdit.Text = GameConfig.Instance.Username;
 

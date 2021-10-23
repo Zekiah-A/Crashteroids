@@ -63,7 +63,7 @@ public class Player : KinematicBody2D
 		}
 		else if (IsDead)
 		{
-			//TODO: Use direction of impact with random
+			//TODO: Die animation in the direction of impact - make hitangle (referenced in the "explode" function here) the opposite of where the ship was hit from
 			player.Rotate(delta * 10);
 			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
 			MoveAndCollide(hitAngle * 100 * delta);
@@ -86,6 +86,7 @@ public class Player : KinematicBody2D
 			if (Input.IsMouseButtonPressed(1)) //or touched screen
 			{
 				dragLine.Visible = true;
+				Input.SetCustomMouseCursor(null, Input.CursorShape.Drag);
 
 				mousePosition = new Vector2( 
 					GetViewport().GetMousePosition().x- (kb.Position.x), //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
@@ -113,7 +114,7 @@ public class Player : KinematicBody2D
 
 	public void Explode()
 	{
-		//TODO: Fix janky code
+		//TODO: See line 66
 		hitAngle = new Vector2(random.Next(-10, 10), random.Next(-10, 10)).Normalized();
 		GetNode<Node2D>("Explosion").Visible = true;
 		debounce = false;
