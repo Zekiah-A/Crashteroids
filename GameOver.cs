@@ -1,6 +1,7 @@
 using Godot;
 using Crashteroids;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 
 public class GameOver : Control
@@ -54,7 +55,7 @@ public class GameOver : Control
 
 		foreach (var _reward in GameManager.GameMatch.GameOverRewards)
 		{
-			string _title = _reward.Key.ToString();
+			string _title = PascalToNormal(_reward.Key.ToString());
 			int _value = _reward.Value;
 			_moneyDetails.AddText($"+ {_title} bonus -> £{_value} \n");
 		}
@@ -78,7 +79,25 @@ public class GameOver : Control
 			_winner.Text = $"Player {GameManager.Players.IndexOf(_sender) + 1} won!"; //wrong!
 		_winnerOutline.Text = _winner.Text;
 
-		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Game Rounds: 0 \n Winner Bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match Length: {GameManager.GameMatch.MatchLength}";
+		_details.BbcodeText = $"[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave] \n Game rounds: 0 \n Winner bounces: {GameManager.GameMatch.TotalBounces[GameManager.GameMatch.CurrentTurn]} \n Match length: {GameManager.GameMatch.MatchLength}";
+	}
+
+	private static string PascalToNormal(string input)
+	{
+		var builder = new StringBuilder();
+
+		for (var index = 0; index < input.Length; index++)
+		{
+			var letter = input[index];
+
+			if (char.IsUpper(letter) && index != 0)
+				builder.Append($" {char.ToLower(letter)}");
+			else if (index == 0)
+				builder.Append(char.ToUpper(letter));
+			else
+				builder.Append(letter);
+		}
+		return builder.ToString();
 	}
 
 	private void _on_Done_pressed() =>
