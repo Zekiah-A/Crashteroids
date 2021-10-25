@@ -27,7 +27,7 @@ public class TitleUiManager : Control
 			GetNode<Panel>("MainPanel"),
 			GetNode<Panel>("SettingsPanel"),
 			GetNode<Panel>("GamemodePanel"),
-			GetNode<Panel>("MatchsettingsPanel"),
+			GetNode<Panel>("TwoPlayerMatchPanel"),
 			GetNode<Panel>("ShopPanel"),
 			GetNode<Panel>("HelpPanel"),
 			GetNode("HelpPanel").GetNode<Panel>("CreditsPanel")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
 [ext_resource path="res://resources/image/checkbox_empty.png" type="Texture" id=30]
 [ext_resource path="res://styles/editoritem_available.tres" type="StyleBox" id=31]
+[ext_resource path="res://TwoPlayerMatchUiManager.cs" type="Script" id=32]
 [ext_resource path="res://Checkbox.cs" type="Script" id=33]
 [ext_resource path="res://ShopUiManager.cs" type="Script" id=34]
 [ext_resource path="res://resources/tools/not-unlocked.png" type="Texture" id=35]
@@ -163,7 +164,7 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=39]
 
-[sub_resource type="StyleBoxFlat" id=45]
+[sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
 [sub_resource type="StyleBoxFlat" id=41]
@@ -975,16 +976,16 @@ __meta__ = {
 
 [node name="Panel Tween" type="Tween" parent="GamemodePanel"]
 
-[node name="MatchsettingsPanel" type="Panel" parent="."]
-visible = false
+[node name="TwoPlayerMatchPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
+script = ExtResource( 32 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="MatchsettingsPanel"]
+[node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
 material = SubResource( 36 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -993,7 +994,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="MatchsettingsPanel"]
+[node name="Back" type="Button" parent="TwoPlayerMatchPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
 custom_styles/hover = ExtResource( 1 )
@@ -1005,7 +1006,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title" type="Label" parent="MatchsettingsPanel"]
+[node name="Settings Title" type="Label" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
@@ -1018,7 +1019,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="MatchsettingsPanel"]
+[node name="Settings Title Outline" type="Label" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
@@ -1032,9 +1033,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="MatchsettingsPanel"]
+[node name="Panel Tween" type="Tween" parent="TwoPlayerMatchPanel"]
 
-[node name="Left Panel" type="Panel" parent="MatchsettingsPanel"]
+[node name="LeftPanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
@@ -1043,37 +1044,37 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 17 )]
 anchor_left = 0.0909091
 anchor_top = 0.135593
 anchor_right = 0.0909091
 anchor_bottom = 0.135593
 
-[node name="Texture Button" parent="MatchsettingsPanel/Left Panel/Checkbox/Checkbox" index="0"]
+[node name="Texture Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="Label" parent="MatchsettingsPanel/Left Panel/Checkbox/Checkbox" index="1"]
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox" index="1"]
 text = "Random map"
 
-[node name="Checkbox2" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 17 )]
+[node name="Checkbox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 17 )]
 anchor_left = 0.0909091
 anchor_top = 0.305085
 anchor_right = 0.0909091
 anchor_bottom = 0.305085
 
-[node name="Texture Button" parent="MatchsettingsPanel/Left Panel/Checkbox2/Checkbox" index="0"]
+[node name="Texture Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="Label" parent="MatchsettingsPanel/Left Panel/Checkbox2/Checkbox" index="1"]
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox" index="1"]
 text = "Special Abilitities"
 
-[node name="Iteratebox" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 18 )]
+[node name="Iteratebox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 18 )]
 anchor_left = 0.091
 anchor_top = 0.475
 anchor_right = 0.091
@@ -1083,13 +1084,13 @@ margin_top = -0.200012
 margin_right = 223.968
 margin_bottom = 63.8
 
-[node name="Checkbox" parent="MatchsettingsPanel/Left Panel/Iteratebox" index="0"]
+[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox" index="0"]
 ConfigId = 3
 
-[node name="Label" parent="MatchsettingsPanel/Left Panel/Iteratebox/Checkbox" index="1"]
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Checkbox" index="1"]
 text = "Rocket Bounces"
 
-[node name="Iteratebox2" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 18 )]
+[node name="Iteratebox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 18 )]
 anchor_left = 0.091
 anchor_top = 0.644
 anchor_right = 0.091
@@ -1099,13 +1100,13 @@ margin_top = 0.0319824
 margin_right = 223.968
 margin_bottom = 64.032
 
-[node name="Checkbox" parent="MatchsettingsPanel/Left Panel/Iteratebox2" index="0"]
+[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2" index="0"]
 ConfigId = 4
 
-[node name="Label" parent="MatchsettingsPanel/Left Panel/Iteratebox2/Checkbox" index="1"]
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Checkbox" index="1"]
 text = "Rounds"
 
-[node name="Centre Panel" type="Panel" parent="MatchsettingsPanel"]
+[node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.65625
@@ -1115,7 +1116,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Rocket Editor Button" type="Button" parent="MatchsettingsPanel/Centre Panel"]
+[node name="Rocket Editor Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel"]
 anchor_left = 0.275
 anchor_top = 0.881356
 anchor_right = 0.725
@@ -1128,7 +1129,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="MatchsettingsPanel/Centre Panel/Rocket Editor Button"]
+[node name="Text" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Rocket Editor Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
@@ -1139,7 +1140,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel" type="Panel" parent="MatchsettingsPanel/Centre Panel"]
+[node name="Panel" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel"]
 anchor_left = 0.1
 anchor_top = 0.135593
 anchor_right = 0.9
@@ -1149,7 +1150,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MatchsettingsPanel/Centre Panel/Panel"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Panel"]
 anchor_left = 0.25
 anchor_top = 0.333333
 anchor_right = 0.75
@@ -1161,7 +1162,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Right Panel" type="Panel" parent="MatchsettingsPanel"]
+[node name="RightPanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
@@ -1171,7 +1172,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Start" type="Button" parent="MatchsettingsPanel/Right Panel"]
+[node name="Start" type="Button" parent="TwoPlayerMatchPanel/RightPanel"]
 anchor_left = 0.181818
 anchor_top = 0.813559
 anchor_right = 0.818182
@@ -1185,7 +1186,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel" type="Panel" parent="MatchsettingsPanel/Right Panel"]
+[node name="Panel" type="Panel" parent="TwoPlayerMatchPanel/RightPanel"]
 anchor_left = 0.136364
 anchor_top = -0.0847453
 anchor_right = 0.936364
@@ -1195,7 +1196,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MatchsettingsPanel/Right Panel/Panel"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel/Panel"]
 anchor_left = 0.25
 anchor_top = 0.333333
 anchor_right = 0.75
@@ -1207,7 +1208,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel2" type="Panel" parent="MatchsettingsPanel/Right Panel"]
+[node name="Panel2" type="Panel" parent="TwoPlayerMatchPanel/RightPanel"]
 anchor_left = 0.136364
 anchor_top = 0.355932
 anchor_right = 0.936364
@@ -1217,7 +1218,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="MatchsettingsPanel/Right Panel/Panel2"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel/Panel2"]
 anchor_left = 0.25
 anchor_top = 0.333333
 anchor_right = 0.75
@@ -1230,6 +1231,7 @@ __meta__ = {
 }
 
 [node name="ShopPanel" type="Panel" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
@@ -1266,7 +1268,7 @@ anchor_left = 0.000976562
 anchor_top = 0.52
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 45 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1316,12 +1318,13 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/1"]
-anchor_top = 0.785714
-anchor_right = 0.999997
+anchor_top = 0.6875
+anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
 text = "Pen - Buy £200"
 align = 1
+autowrap = true
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1361,13 +1364,13 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/2"]
-anchor_left = -2.86102e-06
-anchor_top = 0.785713
-anchor_right = 0.999996
-anchor_bottom = 0.999999
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
 text = "Potractor - Buy £720"
 align = 1
+autowrap = true
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1407,12 +1410,13 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/3"]
-anchor_top = 0.785714
-anchor_right = 0.999999
-anchor_bottom = 0.999999
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
 text = "Ruler - Buy £1,250"
 align = 1
+autowrap = true
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1452,12 +1456,13 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/4"]
-anchor_top = 0.785714
-anchor_right = 0.999999
-anchor_bottom = 0.999999
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
 text = "Laser - Buy £8,000"
 align = 1
+autowrap = true
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -2076,7 +2081,7 @@ __meta__ = {
 [connection signal="pressed" from="SettingsPanel/RightPanel/Checkbox2/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 3 ]]
 [connection signal="pressed" from="GamemodePanel/Back" to="." method="BackPressed" binds= [ 2 ]]
 [connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="PanelPressed" binds= [ 3 ]]
-[connection signal="pressed" from="MatchsettingsPanel/Back" to="." method="BackPressed" binds= [ 3 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/Back" to="." method="BackPressed" binds= [ 3 ]]
 [connection signal="pressed" from="ShopPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
@@ -2086,7 +2091,7 @@ __meta__ = {
 [connection signal="pressed" from="HelpPanel/Credits" to="." method="PanelPressed" binds= [ 6 ]]
 [connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="BackPressed" binds= [ 6 ]]
 
-[editable path="MatchsettingsPanel/Left Panel/Checkbox"]
-[editable path="MatchsettingsPanel/Left Panel/Checkbox2"]
-[editable path="MatchsettingsPanel/Left Panel/Iteratebox"]
-[editable path="MatchsettingsPanel/Left Panel/Iteratebox2"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Iteratebox"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Iteratebox2"]
