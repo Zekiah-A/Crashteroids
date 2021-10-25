@@ -1,10 +1,5 @@
 using Godot;
 using System;
-using System.IO;
-using System.Xml;
-using System.Text;
-using System.Net.Http;
-using System.Xml.Serialization;
 using System.Collections.Generic;
 
 public class TitleUiManager : Control
@@ -35,7 +30,7 @@ public class TitleUiManager : Control
 			GetNode<Panel>("MatchsettingsPanel"),
 			GetNode<Panel>("ShopPanel"),
 			GetNode<Panel>("HelpPanel"),
-			GetNode("HelpPanel").GetNode<Panel>("Credits Panel")
+			GetNode("HelpPanel").GetNode<Panel>("CreditsPanel")
 		};
 
 		moneyLabel = panels[0].GetNode<Label>("Money Label");
