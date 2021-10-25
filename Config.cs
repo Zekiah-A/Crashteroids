@@ -4,7 +4,7 @@ using System.Text.Json;
 
 public class Config
 {
-    //NOTE: Skin should be chosen at start match time, in editor only for preview
+    //NOTE: Skin should be chosen at start match time, it should be able to be bought in the shop.
 
     public bool Music;
     public bool SoundEffects;
