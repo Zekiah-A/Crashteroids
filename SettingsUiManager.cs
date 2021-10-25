@@ -4,7 +4,7 @@ using System.Xml;
 using System.Net.Http;
 using System.Collections.Generic;
 
-public class SettingsUiManager : Control
+public class SettingsUiManager : Panel
 {
 	private List<Node> settings;
 	private RichTextLabel usernameLabel;
@@ -30,6 +30,7 @@ public class SettingsUiManager : Control
 	///<summary> Called by a signal when a setting is interacted with. </summary>
 	private void SettingsChanged(int id)
 	{
+		
 		if (id < 4)
 		{
 			(settings[id] as Checkbox).IsEnabled = ((settings[id] as Checkbox).IsEnabled ? false : true);
