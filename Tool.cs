@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text;
 
 public class Tool : Panel
 {
@@ -30,13 +31,32 @@ public class Tool : Panel
 		description = GetNode<Label>("Description");
     }
 
-	public void Buy()
+	public async void Buy()
 	{
-		//if (bought)
-		//{
-			description.Text = "Bought";
-			description.AddStyleboxOverride("normal", boughtStyle);
-			GetNode<AnimationPlayer>("AnimationPlayer").Play("bought_anim");
-		//}
+        description.Text = $"Bought {description.Text.Split(' ')[0]}";
+        description.AddStyleboxOverride("normal", boughtStyle);
+
+        ///<summary> Tool bought animation (done via godot tweening). </summary>
+        this.GetNode<Tween>("Tween").InterpolateProperty(
+            this,
+            "rect_scale",
+            new Vector2(1, 1),
+            new Vector2(1.2f, 1.2f),
+            0.2f,
+            Tween.TransitionType.Quad,
+            Tween.EaseType.Out
+        );
+        this.GetNode<Tween>("Tween").Start();
+        await ToSignal(this.GetNode<Tween>("Tween"), "tween_completed");
+        this.GetNode<Tween>("Tween").InterpolateProperty(
+            this,
+            "rect_scale",
+            new Vector2(1.2f, 1.2f),
+            new Vector2(1, 1),
+            0.5f,
+            Tween.TransitionType.Back,
+            Tween.EaseType.Out
+        );
+        this.GetNode<Tween>("Tween").Start();
 	}
 }

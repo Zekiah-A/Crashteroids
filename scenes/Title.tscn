@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -31,7 +31,6 @@
 [ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
 [ext_resource path="res://resources/image/checkbox_empty.png" type="Texture" id=30]
 [ext_resource path="res://styles/editoritem_available.tres" type="StyleBox" id=31]
-[ext_resource path="res://animations/bought_anim.tres" type="Animation" id=32]
 [ext_resource path="res://Checkbox.cs" type="Script" id=33]
 [ext_resource path="res://ShopUiManager.cs" type="Script" id=34]
 [ext_resource path="res://resources/tools/not-unlocked.png" type="Texture" id=35]
@@ -164,7 +163,8 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=39]
 
-[sub_resource type="StyleBoxEmpty" id=40]
+[sub_resource type="StyleBoxFlat" id=45]
+bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
 [sub_resource type="StyleBoxFlat" id=41]
 corner_radius_top_left = 3
@@ -1261,32 +1261,34 @@ __meta__ = {
 
 [node name="Panel Tween" type="Tween" parent="ShopPanel"]
 
-[node name="Main Panel" type="Panel" parent="ShopPanel"]
-anchor_left = 0.000489265
+[node name="MainPanel" type="Panel" parent="ShopPanel"]
+anchor_left = 0.000976562
 anchor_top = 0.52
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -184.0
-margin_right = -0.499023
-custom_styles/panel = SubResource( 40 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Items Panel" type="Panel" parent="ShopPanel/Main Panel"]
-anchor_top = 0.38983
+[node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 3.05176e-05
+margin_left = 16.0
+margin_top = 8.0
+margin_bottom = -3.05176e-05
+size_flags_horizontal = 2
+custom_constants/vseparation = 16
+custom_constants/hseparation = 16
+columns = 7
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="1" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.0694037
-anchor_top = 0.0833333
-anchor_right = 0.178886
-anchor_bottom = 0.472222
+[node name="1" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
 custom_styles/panel = SubResource( 41 )
 script = ExtResource( 38 )
@@ -1294,7 +1296,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/1"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/1"]
 anchor_right = 0.999997
 anchor_bottom = 1.0
 texture = ExtResource( 39 )
@@ -1304,17 +1306,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/1"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/1"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/1"]
 anchor_top = 0.785714
 anchor_right = 0.999997
 anchor_bottom = 1.0
@@ -1326,21 +1327,21 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/1"]
-anims/bought_anim = ExtResource( 32 )
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/1"]
 
-[node name="2" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.195014
-anchor_top = 0.0833342
-anchor_right = 0.304496
-anchor_bottom = 0.472223
+[node name="2" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 144.0
+margin_right = 272.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+rect_pivot_offset = Vector2( 56, 56 )
 custom_styles/panel = SubResource( 41 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/2"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/2"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 37 )
@@ -1350,17 +1351,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/2"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/2"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/2"]
 anchor_left = -2.86102e-06
 anchor_top = 0.785713
 anchor_right = 0.999996
@@ -1373,20 +1373,21 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/2"]
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/2"]
 
-[node name="3" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.320136
-anchor_top = 0.0833342
-anchor_right = 0.429618
-anchor_bottom = 0.472223
+[node name="3" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 288.0
+margin_right = 416.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+rect_pivot_offset = Vector2( 56, 56 )
 custom_styles/panel = SubResource( 41 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/3"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/3"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 36 )
@@ -1396,17 +1397,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/3"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/3"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/3"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1418,20 +1418,21 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/3"]
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/3"]
 
-[node name="4" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.445258
-anchor_top = 0.0833342
-anchor_right = 0.55474
-anchor_bottom = 0.472223
+[node name="4" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 432.0
+margin_right = 560.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+rect_pivot_offset = Vector2( 56, 56 )
 custom_styles/panel = SubResource( 41 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/4"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/4"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1441,17 +1442,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/4"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/4"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/4"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1463,19 +1463,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/4"]
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/4"]
 
-[node name="5" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.57038
-anchor_top = 0.0833342
-anchor_right = 0.679863
-anchor_bottom = 0.472223
+[node name="5" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 576.0
+margin_right = 704.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/5"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/5"]
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1485,17 +1485,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/5"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/5"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/5"]
 anchor_top = 0.785714
 anchor_right = 0.99999
 anchor_bottom = 0.999999
@@ -1507,19 +1506,17 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/5"]
-
-[node name="6" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.695503
-anchor_top = 0.0833342
-anchor_right = 0.804985
-anchor_bottom = 0.472223
+[node name="6" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 720.0
+margin_right = 848.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/6"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/6"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1529,17 +1526,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/6"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/6"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/6"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1551,19 +1547,17 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/6"]
-
-[node name="7" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.820625
-anchor_top = 0.0833342
-anchor_right = 0.930107
-anchor_bottom = 0.472223
+[node name="7" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 864.0
+margin_right = 992.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/7"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/7"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1573,17 +1567,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/7"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/7"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/7"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1595,19 +1588,17 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/7"]
-
-[node name="8" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.0698915
-anchor_top = 0.527778
-anchor_right = 0.179374
-anchor_bottom = 0.916667
+[node name="8" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_top = 144.0
+margin_right = 128.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/8"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/8"]
 anchor_right = 0.999995
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1617,17 +1608,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/8"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/8"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/8"]
 anchor_top = 0.785713
 anchor_right = 0.999995
 anchor_bottom = 0.999999
@@ -1639,19 +1629,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/8"]
-
-[node name="9" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.195014
-anchor_top = 0.527778
-anchor_right = 0.304496
-anchor_bottom = 0.916667
+[node name="9" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 144.0
+margin_top = 144.0
+margin_right = 272.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/9"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/9"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1661,17 +1650,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/9"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/9"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/9"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1683,19 +1671,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/9"]
-
-[node name="10" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.320136
-anchor_top = 0.527778
-anchor_right = 0.429618
-anchor_bottom = 0.916667
+[node name="10" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 288.0
+margin_top = 144.0
+margin_right = 416.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/10"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/10"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1705,17 +1692,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/10"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/10"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/10"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1727,19 +1713,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/10"]
-
-[node name="11" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.445258
-anchor_top = 0.527778
-anchor_right = 0.55474
-anchor_bottom = 0.916667
+[node name="11" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 432.0
+margin_top = 144.0
+margin_right = 560.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/11"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/11"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1749,17 +1734,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/11"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/11"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/11"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1771,19 +1755,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/11"]
-
-[node name="12" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.57038
-anchor_top = 0.527778
-anchor_right = 0.679863
-anchor_bottom = 0.916667
+[node name="12" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 576.0
+margin_top = 144.0
+margin_right = 704.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/12"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/12"]
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1793,17 +1776,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/12"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/12"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/12"]
 anchor_top = 0.785713
 anchor_right = 0.99999
 anchor_bottom = 0.999999
@@ -1815,19 +1797,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/12"]
-
-[node name="13" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.695503
-anchor_top = 0.527778
-anchor_right = 0.804985
-anchor_bottom = 0.916667
+[node name="13" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 720.0
+margin_top = 144.0
+margin_right = 848.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/13"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/13"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1837,17 +1818,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/13"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/13"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/13"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1859,19 +1839,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/13"]
-
-[node name="14" type="Panel" parent="ShopPanel/Main Panel/Items Panel"]
-anchor_left = 0.820625
-anchor_top = 0.527778
-anchor_right = 0.930107
-anchor_bottom = 0.916667
+[node name="14" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 864.0
+margin_top = 144.0
+margin_right = 992.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
 custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/Main Panel/Items Panel/14"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/14"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 35 )
@@ -1881,17 +1860,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="ShopPanel/Main Panel/Items Panel/14"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="ShopPanel/Main Panel/Items Panel/14"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/14"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1902,8 +1880,6 @@ clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ShopPanel/Main Panel/Items Panel/14"]
 
 [node name="Picker" parent="ShopPanel" instance=ExtResource( 20 )]
 anchor_left = 0.25
@@ -2102,20 +2078,10 @@ __meta__ = {
 [connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="PanelPressed" binds= [ 3 ]]
 [connection signal="pressed" from="MatchsettingsPanel/Back" to="." method="BackPressed" binds= [ 3 ]]
 [connection signal="pressed" from="ShopPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/3/Button" to="ShopPanel" method="UpgradePressed" binds= [ 2 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/4/Button" to="ShopPanel" method="UpgradePressed" binds= [ 3 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/5/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 4 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/6/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 5 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/7/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 6 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/8/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 7 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/9/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 8 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/10/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 9 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/11/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 10 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/12/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 11 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/13/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 12 ]]
-[connection signal="pressed" from="ShopPanel/Main Panel/Items Panel/14/Button" to="ShopPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 13 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/3/Button" to="ShopPanel" method="UpgradePressed" binds= [ 2 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/4/Button" to="ShopPanel" method="UpgradePressed" binds= [ 3 ]]
 [connection signal="pressed" from="HelpPanel/Quit" to="." method="BackPressed" binds= [ 5 ]]
 [connection signal="pressed" from="HelpPanel/Credits" to="." method="PanelPressed" binds= [ 6 ]]
 [connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="BackPressed" binds= [ 6 ]]
