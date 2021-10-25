@@ -1,5 +1,5 @@
 using Godot;
-using Crashteroids;
+/*using Crashteroids;*/
 using System;
 
 public class Player : KinematicBody2D
@@ -42,23 +42,24 @@ public class Player : KinematicBody2D
 			{
 				var hit = (Godot.Node2D)collision.Collider;
 				GD.Print(hit.Name);
-				//HACK: Bad code, fix later for non 2player gamemodes
+/*
 				if (hit.IsInGroup("Player"))
 					GameManager.GameMatch.Crash(hit as Player, this);
-
+*/
 				touchPosition = touchPosition.Bounce(collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
 				player.Rotation = touchPosition.Angle();
 
 				bounces++;
+/*
 				if (bounces >= GameConfig.Match.RocketBounces)
 				{
 					GameManager.GameMatch.SwitchTurn(Id);
 					bounces = 0;
 					debounce = false;
 				}
-
 				GameManager.GameMatch.TotalBounces[Id] += 1;
+*/			
 			}
 		}
 		else if (IsDead)
@@ -108,10 +109,10 @@ public class Player : KinematicBody2D
 			}
 		}
 	}
-
+/*
 	public void UpdateSkin() =>
 		player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
-
+*/
 	public void Explode()
 	{
 		//TODO: See line 66

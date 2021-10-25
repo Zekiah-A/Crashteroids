@@ -16,8 +16,8 @@ public class Iteratebox : Control
 
 	public override void _Ready()
 	{
-		_button = (TextureButton)GetNode("Texture Button");
-		_number = (Label)GetNode("Texture Button").GetNode("Number");
+		_button = GetNode<TextureButton>("Texture Button");
+		_number = GetNode("Texture Button").GetNode<Label>("Number");
 
 		_number.Text = Current.ToString();
 		//HACK: To ensure that default value is set if just "Play" pressed.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -20,7 +20,7 @@
 [ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
 [ext_resource path="res://resources/disabled_banner.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
-[ext_resource path="res://RocketEditor.cs" type="Script" id=21]
+[ext_resource path="res://SettingsUiManager.cs" type="Script" id=21]
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 [ext_resource path="res://resources/save_cog_2_icon.svg" type="Texture" id=23]
 [ext_resource path="res://styles/lineedit_style.tres" type="StyleBox" id=24]
@@ -29,7 +29,6 @@
 [ext_resource path="res://resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
 [ext_resource path="res://resources/tools/laser.png" type="Texture" id=28]
 [ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
-[ext_resource path="res://EditorItem.cs" type="Script" id=30]
 [ext_resource path="res://styles/editoritem_available.tres" type="StyleBox" id=31]
 [ext_resource path="res://animations/bought_anim.tres" type="Animation" id=32]
 
@@ -181,11 +180,12 @@ font_data = ExtResource( 6 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Main Panel" type="Panel" parent="."]
+[node name="MainPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
@@ -193,7 +193,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="TextureRect" parent="Main Panel"]
+[node name="Background Rect" type="TextureRect" parent="MainPanel"]
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -203,7 +203,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Layer1 Rect" type="TextureRect" parent="Main Panel"]
+[node name="Layer1 Rect" type="TextureRect" parent="MainPanel"]
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -213,7 +213,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Main Panel"]
+[node name="ViewportContainer" type="ViewportContainer" parent="MainPanel"]
 visible = false
 margin_left = 388.576
 margin_top = 147.151
@@ -223,7 +223,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rocket Editor Button" type="Button" parent="Main Panel"]
+[node name="Rocket Editor Button" type="Button" parent="MainPanel"]
 anchor_left = 0.429688
 anchor_top = 0.906667
 anchor_right = 0.570312
@@ -236,7 +236,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Main Panel/Rocket Editor Button"]
+[node name="Text" type="Label" parent="MainPanel/Rocket Editor Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
@@ -247,7 +247,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Help" type="Button" parent="Main Panel"]
+[node name="Help" type="Button" parent="MainPanel"]
 anchor_left = 0.421875
 anchor_top = 0.586667
 anchor_right = 0.578125
@@ -260,7 +260,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Main Panel/Help"]
+[node name="Text" type="Label" parent="MainPanel/Help"]
 anchor_top = -3.81471e-06
 anchor_right = 1.0
 anchor_bottom = 0.999996
@@ -272,7 +272,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Play Button" type="Button" parent="Main Panel"]
+[node name="Play Button" type="Button" parent="MainPanel"]
 anchor_left = 0.392578
 anchor_top = 0.433333
 anchor_right = 0.607422
@@ -285,7 +285,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Main Panel/Play Button"]
+[node name="Text" type="Label" parent="MainPanel/Play Button"]
 material = SubResource( 5 )
 anchor_left = -0.00909034
 anchor_top = 2.28881e-06
@@ -300,7 +300,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Outline" type="Label" parent="Main Panel/Play Button"]
+[node name="Outline" type="Label" parent="MainPanel/Play Button"]
 anchor_left = -0.00909034
 anchor_top = 2.28881e-06
 anchor_right = 0.99091
@@ -314,7 +314,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings" type="Button" parent="Main Panel"]
+[node name="Settings" type="Button" parent="MainPanel"]
 anchor_top = 0.893333
 anchor_right = 0.0625
 anchor_bottom = 1.0
@@ -329,7 +329,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Main Panel"]
+[node name="Title" type="Label" parent="MainPanel"]
 material = SubResource( 10 )
 anchor_left = 0.3125
 anchor_top = 0.106667
@@ -346,7 +346,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title Outline" type="Label" parent="Main Panel"]
+[node name="Title Outline" type="Label" parent="MainPanel"]
 anchor_left = 0.3125
 anchor_top = 0.106667
 anchor_right = 0.6875
@@ -362,7 +362,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Money Label" type="Label" parent="Main Panel"]
+[node name="Money Label" type="Label" parent="MainPanel"]
 anchor_left = 0.8125
 anchor_right = 0.999023
 anchor_bottom = 0.106667
@@ -374,16 +374,16 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Panel" type="Panel" parent="."]
-visible = false
+[node name="SettingsPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 11 )
+script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Settings Panel"]
+[node name="Background Rect" type="ColorRect" parent="SettingsPanel"]
 material = SubResource( 12 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -392,7 +392,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Settings Panel"]
+[node name="Back" type="Button" parent="SettingsPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
 custom_styles/hover = ExtResource( 1 )
@@ -404,7 +404,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title" type="Label" parent="Settings Panel"]
+[node name="Settings Title" type="Label" parent="SettingsPanel"]
 anchor_left = 0.375
 anchor_top = 0.106667
 anchor_right = 0.625
@@ -417,7 +417,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="Settings Panel"]
+[node name="Settings Title Outline" type="Label" parent="SettingsPanel"]
 anchor_left = 0.375
 anchor_top = 0.106667
 anchor_right = 0.625
@@ -431,7 +431,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Left Panel" type="Panel" parent="Settings Panel"]
+[node name="LeftPanel" type="Panel" parent="SettingsPanel"]
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
@@ -440,7 +440,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Settings Panel/Left Panel"]
+[node name="Title" type="Label" parent="SettingsPanel/LeftPanel"]
 margin_right = 352.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 15 )
@@ -451,7 +451,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Low" type="Button" parent="Settings Panel/Left Panel"]
+[node name="Low" type="Button" parent="SettingsPanel/LeftPanel"]
 margin_top = 64.0
 margin_right = 352.0
 margin_bottom = 164.0
@@ -466,7 +466,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Medium" type="Button" parent="Settings Panel/Left Panel"]
+[node name="Medium" type="Button" parent="SettingsPanel/LeftPanel"]
 margin_top = 164.0
 margin_right = 352.0
 margin_bottom = 264.0
@@ -481,7 +481,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="High" type="Button" parent="Settings Panel/Left Panel"]
+[node name="High" type="Button" parent="SettingsPanel/LeftPanel"]
 margin_top = 264.0
 margin_right = 352.0
 margin_bottom = 364.0
@@ -496,7 +496,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Sublime" type="Button" parent="Settings Panel/Left Panel"]
+[node name="Sublime" type="Button" parent="SettingsPanel/LeftPanel"]
 margin_top = 364.0
 margin_right = 352.0
 margin_bottom = 464.0
@@ -511,7 +511,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Centre Panel" type="Panel" parent="Settings Panel"]
+[node name="CentrePanel" type="Panel" parent="SettingsPanel"]
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.664062
@@ -521,7 +521,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Settings Panel/Centre Panel"]
+[node name="Title" type="Label" parent="SettingsPanel/CentrePanel"]
 margin_right = 328.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 15 )
@@ -532,33 +532,33 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" parent="SettingsPanel/CentrePanel" instance=ExtResource( 17 )]
 anchor_left = 0.146341
 anchor_top = 0.135593
 anchor_right = 0.829268
 anchor_bottom = 0.271186
 
-[node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox" index="0"]
+[node name="Checkbox" parent="SettingsPanel/CentrePanel/Checkbox" index="0"]
 custom_styles/panel = SubResource( 28 )
 ConfigId = 5
 
-[node name="Label" parent="Settings Panel/Centre Panel/Checkbox/Checkbox" index="1"]
+[node name="Label" parent="SettingsPanel/CentrePanel/Checkbox/Checkbox" index="1"]
 text = "Music"
 
-[node name="Checkbox2" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
+[node name="Checkbox2" parent="SettingsPanel/CentrePanel" instance=ExtResource( 17 )]
 anchor_left = 0.146341
 anchor_top = 0.271186
 anchor_right = 0.829268
 anchor_bottom = 0.40678
 
-[node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox2" index="0"]
+[node name="Checkbox" parent="SettingsPanel/CentrePanel/Checkbox2" index="0"]
 custom_styles/panel = SubResource( 29 )
 ConfigId = 6
 
-[node name="Label" parent="Settings Panel/Centre Panel/Checkbox2/Checkbox" index="1"]
+[node name="Label" parent="SettingsPanel/CentrePanel/Checkbox2/Checkbox" index="1"]
 text = "Sound Effects"
 
-[node name="Right Panel" type="Panel" parent="Settings Panel"]
+[node name="RightPanel" type="Panel" parent="SettingsPanel"]
 anchor_left = 0.664062
 anchor_top = 0.213333
 anchor_right = 1.0
@@ -568,7 +568,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Settings Panel/Right Panel"]
+[node name="Title" type="Label" parent="SettingsPanel/RightPanel"]
 margin_right = 344.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 15 )
@@ -579,19 +579,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" parent="SettingsPanel/RightPanel" instance=ExtResource( 17 )]
 anchor_left = 0.209302
 anchor_top = 0.135593
 anchor_right = 0.428052
 anchor_bottom = 0.24226
 
-[node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox" index="0"]
+[node name="Checkbox" parent="SettingsPanel/RightPanel/Checkbox" index="0"]
 custom_styles/panel = SubResource( 31 )
 
-[node name="Label" parent="Settings Panel/Right Panel/Checkbox/Checkbox" index="1"]
-text = "Help Btn Enabled"
+[node name="Label" parent="SettingsPanel/RightPanel/Checkbox/Checkbox" index="1"]
+text = "Tutorial Enabled"
 
-[node name="Username Edit" type="LineEdit" parent="Settings Panel/Right Panel"]
+[node name="UsernameEdit" type="LineEdit" parent="SettingsPanel/RightPanel"]
 anchor_left = 0.209302
 anchor_top = 0.474576
 anchor_right = 0.837209
@@ -605,7 +605,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Username Label" type="RichTextLabel" parent="Settings Panel/Right Panel/Username Edit"]
+[node name="Username Label" type="RichTextLabel" parent="SettingsPanel/RightPanel/UsernameEdit"]
 visible = false
 show_behind_parent = true
 margin_top = 64.0
@@ -618,25 +618,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="Settings Panel/Right Panel/Username Edit"]
+[node name="Tween" type="Tween" parent="SettingsPanel/RightPanel/UsernameEdit"]
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Settings Panel/Right Panel/Username Edit"]
+[node name="HTTPRequest" type="HTTPRequest" parent="SettingsPanel/RightPanel/UsernameEdit"]
 download_file = "res://resources/username_filtered.xml"
 use_threads = true
 
-[node name="Checkbox2" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
+[node name="Checkbox2" parent="SettingsPanel/RightPanel" instance=ExtResource( 17 )]
 anchor_left = 0.209302
 anchor_top = 0.271186
 anchor_right = 0.428052
 anchor_bottom = 0.377853
 
-[node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox2" index="0"]
+[node name="Checkbox" parent="SettingsPanel/RightPanel/Checkbox2" index="0"]
 custom_styles/panel = SubResource( 33 )
 
-[node name="Label" parent="Settings Panel/Right Panel/Checkbox2/Checkbox" index="1"]
+[node name="Label" parent="SettingsPanel/RightPanel/Checkbox2/Checkbox" index="1"]
 text = "Advertisements"
 
-[node name="Username Label" type="Label" parent="Settings Panel/Right Panel"]
+[node name="Username Label" type="Label" parent="SettingsPanel/RightPanel"]
 anchor_left = 0.209302
 anchor_top = 0.40678
 anchor_right = 0.860465
@@ -648,7 +648,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Username Underline" type="ColorRect" parent="Settings Panel/Right Panel/Username Label"]
+[node name="Username Underline" type="ColorRect" parent="SettingsPanel/RightPanel/Username Label"]
 anchor_top = 0.75
 anchor_bottom = 0.75
 margin_top = 2.00021
@@ -658,9 +658,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel Tween" type="Tween" parent="Settings Panel"]
+[node name="Panel Tween" type="Tween" parent="SettingsPanel"]
 
-[node name="Gamemode Panel" type="Panel" parent="."]
+[node name="GamemodePanel" type="Panel" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -669,7 +669,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Gamemode Panel"]
+[node name="Background Rect" type="ColorRect" parent="GamemodePanel"]
 material = SubResource( 35 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -678,7 +678,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Gamemode Panel"]
+[node name="Back" type="Button" parent="GamemodePanel"]
 anchor_right = 0.265625
 anchor_bottom = 0.12
 custom_styles/hover = ExtResource( 1 )
@@ -690,7 +690,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title" type="Label" parent="Gamemode Panel"]
+[node name="Settings Title" type="Label" parent="GamemodePanel"]
 anchor_left = 0.36377
 anchor_top = 0.106667
 anchor_right = 0.63623
@@ -703,7 +703,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="Gamemode Panel"]
+[node name="Settings Title Outline" type="Label" parent="GamemodePanel"]
 anchor_left = 0.36377
 anchor_top = 0.106667
 anchor_right = 0.63623
@@ -717,7 +717,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Left Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Left Panel" type="Panel" parent="GamemodePanel"]
 anchor_top = 0.213333
 anchor_right = 0.25
 anchor_bottom = 1.0
@@ -726,7 +726,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Left Panel"]
+[node name="Title" type="Label" parent="GamemodePanel/Left Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 10 )
@@ -737,9 +737,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Rect Tween" type="Tween" parent="Gamemode Panel/Left Panel"]
+[node name="Rect Tween" type="Tween" parent="GamemodePanel/Left Panel"]
 
-[node name="TextureButton" type="TextureButton" parent="Gamemode Panel/Left Panel"]
+[node name="TextureButton" type="TextureButton" parent="GamemodePanel/Left Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
@@ -751,7 +751,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Centre Left Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Centre Left Panel" type="Panel" parent="GamemodePanel"]
 anchor_left = 0.25
 anchor_top = 0.213333
 anchor_right = 0.5
@@ -761,7 +761,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Centre Left Panel"]
+[node name="Title" type="Label" parent="GamemodePanel/Centre Left Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 10 )
@@ -772,7 +772,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton2" type="TextureButton" parent="Gamemode Panel/Centre Left Panel"]
+[node name="TextureButton2" type="TextureButton" parent="GamemodePanel/Centre Left Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
@@ -784,7 +784,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Centre Right Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Centre Right Panel" type="Panel" parent="GamemodePanel"]
 anchor_left = 0.5
 anchor_top = 0.213333
 anchor_right = 0.75
@@ -794,7 +794,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Centre Right Panel"]
+[node name="Title" type="Label" parent="GamemodePanel/Centre Right Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 10 )
@@ -805,7 +805,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton3" type="TextureButton" parent="Gamemode Panel/Centre Right Panel"]
+[node name="TextureButton3" type="TextureButton" parent="GamemodePanel/Centre Right Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
@@ -817,7 +817,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Right Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Right Panel" type="Panel" parent="GamemodePanel"]
 anchor_left = 0.75
 anchor_top = 0.213333
 anchor_right = 1.0
@@ -827,7 +827,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Right Panel"]
+[node name="Title" type="Label" parent="GamemodePanel/Right Panel"]
 margin_right = 256.0
 margin_bottom = 72.0
 custom_fonts/font = ExtResource( 10 )
@@ -838,7 +838,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton4" type="TextureButton" parent="Gamemode Panel/Right Panel"]
+[node name="TextureButton4" type="TextureButton" parent="GamemodePanel/Right Panel"]
 anchor_left = 0.125
 anchor_top = 0.20339
 anchor_right = 0.875
@@ -850,9 +850,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="Gamemode Panel"]
+[node name="Panel Tween" type="Tween" parent="GamemodePanel"]
 
-[node name="Matchsettings Panel" type="Panel" parent="."]
+[node name="MatchsettingsPanel" type="Panel" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -861,7 +861,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Matchsettings Panel"]
+[node name="Background Rect" type="ColorRect" parent="MatchsettingsPanel"]
 material = SubResource( 35 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -870,7 +870,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Matchsettings Panel"]
+[node name="Back" type="Button" parent="MatchsettingsPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
 custom_styles/hover = ExtResource( 1 )
@@ -882,7 +882,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title" type="Label" parent="Matchsettings Panel"]
+[node name="Settings Title" type="Label" parent="MatchsettingsPanel"]
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
@@ -895,7 +895,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="Matchsettings Panel"]
+[node name="Settings Title Outline" type="Label" parent="MatchsettingsPanel"]
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
@@ -909,9 +909,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="Matchsettings Panel"]
+[node name="Panel Tween" type="Tween" parent="MatchsettingsPanel"]
 
-[node name="Left Panel" type="Panel" parent="Matchsettings Panel"]
+[node name="Left Panel" type="Panel" parent="MatchsettingsPanel"]
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
@@ -920,43 +920,43 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 17 )]
 anchor_left = 0.0909091
 anchor_top = 0.135593
 anchor_right = 0.0909091
 anchor_bottom = 0.135593
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Checkbox" index="0"]
+[node name="Checkbox" parent="MatchsettingsPanel/Left Panel/Checkbox" index="0"]
 ConfigId = 1
 
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="0"]
+[node name="Texture Button" parent="MatchsettingsPanel/Left Panel/Checkbox/Checkbox" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="1"]
+[node name="Label" parent="MatchsettingsPanel/Left Panel/Checkbox/Checkbox" index="1"]
 text = "Random map"
 
-[node name="Checkbox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
+[node name="Checkbox2" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 17 )]
 anchor_left = 0.0909091
 anchor_top = 0.305085
 anchor_right = 0.0909091
 anchor_bottom = 0.305085
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Checkbox2" index="0"]
+[node name="Checkbox" parent="MatchsettingsPanel/Left Panel/Checkbox2" index="0"]
 ConfigId = 2
 
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" index="0"]
+[node name="Texture Button" parent="MatchsettingsPanel/Left Panel/Checkbox2/Checkbox" index="0"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" index="1"]
+[node name="Label" parent="MatchsettingsPanel/Left Panel/Checkbox2/Checkbox" index="1"]
 text = "Special Abilitities"
 
-[node name="Iteratebox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 18 )]
+[node name="Iteratebox" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 18 )]
 anchor_left = 0.091
 anchor_top = 0.475
 anchor_right = 0.091
@@ -966,13 +966,13 @@ margin_top = -0.200012
 margin_right = 223.968
 margin_bottom = 63.8
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Iteratebox" index="0"]
+[node name="Checkbox" parent="MatchsettingsPanel/Left Panel/Iteratebox" index="0"]
 ConfigId = 3
 
-[node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" index="1"]
+[node name="Label" parent="MatchsettingsPanel/Left Panel/Iteratebox/Checkbox" index="1"]
 text = "Rocket Bounces"
 
-[node name="Iteratebox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 18 )]
+[node name="Iteratebox2" parent="MatchsettingsPanel/Left Panel" instance=ExtResource( 18 )]
 anchor_left = 0.091
 anchor_top = 0.644
 anchor_right = 0.091
@@ -982,13 +982,13 @@ margin_top = 0.0319824
 margin_right = 223.968
 margin_bottom = 64.032
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Iteratebox2" index="0"]
+[node name="Checkbox" parent="MatchsettingsPanel/Left Panel/Iteratebox2" index="0"]
 ConfigId = 4
 
-[node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" index="1"]
+[node name="Label" parent="MatchsettingsPanel/Left Panel/Iteratebox2/Checkbox" index="1"]
 text = "Rounds"
 
-[node name="Centre Panel" type="Panel" parent="Matchsettings Panel"]
+[node name="Centre Panel" type="Panel" parent="MatchsettingsPanel"]
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.65625
@@ -998,7 +998,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Rocket Editor Button" type="Button" parent="Matchsettings Panel/Centre Panel"]
+[node name="Rocket Editor Button" type="Button" parent="MatchsettingsPanel/Centre Panel"]
 anchor_left = 0.275
 anchor_top = 0.881356
 anchor_right = 0.725
@@ -1011,7 +1011,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Matchsettings Panel/Centre Panel/Rocket Editor Button"]
+[node name="Text" type="Label" parent="MatchsettingsPanel/Centre Panel/Rocket Editor Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
@@ -1022,7 +1022,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel" type="Panel" parent="Matchsettings Panel/Centre Panel"]
+[node name="Panel" type="Panel" parent="MatchsettingsPanel/Centre Panel"]
 anchor_left = 0.1
 anchor_top = 0.135593
 anchor_right = 0.9
@@ -1031,7 +1031,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="Matchsettings Panel/Centre Panel/Panel"]
+[node name="Label" type="Label" parent="MatchsettingsPanel/Centre Panel/Panel"]
 anchor_left = 0.25
 anchor_top = 0.333333
 anchor_right = 0.75
@@ -1043,7 +1043,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Right Panel" type="Panel" parent="Matchsettings Panel"]
+[node name="Right Panel" type="Panel" parent="MatchsettingsPanel"]
 anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
@@ -1053,7 +1053,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Start" type="Button" parent="Matchsettings Panel/Right Panel"]
+[node name="Start" type="Button" parent="MatchsettingsPanel/Right Panel"]
 anchor_left = 0.181818
 anchor_top = 0.813559
 anchor_right = 0.818182
@@ -1067,7 +1067,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Editor Panel" type="Panel" parent="."]
+[node name="EditorPanel" type="Panel" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1076,7 +1076,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Editor Panel"]
+[node name="Background Rect" type="ColorRect" parent="EditorPanel"]
 material = SubResource( 35 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1085,7 +1085,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Editor Panel"]
+[node name="Back" type="Button" parent="EditorPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
 custom_styles/hover = ExtResource( 1 )
@@ -1097,9 +1097,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel Tween" type="Tween" parent="Editor Panel"]
+[node name="Panel Tween" type="Tween" parent="EditorPanel"]
 
-[node name="Main Panel" type="Panel" parent="Editor Panel"]
+[node name="Main Panel" type="Panel" parent="EditorPanel"]
 anchor_left = 0.000489265
 anchor_top = 0.52
 anchor_right = 1.0
@@ -1111,30 +1111,27 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
+[node name="Items Panel" type="Panel" parent="EditorPanel/Main Panel"]
 anchor_top = 0.38983
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 3.05176e-05
-script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="1" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="1" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.0694037
 anchor_top = 0.0833333
 anchor_right = 0.178886
 anchor_bottom = 0.472222
 rect_pivot_offset = Vector2( 56, 56 )
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Price = 10000
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/1"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/1"]
 anchor_right = 0.999997
 anchor_bottom = 1.0
 texture = ExtResource( 28 )
@@ -1144,7 +1141,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/1"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/1"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1154,7 +1151,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/1"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/1"]
 anchor_top = 0.785714
 anchor_right = 0.999997
 anchor_bottom = 1.0
@@ -1166,23 +1163,20 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/1"]
 anims/bought_anim = ExtResource( 32 )
 
-[node name="2" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="2" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.195014
 anchor_top = 0.0833342
 anchor_right = 0.304496
 anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 1
-Price = 15000
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/2"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/2"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1192,7 +1186,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/2"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/2"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1202,7 +1196,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/2"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/2"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1214,21 +1208,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/2"]
 
-[node name="3" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="3" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.320136
 anchor_top = 0.0833342
 anchor_right = 0.429618
 anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 2
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/3"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/3"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1238,7 +1230,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/3"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/3"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1248,7 +1240,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/3"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/3"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1260,21 +1252,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/3"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/3"]
 
-[node name="4" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="4" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.445258
 anchor_top = 0.0833342
 anchor_right = 0.55474
 anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 3
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/4"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/4"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1284,7 +1274,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/4"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/4"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1294,7 +1284,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/4"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/4"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1306,21 +1296,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/4"]
 
-[node name="5" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="5" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.57038
 anchor_top = 0.0833342
 anchor_right = 0.679863
 anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 4
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/5"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/5"]
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1330,7 +1318,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/5"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/5"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1340,7 +1328,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/5"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/5"]
 anchor_top = 0.785714
 anchor_right = 0.99999
 anchor_bottom = 0.999999
@@ -1352,21 +1340,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/5"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/5"]
 
-[node name="6" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="6" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.695503
 anchor_top = 0.0833342
 anchor_right = 0.804985
 anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 5
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/6"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/6"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1376,7 +1362,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/6"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/6"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1386,7 +1372,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/6"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/6"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1398,21 +1384,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/6"]
 
-[node name="7" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="7" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.820625
 anchor_top = 0.0833342
 anchor_right = 0.930107
 anchor_bottom = 0.472223
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 6
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/7"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/7"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1422,7 +1406,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/7"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/7"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1432,7 +1416,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/7"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/7"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1444,21 +1428,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/7"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/7"]
 
-[node name="8" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="8" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.0698915
 anchor_top = 0.527778
 anchor_right = 0.179374
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 7
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/8"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/8"]
 anchor_right = 0.999995
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1468,7 +1450,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/8"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/8"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1478,7 +1460,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/8"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/8"]
 anchor_top = 0.785713
 anchor_right = 0.999995
 anchor_bottom = 0.999999
@@ -1490,21 +1472,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/8"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/8"]
 
-[node name="9" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="9" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.195014
 anchor_top = 0.527778
 anchor_right = 0.304496
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 8
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/9"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/9"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1514,7 +1494,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/9"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/9"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1524,7 +1504,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/9"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/9"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1536,21 +1516,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/9"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/9"]
 
-[node name="10" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="10" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.320136
 anchor_top = 0.527778
 anchor_right = 0.429618
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 9
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/10"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/10"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1560,7 +1538,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/10"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/10"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1570,7 +1548,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/10"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/10"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1582,21 +1560,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/10"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/10"]
 
-[node name="11" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="11" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.445258
 anchor_top = 0.527778
 anchor_right = 0.55474
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 10
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/11"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/11"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1606,7 +1582,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/11"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/11"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1616,7 +1592,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/11"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/11"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1628,21 +1604,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/11"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/11"]
 
-[node name="12" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="12" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.57038
 anchor_top = 0.527778
 anchor_right = 0.679863
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 11
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/12"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/12"]
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1652,7 +1626,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/12"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/12"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1662,7 +1636,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/12"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/12"]
 anchor_top = 0.785713
 anchor_right = 0.99999
 anchor_bottom = 0.999999
@@ -1674,21 +1648,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/12"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/12"]
 
-[node name="13" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="13" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.695503
 anchor_top = 0.527778
 anchor_right = 0.804985
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 12
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/13"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/13"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1698,7 +1670,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/13"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/13"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1708,7 +1680,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/13"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/13"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1720,21 +1692,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/13"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/13"]
 
-[node name="14" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
+[node name="14" type="Panel" parent="EditorPanel/Main Panel/Items Panel"]
 anchor_left = 0.820625
 anchor_top = 0.527778
 anchor_right = 0.930107
 anchor_bottom = 0.916667
 custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 13
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="Icon Texture" type="TextureRect" parent="EditorPanel/Main Panel/Items Panel/14"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1744,7 +1714,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="Button" type="TextureButton" parent="EditorPanel/Main Panel/Items Panel/14"]
 margin_left = 0.498993
 margin_right = 112.499
 margin_bottom = 112.0
@@ -1754,7 +1724,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="Description" type="Label" parent="EditorPanel/Main Panel/Items Panel/14"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
@@ -1766,9 +1736,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EditorPanel/Main Panel/Items Panel/14"]
 
-[node name="Picker" parent="Editor Panel" instance=ExtResource( 20 )]
+[node name="Picker" parent="EditorPanel" instance=ExtResource( 20 )]
 anchor_left = 0.25
 anchor_top = 0.226667
 anchor_right = 0.75
@@ -1776,7 +1746,7 @@ anchor_bottom = 0.506667
 margin_right = 0.0
 margin_bottom = 0.0
 
-[node name="Settings Title" type="Label" parent="Editor Panel"]
+[node name="Settings Title" type="Label" parent="EditorPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -192.0
@@ -1791,7 +1761,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title Outline" type="Label" parent="Editor Panel"]
+[node name="Settings Title Outline" type="Label" parent="EditorPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -192.0
@@ -1807,7 +1777,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money Label" type="Label" parent="Editor Panel"]
+[node name="Money Label" type="Label" parent="EditorPanel"]
 anchor_left = 0.8125
 anchor_right = 0.999023
 anchor_bottom = 0.106667
@@ -1819,7 +1789,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Help Panel" type="Panel" parent="."]
+[node name="HelpPanel" type="Panel" parent="."]
 visible = false
 material = SubResource( 41 )
 anchor_left = 0.375
@@ -1831,7 +1801,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Border" type="Panel" parent="Help Panel"]
+[node name="Border" type="Panel" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 42 )
@@ -1839,7 +1809,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Help Panel"]
+[node name="Title" type="Label" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 0.113889
 custom_fonts/font = ExtResource( 10 )
@@ -1850,7 +1820,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Quit" type="Button" parent="Help Panel"]
+[node name="Quit" type="Button" parent="HelpPanel"]
 anchor_left = 0.0625
 anchor_top = 0.844444
 anchor_right = 0.46875
@@ -1864,7 +1834,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Credits" type="Button" parent="Help Panel"]
+[node name="Credits" type="Button" parent="HelpPanel"]
 anchor_left = 0.53125
 anchor_top = 0.844444
 anchor_right = 0.9375
@@ -1878,7 +1848,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Details" type="RichTextLabel" parent="Help Panel"]
+[node name="Details" type="RichTextLabel" parent="HelpPanel"]
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 0.844444
@@ -1899,9 +1869,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="Help Panel"]
+[node name="Panel Tween" type="Tween" parent="HelpPanel"]
 
-[node name="Credits Panel" type="Panel" parent="Help Panel"]
+[node name="Credits Panel" type="Panel" parent="HelpPanel"]
 visible = false
 material = SubResource( 41 )
 anchor_top = 0.111111
@@ -1912,7 +1882,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Border" type="Panel" parent="Help Panel/Credits Panel"]
+[node name="Border" type="Panel" parent="HelpPanel/Credits Panel"]
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1921,7 +1891,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Quit" type="Button" parent="Help Panel/Credits Panel"]
+[node name="Quit" type="Button" parent="HelpPanel/Credits Panel"]
 anchor_left = 0.28125
 anchor_top = 0.825
 anchor_right = 0.71875
@@ -1935,7 +1905,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Details" type="RichTextLabel" parent="Help Panel/Credits Panel"]
+[node name="Details" type="RichTextLabel" parent="HelpPanel/Credits Panel"]
 anchor_right = 1.0
 anchor_bottom = 0.825
 bbcode_enabled = true
@@ -1949,57 +1919,38 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TitleUIManager" type="Node" parent="."]
-script = ExtResource( 8 )
+[connection signal="pressed" from="MainPanel/Rocket Editor Button" to="." method="PanelPressed" binds= [ 4 ]]
+[connection signal="pressed" from="MainPanel/Help" to="." method="PanelPressed" binds= [ 5 ]]
+[connection signal="pressed" from="MainPanel/Play Button" to="." method="PanelPressed" binds= [ 2 ]]
+[connection signal="pressed" from="MainPanel/Settings" to="." method="PanelPressed" binds= [ 1 ]]
+[connection signal="pressed" from="SettingsPanel/Back" to="." method="BackPressed" binds= [ 1 ]]
+[connection signal="pressed" from="GamemodePanel/Back" to="." method="BackPressed" binds= [ 2 ]]
+[connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="PanelPressed" binds= [ 3 ]]
+[connection signal="pressed" from="MatchsettingsPanel/Back" to="." method="BackPressed" binds= [ 3 ]]
+[connection signal="pressed" from="EditorPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/1/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 0 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/2/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 1 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/3/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 2 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/4/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 3 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/5/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 4 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/6/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 5 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/7/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 6 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/8/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 7 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/9/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 8 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/10/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 9 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/11/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 10 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/12/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 11 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/13/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 12 ]]
+[connection signal="pressed" from="EditorPanel/Main Panel/Items Panel/14/Button" to="EditorPanel/Main Panel/Items Panel" method="OnItemClick" binds= [ 13 ]]
+[connection signal="pressed" from="HelpPanel/Quit" to="." method="BackPressed" binds= [ 5 ]]
+[connection signal="pressed" from="HelpPanel/Credits" to="." method="PanelPressed" binds= [ 6 ]]
+[connection signal="pressed" from="HelpPanel/Credits Panel/Quit" to="." method="BackPressed" binds= [ 6 ]]
 
-[connection signal="pressed" from="Main Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
-[connection signal="pressed" from="Main Panel/Help" to="TitleUIManager" method="_on_Help_pressed"]
-[connection signal="pressed" from="Main Panel/Play Button" to="TitleUIManager" method="_on_Gamemode_pressed"]
-[connection signal="pressed" from="Main Panel/Settings" to="TitleUIManager" method="_on_Settings_pressed"]
-[connection signal="pressed" from="Settings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/Low" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/Medium" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/High" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/Sublime" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 4 ]]
-[connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="text_entered" from="Settings Panel/Right Panel/Username Edit" to="TitleUIManager" method="_on_Username_Edit_text_entered"]
-[connection signal="pressed" from="Gamemode Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="Gamemode Panel/Left Panel/TextureButton" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Gamemode Panel/Centre Left Panel/TextureButton2" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
-[connection signal="pressed" from="Matchsettings Panel/Right Panel/Start" to="TitleUIManager" method="_on_Start_pressed"]
-[connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/1/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 0 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/2/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 1 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/3/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 2 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/4/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 3 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/5/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 4 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/6/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 5 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/7/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 6 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/8/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 7 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/9/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 8 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/10/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 9 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/11/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 10 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/12/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 11 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 12 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 13 ]]
-[connection signal="pressed" from="Help Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 5 ]]
-[connection signal="pressed" from="Help Panel/Credits" to="TitleUIManager" method="_on_Credits_pressed"]
-[connection signal="pressed" from="Help Panel/Credits Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 6 ]]
-
-[editable path="Settings Panel/Centre Panel/Checkbox"]
-[editable path="Settings Panel/Centre Panel/Checkbox2"]
-[editable path="Settings Panel/Right Panel/Checkbox"]
-[editable path="Settings Panel/Right Panel/Checkbox2"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox2"]
-[editable path="Matchsettings Panel/Left Panel/Iteratebox"]
-[editable path="Matchsettings Panel/Left Panel/Iteratebox2"]
+[editable path="SettingsPanel/CentrePanel/Checkbox"]
+[editable path="SettingsPanel/CentrePanel/Checkbox2"]
+[editable path="SettingsPanel/RightPanel/Checkbox"]
+[editable path="SettingsPanel/RightPanel/Checkbox2"]
+[editable path="MatchsettingsPanel/Left Panel/Checkbox"]
+[editable path="MatchsettingsPanel/Left Panel/Checkbox2"]
+[editable path="MatchsettingsPanel/Left Panel/Iteratebox"]
+[editable path="MatchsettingsPanel/Left Panel/Iteratebox2"]

@@ -1,5 +1,5 @@
 using Godot;
-using Crashteroids;
+/*using Crashteroids;*/
 using System;
 using System.Threading.Tasks;
 
@@ -146,6 +146,6 @@ public class Picker : Control
 			_rocketTween.Start();
 		}
 
-		GameConfig.Instance.SkinID = Array.IndexOf(RocketTextures, _rocket.Texture);
+		//GameConfig.Instance.SkinID = Array.IndexOf(RocketTextures, _rocket.Texture);
 	}
 }
