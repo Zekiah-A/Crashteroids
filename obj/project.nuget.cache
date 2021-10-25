@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "FvJ42f32uJonWIvzYyF+YJseu/3GaurrQV0c9w0kLasZ0BEk7WS6zRabXHJve1wRClA2npXnb18JMVEDp5cFOg==",
+  "success": true,
+  "projectFilePath": "/home/zekiah/Crashteroids/Crashteroids.csproj",
+  "expectedPackageFiles": [
+    "/home/zekiah/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0-preview.5.21301.5/microsoft.bcl.asyncinterfaces.6.0.0-preview.5.21301.5.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/microsoft.netframework.referenceassemblies.net472/1.0.0/microsoft.netframework.referenceassemblies.net472.1.0.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.json/4.7.1/system.json.4.7.1.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.net.http/4.3.4/system.net.http.4.3.4.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0-preview.5.21301.5/system.runtime.compilerservices.unsafe.6.0.0-preview.5.21301.5.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.security.cryptography.algorithms/4.3.0/system.security.cryptography.algorithms.4.3.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.security.cryptography.encoding/4.3.0/system.security.cryptography.encoding.4.3.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.security.cryptography.primitives/4.3.0/system.security.cryptography.primitives.4.3.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.security.cryptography.x509certificates/4.3.0/system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.text.encodings.web/6.0.0-preview.5.21301.5/system.text.encodings.web.6.0.0-preview.5.21301.5.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.text.json/6.0.0-preview.5.21301.5/system.text.json.6.0.0-preview.5.21301.5.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "/home/zekiah/.nuget/packages/system.valuetuple/4.5.0/system.valuetuple.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

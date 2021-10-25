@@ -1,0 +1,5 @@
+/home/zekiah/Crashteroids/obj/Debug/net472/Crashteroids.csproj.AssemblyReference.cache
+/home/zekiah/Crashteroids/obj/Debug/net472/Crashteroids.GeneratedMSBuildEditorConfig.editorconfig
+/home/zekiah/Crashteroids/obj/Debug/net472/Crashteroids.AssemblyInfoInputs.cache
+/home/zekiah/Crashteroids/obj/Debug/net472/Crashteroids.AssemblyInfo.cs
+/home/zekiah/Crashteroids/obj/Debug/net472/Crashteroids.csproj.CoreCompileInputs.cache

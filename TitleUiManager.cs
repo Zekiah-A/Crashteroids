@@ -33,15 +33,13 @@ public class TitleUiManager : Control
 			GetNode<Panel>("SettingsPanel"),
 			GetNode<Panel>("GamemodePanel"),
 			GetNode<Panel>("MatchsettingsPanel"),
-			GetNode<Panel>("EditorPanel"),
+			GetNode<Panel>("ShopPanel"),
 			GetNode<Panel>("HelpPanel"),
 			GetNode("HelpPanel").GetNode<Panel>("Credits Panel")
 		};
 
 		moneyLabel = panels[0].GetNode<Label>("Money Label");
-		editorMoneyLabel = panels[4].GetNode<Label>("Money Label");
-		usernameEdit = panels[1].GetNode("Right Panel").GetNode<LineEdit>("Username Edit");
-		usernameLabel = panels[1].GetNode("Right Panel").GetNode("Username Edit").GetNode<RichTextLabel>("Username Label");
+		//TODO: Put in editor class, it will handle itself, or make a separate script for the label //editorMoneyLabel = panels[4].GetNode<Label>("Money Label");
 
 		foreach (Panel panel in panels)
 		{
@@ -55,14 +53,15 @@ public class TitleUiManager : Control
 	{
 		if (id == 1)
 		{
+			///<summary> Object, Property being tweened, From, To, Time, Ease type, Tween type </summary>
 			panels[id].Visible = true;
 
 			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
-				panels[id], //Object
-				"rect_position", //Property being tweened
-				new Vector2(-1024, 0), //from
-				new Vector2(0, 0), //to
-				1, //speed
+				panels[id],
+				"rect_position",
+				new Vector2(-1024, 0),
+				new Vector2(0, 0),
+				1,
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
@@ -73,11 +72,11 @@ public class TitleUiManager : Control
 			panels[id].Visible = true;
 
 			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
-				panels[id], //Object
-				"rect_position", //Property being tweened
-				new Vector2(-1024, 0), //from
-				new Vector2(0, 0), //to
-				1, //speed
+				panels[id],
+				"rect_position",
+				new Vector2(-1024, 0),
+				new Vector2(0, 0),
+				1,
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
@@ -88,11 +87,11 @@ public class TitleUiManager : Control
 			panels[id].Visible = true;
 
 			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
-				panels[id], //Object
-				"rect_position", //Property being tweened
-				new Vector2(0, 600), //from
-				new Vector2(0, 0), //to
-				1, //speed
+				panels[id],
+				"rect_position",
+				new Vector2(0, 600),
+				new Vector2(0, 0),
+				1,
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
@@ -102,11 +101,11 @@ public class TitleUiManager : Control
 		{
 			panels[id].Visible = true;
 			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
-				panels[id], //Object
-				"rect_scale", //Property being tweened
-				new Vector2(0, 0), //from
-				new Vector2(1, 1), //to
-				1, //speed
+				panels[id],
+				"rect_scale",
+				new Vector2(0, 0),
+				new Vector2(1, 1),
+				1,
 				Tween.TransitionType.Back,
 				Tween.EaseType.Out
 			);
