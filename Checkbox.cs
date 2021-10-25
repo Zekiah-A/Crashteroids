@@ -5,50 +5,49 @@ public class Checkbox : Control
 {
 	public bool IsEnabled
 	{
-		get { return _enabled; }
+		get { return enabled; }
 		set
 		{
-			_enabled = value;
+			enabled = value;
 
-			if (_enabled)
-				_image.TextureNormal = _checkboxFull;
+			///<summary> Set the correct texture of the checkbox - in case that enabled wasn't set by another script </summary>
+			if (enabled)
+				image.TextureNormal = checkboxFull;
 			else
-				_image.TextureNormal = _checkboxEmpty;
+				image.TextureNormal = checkboxEmpty;
 		}
 	}
 
-	[Export] public int ConfigId;
+	//[Signal]
+	//public delegate void _on_Matchconfig_update(int _configId, bool _isEnabled);
 
-	[Signal]
-	public delegate void _on_Matchconfig_update(int _configId, bool _isEnabled);
-
-	private TextureButton _image;
-	private Texture _checkboxEmpty;
-	private Texture _checkboxFull;
-	private bool _enabled;
+	private TextureButton image;
+	private Texture checkboxEmpty;
+	private Texture checkboxFull;
+	private bool enabled;
 
 	public override void _Ready()
 	{
-		_image = (TextureButton)GetNode("Texture Button");
-		_checkboxEmpty = ResourceLoader.Load("res://resources/image/checkbox_empty.png") as Texture;
-		_checkboxFull = ResourceLoader.Load("res://resources/image/checkbox_full.png") as Texture;
+		image = (TextureButton)GetNode("Texture Button");
+		checkboxEmpty = ResourceLoader.Load("res://resources/image/checkbox_empty.png") as Texture;
+		checkboxFull = ResourceLoader.Load("res://resources/image/checkbox_full.png") as Texture;
 		//HACK: To ensure that default value is set if just "Play" pressed.
-		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
+		//EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
 	}
 
 	private void _on_Click()
 	{
 		if (IsEnabled)
 		{
-			_image.TextureNormal = _checkboxEmpty;
+			image.TextureNormal = checkboxEmpty;
 			IsEnabled = false;
 		}
 		else
 		{
-			_image.TextureNormal = _checkboxFull;
+			image.TextureNormal = checkboxFull;
 			IsEnabled = true;
 		}
 
-		EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
+		//EmitSignal(nameof(_on_Matchconfig_update), ConfigId, IsEnabled);
 	}
 }
