@@ -3,8 +3,8 @@ using System;
 
 public class Iteratebox : Control
 {
-	public int Current = 1;
-	[Export] public int Min = 0;
+	public int Current;
+	[Export] public int Min = 1;
 	[Export] public int Max = 5;
 
 	private TextureButton button;
@@ -14,16 +14,17 @@ public class Iteratebox : Control
 	{
 		button = GetNode<TextureButton>("Texture Button");
 		number = GetNode("Texture Button").GetNode<Label>("Number");
-
+		
+		Current = Min;
 		number.Text = Current.ToString();
 	}
 
-	private void _on_Click()
+	public void Increment()
 	{
 		if (Current < Max)
 			Current++;
 		else
-			Current = 1;
+			Current = Min;
 
 		number.Text = Current.ToString();
 	}

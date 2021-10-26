@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -16,8 +16,7 @@
 [ext_resource path="res://fonts/large_title_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://fonts/smaller_title_font.tres" type="DynamicFont" id=15]
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=16]
-[ext_resource path="res://scenes/Checkbox.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Iteratebox.cs" type="Script" id=17]
 [ext_resource path="res://resources/disabled_banner.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://SettingsUiManager.cs" type="Script" id=21]
@@ -160,25 +159,33 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=37]
 
-[sub_resource type="StyleBoxEmpty" id=38]
+[sub_resource type="DynamicFont" id=38]
+size = 20
+font_data = ExtResource( 6 )
 
-[sub_resource type="StyleBoxEmpty" id=39]
+[sub_resource type="DynamicFont" id=39]
+size = 20
+font_data = ExtResource( 6 )
 
-[sub_resource type="StyleBoxFlat" id=40]
+[sub_resource type="StyleBoxEmpty" id=40]
+
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="StyleBoxFlat" id=42]
 bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=41]
+[sub_resource type="StyleBoxFlat" id=43]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=42]
+[sub_resource type="ShaderMaterial" id=44]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=43]
+[sub_resource type="StyleBoxFlat" id=45]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -186,7 +193,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=44]
+[sub_resource type="DynamicFont" id=46]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -1044,74 +1051,200 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 17 )]
+[node name="Checkbox" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.0909091
 anchor_top = 0.135593
-anchor_right = 0.0909091
-anchor_bottom = 0.135593
+anchor_right = 0.727
+anchor_bottom = 0.271
+margin_right = -223.904
+margin_bottom = -63.9121
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Texture Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox" index="0"]
+[node name="Checkbox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox" index="1"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox"]
+margin_left = 64.0
+margin_top = 0.000274658
+margin_right = 224.0
+margin_bottom = 64.0003
+custom_fonts/font = SubResource( 38 )
 text = "Random map"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Checkbox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 17 )]
+[node name="Checkbox2" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.0909091
 anchor_top = 0.305085
-anchor_right = 0.0909091
-anchor_bottom = 0.305085
+anchor_right = 0.727
+anchor_bottom = 0.441
+margin_right = -223.904
+margin_bottom = -64.1519
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Texture Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox" index="0"]
+[node name="Checkbox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox" index="1"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox"]
+margin_left = 64.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 38 )
 text = "Special Abilitities"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Iteratebox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 18 )]
+[node name="Iteratebox" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.091
 anchor_top = 0.475
-anchor_right = 0.091
-anchor_bottom = 0.475
+anchor_right = 0.727
+anchor_bottom = 0.61
 margin_left = -0.0320015
 margin_top = -0.200012
-margin_right = 223.968
-margin_bottom = 63.8
+margin_right = 0.0959778
+margin_bottom = 0.0799561
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox" index="0"]
-ConfigId = 3
+[node name="Iteratebox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+Min = 2
 
-[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Checkbox" index="1"]
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox/Texture Button"]
+margin_right = 64.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox"]
+margin_left = 64.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 39 )
 text = "Rocket Bounces"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Iteratebox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource( 18 )]
+[node name="Iteratebox2" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.091
 anchor_top = 0.644
-anchor_right = 0.091
-anchor_bottom = 0.644
+anchor_right = 0.727
+anchor_bottom = 0.78
 margin_left = -0.0320015
 margin_top = 0.0319824
-margin_right = 223.968
-margin_bottom = 64.032
+margin_right = 0.0959778
+margin_bottom = -0.160065
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2" index="0"]
-ConfigId = 4
+[node name="Iteratebox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Checkbox" index="1"]
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button"]
+margin_right = 64.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox"]
+margin_left = 64.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 39 )
 text = "Rounds"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.65625
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 38 )
+custom_styles/panel = SubResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1167,7 +1300,7 @@ anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 39 )
+custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1268,7 +1401,7 @@ anchor_left = 0.000976562
 anchor_top = 0.52
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 40 )
+custom_styles/panel = SubResource( 42 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1292,7 +1425,7 @@ margin_right = 128.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1338,7 +1471,7 @@ margin_right = 272.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1384,7 +1517,7 @@ margin_right = 416.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1430,7 +1563,7 @@ margin_right = 560.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1475,7 +1608,7 @@ margin_left = 576.0
 margin_right = 704.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1516,7 +1649,7 @@ margin_left = 720.0
 margin_right = 848.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1557,7 +1690,7 @@ margin_left = 864.0
 margin_right = 992.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1598,7 +1731,7 @@ margin_top = 144.0
 margin_right = 128.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1640,7 +1773,7 @@ margin_top = 144.0
 margin_right = 272.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1682,7 +1815,7 @@ margin_top = 144.0
 margin_right = 416.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1724,7 +1857,7 @@ margin_top = 144.0
 margin_right = 560.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1766,7 +1899,7 @@ margin_top = 144.0
 margin_right = 704.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1808,7 +1941,7 @@ margin_top = 144.0
 margin_right = 848.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1850,7 +1983,7 @@ margin_top = 144.0
 margin_right = 992.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1941,7 +2074,7 @@ __meta__ = {
 
 [node name="HelpPanel" type="Panel" parent="."]
 visible = false
-material = SubResource( 42 )
+material = SubResource( 44 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -1954,7 +2087,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1992,7 +2125,7 @@ anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 44 )
+custom_fonts/font = SubResource( 46 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -2023,7 +2156,7 @@ __meta__ = {
 
 [node name="CreditsPanel" type="Panel" parent="HelpPanel"]
 visible = false
-material = SubResource( 42 )
+material = SubResource( 44 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2036,7 +2169,7 @@ __meta__ = {
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2082,6 +2215,10 @@ __meta__ = {
 [connection signal="pressed" from="GamemodePanel/Back" to="." method="BackPressed" binds= [ 2 ]]
 [connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="PanelPressed" binds= [ 3 ]]
 [connection signal="pressed" from="TwoPlayerMatchPanel/Back" to="." method="BackPressed" binds= [ 3 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 0 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 1 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 2 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 3 ]]
 [connection signal="pressed" from="ShopPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
@@ -2090,8 +2227,3 @@ __meta__ = {
 [connection signal="pressed" from="HelpPanel/Quit" to="." method="BackPressed" binds= [ 5 ]]
 [connection signal="pressed" from="HelpPanel/Credits" to="." method="PanelPressed" binds= [ 6 ]]
 [connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="BackPressed" binds= [ 6 ]]
-
-[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
-[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
-[editable path="TwoPlayerMatchPanel/LeftPanel/Iteratebox"]
-[editable path="TwoPlayerMatchPanel/LeftPanel/Iteratebox2"]
