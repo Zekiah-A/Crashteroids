@@ -14,8 +14,6 @@ public class Checkbox : Control
 				image.TextureNormal = checkboxFull;
 			else
 				image.TextureNormal = checkboxEmpty;
-
-				GD.Print("Sus");
 		}
 	}
 
