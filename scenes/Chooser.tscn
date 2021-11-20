@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Chooser.cs" type="Script" id=1]
 [ext_resource path="res://resources/image/chooser_border.png" type="Texture" id=2]
 [ext_resource path="res://shaders/image_scroller.shader" type="Shader" id=3]
+[ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=4]
+[ext_resource path="res://styles/grey_button_pressed_style.tres" type="StyleBox" id=5]
 
-[sub_resource type="StyleBoxEmpty" id=49]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="ShaderMaterial" id=50]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
 shader_param/scroll = 0.0
 
@@ -44,6 +46,9 @@ margin_left = 5.0
 margin_top = 200.0
 margin_right = 49.0
 margin_bottom = 240.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 text = "<"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,6 +59,9 @@ margin_left = 209.0
 margin_top = 200.0
 margin_right = 248.0
 margin_bottom = 240.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 4 )
 text = ">"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,13 +71,13 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
-custom_styles/panel = SubResource( 49 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="Chooser/OptionsPanel"]
-material = SubResource( 50 )
+material = SubResource( 2 )
 anchor_top = -9.53673e-07
 anchor_right = 3.0
 anchor_bottom = 0.999999
