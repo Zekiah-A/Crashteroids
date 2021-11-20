@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -172,29 +172,36 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="StyleBoxEmpty" id=40]
 
-[sub_resource type="StyleBoxEmpty" id=42]
+[sub_resource type="DynamicFont" id=49]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=43]
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="ShaderMaterial" id=42]
 shader = ExtResource( 41 )
 shader_param/scroll = 0.0
 
-[sub_resource type="StyleBoxEmpty" id=44]
+[sub_resource type="StyleBoxEmpty" id=43]
 
-[sub_resource type="StyleBoxFlat" id=45]
+[sub_resource type="StyleBoxFlat" id=44]
 bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=46]
+[sub_resource type="StyleBoxFlat" id=45]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=47]
+[sub_resource type="ShaderMaterial" id=46]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=48]
+[sub_resource type="StyleBoxFlat" id=47]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -202,7 +209,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=49]
+[sub_resource type="DynamicFont" id=48]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -1248,12 +1255,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.135593
+custom_fonts/font = ExtResource( 10 )
+text = "Options:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.65625
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/CentrePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.135593
+custom_fonts/font = ExtResource( 10 )
+text = "Map selection:"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1282,6 +1311,7 @@ margin_left = 49.0
 margin_top = 200.0
 margin_right = 208.0
 margin_bottom = 240.0
+custom_fonts/font = SubResource( 49 )
 text = "null"
 align = 1
 valign = 1
@@ -1320,13 +1350,13 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
-custom_styles/panel = SubResource( 42 )
+custom_styles/panel = SubResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel"]
-material = SubResource( 43 )
+material = SubResource( 42 )
 anchor_top = -9.53673e-07
 anchor_right = 3.0
 anchor_bottom = 0.999999
@@ -1340,7 +1370,7 @@ anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 44 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1367,6 +1397,17 @@ margin_bottom = 256.0
 text = "skin choosers for players 1 and 2 go here!"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.135593
+custom_fonts/font = ExtResource( 10 )
+text = "Skins:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
 }
 
 [node name="ShopPanel" type="Panel" parent="."]
@@ -1407,7 +1448,7 @@ anchor_left = 0.000976562
 anchor_top = 0.52
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 45 )
+custom_styles/panel = SubResource( 44 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1431,7 +1472,7 @@ margin_right = 128.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1477,7 +1518,7 @@ margin_right = 272.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1523,7 +1564,7 @@ margin_right = 416.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1569,7 +1610,7 @@ margin_right = 560.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1614,7 +1655,7 @@ margin_left = 576.0
 margin_right = 704.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1655,7 +1696,7 @@ margin_left = 720.0
 margin_right = 848.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1696,7 +1737,7 @@ margin_left = 864.0
 margin_right = 992.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1737,7 +1778,7 @@ margin_top = 144.0
 margin_right = 128.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1779,7 +1820,7 @@ margin_top = 144.0
 margin_right = 272.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1821,7 +1862,7 @@ margin_top = 144.0
 margin_right = 416.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1863,7 +1904,7 @@ margin_top = 144.0
 margin_right = 560.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1905,7 +1946,7 @@ margin_top = 144.0
 margin_right = 704.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1947,7 +1988,7 @@ margin_top = 144.0
 margin_right = 848.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1989,7 +2030,7 @@ margin_top = 144.0
 margin_right = 992.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 46 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2080,7 +2121,7 @@ __meta__ = {
 
 [node name="HelpPanel" type="Panel" parent="."]
 visible = false
-material = SubResource( 47 )
+material = SubResource( 46 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -2093,7 +2134,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 48 )
+custom_styles/panel = SubResource( 47 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2131,7 +2172,7 @@ anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 49 )
+custom_fonts/font = SubResource( 48 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -2162,7 +2203,7 @@ __meta__ = {
 
 [node name="CreditsPanel" type="Panel" parent="HelpPanel"]
 visible = false
-material = SubResource( 47 )
+material = SubResource( 46 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2175,7 +2216,7 @@ __meta__ = {
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 48 )
+custom_styles/panel = SubResource( 47 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2227,6 +2268,7 @@ __meta__ = {
 [connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 3 ]]
 [connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 0 ]]
 [connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button2" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 1 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/RightPanel/Start" to="TwoPlayerMatchPanel" method="StartPressed"]
 [connection signal="pressed" from="ShopPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]

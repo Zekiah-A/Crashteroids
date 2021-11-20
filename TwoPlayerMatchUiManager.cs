@@ -27,4 +27,11 @@ public class TwoPlayerMatchUiManager : Panel
 		else
 			(matchSettings[id] as Iteratebox).Increment();
 	}
+
+	private void StartPressed()
+	{
+		//scene can be changed in many ways, research more. https://docs.godotengine.org/en/stable/tutorials/misc/change_scenes_manually.html
+		GD.Print("Entering match.");
+		GetTree().ChangeScene("res://scenes/Game.tscn");
+	}
 }
