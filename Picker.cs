@@ -7,16 +7,16 @@ public class Picker : Control
 {
 	public static Texture[] RocketTextures;
 
-	private Button b1;
-	private Button b2;
+	//private Button b1;
+	//private Button b2;
 	private TextureRect rocket;
 	private Tween rocketTween;
 	private int currentIndex;
 
 	public override void _Ready()
 	{
-		b1 = GetNode<Button>("Button Forward");
-		b2 = GetNode<Button>("Button Back");
+		//b1 = GetNode<Button>("Button Forward");
+		//b2 = GetNode<Button>("Button Back");
 		rocket = GetNode<TextureRect>("Rocket");
 		rocketTween = GetNode("Rocket").GetNode<Tween>("Tween");
 
@@ -46,6 +46,7 @@ public class Picker : Control
 				currentIndex--;
 		}
 
+		//await ToSignal(rocketTween, "tween_completed");
 		await UpdateTexture(index);
 	}
 
