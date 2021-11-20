@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://fonts/smaller_title_font.tres" type="DynamicFont" id=15]
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=16]
 [ext_resource path="res://Iteratebox.cs" type="Script" id=17]
+[ext_resource path="res://resources/image/chooser_border.png" type="Texture" id=18]
 [ext_resource path="res://resources/disabled_banner.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://SettingsUiManager.cs" type="Script" id=21]
@@ -38,6 +39,8 @@
 [ext_resource path="res://resources/tools/protractor.svg" type="Texture" id=37]
 [ext_resource path="res://Tool.cs" type="Script" id=38]
 [ext_resource path="res://resources/tools/pen.png" type="Texture" id=39]
+[ext_resource path="res://Chooser.cs" type="Script" id=40]
+[ext_resource path="res://shaders/image_scroller.shader" type="Shader" id=41]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -169,23 +172,31 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="StyleBoxEmpty" id=40]
 
-[sub_resource type="StyleBoxEmpty" id=41]
+[sub_resource type="StyleBoxFlat" id=51]
 
-[sub_resource type="StyleBoxFlat" id=42]
+[sub_resource type="StyleBoxEmpty" id=49]
+
+[sub_resource type="ShaderMaterial" id=50]
+shader = ExtResource( 41 )
+shader_param/scroll = 0.0
+
+[sub_resource type="StyleBoxEmpty" id=43]
+
+[sub_resource type="StyleBoxFlat" id=44]
 bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 
-[sub_resource type="StyleBoxFlat" id=43]
+[sub_resource type="StyleBoxFlat" id=45]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=44]
+[sub_resource type="ShaderMaterial" id=46]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=45]
+[sub_resource type="StyleBoxFlat" id=47]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -193,7 +204,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=46]
+[sub_resource type="DynamicFont" id=48]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -1249,48 +1260,74 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Rocket Editor Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel"]
-anchor_left = 0.275
-anchor_top = 0.881356
-anchor_right = 0.725
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 90, 70 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Text" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Rocket Editor Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
-text = "Rocket Editor"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Panel" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel"]
+[node name="Chooser" type="Control" parent="TwoPlayerMatchPanel/CentrePanel"]
 anchor_left = 0.1
-anchor_top = 0.135593
+anchor_top = 0.135594
 anchor_right = 0.9
 anchor_bottom = 0.542373
-rect_pivot_offset = Vector2( 152, 72.0003 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Panel"]
-anchor_left = 0.25
-anchor_top = 0.333333
-anchor_right = 0.75
-anchor_bottom = 0.666667
-text = "MAP / Theme"
+[node name="Chooser" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 152, 72.0003 )
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+optionsNames = PoolStringArray( "Retro", "Vector", "Classic" )
+
+[node name="OptionName" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+margin_left = 49.0
+margin_top = 200.0
+margin_right = 208.0
+margin_bottom = 240.0
+text = "null"
 align = 1
 valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+margin_left = 5.0
+margin_top = 200.0
+margin_right = 49.0
+margin_bottom = 240.0
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+margin_left = 209.0
+margin_top = 200.0
+margin_right = 248.0
+margin_bottom = 240.0
+custom_styles/normal = SubResource( 51 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsPanel" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+custom_styles/panel = SubResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel"]
+material = SubResource( 50 )
+anchor_top = -9.53673e-07
+anchor_right = 3.0
+anchor_bottom = 0.999999
+texture = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1300,7 +1337,7 @@ anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 41 )
+custom_styles/panel = SubResource( 43 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1319,48 +1356,14 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel" type="Panel" parent="TwoPlayerMatchPanel/RightPanel"]
-anchor_left = 0.136364
-anchor_top = -0.0847453
-anchor_right = 0.936364
-anchor_bottom = 0.322035
-rect_pivot_offset = Vector2( 152, 72.0003 )
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+margin_left = 32.0
+margin_top = 136.0
+margin_right = 312.0
+margin_bottom = 256.0
+text = "skin choosers for players 1 and 2 go here!"
 __meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel/Panel"]
-anchor_left = 0.25
-anchor_top = 0.333333
-anchor_right = 0.75
-anchor_bottom = 0.666667
-text = "Player 1 skin picker"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Panel2" type="Panel" parent="TwoPlayerMatchPanel/RightPanel"]
-anchor_left = 0.136364
-anchor_top = 0.355932
-anchor_right = 0.936364
-anchor_bottom = 0.762712
-rect_pivot_offset = Vector2( 152, 72.0003 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel/Panel2"]
-anchor_left = 0.25
-anchor_top = 0.333333
-anchor_right = 0.75
-anchor_bottom = 0.666667
-text = "Player 2 skin picker"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="ShopPanel" type="Panel" parent="."]
@@ -1401,7 +1404,7 @@ anchor_left = 0.000976562
 anchor_top = 0.52
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 42 )
+custom_styles/panel = SubResource( 44 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1425,7 +1428,7 @@ margin_right = 128.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1471,7 +1474,7 @@ margin_right = 272.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1517,7 +1520,7 @@ margin_right = 416.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1563,7 +1566,7 @@ margin_right = 560.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1608,7 +1611,7 @@ margin_left = 576.0
 margin_right = 704.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1649,7 +1652,7 @@ margin_left = 720.0
 margin_right = 848.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1690,7 +1693,7 @@ margin_left = 864.0
 margin_right = 992.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1731,7 +1734,7 @@ margin_top = 144.0
 margin_right = 128.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1773,7 +1776,7 @@ margin_top = 144.0
 margin_right = 272.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1815,7 +1818,7 @@ margin_top = 144.0
 margin_right = 416.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1857,7 +1860,7 @@ margin_top = 144.0
 margin_right = 560.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1899,7 +1902,7 @@ margin_top = 144.0
 margin_right = 704.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1941,7 +1944,7 @@ margin_top = 144.0
 margin_right = 848.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1983,7 +1986,7 @@ margin_top = 144.0
 margin_right = 992.0
 margin_bottom = 272.0
 rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 43 )
+custom_styles/panel = SubResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2074,7 +2077,7 @@ __meta__ = {
 
 [node name="HelpPanel" type="Panel" parent="."]
 visible = false
-material = SubResource( 44 )
+material = SubResource( 46 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -2087,7 +2090,7 @@ __meta__ = {
 [node name="Border" type="Panel" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 45 )
+custom_styles/panel = SubResource( 47 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2125,7 +2128,7 @@ anchor_bottom = 0.958333
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 46 )
+custom_fonts/font = SubResource( 48 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -2156,7 +2159,7 @@ __meta__ = {
 
 [node name="CreditsPanel" type="Panel" parent="HelpPanel"]
 visible = false
-material = SubResource( 44 )
+material = SubResource( 46 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2169,7 +2172,7 @@ __meta__ = {
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 45 )
+custom_styles/panel = SubResource( 47 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -2219,6 +2222,8 @@ __meta__ = {
 [connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 1 ]]
 [connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 2 ]]
 [connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 3 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 0 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button2" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 1 ]]
 [connection signal="pressed" from="ShopPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
