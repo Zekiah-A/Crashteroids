@@ -1,10 +1,9 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://resources/rockets/rocket_retro_1.png" type="Texture" id=1]
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
 [ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=3]
 [ext_resource path="res://fonts/large_title_font_outline.tres" type="DynamicFont" id=4]
-[ext_resource path="res://GameManager.cs" type="Script" id=5]
 [ext_resource path="res://resources/image/square.png" type="Texture" id=6]
 [ext_resource path="res://scenes/PlayerTurn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player.cs" type="Script" id=8]
@@ -47,7 +46,6 @@ extents = Vector2( 512, 8 )
 extents = Vector2( 8, 300 )
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
@@ -262,12 +260,8 @@ margin_right = 1024.0
 margin_bottom = 600.0
 
 [node name="Game Over" parent="." instance=ExtResource( 10 )]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 0.0
 margin_right = 1024.0
 margin_bottom = 600.0
 

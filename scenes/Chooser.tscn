@@ -1,14 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Chooser.cs" type="Script" id=1]
 [ext_resource path="res://resources/image/chooser_border.png" type="Texture" id=2]
 [ext_resource path="res://shaders/image_scroller.shader" type="Shader" id=3]
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=4]
 [ext_resource path="res://styles/grey_button_pressed_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://fonts/typefaces/arial.ttf" type="DynamicFontData" id=6]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="DynamicFont" id=49]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 3 )
 shader_param/scroll = 0.0
 
@@ -33,6 +41,7 @@ margin_left = 49.0
 margin_top = 200.0
 margin_right = 208.0
 margin_bottom = 240.0
+custom_fonts/font = SubResource( 49 )
 text = "null"
 align = 1
 valign = 1
@@ -71,13 +80,13 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_clip_content = true
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="Chooser/OptionsPanel"]
-material = SubResource( 2 )
+material = SubResource( 3 )
 anchor_top = -9.53673e-07
 anchor_right = 3.0
 anchor_bottom = 0.999999
