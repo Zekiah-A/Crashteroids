@@ -34,7 +34,6 @@ public class Player : KinematicBody2D
 
 	public override void _Process(float delta)
 	{
-		//TODO: Velocity = SINGLE tap poDoes, after tap, NORMALISE vector ~~set "lock" var - imposed by game manager during your go~~
 		if (IsCurrent && debounce == true && !IsDead)
 		{
 			var collision = MoveAndCollide(touchPosition * Speed * delta);
@@ -42,32 +41,28 @@ public class Player : KinematicBody2D
 			{
 				var hit = (Godot.Node2D)collision.Collider;
 				GD.Print(hit.Name);
-/*
 				if (hit.IsInGroup("Player"))
 					GameManager.GameMatch.Crash(hit as Player, this);
-*/
 				touchPosition = touchPosition.Bounce(collision.Normal);
 				///<summary>I spent hours trying to figure out something this easy.</summary>
 				player.Rotation = touchPosition.Angle();
 
 				bounces++;
-/*
-				if (bounces >= GameConfig.Match.RocketBounces)
+				if (bounces >= 1)//TODO: Critical: For testing //GameConfig.Match.RocketBounces)
 				{
 					GameManager.GameMatch.SwitchTurn(Id);
 					bounces = 0;
 					debounce = false;
 				}
 				GameManager.GameMatch.TotalBounces[Id] += 1;
-*/			
 			}
 		}
 		else if (IsDead)
 		{
 			//TODO: Die animation in the direction of impact - make hitangle (referenced in the "explode" function here) the opposite of where the ship was hit from
 			player.Rotate(delta * 10);
-			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
-			MoveAndCollide(hitAngle * 100 * delta);
+			//GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+			MoveAndSlide(hitAngle * 100 * delta);
 		}
 	}
 
@@ -109,10 +104,6 @@ public class Player : KinematicBody2D
 			}
 		}
 	}
-/*
-	public void UpdateSkin() =>
-		player.Texture = Picker.RocketTextures[GameConfig.Instance.SkinID];
-*/
 	public void Explode()
 	{
 		//TODO: See line 66
@@ -129,10 +120,6 @@ public class Player : KinematicBody2D
 		if (sqrMagnitude > maxLength * maxLength)
 		{
 			float mag = (float)Math.Sqrt(sqrMagnitude);
-
-			//these intermediate variables force the intermediate result to be
-			//of float precision. without this, the intermediate result can be of higher
-			//precision, which changes behavior.
 			float normalized_x = vector.x / mag;
 			float normalized_y = vector.y / mag;
 			return new Vector2(normalized_x * maxLength,

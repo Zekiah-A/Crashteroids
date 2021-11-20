@@ -33,6 +33,7 @@ public class Tool : Panel
 
 	public async void Buy()
 	{
+        //TODO: Check if this is already bought
         description.Text = $"Bought {description.Text.Split(' ')[0]}";
         description.AddStyleboxOverride("normal", boughtStyle);
 
