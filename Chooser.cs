@@ -11,6 +11,7 @@ public class Chooser : Node
 	[Export] private string[] optionsNames;
 	private ShaderMaterial imageMaterial;
 	private Label optionName;
+	private Vector2 startPos = Vector2.Zero;
 
 	public override void _Ready()
 	{
@@ -18,7 +19,7 @@ public class Chooser : Node
 		optionName = GetNode<Label>("OptionName");
 	}
 
-	private async void ButtonPressed(int index)
+	private void ButtonPressed(int index)
 	{
 		///<note> Forward button = 1 </note>
 		if (index == 1)
@@ -45,5 +46,31 @@ public class Chooser : Node
 		imageMaterial.SetShaderParam("scroll", Mathf.Lerp((float) imageMaterial.GetShaderParam("scroll"), scroll, scrollSpeed));
 		optionName.Text = $"{current + 1}. {optionsNames[current]}";
 		//GD.Print(imageMaterial.GetShaderParam("scroll"));
+	}
+
+	private void DragStart() => startPos = GetViewport().GetMousePosition();
+
+	private void DragEnd()
+	{
+		Vector2 endPos = GetViewport().GetMousePosition();
+		float dragX = endPos.x - startPos.x;
+
+		///<summary> Less than 50, do nothing at all. More than 50, scroll by one. </summary>
+		if (dragX > 50)
+		{
+			if (current <= 0)
+				current = optionsCount - 1;
+			else
+				current--;
+		}
+		else if (dragX < -50)
+		{
+			if (current == optionsCount - 1)
+				current = 0;
+			else
+				current++;
+		}		
+
+		UpdateTexture();
 	}
 }

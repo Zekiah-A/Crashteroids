@@ -4,6 +4,7 @@
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
 [ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=3]
 [ext_resource path="res://fonts/large_title_font_outline.tres" type="DynamicFont" id=4]
+[ext_resource path="res://GameManager.cs" type="Script" id=5]
 [ext_resource path="res://resources/image/square.png" type="Texture" id=6]
 [ext_resource path="res://scenes/PlayerTurn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player.cs" type="Script" id=8]
@@ -13,13 +14,7 @@
 [ext_resource path="res://resources/backgrounds/walls_vertical.png" type="Texture" id=12]
 [ext_resource path="res://scenes/Laser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/LaunchTools.tscn" type="PackedScene" id=14]
-
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.0627451, 0.0627451, 0.0627451, 1 )
-
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[ext_resource path="res://resources/backgrounds/space_title_stars.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 16 )
@@ -46,11 +41,12 @@ extents = Vector2( 512, 8 )
 extents = Vector2( 8, 300 )
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 512, 300 )
-scale = Vector2( 0.5, 600 )
-texture = SubResource( 2 )
+scale = Vector2( 0.533333, 0.555556 )
+texture = ExtResource( 15 )
 
 [node name="Object" type="Sprite" parent="."]
 position = Vector2( 536, 288 )
@@ -117,12 +113,22 @@ polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 72
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/Polygon2D/StaticBody2D"]
 polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
 
-[node name="Turn UI" parent="." instance=ExtResource( 7 )]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-margin_left = 320.0
-margin_right = 320.0
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2( 272, 58 )
+polygon = PoolVector2Array( 376, 142, 432, 110, 496, 118, 464, 182, 488, 246, 440, 222, 416, 238, 384, 262, 352, 230 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/StaticBody2D"]
+polygon = PoolVector2Array( 352, 232, 376, 142, 432, 112, 496, 118, 464, 182, 488, 248, 440, 222, 384, 264 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D2"]
+polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2/Polygon2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/Polygon2D/StaticBody2D"]
+polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
 
 [node name="P1" type="KinematicBody2D" parent="." groups=[
 "Player",
@@ -236,11 +242,28 @@ texture = ExtResource( 12 )
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="EndGameTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PlayerTurn" parent="." instance=ExtResource( 7 )]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = 256.0
+margin_right = 768.0
+margin_bottom = 64.0
+
+[node name="Label2" parent="PlayerTurn" index="1"]
+anchor_top = 1.0625
+anchor_bottom = 1.28125
+
 [node name="Back" type="Control" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Back" type="Button" parent="Back"]
@@ -256,10 +279,11 @@ __meta__ = {
 }
 
 [node name="LaunchTools" parent="." instance=ExtResource( 14 )]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 
-[node name="Game Over" parent="." instance=ExtResource( 10 )]
+[node name="GameOver" parent="." instance=ExtResource( 10 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1024.0
@@ -271,6 +295,10 @@ offset = Vector2( 7, 0 )
 current = true
 smoothing_enabled = true
 
+[node name="CameraTween" type="Tween" parent="."]
+
 [connection signal="pressed" from="Back/Back" to="." method="_on_Back_pressed"]
 
-[editable path="Turn UI"]
+[editable path="PlayerTurn"]
+[editable path="LaunchTools"]
+[editable path="GameOver"]
