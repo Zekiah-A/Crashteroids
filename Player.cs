@@ -24,12 +24,20 @@ public class Player : KinematicBody2D
 	private Random random = new Random();
 	private Vector2 hitAngle;
 
+	private Area2D invalidArea;
+	private Gradient dragLineWhite;
+	private Gradient dragLineRed;
+	private bool invalid;
+
 	public override void _Ready()
 	{
 		kb = (KinematicBody2D)this;
 		player = GetNode<Sprite>("P1_Display");
 		rayCast = GetNode("P1_Display").GetNode<RayCast2D>("RayCast2D");
 		dragLine = GetNode<Line2D>($"DragLine");
+		invalidArea = GetNode("P1_Display").GetNode<Area2D>("InvalidArea");
+		dragLineWhite = (Gradient) ResourceLoader.Load("res://styles/dragline_white.tres");
+		dragLineRed = (Gradient) ResourceLoader.Load("res://styles/dragline_red.tres");
 	}
 
 	public override void _Process(float delta)
@@ -97,6 +105,11 @@ public class Player : KinematicBody2D
 				dragLine.Points = linePositions; 
 
 				player.Rotation = Mathf.Lerp(player.Rotation, mousePosition.Angle(), RotateSpeed);
+				
+				if (invalid)
+					dragLine.Gradient = dragLineRed;
+				else
+					dragLine.Gradient = dragLineWhite;
 			}
 			else
 			{
@@ -104,6 +117,20 @@ public class Player : KinematicBody2D
 			}
 		}
 	}
+	
+
+	private void InvalidAreaEntered(object body)
+	{
+		if (body is StaticBody2D)
+			invalid = true;
+	}
+	private void InvalidAreaExited(object body)
+	{
+		if (body is StaticBody2D)
+			invalid = false;
+	}
+
+
 	public void Explode()
 	{
 		//TODO: See line 66
