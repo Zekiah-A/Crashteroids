@@ -5,12 +5,12 @@ using System;
 public class Match : Reference
 {
 	public Player Winner;
-    public int CurrentTurn;
+	public int CurrentTurn;
 	public int MatchLength;
 	public int[] TotalBounces;
 
-    public Match() //TODO: Should be instancing the player through code instead? Smartest methos id just makje differnet things for different maps lol, different map editions
-    {
+	public Match() //TODO: Should be instancing the player through code instead? Smartest methos id just makje differnet things for different maps lol, different map editions
+	{
 		foreach (Player player in GameManager.Players)
 		{
 			player.IsDead = false;
@@ -23,9 +23,9 @@ public class Match : Reference
 		GameManager.EndGameTimer.Connect("timeout", this, nameof(EndGame));
 		GameManager.TimerNode.Start();
 		GameManager.TurnUI.Text = TitleUsername();
-    }
-    
-    public virtual void SwitchTurn(int finishedTurn)
+	}
+	
+	public virtual void SwitchTurn(int finishedTurn)
 	{
 		///<summary> Stop current player from moving </summary>
 		GameManager.Players[CurrentTurn].IsCurrent = false;
@@ -39,8 +39,8 @@ public class Match : Reference
 		GameManager.TurnUI.Text = TitleUsername();
 	}
 
-    public virtual void Crash(Player playerHit, Player sender) {}
-    public virtual void EndGame() {}
+	public virtual void Crash(Player playerHit, Player sender) {}
+	public virtual void EndGame() {}
 
 	private void OnTimerTimeout()
 	{

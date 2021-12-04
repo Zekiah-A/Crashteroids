@@ -20,13 +20,13 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1.99998, 2 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.99998, 8 )
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 2.0
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Curve" id=5]
@@ -166,11 +166,11 @@ rotation = -1.57079
 [node name="InvalidArea" type="Area2D" parent="P1/P1_Display"]
 
 [node name="InvalidShape2D" type="CollisionShape2D" parent="P1/P1_Display/InvalidArea"]
-position = Vector2( 3.8147e-05, -6 )
-shape = SubResource( 4 )
+position = Vector2( 6.10352e-05, -10 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="P1"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Explosion" parent="P1" instance=ExtResource( 9 )]
 visible = false
@@ -180,7 +180,7 @@ rotation = -1.57079
 [node name="DragLine" type="Line2D" parent="P1"]
 visible = false
 width = 1.5
-width_curve = SubResource( 3 )
+width_curve = SubResource( 4 )
 gradient = ExtResource( 16 )
 begin_cap_mode = 2
 
@@ -191,6 +191,7 @@ position = Vector2( 928, 288 )
 rotation = 1.57079
 scale = Vector2( 4, 4 )
 script = ExtResource( 8 )
+StartFlipped = true
 Id = 1
 
 [node name="P1_Display" type="Sprite" parent="P2"]
@@ -208,11 +209,11 @@ rotation = -1.57079
 [node name="InvalidArea" type="Area2D" parent="P2/P1_Display"]
 
 [node name="InvalidShape2D" type="CollisionShape2D" parent="P2/P1_Display/InvalidArea"]
-position = Vector2( 3.8147e-05, -6 )
-shape = SubResource( 4 )
+position = Vector2( 6.10352e-05, -10 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="P2"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Explosion" parent="P2" instance=ExtResource( 9 )]
 visible = false
