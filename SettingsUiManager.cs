@@ -30,7 +30,7 @@ public class SettingsUiManager : Panel
 	///<summary> Called by a signal when a setting is interacted with. </summary>
 	private void SettingsChanged(int id)
 	{
-		
+		GameData.Username = "Hello world!";
 		if (id < 4)
 		{
 			(settings[id] as Checkbox).IsEnabled = ((settings[id] as Checkbox).IsEnabled ? false : true);
