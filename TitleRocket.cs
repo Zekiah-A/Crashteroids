@@ -1,25 +1,27 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public class TitleRocket : KinematicBody2D
 {
-	Random random = new Random();
-	private Vector2 rotation;
+	private readonly Random random = new Random();
+	private Vector2 movement;
 
 	public override void _Ready() =>
-		Rotation = random.Next(-10, 10);
-
+		Rotation = random.Next(-180, 180);
+	
 	public override void _Process(float delta)
 	{
-		rotation = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation)).Normalized();
+		movement = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation)).Normalized();
 
-		var collision = MoveAndCollide(rotation * 500 * delta);
+		var collision = MoveAndCollide(movement * 50 * delta);
 		if (collision != null)
 		{
-			Rotation = rotation.Bounce(collision.Normal).Angle();
-			//Rotation = rotation.Angle();
+			Rotation = movement.Bounce(collision.Normal).Angle();
 		}
 
-		GetNode<Sprite>("P1_Display").Rotation = Mathf.Lerp(GetNode<Sprite>("P1_Display").Rotation, rotation.Angle(), 0.1f);
+		GetNode<Sprite>("P1_Display").RotationDegrees += 1f;
+		if(!GetNode<AnimationPlayer>("AnimationPlayer").IsPlaying())
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("rescale_anim");
 	}
 }
