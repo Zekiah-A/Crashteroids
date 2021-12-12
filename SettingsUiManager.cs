@@ -27,6 +27,11 @@ public class SettingsUiManager : Panel
 		usernameLabel = GetNode("RightPanel").GetNode("UsernameEdit").GetNode<RichTextLabel>("UsernameLabel");
 	}
 
+	public void Opened()
+	{
+		GD.Print($"SettingsUiMnager got the username as: {GameData.Username}");
+	}
+
 	///<summary> Called by a signal when a setting is interacted with. </summary>
 	private void SettingsChanged(int id)
 	{
