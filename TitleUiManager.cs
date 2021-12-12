@@ -61,6 +61,7 @@ public class TitleUiManager : Control
 				Tween.EaseType.Out
 			);
 			panels[id].GetNode<Tween>("Panel Tween").Start();
+			(panels[id] as SettingsUiManager).Opened();
 		}
 		if (id > 1 && id < 4)
 		{
