@@ -92,7 +92,7 @@ public class Player : KinematicBody2D
 				dragLine.Visible = true;
 				Input.SetCustomMouseCursor(null, Input.CursorShape.Drag);
 
-				clickPosition = new Vector2( 
+				clickPosition = new Vector2(
 					GetViewport().GetMousePosition().x - (Position.x), //TODO: input is screen-scale, while KB is only world scale, must find screen to world pos!
 					GetViewport().GetMousePosition().y - (Position.y)
 				).Normalized();
@@ -103,10 +103,10 @@ public class Player : KinematicBody2D
 					ClampMagnitude(ToLocal(GetViewport().GetMousePosition()), MaxDragDistance),
 					Vector2.Zero
 				};
-				dragLine.Points = linePositions; 
+				dragLine.Points = linePositions;
 
 				player.Rotation = Mathf.Lerp(player.Rotation, clickPosition.Angle(), RotateSpeed);
-				
+
 				if (invalid)
 					dragLine.Gradient = dragLineRed;
 				else
@@ -118,7 +118,7 @@ public class Player : KinematicBody2D
 			}
 		}
 	}
-	
+
 	private void InvalidAreaEntered(object body)
 	{
 		if (body is StaticBody2D)
@@ -145,10 +145,10 @@ public class Player : KinematicBody2D
 		if (sqrMagnitude > maxLength * maxLength)
 		{
 			float mag = (float)Math.Sqrt(sqrMagnitude);
-			float normalized_x = vector.x / mag;
-			float normalized_y = vector.y / mag;
-			return new Vector2(normalized_x * maxLength,
-				normalized_y * maxLength);
+			float normalizedX = vector.x / mag;
+			float normalizedY = vector.y / mag;
+			return new Vector2(normalizedX * maxLength,
+				normalizedY * maxLength);
 		}
 		return vector;
 	}

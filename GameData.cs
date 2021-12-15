@@ -14,13 +14,13 @@ public static class GameData
 	{
 		get
 		{
-			Load(ref music);
+			Load(ref music, nameof(music));
 			return music;
 		}
 		set
 		{
 			music = value;
-			Save(ref music);
+			Save(ref music, nameof(music));
 		}
 	}
 
@@ -29,13 +29,13 @@ public static class GameData
 	{
 		get
 		{
-			Load(ref sfx);
+			Load(ref sfx, nameof(sfx));
 			return sfx;
 		}
 		set
 		{
 			sfx = value;
-			Save(ref sfx);
+			Save(ref sfx, nameof(sfx));
 		}
 	}
 
@@ -44,13 +44,13 @@ public static class GameData
 	{
 		get
 		{
-			Load(ref adverts);
+			Load(ref adverts, nameof(adverts));
 			return adverts;
 		}
 		set
 		{
 			adverts = value;
-			Save(ref adverts);
+			Save(ref adverts, nameof(adverts));
 		}
 	}
 
@@ -59,13 +59,13 @@ public static class GameData
 	{
 		get
 		{
-			Load(ref money);
+			Load(ref money, nameof(money));
 			return money;
 		}
 		set
 		{
 			money = value;
-			Save(ref money);
+			Save(ref money, nameof(money));
 		}
 	}
 
@@ -74,63 +74,67 @@ public static class GameData
 	{
 		get
 		{
-			Load(ref graphicsQuality);
+			Load(ref graphicsQuality, nameof(graphicsQuality));
 			return graphicsQuality;
 		}
 		set
 		{
 			graphicsQuality = value;
-			Save(ref graphicsQuality);
+			Save(ref graphicsQuality, nameof(graphicsQuality));
 		}
 	}
-	
+
 	private static string name;
 	public static string Username
 	{
 		get
 		{
-			Load(ref name);
+			Load(ref name, nameof(name));
 			return name;
 		}
 		set
 		{
 			name = value;
-			Save(ref name);
+			Save(ref name, nameof(name));
 		}
 	}
 
 
 
 	//Called when any of the settings are changed, should never be called by functions outside of this class.
-	private static void Save<T>(ref T setting)
+	private static void Save<T>(ref T setting, string key) //TODO: temporary hack until i find a better way of getting var name from ref for the config KEY (string key arg) -- using nameof for this is stupid waste of resources but i cba not
 	{
 		var config = new ConfigFile();
 		var error = config.Load("user://game_config_crashteroids.cfg");
-		if (error == Error.FileNotFound) //If file not found, make file, and fix the error by itself.
-		{   // This is in ~/.local/share/Crashteroids on linux
-			config.Save("user://game_config_crashteroids.cfg");
+		if (error is Error.FileNotFound) //If file not found, make file, and fix the error by itself.
+		{
+			config.Save("user://game_config_crashteroids.cfg"); //This is in ~/.local/share/Crashteroids on linux
 			error = config.Load("user://game_config_crashteroids.cfg");
 		}
-		if (error == Error.Ok)
+		if (error is Error.Ok)
 		{
-			config.SetValue(nameof(setting).ToUpper(), nameof(setting), setting); //Section, Key, Value
-			config.Save("user://game_config_crashteroids.cfg");
+			config.SetValue("SETTINGS", "SETTING NAME SHOULD GO HERE", setting); //Section, Key, Value
+			config.Save("user://game_config_crashteroids.cfg"); // vvvv SEE LINE 133
+			GD.Print($"Successfully saved config, with value {{SETTINGS}}, {{Somehow setting name goes here}}, with Error status: {error}.");
 		}
-		GD.Print($"Sucessfully saved config, with value {nameof(setting)}, {setting}, with Error status: {error}.");
+		else
+			GD.PrintErr($"Error loading game config: {error}");
 	}
 
-	//Called when any of the settings are acessed, should never be called by functions outside of this class.
-	public static void Load<T>(ref T setting)
+	//Called when any of the settings are accessed, should never be called by functions outside of this class.
+	private static void Load<T>(ref T setting, string key) //TODO: temporary hack until i find a better way of getting var name from ref for the config KEY (string key arg) -- using nameof for this is stupid waste of resources but i cba not
 	{
 		var config = new ConfigFile();
 		var error = config.Load("user://game_config_crashteroids.cfg");
-		if (error == Error.FileNotFound)
-			GD.PushWarning("Could not find game config.");
-		if (error == Error.Ok)
+		if (error is Error.FileNotFound)
+			GD.PushWarning($"Could not find game config {error}.");
+		if (error is Error.Ok)
 		{
-			GD.Print(config.GetValue(nameof(setting).ToUpper(), nameof(setting))); //THE NAME WILL ALWAYS BE "SETTING, since that is what it's caled in this func", THAT is what causes the error
-			setting = (T) config.GetValue(nameof(setting).ToUpper(), nameof(setting));
+			//GD.Print(config.GetValue(nameof(setting).ToUpper(), nameof(setting))); //THE NAME WILL ALWAYS BE "SETTING, since that is what it's caled in this func", THAT is what causes the error
+			setting = (T)config.GetValue("SETTINGS", "SETTING NAME SHOULD GO HERE");
+			GD.Print($"Sucessfully loaded config, with value {{SETTINGS}}, {{Somehow setting name goes here}}, with Error status: {error}.");
 		}
-		GD.Print($"Sucessfully loaded config, with value {nameof(setting)}, {setting}, with Error status: {error}.");
+		else
+			GD.PrintErr($"Error loading game config: {error}");
 	}
 }
