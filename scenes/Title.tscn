@@ -2385,7 +2385,7 @@ __meta__ = {
 [connection signal="pressed" from="SettingsPanel/CentrePanel/Checkbox/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 0 ]]
 [connection signal="pressed" from="SettingsPanel/CentrePanel/Checkbox2/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 1 ]]
 [connection signal="pressed" from="SettingsPanel/RightPanel/Checkbox/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 2 ]]
-[connection signal="text_entered" from="SettingsPanel/RightPanel/UsernameEdit" to="SettingsPanel" method="SettingsChanged" binds= [ 4 ]]
+[connection signal="text_entered" from="SettingsPanel/RightPanel/UsernameEdit" to="SettingsPanel" method="UsernameEdited"]
 [connection signal="pressed" from="SettingsPanel/RightPanel/Checkbox2/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 3 ]]
 [connection signal="pressed" from="GamemodePanel/Back" to="." method="BackPressed" binds= [ 2 ]]
 [connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="PanelPressed" binds= [ 3 ]]

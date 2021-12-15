@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 using System.Text.Json;
 
 public static class GameData
@@ -7,6 +8,14 @@ public static class GameData
 	//Runtime Game Data (not saved to config)
 	//put things like bounces for match here
 	//skin should be chosen at start match time, it should be able to be bought in the shop.
+	public struct TwoPlayerMatchConfiguration
+	{
+		public static bool RandomMap { get; set; }
+		public static bool SpecialAbilities { get; set; }
+		public static int RocketBounces { get; set; }
+		public static int Rounds { get; set; }
+		public static int MatchMoney { get; set; }
+	}
 
 	//Settings Data (saved to config)
 	private static bool music; //Inward facing, actively saved and loaded, save and load function only acesses this.
@@ -36,6 +45,21 @@ public static class GameData
 		{
 			sfx = value;
 			Save(ref sfx, nameof(sfx));
+		}
+	}
+
+	private static bool tutorial;
+	public static bool TutorialEnabled
+	{
+		get
+		{
+			Load(ref tutorial, nameof(tutorial));
+			return tutorial;
+		}
+		set
+		{
+			tutorial = value;
+			Save(ref tutorial, nameof(tutorial));
 		}
 	}
 
@@ -99,10 +123,8 @@ public static class GameData
 		}
 	}
 
-
-
 	//Called when any of the settings are changed, should never be called by functions outside of this class.
-	private static void Save<T>(ref T setting, string key) //TODO: temporary hack until i find a better way of getting var name from ref for the config KEY (string key arg) -- using nameof for this is stupid waste of resources but i cba not
+	private static void Save<T>(ref T setting, string key)
 	{
 		var config = new ConfigFile();
 		var error = config.Load("user://game_config_crashteroids.cfg");
@@ -122,7 +144,7 @@ public static class GameData
 	}
 
 	//Called when any of the settings are accessed, should never be called by functions outside of this class.
-	private static void Load<T>(ref T setting, string key) //TODO: temporary hack until i find a better way of getting var name from ref for the config KEY (string key arg) -- using nameof for this is stupid waste of resources but i cba not
+	private static void Load<T>(ref T setting, string key)
 	{
 		var config = new ConfigFile();
 		var error = config.Load("user://game_config_crashteroids.cfg");
@@ -130,8 +152,13 @@ public static class GameData
 			GD.PushWarning($"Could not find game config {error}.");
 		if (error is Error.Ok)
 		{
-			setting = (T)config.GetValue("SETTINGS", key);
-			GD.Print($"Successfully loaded config, with value {setting}, {key}, with Error status: {error}.");
+			if (config.HasSectionKey("SETTINGS", key))
+			{
+				setting = (T) config.GetValue("SETTINGS", key);
+				GD.Print($"Successfully loaded config, with value {setting}, {key}, with Error status: {error}.");
+			}
+			else
+				GD.PrintErr($"Error loading game config, could not section \"SETTINGS\"/ or value: {setting}");
 		}
 		else
 			GD.PrintErr($"Error loading game config: {error}");

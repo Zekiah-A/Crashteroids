@@ -22,9 +22,9 @@ public class Match : Reference
 		GameManager.TimerNode.Connect("timeout", this, nameof(OnTimerTimeout));
 		GameManager.EndGameTimer.Connect("timeout", this, nameof(EndGame));
 		GameManager.TimerNode.Start();
-		GameManager.TurnUI.Text = TitleUsername();
+		GameManager.TurnUi.Text = TitleUsername();
 	}
-	
+
 	public virtual void SwitchTurn(int finishedTurn)
 	{
 		///<summary> Stop current player from moving </summary>
@@ -36,7 +36,7 @@ public class Match : Reference
 		///<summary>Re-set the new current player to be able to move</summary>
 		GameManager.Players[CurrentTurn].IsCurrent = true;
 		///<note> Add 1 to current turn in order to not confuse players. </note>
-		GameManager.TurnUI.Text = TitleUsername();
+		GameManager.TurnUi.Text = TitleUsername();
 	}
 
 	public virtual void Crash(Player playerHit, Player sender) {}
