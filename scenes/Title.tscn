@@ -56,7 +56,7 @@ shader_param/speed = 3.0
 shader = ExtResource( 26 )
 shader_param/speed = -3.0
 
-[sub_resource type="ShaderMaterial" id=62]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 45 )
 shader_param/alpha = 1.0
 
@@ -324,7 +324,7 @@ scale = Vector2( 4, 4 )
 script = ExtResource( 42 )
 
 [node name="P1_Display" type="Sprite" parent="MainPanel/TitleRocket"]
-material = SubResource( 62 )
+material = SubResource( 4 )
 position = Vector2( -0.249992, -1.90735e-06 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 43 )
