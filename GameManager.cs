@@ -8,15 +8,15 @@ public class GameManager : Node2D
 	public static Tween CameraTween;
 	public static Camera2D GameCamera;
 	public static Match GameMatch;
-	public static Label TurnUI;
+	public static Label TurnUi;
 	public static Godot.Timer TimerNode;
 	public static Godot.Timer EndGameTimer;
 	public static List<Player> Players = new List<Player>();
 
-	///<summary> Called when the scene is created (match started). </sumamry>
+	///<summary> Called when the scene is created (match started). </summary>
 	public override void _Ready()
 	{
-		TurnUI = GetNode("PlayerTurn").GetNode<Label>("Label");
+		TurnUi = GetNode("PlayerTurn").GetNode<Label>("Label");
 		TimerNode = GetNode<Godot.Timer>("Timer");
 		EndGameTimer = GetNode<Godot.Timer>("EndGameTimer");
 		GameCamera = GetNode<Camera2D>("Camera2D");
@@ -33,7 +33,7 @@ public class GameManager : Node2D
 			GameMatch = new TwoPlayerMatch();
 		//}
 
-		
+
 	}
 
 	private void QuitPressed() => GameMatch.EndGame();
