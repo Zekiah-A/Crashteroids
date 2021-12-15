@@ -113,9 +113,9 @@ public static class GameData
 		}
 		if (error is Error.Ok)
 		{
-			config.SetValue("SETTINGS", "SETTING NAME SHOULD GO HERE", setting); //Section, Key, Value
-			config.Save("user://game_config_crashteroids.cfg"); // vvvv SEE LINE 133
-			GD.Print($"Successfully saved config, with value {{SETTINGS}}, {{Somehow setting name goes here}}, with Error status: {error}.");
+			config.SetValue("SETTINGS", key, setting); //Section, Key, Value
+			config.Save("user://game_config_crashteroids.cfg");
+			GD.Print($"Successfully saved config, with value {setting}, {key}, with Error status: {error}.");
 		}
 		else
 			GD.PrintErr($"Error loading game config: {error}");
@@ -130,9 +130,8 @@ public static class GameData
 			GD.PushWarning($"Could not find game config {error}.");
 		if (error is Error.Ok)
 		{
-			//GD.Print(config.GetValue(nameof(setting).ToUpper(), nameof(setting))); //THE NAME WILL ALWAYS BE "SETTING, since that is what it's caled in this func", THAT is what causes the error
-			setting = (T)config.GetValue("SETTINGS", "SETTING NAME SHOULD GO HERE");
-			GD.Print($"Sucessfully loaded config, with value {{SETTINGS}}, {{Somehow setting name goes here}}, with Error status: {error}.");
+			setting = (T)config.GetValue("SETTINGS", key);
+			GD.Print($"Successfully loaded config, with value {setting}, {key}, with Error status: {error}.");
 		}
 		else
 			GD.PrintErr($"Error loading game config: {error}");
