@@ -1,4 +1,5 @@
 android/
+.idea/
 .mono/
 .godot/
 .vscode/

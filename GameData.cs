@@ -9,8 +9,8 @@ public static class GameData
 	//skin should be chosen at start match time, it should be able to be bought in the shop.
 
 	//Settings Data (saved to config)
-	private static bool music; //Inward facing, actively saved and loaded, sace and load function only acesses this.
-	public static bool Music //Outwardly facing, other classes acess and change the private variable through this.
+	private static bool music; //Inward facing, actively saved and loaded, save and load function only acesses this.
+	public static bool Music //Outwardly facing, other classes access and change the private variable through this.
 	{
 		get
 		{
