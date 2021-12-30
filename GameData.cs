@@ -1,10 +1,15 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
 public static class GameData
 {
+	public delegate void ConfigEventHandler(object sender, ConfigChangeEventArgs eventArgs);
+	public static event ConfigEventHandler ConfigSaveEvent;
+	public static event ConfigEventHandler ConfigLoadEvent;
+
 	//Runtime Game Data (not saved to config)
 	//put things like bounces for match here
 	//skin should be chosen at start match time, it should be able to be bought in the shop.
@@ -123,6 +128,23 @@ public static class GameData
 		}
 	}
 
+	private static List<Enum> boughtTools;
+
+	public static List<Enum> BoughtTools
+	{
+		get
+		{
+			Load(ref boughtTools, nameof(boughtTools));
+			return boughtTools;
+		}
+		set
+		{
+			boughtTools = value;
+			Save(ref boughtTools, nameof(boughtTools));
+		}
+	}
+
+
 	//Called when any of the settings are changed, should never be called by functions outside of this class.
 	private static void Save<T>(ref T setting, string key)
 	{
@@ -137,7 +159,7 @@ public static class GameData
 		{
 			config.SetValue("SETTINGS", key, setting); //Section, Key, Value
 			config.Save("user://game_config_crashteroids.cfg");
-			GD.Print($"Successfully saved config, with value {setting}, {key}, with Error status: {error}.");
+			ConfigSaveEvent?.Invoke(null, new ConfigChangeEventArgs(key, setting));
 		}
 		else
 			GD.PrintErr($"Error loading game config: {error}");
@@ -155,12 +177,26 @@ public static class GameData
 			if (config.HasSectionKey("SETTINGS", key))
 			{
 				setting = (T) config.GetValue("SETTINGS", key);
-				GD.Print($"Successfully loaded config, with value {setting}, {key}, with Error status: {error}.");
+				ConfigLoadEvent?.Invoke(null, new ConfigChangeEventArgs(key, setting));
 			}
 			else
-				GD.PrintErr($"Error loading game config, could not section \"SETTINGS\"/ or value: {setting}");
+				GD.PrintErr($"Error loading game config, could not get section \"SETTINGS\"/ or value: {setting}");
 		}
 		else
 			GD.PrintErr($"Error loading game config: {error}");
 	}
+}
+
+//TODO: Move to it's own location
+// Sending out the name and key is more efficient than reflection.
+public class ConfigChangeEventArgs
+{
+	public ConfigChangeEventArgs(string name, object config)
+	{
+		ConfigName = name;
+		Config = config;
+	}
+	
+	public string ConfigName { get; }
+	public object Config { get; }
 }
