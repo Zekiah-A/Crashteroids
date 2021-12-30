@@ -16,11 +16,23 @@ public class ShopUiManager : Panel
 			{ ToolTypes.Ruler, GetNode("MainPanel").GetNode("ToolsGrid").GetNode("3") as Tool },
 			{ ToolTypes.Laser, GetNode("MainPanel").GetNode("ToolsGrid").GetNode("4") as Tool }
 		};
+		
+		//TODO: Initialise money, initialise all vars with default values when creating the config so no errors occur due to fields not existing
 	}
 
 	private void UpgradePressed(int selected)
 	{
-		(tools[(ToolTypes)selected] as Tool).Buy();
+		if (!tools[(ToolTypes) selected].Bought)
+		{
+			if (GameData.Money > tools[(ToolTypes) selected].Price)
+			{
+				tools[(ToolTypes) selected].Buy();
+				GameData.Money -= tools[(ToolTypes) selected].Price;
+				
+				GD.Print($"Item {tools[(ToolTypes) selected].Name} bought. Oldmoney: {tools[(ToolTypes) selected].Price + GameData.Money}, newmoney: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}");
+			}
+		}
+		
 		//TODO: Save bought to config & Deduct money.
 	}
 }
