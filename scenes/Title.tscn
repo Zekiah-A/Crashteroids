@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://shaders/radial_blur.shader" type="Shader" id=44]
 [ext_resource path="res://shaders/alpha.shader" type="Shader" id=45]
 [ext_resource path="res://MoneyLabel.cs" type="Script" id=46]
+[ext_resource path="res://DeveloperConsole.cs" type="Script" id=47]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -226,6 +227,8 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="StyleBoxEmpty" id=47]
 
+[sub_resource type="StyleBoxEmpty" id=62]
+
 [sub_resource type="DynamicFont" id=48]
 size = 24
 outline_size = 1
@@ -386,8 +389,13 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="MainPanel/Rocket Editor Button"]
-anchor_right = 1.00001
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+margin_left = -72.0002
+margin_top = -55.9998
+margin_right = 72.0002
 custom_fonts/font = SubResource( 11 )
 text = "Upgrades Shop"
 align = 1
@@ -395,7 +403,7 @@ valign = 1
 autowrap = true
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Help" type="Button" parent="MainPanel"]
@@ -412,15 +420,20 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="MainPanel/Help"]
-anchor_top = -3.81471e-06
-anchor_right = 1.0
-anchor_bottom = 0.999996
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -27.9999
+margin_right = 80.0
+margin_bottom = 27.9999
 custom_fonts/font = SubResource( 11 )
 text = "Help"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Play Button" type="Button" parent="MainPanel"]
@@ -438,9 +451,9 @@ __meta__ = {
 
 [node name="Text" type="Label" parent="MainPanel/Play Button"]
 material = SubResource( 12 )
-anchor_left = -0.00909034
+anchor_left = 5.59199e-07
 anchor_top = 2.28881e-06
-anchor_right = 0.99091
+anchor_right = 1.0
 anchor_bottom = 1.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 16 )
@@ -452,23 +465,28 @@ __meta__ = {
 }
 
 [node name="Outline" type="Label" parent="MainPanel/Play Button"]
-anchor_left = -0.00909034
-anchor_top = 2.28881e-06
-anchor_right = 0.99091
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -40.0001
+margin_right = 110.0
+margin_bottom = 40.0001
 custom_colors/font_color = Color( 0, 0, 0, 0 )
 custom_fonts/font = ExtResource( 12 )
 text = "Play"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Settings" type="Button" parent="MainPanel"]
-anchor_top = 0.893333
-anchor_right = 0.0625
+anchor_top = 1.0
 anchor_bottom = 1.0
+margin_top = -64.0002
+margin_right = 64.0
 rect_pivot_offset = Vector2( 0, 100 )
 custom_styles/hover = SubResource( 13 )
 custom_styles/pressed = SubResource( 14 )
@@ -477,7 +495,7 @@ custom_styles/normal = SubResource( 16 )
 icon = ExtResource( 23 )
 expand_icon = true
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="MainPanel"]
@@ -524,6 +542,27 @@ clip_text = true
 script = ExtResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": true
+}
+
+[node name="VersionIndicator" type="Button" parent="MainPanel"]
+margin_right = 51.0
+margin_bottom = 24.0
+text = "v 0.01"
+flat = true
+script = ExtResource( 47 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Console" type="LineEdit" parent="MainPanel/VersionIndicator"]
+visible = false
+margin_left = 8.0
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 64.0
+placeholder_text = "Developer Console... "
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="SettingsPanel" type="Panel" parent="."]
@@ -1415,6 +1454,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 152, 72.0003 )
+custom_styles/panel = SubResource( 62 )
 script = ExtResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1422,10 +1462,14 @@ __meta__ = {
 optionsNames = PoolStringArray( "Retro", "Vector", "Classic" )
 
 [node name="OptionName" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-margin_left = 49.0
-margin_top = 200.0
-margin_right = 208.0
-margin_bottom = 240.0
+anchor_left = 0.191
+anchor_top = 1.058
+anchor_right = 0.809
+anchor_bottom = 1.25
+margin_left = 0.103996
+margin_top = -3.13579
+margin_right = 0.895996
+margin_bottom = 0.000274658
 custom_fonts/font = SubResource( 48 )
 text = "null"
 align = 1
@@ -1436,10 +1480,14 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-margin_left = 5.0
-margin_top = 200.0
-margin_right = 49.0
-margin_bottom = 240.0
+anchor_left = 0.018
+anchor_top = 1.042
+anchor_right = 0.191
+anchor_bottom = 1.25
+margin_left = 0.392
+margin_top = -0.0639648
+margin_right = 0.103996
+margin_bottom = 9.15527e-05
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
@@ -1449,10 +1497,14 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-margin_left = 209.0
-margin_top = 200.0
-margin_right = 248.0
-margin_bottom = 240.0
+anchor_left = 0.816
+anchor_top = 1.042
+anchor_right = 0.969
+anchor_bottom = 1.25
+margin_left = 0.103989
+margin_top = -0.0637817
+margin_right = -0.0640106
+margin_bottom = 0.000274658
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
@@ -1462,8 +1514,14 @@ __meta__ = {
 }
 
 [node name="OptionsPanel" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -95.9999
+margin_right = 128.0
+margin_bottom = 95.9999
 rect_clip_content = true
 custom_styles/panel = SubResource( 49 )
 __meta__ = {
@@ -1474,7 +1532,7 @@ __meta__ = {
 material = SubResource( 50 )
 anchor_top = -9.53673e-07
 anchor_right = 3.0
-anchor_bottom = 0.999999
+anchor_bottom = 1.0
 texture = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1488,6 +1546,9 @@ custom_styles/pressed = SubResource( 52 )
 custom_styles/focus = SubResource( 53 )
 custom_styles/disabled = SubResource( 54 )
 custom_styles/normal = SubResource( 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="RightPanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.65625
@@ -1570,9 +1631,8 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="ShopPanel"]
 
 [node name="MainPanel" type="Panel" parent="ShopPanel"]
-anchor_left = 0.000976562
 anchor_top = 0.52
-anchor_right = 1.0
+anchor_right = 0.999023
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 57 )
 __meta__ = {
@@ -1580,11 +1640,14 @@ __meta__ = {
 }
 
 [node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
-anchor_right = 1.0
+anchor_left = 0.015
+anchor_top = 0.056
+anchor_right = 0.984
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 8.0
-margin_bottom = -3.05176e-05
+margin_left = -0.345
+margin_top = -8.128
+margin_right = 0.367981
+margin_bottom = -8.0
 size_flags_horizontal = 2
 custom_constants/vseparation = 16
 custom_constants/hseparation = 16

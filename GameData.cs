@@ -128,9 +128,9 @@ public static class GameData
 		}
 	}
 
-	private static List<Enum> boughtTools;
+	private static List<string> boughtTools;
 
-	public static List<Enum> BoughtTools
+	public static List<string> BoughtTools
 	{
 		get
 		{

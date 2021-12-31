@@ -9,7 +9,7 @@ public class ShopUiManager : Panel
 
 	public override void _Ready()
 	{
-		tools = new Dictionary<ToolTypes, Tool>()
+		tools = new Dictionary<ToolTypes, Tool>
 		{
 			{ ToolTypes.Pen, GetNode("MainPanel").GetNode("ToolsGrid").GetNode("1") as Tool },
 			{ ToolTypes.Potractor, GetNode("MainPanel").GetNode("ToolsGrid").GetNode("2") as Tool },
@@ -28,8 +28,12 @@ public class ShopUiManager : Panel
 			{
 				tools[(ToolTypes) selected].Buy();
 				GameData.Money -= tools[(ToolTypes) selected].Price;
+				GameData.BoughtTools = new List<string>()
+				{
+					((ToolTypes) selected).ToString()
+				};
 				
-				GD.Print($"Item {tools[(ToolTypes) selected].Name} bought. Oldmoney: {tools[(ToolTypes) selected].Price + GameData.Money}, newmoney: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}");
+				GD.Print($"Item {tools[(ToolTypes) selected].Name} bought. Old balance: {tools[(ToolTypes) selected].Price + GameData.Money}, current balance: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}");
 			}
 		}
 		
