@@ -28,6 +28,7 @@ public class ShopUiManager : Panel
 			{
 				tools[(ToolTypes) selected].Buy();
 				GameData.Money -= tools[(ToolTypes) selected].Price;
+
 				GameData.BoughtTools = new List<string>()
 				{
 					((ToolTypes) selected).ToString()

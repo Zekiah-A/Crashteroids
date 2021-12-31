@@ -1,12 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://resources/rockets/rocket_retro_1.png" type="Texture" id=1]
-[ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=2]
-[ext_resource path="res://styles/back_button_style.tres" type="StyleBox" id=3]
 [ext_resource path="res://fonts/large_title_font_outline.tres" type="DynamicFont" id=4]
-[ext_resource path="res://GameManager.cs" type="Script" id=5]
 [ext_resource path="res://resources/image/square.png" type="Texture" id=6]
-[ext_resource path="res://scenes/PlayerTurn.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Player.cs" type="Script" id=8]
 [ext_resource path="res://scenes/Explosion.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/GameOver.tscn" type="PackedScene" id=10]
@@ -41,8 +37,7 @@ extents = Vector2( 512, 8 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 8, 300 )
 
-[node name="Game" type="Node2D"]
-script = ExtResource( 5 )
+[node name="Node" type="Node"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -50,11 +45,11 @@ script = ExtResource( 5 )
 motion_scale = Vector2( 0.5, 0.5 )
 
 [node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 504, 280 )
-scale = Vector2( 0.533333, 0.555556 )
+position = Vector2( -448, -248 )
 texture = ExtResource( 15 )
+centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 3840, 2160 )
+region_rect = Rect2( 0, 0, 1920, 1080 )
 
 [node name="Object" type="Sprite" parent="." groups=["Map"]]
 position = Vector2( 536, 288 )
@@ -263,49 +258,6 @@ texture = ExtResource( 12 )
 wait_time = 0.5
 one_shot = true
 
-[node name="PlayerTurn" parent="." instance=ExtResource( 7 )]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-margin_left = 256.0
-margin_right = 768.0
-margin_bottom = 64.0
-
-[node name="Label2" parent="PlayerTurn" index="1"]
-anchor_top = 1.0625
-anchor_bottom = 1.28125
-
-[node name="Back" type="Control" parent="."]
-visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Back" type="Button" parent="Back"]
-margin_right = 80.0
-margin_bottom = 72.0
-custom_fonts/font = ExtResource( 4 )
-custom_styles/hover = ExtResource( 2 )
-custom_styles/pressed = ExtResource( 3 )
-custom_styles/normal = ExtResource( 3 )
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LaunchTools" parent="." instance=ExtResource( 14 )]
-visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
-
-[node name="GameOver" parent="." instance=ExtResource( 10 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1024.0
-margin_bottom = 600.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 504, 300 )
 offset = Vector2( 7, 0 )
@@ -314,12 +266,60 @@ smoothing_enabled = true
 
 [node name="CameraTween" type="Tween" parent="."]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerTurn" type="VBoxContainer" parent="CanvasLayer/Interface"]
+anchor_right = 1.0
+margin_bottom = 86.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CanvasLayer/Interface/PlayerTurn"]
+margin_right = 1024.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 4 )
+text = "Player 1's turn."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Label" parent="CanvasLayer/Interface/PlayerTurn"]
+margin_top = 72.0
+margin_right = 1024.0
+margin_bottom = 86.0
+text = "| Time taken: 000 | Current score: 00 |"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="GameOver" parent="CanvasLayer/Interface" instance=ExtResource( 10 )]
+visible = false
+
+[node name="LaunchTools" parent="CanvasLayer/Interface" instance=ExtResource( 14 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = -600.0
+margin_right = 512.0
+
 [connection signal="body_entered" from="P1/P1_Display/InvalidArea" to="P1" method="InvalidAreaEntered"]
 [connection signal="body_exited" from="P1/P1_Display/InvalidArea" to="P1" method="InvalidAreaExited"]
 [connection signal="body_entered" from="P2/P1_Display/InvalidArea" to="P2" method="InvalidAreaEntered"]
 [connection signal="body_exited" from="P2/P1_Display/InvalidArea" to="P2" method="InvalidAreaExited"]
-[connection signal="pressed" from="Back/Back" to="." method="_on_Back_pressed"]
 
-[editable path="PlayerTurn"]
-[editable path="LaunchTools"]
-[editable path="GameOver"]
+[editable path="CanvasLayer/Interface/GameOver"]
+[editable path="CanvasLayer/Interface/LaunchTools"]
