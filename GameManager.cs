@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 
-public class GameManager : Node2D
+public class GameManager : Node
 {
 	public static Tween CameraTween;
 	public static Camera2D GameCamera;
@@ -16,9 +16,9 @@ public class GameManager : Node2D
 	///<summary> Called when the scene is created (match started). </summary>
 	public override void _Ready()
 	{
-		TurnUi = GetNode("PlayerTurn").GetNode<Label>("Label");
+		TurnUi = GetNode("CanvasLayer").GetNode("Interface").GetNode("PlayerTurn").GetNode<Label>("Title");
 		TimerNode = GetNode<Godot.Timer>("Timer");
-		EndGameTimer = GetNode<Godot.Timer>("EndGameTimer");
+		EndGameTimer = GetNode<Godot.Timer>("EndGameTimer"); //TODO: This is wrong!
 		GameCamera = GetNode<Camera2D>("Camera2D");
 		CameraTween = GetNode<Tween>("CameraTween");
 		Players.Clear();

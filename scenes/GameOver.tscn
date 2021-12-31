@@ -60,6 +60,7 @@ border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 512, 300 )
+mouse_filter = 2
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -93,8 +94,8 @@ __meta__ = {
 anchor_top = 0.128125
 anchor_right = 1.0
 anchor_bottom = 0.3
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = SubResource( 2 )
 text = "Player 1 won!"
 align = 1
 clip_text = true
@@ -120,10 +121,10 @@ anchor_left = 0.125
 anchor_top = 0.6
 anchor_right = 0.875
 anchor_bottom = 0.75
+custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 6 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 6 )
-custom_fonts/font = ExtResource( 2 )
 text = "Play Again"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -134,10 +135,10 @@ anchor_left = 0.125
 anchor_top = 0.799999
 anchor_right = 0.875
 anchor_bottom = 0.949999
+custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 7 )
-custom_fonts/font = ExtResource( 2 )
 text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -179,10 +180,10 @@ anchor_left = 0.125
 anchor_top = 0.67857
 anchor_right = 0.875
 anchor_bottom = 0.892856
+custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = ExtResource( 7 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 7 )
-custom_fonts/font = ExtResource( 2 )
 text = "Done"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -192,8 +193,8 @@ __meta__ = {
 anchor_top = -0.142857
 anchor_right = 1.0
 anchor_bottom = 0.67857
-custom_fonts/normal_font = SubResource( 6 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
+custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
 bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Awards:[/center][/color][/wave]
 "

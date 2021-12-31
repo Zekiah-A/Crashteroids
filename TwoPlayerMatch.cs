@@ -13,7 +13,7 @@ public class TwoPlayerMatch : Match
 			GameManager.GameCamera,
 			"position",
 			GameManager.GameCamera.Position,
-			(playerHit.Position + sender.Position) / 2, //TODO: This may be pointless 
+			(playerHit.Position + sender.Position) / 2,
 			0.5f,
 			Tween.TransitionType.Cubic,
 			Tween.EaseType.Out
@@ -35,7 +35,6 @@ public class TwoPlayerMatch : Match
 
 	public override void EndGame()
 	{
-		//TODO: Add rewards here
 		Engine.TimeScale = 1;
 
 		GameManager.CameraTween.InterpolateProperty(

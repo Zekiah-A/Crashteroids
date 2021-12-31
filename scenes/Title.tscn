@@ -2313,7 +2313,6 @@ __meta__ = {
 }
 
 [node name="HelpPanel" type="Panel" parent="."]
-visible = false
 material = SubResource( 59 )
 anchor_left = 0.375
 anchor_top = 0.2
@@ -2441,6 +2440,8 @@ text = "Credits:
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="pressed" from="MainPanel/Rocket Editor Button" to="." method="PanelPressed" binds= [ 4 ]]
 [connection signal="pressed" from="MainPanel/Help" to="." method="PanelPressed" binds= [ 5 ]]
