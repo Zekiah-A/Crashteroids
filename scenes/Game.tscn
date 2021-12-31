@@ -44,14 +44,19 @@ extents = Vector2( 8, 300 )
 [node name="Game" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( 512, 300 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 504, 280 )
 scale = Vector2( 0.533333, 0.555556 )
 texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 3840, 2160 )
 
-[node name="Object" type="Sprite" parent="." groups=[
-"Map",
-]]
+[node name="Object" type="Sprite" parent="." groups=["Map"]]
 position = Vector2( 536, 288 )
 rotation = 0.418954
 scale = Vector2( 100, 100 )
@@ -63,9 +68,7 @@ texture = ExtResource( 6 )
 scale = Vector2( 0.031, 0.031 )
 shape = SubResource( 1 )
 
-[node name="Object4" type="Sprite" parent="." groups=[
-"Map",
-]]
+[node name="Object4" type="Sprite" parent="." groups=["Map"]]
 position = Vector2( 856, 80 )
 rotation = 0.418954
 scale = Vector2( 100, 100 )
@@ -77,9 +80,7 @@ texture = ExtResource( 6 )
 scale = Vector2( 0.031, 0.031 )
 shape = SubResource( 1 )
 
-[node name="Object2" type="Sprite" parent="." groups=[
-"Map",
-]]
+[node name="Object2" type="Sprite" parent="." groups=["Map"]]
 position = Vector2( 264, 400 )
 rotation = 1.87573
 scale = Vector2( 100, 100 )
@@ -91,9 +92,7 @@ texture = ExtResource( 6 )
 scale = Vector2( 0.031, 0.031 )
 shape = SubResource( 1 )
 
-[node name="Object3" type="Sprite" parent="." groups=[
-"Map",
-]]
+[node name="Object3" type="Sprite" parent="." groups=["Map"]]
 position = Vector2( 728, 472 )
 rotation = 1.309
 scale = Vector2( 100, 100 )
@@ -105,9 +104,7 @@ texture = ExtResource( 6 )
 scale = Vector2( 0.031, 0.031 )
 shape = SubResource( 1 )
 
-[node name="Polygon2D" type="Polygon2D" parent="." groups=[
-"Map",
-]]
+[node name="Polygon2D" type="Polygon2D" parent="." groups=["Map"]]
 position = Vector2( -72, -8 )
 polygon = PoolVector2Array( 408, 208, 432, 112, 448, 168, 504, 160, 488, 248, 432, 248, 384, 264, 352, 232 )
 
@@ -124,9 +121,7 @@ polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 72
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/Polygon2D/StaticBody2D"]
 polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
 
-[node name="Polygon2D2" type="Polygon2D" parent="." groups=[
-"Map",
-]]
+[node name="Polygon2D2" type="Polygon2D" parent="." groups=["Map"]]
 position = Vector2( 272, 58 )
 polygon = PoolVector2Array( 376, 142, 432, 110, 496, 118, 464, 182, 488, 246, 440, 222, 416, 238, 384, 262, 352, 230 )
 
@@ -143,9 +138,7 @@ polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 72
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/Polygon2D/StaticBody2D"]
 polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
 
-[node name="P1" type="KinematicBody2D" parent="." groups=[
-"Player",
-]]
+[node name="P1" type="KinematicBody2D" parent="." groups=["Player"]]
 position = Vector2( 96, 288 )
 rotation = 1.57079
 scale = Vector2( 4, 4 )
@@ -184,9 +177,7 @@ width_curve = SubResource( 4 )
 gradient = ExtResource( 16 )
 begin_cap_mode = 2
 
-[node name="P2" type="KinematicBody2D" parent="." groups=[
-"Player",
-]]
+[node name="P2" type="KinematicBody2D" parent="." groups=["Player"]]
 position = Vector2( 928, 288 )
 rotation = 1.57079
 scale = Vector2( 4, 4 )
@@ -227,9 +218,7 @@ width_curve = SubResource( 5 )
 gradient = ExtResource( 16 )
 begin_cap_mode = 2
 
-[node name="Walls" type="StaticBody2D" parent="." groups=[
-"Map",
-]]
+[node name="Walls" type="StaticBody2D" parent="." groups=["Map"]]
 position = Vector2( 512, 320 )
 
 [node name="Top" type="CollisionShape2D" parent="Walls"]
@@ -297,10 +286,10 @@ __meta__ = {
 [node name="Back" type="Button" parent="Back"]
 margin_right = 80.0
 margin_bottom = 72.0
+custom_fonts/font = ExtResource( 4 )
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/normal = ExtResource( 3 )
-custom_fonts/font = ExtResource( 4 )
 text = "<"
 __meta__ = {
 "_edit_use_anchors_": false
