@@ -48,9 +48,9 @@ public class Match : Reference
 	}
 	private string TitleUsername()
 	{
-		//if (!string.IsNullOrEmpty(GameConfig.Instance.Username))
-		//	return $"{GameConfig.Instance.Username[0].ToString().ToUpper()}{GameConfig.Instance.Username.Remove(0, 1)} {CurrentTurn + 1}'s turn.";
-		//else
+		if (!string.IsNullOrEmpty(GameData.Username))
+			return $"{GameData.Username[0].ToString().ToUpper()}{GameData.Username.Remove(0, 1)} {CurrentTurn + 1}'s turn.";
+		else
 			return $"Player {CurrentTurn + 1}'s turn.";
 
 	}

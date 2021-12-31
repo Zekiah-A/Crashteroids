@@ -76,9 +76,9 @@ public class Player : KinematicBody2D
 	}
 
 	///<summary> Handle inputs on PhysicsProcess, (could also be handled on process?) </summary>
-	public override void _PhysicsProcess(float _delta)
+	public override void _PhysicsProcess(float delta)
 	{
-		if (IsCurrent && !IsDead)
+		if (IsCurrent && !IsDead) //TODO: Is always false for some reason, bug in the match code?
 		{
 			if (Input.IsKeyPressed((int) KeyList.Space) && debounce == false && !invalid) //or GUI launch button pressed (routed through Match.cs, so that the correct instance can be found)
 			{
