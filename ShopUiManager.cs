@@ -18,6 +18,24 @@ public class ShopUiManager : Panel
 		};
 		
 		//TODO: Initialise money, initialise all vars with default values when creating the config so no errors occur due to fields not existing
+		
+		//If they already have bought it, display as bought.
+		foreach (var tool in tools)
+		{
+			GD.Print(tool.Key.ToString().ToLower());
+			try
+			{
+				GD.Print(GameData.BoughtTools.ToString());
+				var toolname = tools[ToolTypes.Pen];
+				GD.Print(toolname);
+			}
+			catch (Exception e)
+			{
+				GD.Print(e);
+			}
+			//if (GameData.BoughtTools.Contains(tool.Key.ToString().ToLower()))
+				tool.Value.Buy();
+		}
 	}
 
 	private void UpgradePressed(int selected)
@@ -28,12 +46,8 @@ public class ShopUiManager : Panel
 			{
 				tools[(ToolTypes) selected].Buy();
 				GameData.Money -= tools[(ToolTypes) selected].Price;
+				GameData.BoughtTools.Add(((ToolTypes) selected).ToString());
 
-				GameData.BoughtTools = new List<string>()
-				{
-					((ToolTypes) selected).ToString()
-				};
-				
 				GD.Print($"Item {tools[(ToolTypes) selected].Name} bought. Old balance: {tools[(ToolTypes) selected].Price + GameData.Money}, current balance: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}");
 			}
 		}

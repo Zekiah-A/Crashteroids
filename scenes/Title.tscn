@@ -288,6 +288,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
 __meta__ = {
+"_edit_horizontal_guides_": [ 128.0 ],
 "_edit_use_anchors_": false
 }
 
@@ -1023,8 +1024,8 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="GamemodePanel/Left Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Local 2 Player:"
 align = 1
@@ -1036,10 +1037,14 @@ __meta__ = {
 [node name="Rect Tween" type="Tween" parent="GamemodePanel/Left Panel"]
 
 [node name="TextureButton" type="TextureButton" parent="GamemodePanel/Left Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 22 )
 expand = true
@@ -1058,8 +1063,8 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="GamemodePanel/Centre Left Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Player vs AI:"
 align = 1
@@ -1069,10 +1074,14 @@ __meta__ = {
 }
 
 [node name="TextureButton2" type="TextureButton" parent="GamemodePanel/Centre Left Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 disabled = true
 texture_normal = ExtResource( 19 )
 expand = true
@@ -1091,8 +1100,8 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="GamemodePanel/Centre Right Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Multiplayer:"
 align = 1
@@ -1102,10 +1111,14 @@ __meta__ = {
 }
 
 [node name="TextureButton3" type="TextureButton" parent="GamemodePanel/Centre Right Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 disabled = true
 texture_normal = ExtResource( 19 )
 expand = true
@@ -1124,8 +1137,8 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="GamemodePanel/Right Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Level designer:"
 align = 1
@@ -1135,10 +1148,14 @@ __meta__ = {
 }
 
 [node name="TextureButton4" type="TextureButton" parent="GamemodePanel/Right Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 disabled = true
 texture_normal = ExtResource( 19 )
 expand = true
@@ -1639,13 +1656,13 @@ __meta__ = {
 }
 
 [node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
-anchor_left = 0.015
-anchor_top = 0.056
-anchor_right = 0.984
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -0.345
-margin_top = -8.128
-margin_right = 0.367981
+margin_left = -496.5
+margin_top = -280.0
+margin_right = 495.5
 margin_bottom = -8.0
 size_flags_horizontal = 2
 custom_constants/vseparation = 16
@@ -2259,12 +2276,14 @@ __meta__ = {
 }
 
 [node name="Picker" parent="ShopPanel" instance=ExtResource( 20 )]
-anchor_left = 0.25
-anchor_top = 0.226667
-anchor_right = 0.75
-anchor_bottom = 0.506667
-margin_right = 0.0
-margin_bottom = 0.0
+anchor_left = 0.5
+anchor_top = 0.367
+anchor_right = 0.5
+anchor_bottom = 0.367
+margin_left = -256.0
+margin_top = -84.2
+margin_right = 256.0
+margin_bottom = 83.8
 
 [node name="Settings Title" type="Label" parent="ShopPanel"]
 anchor_left = 0.5
@@ -2313,6 +2332,7 @@ __meta__ = {
 }
 
 [node name="HelpPanel" type="Panel" parent="."]
+visible = false
 material = SubResource( 59 )
 anchor_left = 0.375
 anchor_top = 0.2
