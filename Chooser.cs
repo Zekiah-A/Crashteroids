@@ -9,13 +9,16 @@ public class Chooser : Node
 	[Export] private int optionsCount = 3;
 	[Export] private float scrollSpeed = 0.075f;
 	[Export] private string[] optionsNames;
+	private bool dragInitiated = false;
+	private Panel optionsPanel;
 	private ShaderMaterial imageMaterial;
 	private Label optionName;
 	private Vector2 startPos = Vector2.Zero;
 
 	public override void _Ready()
 	{
-		imageMaterial = (ShaderMaterial) GetNode("OptionsPanel").GetNode<CanvasItem>("TextureRect").Material;
+		optionsPanel = GetNode("OptionsPanel").GetNode<Panel>("TextureRect");
+		imageMaterial = (ShaderMaterial) optionsPanel.Material;
 		optionName = GetNode<Label>("OptionName");
 	}
 
@@ -46,13 +49,29 @@ public class Chooser : Node
 		imageMaterial.SetShaderParam("scroll", Mathf.Lerp((float) imageMaterial.GetShaderParam("scroll"), scroll, scrollSpeed));
 		optionName.Text = $"{current + 1}. {optionsNames[current]}";
 		//GD.Print(imageMaterial.GetShaderParam("scroll"));
+
+		if (dragInitiated && Input.IsMouseButtonPressed(1)) //TODO: Touchscreen support as well.
+			WhileDragging();
 	}
 
-	private void DragStart() => startPos = GetViewport().GetMousePosition();
+	private void DragStart()
+	{
+		startPos = GetViewport().GetMousePosition();
+		dragInitiated = true;
+	}
+
+	private void WhileDragging()
+	{
+		Vector2 endPos = GetViewport().GetMousePosition();
+		float dragX = startPos.x - endPos.x;
+		
+		imageMaterial.SetShaderParam("scroll", Mathf.Lerp((float) imageMaterial.GetShaderParam("scroll"), dragX / optionsPanel.RectSize.x, scrollSpeed));
+	}
 
 	private void DragEnd()
 	{
-		Vector2 endPos = GetViewport().GetMousePosition();
+		dragInitiated = false;
+		Vector2 endPos = GetViewport().GetMousePosition(); //TODO: Not sure how this even works on mobile, but okay.
 		float dragX = endPos.x - startPos.x;
 
 		///<summary> Less than 50, do nothing at all. More than 50, scroll by one. </summary>
