@@ -10,14 +10,14 @@ public class Chooser : Node
 	[Export] private float scrollSpeed = 0.075f;
 	[Export] private string[] optionsNames;
 	private bool dragInitiated = false;
-	private Panel optionsPanel;
+	private Control optionsPanel;
 	private ShaderMaterial imageMaterial;
 	private Label optionName;
 	private Vector2 startPos = Vector2.Zero;
 
 	public override void _Ready()
 	{
-		optionsPanel = GetNode("OptionsPanel").GetNode<Panel>("TextureRect");
+		optionsPanel = GetNode("OptionsPanel").GetNode<Control>("TextureRect");
 		imageMaterial = (ShaderMaterial) optionsPanel.Material;
 		optionName = GetNode<Label>("OptionName");
 	}
