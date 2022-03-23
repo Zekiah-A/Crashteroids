@@ -240,7 +240,7 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="ShaderMaterial" id=50]
 shader = ExtResource( 41 )
-shader_param/scroll = 0.0
+shader_param/scroll = 0.665
 
 [sub_resource type="StyleBoxEmpty" id=51]
 

@@ -17,7 +17,7 @@ public class Chooser : Node
 
 	public override void _Ready()
 	{
-		optionsPanel = GetNode("OptionsPanel").GetNode<Control>("TextureRect");
+		optionsPanel = GetNode("OptionsPanel").GetNode<Control >("TextureRect");
 		imageMaterial = (ShaderMaterial) optionsPanel.Material;
 		optionName = GetNode<Label>("OptionName");
 	}
@@ -41,7 +41,13 @@ public class Chooser : Node
 		}
 	}
 
-	public override void _PhysicsProcess(float delta) => UpdateTexture(); //could also just be on process, not that taxing?
+	public override void _PhysicsProcess(float delta)
+	{
+		UpdateTexture(); //could also just be on process, not that taxing?
+		if (dragInitiated && Input.IsMouseButtonPressed(1)) //TODO: Touchscreen support as well. //moved here
+			WhileDragging();
+
+	}
 
 	private void UpdateTexture()
 	{
@@ -50,8 +56,8 @@ public class Chooser : Node
 		optionName.Text = $"{current + 1}. {optionsNames[current]}";
 		//GD.Print(imageMaterial.GetShaderParam("scroll"));
 
-		if (dragInitiated && Input.IsMouseButtonPressed(1)) //TODO: Touchscreen support as well.
-			WhileDragging();
+		//if (dragInitiated && Input.IsMouseButtonPressed(1)) //TODO: Touchscreen support as well.
+		//	WhileDragging();
 	}
 
 	private void DragStart()
@@ -63,9 +69,8 @@ public class Chooser : Node
 	private void WhileDragging()
 	{
 		Vector2 endPos = GetViewport().GetMousePosition();
-		float dragX = startPos.x - endPos.x;
-		
-		imageMaterial.SetShaderParam("scroll", Mathf.Lerp((float) imageMaterial.GetShaderParam("scroll"), dragX / optionsPanel.RectSize.x, scrollSpeed));
+		float dragX = (startPos.x - endPos.x) + (current * optionsPanel.RectSize.x / optionsCount);
+		imageMaterial.SetShaderParam("scroll",  dragX / optionsPanel.RectSize.x);
 	}
 
 	private void DragEnd()
