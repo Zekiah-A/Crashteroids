@@ -1,5 +1,12 @@
 android/
+.idea/
 .mono/
 .godot/
 .vscode/
-
+.import/
+export.cfg
+export_presets.cfg
+.mono/
+data_*/
+mono_crash.*.json
+*~

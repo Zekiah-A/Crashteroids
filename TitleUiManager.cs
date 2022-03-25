@@ -1,336 +1,118 @@
 using Godot;
-using Crashteroids;
 using System;
-using System.Text;
-using System.Net.Http;
-using System.Xml;
-using System.Xml.Serialization;
-using System.IO;
+using System.Collections.Generic;
 
-public class TitleUiManager : Node
+public class TitleUiManager : Control
 {
-	private Panel _mainPanel;
-	private Panel _settingsPanel;
-	private Panel _gamemodePanel;
-	private Panel _matchsettingsPanel;
-	private Panel _editorPanel;
-	private Panel _helpPanel;
-	private Panel _helpCreditsPanel;
+	private List<Panel> panels;
 
-	private Tween _settingsTween;
-	private Tween _gamemodeTween;
-	private Tween _matchsettingsTween;
-	private Tween _editorTween;
-	private Tween _helpTween;
-	private Tween _usernameTween;
+	private Label moneyLabel;
+	private Label editorMoneyLabel;
+	private LineEdit usernameEdit;
+	private RichTextLabel usernameLabel;
 
-	private Label _moneyLabel;
-	private Label _editorMoneyLabel;
-	private LineEdit _usernameEdit;
-	private RichTextLabel _usernameLabel;
-
-	private Control _musicCheckbox;
-	private Control _sfxCheckbox;
-	private Control _helpBtnCheckbox;
-	private Control _advertisementsCheckbox;
+	private Control musicCheckbox;
+	private Control sfxCheckbox;
+	private Control helpBtnCheckbox;
+	private Control advertisementsCheckbox;
 
 	const int MaxUsernameLength = 10;
 
 	public override void _Ready()
 	{
-		_mainPanel = (Panel)GetParent().GetNode("Main Panel");
-		_settingsPanel = (Panel)GetParent().GetNode("Settings Panel");
-		_gamemodePanel = (Panel)GetParent().GetNode("Gamemode Panel");
-		_matchsettingsPanel = (Panel)GetParent().GetNode("Matchsettings Panel");
-		_editorPanel = (Panel)GetParent().GetNode("Editor Panel");
-		_helpPanel = (Panel)GetParent().GetNode("Help Panel");
-		_helpCreditsPanel = (Panel)GetParent().GetNode("Help Panel").GetNode("Credits Panel");
-
-		_settingsTween = (Tween)GetParent().GetNode("Settings Panel").GetNode("Panel Tween");
-		_gamemodeTween = (Tween)GetParent().GetNode("Gamemode Panel").GetNode("Panel Tween");
-		_matchsettingsTween = (Tween)GetParent().GetNode("Matchsettings Panel").GetNode("Panel Tween");
-		_editorTween = (Tween)GetParent().GetNode("Editor Panel").GetNode("Panel Tween");
-		_helpTween = (Tween)GetParent().GetNode("Help Panel").GetNode("Panel Tween");
-		_usernameTween = (Tween)GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Tween");
-
-		_moneyLabel = (Label)GetParent().GetNode("Main Panel").GetNode("Money Label");
-		_editorMoneyLabel = (Label)GetParent().GetNode("Editor Panel").GetNode("Money Label");
-		_usernameEdit = (LineEdit)GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit");
-		_usernameLabel = (RichTextLabel)GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Username Edit").GetNode("Username Label");
-
-		_musicCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox").GetNode("Checkbox");
-		_sfxCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Centre Panel").GetNode("Checkbox2").GetNode("Checkbox");
-		_helpBtnCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox").GetNode("Checkbox");
-		_advertisementsCheckbox = (Control) GetParent().GetNode("Settings Panel").GetNode("Right Panel").GetNode("Checkbox2").GetNode("Checkbox");
+		//TODO: Make all scene tree names PascalCase
 		
-		_settingsPanel.Visible = false;
-		_gamemodePanel.Visible = false;
-		_matchsettingsPanel.Visible = false;
-		_editorPanel.Visible = false;
-		_helpPanel.Visible = false;
-		_helpCreditsPanel.Visible = false;
-		GD.Print("Initial loading game data.");
-
-		if (GameSaveData.Load())
-			GameSaveDataUpdate();
-	}
-
-	//TODO: in future use something fancy like tween
-
-	#region SIGNALS
-
-	private void _on_Gamemode_pressed()
-	{
-		_gamemodePanel.Visible = true;
-
-		_gamemodeTween.InterpolateProperty(
-			_gamemodePanel, //Object
-			"rect_position", //Property being tweened
-			new Vector2(1024, 0), //from
-			new Vector2(0, 0), //to
-			1, //speed
-			Tween.TransitionType.Cubic,
-			Tween.EaseType.Out
-		);
-		_gamemodeTween.Start();
-	}
-
-	private void _on_GamemodeOption_pressed(int _index)
-	{
-		GameConfig.Gamemode = _index;
-		_matchsettingsPanel.Visible = true;
-
-		_matchsettingsTween.InterpolateProperty(
-			_matchsettingsPanel, //Object
-			"rect_position", //Property being tweened
-			new Vector2(1024, 0), //from
-			new Vector2(0, 0), //to
-			1, //speed
-			Tween.TransitionType.Cubic,
-			Tween.EaseType.Out
-		);
-		_matchsettingsTween.Start();
-	}
-	//Panel _gamemodePanel = (Panel) GetParent().GetNode("Gamemode Panel").GetNode("Left Panel");
-	//Tween _gamemodeOptionTween = (Tween) GetParent().GetNode("Gamemode Panel").GetNode("Left Panel").GetNode("Rect Tween");
-
-	private void _on_Settings_pressed()
-	{
-		_settingsPanel.Visible = true;
-
-		_settingsTween.InterpolateProperty(
-			_settingsPanel, //Object
-			"rect_position", //Property being tweened
-			new Vector2(-1024, 0), //from
-			new Vector2(0, 0), //to
-			1, //speed
-			Tween.TransitionType.Cubic,
-			Tween.EaseType.Out
-		);
-		_settingsTween.Start();
-
-		if (GameSaveData.Load())
-			GameSaveDataUpdate();
-	}
-
-	private async void _on_Back_pressed(int _index) //add a field to say which button
-	{
-		//TODO: Button scene (tscn)
-		switch (_index)
+		panels = new List<Panel>()
 		{
-			case 1:
-				_settingsPanel.Visible = false;
-				await GameSaveData.Save();
-				break;
-			case 2:
-				_gamemodePanel.Visible = false;
-				break;
-			case 3:
-				_matchsettingsPanel.Visible = false;
-				break;
-			case 4:
-				_editorPanel.Visible = false;
-				break;
-			case 5:
-				_helpPanel.Visible = false;
-				break;
-			case 6:
-				_helpCreditsPanel.Visible = false;
-				break;
+			GetNode<Panel>("MainPanel"),
+			GetNode<Panel>("SettingsPanel"),
+			GetNode<Panel>("GamemodePanel"),
+			GetNode<Panel>("TwoPlayerMatchPanel"),
+			GetNode<Panel>("ShopPanel"),
+			GetNode<Panel>("HelpPanel"),
+			GetNode("HelpPanel").GetNode<Panel>("CreditsPanel")
+		};
+
+		moneyLabel = panels[0].GetNode<Label>("Money Label");
+		//TODO: Put in editor class, it will handle itself, or make a separate script for the label //editorMoneyLabel = panels[4].GetNode<Label>("Money Label");
+
+		foreach (Panel panel in panels)
+		{
+			if (panel != panels[0])
+				panel.Visible = false;
 		}
 	}
 
-	private void _on_GraphicsQuality_pressed(int _index)
+	///<summary> Handles anels switching and interaction. </summary>
+	private void PanelPressed(int id)
 	{
-		GD.Print($"Graphics quality level set to {_index}");
-		GameConfig.Instance.GraphicsQualitySetting = _index;
-	}
-
-	private void _on_Editor_pressed()
-	{
-		_editorPanel.Visible = true;
-
-		_editorTween.InterpolateProperty(
-			_editorPanel, //Object
-			"rect_position", //Property being tweened
-			new Vector2(0, 600), //from
-			new Vector2(0, 0), //to
-			1, //speed
-			Tween.TransitionType.Cubic,
-			Tween.EaseType.Out
-		);
-		_editorTween.Start();
-	}
-
-	private void _on_Help_pressed()
-	{
-		_helpPanel.Visible = true;
-		_helpTween.InterpolateProperty(
-			_helpPanel, //Object
-			"rect_scale", //Property being tweened
-			new Vector2(0, 0), //from
-			new Vector2(1, 1), //to
-			1, //speed
-			Tween.TransitionType.Back,
-			Tween.EaseType.Out
-		);
-		_helpTween.Start();
-	}
-
-	private void _on_Credits_pressed() =>
-		_helpCreditsPanel.Visible = true;
-
-	//General config: Save after changes from ui!
-	private async void _on_Username_Edit_text_entered(String _newText)
-	{
-		using (HttpClient client = new HttpClient())
+		if (id == 1)
 		{
-			try 
-			{
-				///<summary> Send a request to moderate the username using the purgomalum API. </summary>
-				string responseBody = await client.GetStringAsync($"https://www.purgomalum.com/service/xml?text={_newText}");
+			///<summary> Object, Property being tweened, From, To, Time, Ease type, Tween type </summary>
+			panels[id].Visible = true;
 
-				XmlDocument document = new XmlDocument();
-				document.LoadXml(responseBody);
-				
-				///<summary> Get the XML tag containing the filtered username. </summary>
-				string filteredName = document.GetElementsByTagName("result")[0].InnerText;
-				if (filteredName != _newText)
-				{
-					GD.Print($"Username sucessfully filtered to: {filteredName}");
-					_newText = filteredName;
-				}
-				else
-					GD.Print("No username filter required.");
-			}  
-			catch(Exception e)
-			{ 
-				if (e is HttpRequestException)
-					GD.Print($"Could not acess API to request username filter, internet connection lost? {e}\nAccepting unfiltered username.");
-				else
-					GD.Print($"Error requesting username filter {e}, accepting unfiltered username.");
-			}
+			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
+				panels[id],
+				"rect_position",
+				new Vector2(-1024, 0),
+				new Vector2(0, 0),
+				1,
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.Out
+			);
+			panels[id].GetNode<Tween>("Panel Tween").Start();
+			(panels[id] as SettingsUiManager).Opened();
 		}
+		if (id > 1 && id < 4)
+		{
+			panels[id].Visible = true;
 
-		if (_newText.Length <= MaxUsernameLength)
-			GameConfig.Instance.Username = _newText;
+			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
+				panels[id],
+				"rect_position",
+				new Vector2(-1024, 0),
+				new Vector2(0, 0),
+				1,
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.Out
+			);
+			panels[id].GetNode<Tween>("Panel Tween").Start();
+		}
+		else if (id == 4)
+		{
+			panels[id].Visible = true;
+
+			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
+				panels[id],
+				"rect_position",
+				new Vector2(0, 600),
+				new Vector2(0, 0),
+				1,
+				Tween.TransitionType.Cubic,
+				Tween.EaseType.Out
+			);
+			panels[id].GetNode<Tween>("Panel Tween").Start();
+		}
+		else if (id == 5)
+		{
+			panels[id].Visible = true;
+			panels[id].GetNode<Tween>("Panel Tween").InterpolateProperty(
+				panels[id],
+				"rect_scale",
+				new Vector2(0, 0),
+				new Vector2(1, 1),
+				1,
+				Tween.TransitionType.Back,
+				Tween.EaseType.Out
+			);
+			panels[id].GetNode<Tween>("Panel Tween").Start();
+		}
 		else
-			GameConfig.Instance.Username = _newText.Substring(0, MaxUsernameLength);
-
-		_usernameLabel.Visible = true;
-		_usernameTween.InterpolateProperty(
-			_usernameLabel, //Object
-			"rect_position", //Property being tweened
-			new Vector2(0, 32), //from
-			new Vector2(0, 64), //to
-			0.5f, //speed
-			Tween.TransitionType.Cubic,
-			Tween.EaseType.Out
-		);
-		_usernameTween.Start();
-
-		_usernameLabel.BbcodeText = $"[color=yellow]Username set to: {GameConfig.Instance.Username}[/color]";
-
-		GD.Print($"Player username set to {GameConfig.Instance.Username}");
-	}
-
-	#region MATCH CONFIGURATION //NOTE: + General configuration (for the time being)
-
-	private void _on_Matchconfig_update(int _configId, int _newValue)
-	{
-		GD.Print($"Signal custom recieved for match config {_configId}, {_newValue}");
-
-		switch (_configId)
 		{
-			case 1:
-				GameConfig.Match.RandomMap = Convert.ToBoolean(_newValue);
-				break;
-			case 2:
-				GameConfig.Match.SpecialAbilities = Convert.ToBoolean(_newValue);
-				break;
-			case 3:
-				GameConfig.Match.RocketBounces = _newValue;
-				break;
-			case 4:
-				GameConfig.Match.Rounds = _newValue;
-				break;
-			//General config: Save after changes from UI.
-			case 5:
-				GameConfig.Instance.Music = Convert.ToBoolean(_newValue);
-				break;
-			case 6:
-				GameConfig.Instance.SoundEffects = Convert.ToBoolean(_newValue);
-				break;
+			panels[id].Visible = true;
 		}
 	}
 
-	#endregion
-
-	private void _on_Start_pressed()
-	{
-		GD.Print("Starting Game with configuration:");
-		GD.Print($"Gamemode: {(Gamemodes)GameConfig.Gamemode}.");
-		GD.Print($"Random Map: {GameConfig.Match.RandomMap}");
-		GD.Print($"Special Abilities: {GameConfig.Match.SpecialAbilities}");
-		GD.Print($"Rocket Bounces: {GameConfig.Match.RocketBounces}");
-		GD.Print($"Rounds: {GameConfig.Match.Rounds}");
-
-		GetTree().ChangeScene("res://scenes/Game.tscn");
-	}
-
-	#endregion
-
-	///<summary> When the game's config is loaded, update all UI elements to reflect that of the settings in config </summary>
-	public void GameSaveDataUpdate()
-	{
-		GD.Print("GameSaveData update received.");
-
-		try
-		{
-			(_musicCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Music;
-			(_sfxCheckbox as Checkbox).IsEnabled = GameConfig.Instance.SoundEffects;
-			(_helpBtnCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
-			//TODO: There is no function to actually update advertisements, so that needs to be done.
-			(_advertisementsCheckbox as Checkbox).IsEnabled = GameConfig.Instance.Advertisements;
-			_usernameEdit.Text = GameConfig.Instance.Username;
-
-			StringBuilder stringBuilder = new StringBuilder(GameConfig.Instance.Money.ToString());
-			int commasAdded = 0;
-			for (int index = 0; index < stringBuilder.Length; index++)
-			{
-				if (index % 3 == 0 && index != 0)
-				{
-					stringBuilder.Insert(stringBuilder.Length - (index + commasAdded), ",");
-					commasAdded++;
-				}
-			}
-
-			_moneyLabel.Text = $"£{stringBuilder}";
-			_editorMoneyLabel.Text = _moneyLabel.Text;
-		}
-		catch (Exception e)
-		{
-			GD.PrintErr($"Could not update game save data \n {e}");
-		}
-	}
+	private void BackPressed(int panelId) =>
+		panels[panelId].Visible = false;
 }

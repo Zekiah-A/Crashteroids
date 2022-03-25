@@ -1,4 +1,8 @@
-[gd_scene load_steps=76 format=2]
+<<<<<<< HEAD
+[gd_scene load_steps=111 format=2]
+=======
+[gd_scene load_steps=110 format=2]
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -16,11 +20,11 @@
 [ext_resource path="res://fonts/large_title_font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://fonts/smaller_title_font.tres" type="DynamicFont" id=15]
 [ext_resource path="res://fonts/title_font.tres" type="DynamicFont" id=16]
-[ext_resource path="res://scenes/Checkbox.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/Iteratebox.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Iteratebox.cs" type="Script" id=17]
+[ext_resource path="res://resources/image/chooser_border.png" type="Texture" id=18]
 [ext_resource path="res://resources/disabled_banner.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Picker.tscn" type="PackedScene" id=20]
-[ext_resource path="res://RocketEditor.cs" type="Script" id=21]
+[ext_resource path="res://SettingsUiManager.cs" type="Script" id=21]
 [ext_resource path="res://resources/two_player_banner_grey.png" type="Texture" id=22]
 [ext_resource path="res://resources/save_cog_2_icon.svg" type="Texture" id=23]
 [ext_resource path="res://styles/lineedit_style.tres" type="StyleBox" id=24]
@@ -29,9 +33,28 @@
 [ext_resource path="res://resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
 [ext_resource path="res://resources/tools/laser.png" type="Texture" id=28]
 [ext_resource path="res://resources/image/item_hilight.png" type="Texture" id=29]
-[ext_resource path="res://EditorItem.cs" type="Script" id=30]
+[ext_resource path="res://resources/image/checkbox_empty.png" type="Texture" id=30]
 [ext_resource path="res://styles/editoritem_available.tres" type="StyleBox" id=31]
-[ext_resource path="res://animations/bought_anim.tres" type="Animation" id=32]
+[ext_resource path="res://TwoPlayerMatchUiManager.cs" type="Script" id=32]
+[ext_resource path="res://Checkbox.cs" type="Script" id=33]
+[ext_resource path="res://ShopUiManager.cs" type="Script" id=34]
+[ext_resource path="res://resources/tools/not-unlocked.png" type="Texture" id=35]
+[ext_resource path="res://resources/tools/ruler.png" type="Texture" id=36]
+[ext_resource path="res://resources/tools/protractor.svg" type="Texture" id=37]
+[ext_resource path="res://Tool.cs" type="Script" id=38]
+[ext_resource path="res://resources/tools/pen.png" type="Texture" id=39]
+[ext_resource path="res://Chooser.cs" type="Script" id=40]
+[ext_resource path="res://shaders/image_scroller.shader" type="Shader" id=41]
+[ext_resource path="res://TitleRocket.cs" type="Script" id=42]
+[ext_resource path="res://resources/rockets/rocket_retro_1.png" type="Texture" id=43]
+[ext_resource path="res://shaders/radial_blur.shader" type="Shader" id=44]
+[ext_resource path="res://shaders/alpha.shader" type="Shader" id=45]
+[ext_resource path="res://MoneyLabel.cs" type="Script" id=46]
+[ext_resource path="res://DeveloperConsole.cs" type="Script" id=47]
+<<<<<<< HEAD
+[ext_resource path="res://resources/player_vs_ai_banner.svg" type="Texture" id=48]
+=======
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -43,14 +66,65 @@ shader_param/speed = 3.0
 shader = ExtResource( 26 )
 shader_param/speed = -3.0
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 45 )
+shader_param/alpha = 1.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 2.0
+
+[sub_resource type="Animation" id=6]
+resource_name = "rescale_anim"
+length = 12.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("P1_Display:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 5, 7, 10, 12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 0.6, 0.6 ), Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("P1_Display:material:shader_param/alpha")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.75, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 3, 5, 7, 10, 12 )
+}
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 44 )
+shader_param/blur_center = Vector2( 0.5, 0.5 )
+shader_param/blur_power = 0.005
+shader_param/sampling_count = 8
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 512, 8 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 512, 8 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 8, 300 )
+
+[sub_resource type="DynamicFont" id=11]
 size = 24
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
+extra_spacing_top = -4
+extra_spacing_bottom = -1
 font_data = ExtResource( 6 )
 
-[sub_resource type="ShaderMaterial" id=5]
+[sub_resource type="ShaderMaterial" id=12]
 shader = ExtResource( 9 )
 shader_param/intensity = 2.0
 shader_param/x = false
@@ -62,15 +136,15 @@ shader_param/r_vertical = 4.0
 shader_param/g_vertical = 10.0
 shader_param/b_vertical = 4.0
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=13]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=15]
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=16]
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=17]
 shader = ExtResource( 9 )
 shader_param/intensity = 3.0
 shader_param/x = null
@@ -82,26 +156,12 @@ shader_param/r_vertical = 10.0
 shader_param/g_vertical = 10.0
 shader_param/b_vertical = 10.0
 
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="StyleBoxEmpty" id=18]
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=19]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=13]
-
-[sub_resource type="StyleBoxEmpty" id=14]
-
-[sub_resource type="StyleBoxEmpty" id=15]
-
-[sub_resource type="StyleBoxEmpty" id=16]
-
-[sub_resource type="StyleBoxEmpty" id=17]
-
-[sub_resource type="StyleBoxEmpty" id=18]
-
-[sub_resource type="StyleBoxEmpty" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=20]
 
@@ -127,24 +187,17 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=31]
 
-[sub_resource type="DynamicFont" id=32]
-size = 20
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[sub_resource type="StyleBoxEmpty" id=32]
 
 [sub_resource type="StyleBoxEmpty" id=33]
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=35]
+
+[sub_resource type="DynamicFont" id=36]
 size = 20
 font_data = ExtResource( 6 )
-
-[sub_resource type="ShaderMaterial" id=35]
-shader = ExtResource( 3 )
-shader_param/blur_amount = 5.0
-shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=36]
 
 [sub_resource type="StyleBoxEmpty" id=37]
 
@@ -152,18 +205,78 @@ shader_param/translucency = 1.0
 
 [sub_resource type="StyleBoxEmpty" id=39]
 
-[sub_resource type="StyleBoxFlat" id=40]
+[sub_resource type="DynamicFont" id=40]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="DynamicFont" id=42]
+size = 20
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=43]
+shader = ExtResource( 3 )
+shader_param/blur_amount = 5.0
+shader_param/translucency = 1.0
+
+[sub_resource type="StyleBoxEmpty" id=44]
+
+[sub_resource type="DynamicFont" id=45]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=46]
+size = 20
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=47]
+
+[sub_resource type="StyleBoxEmpty" id=62]
+
+[sub_resource type="DynamicFont" id=48]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=49]
+
+[sub_resource type="ShaderMaterial" id=50]
+shader = ExtResource( 41 )
+shader_param/scroll = 0.665
+
+[sub_resource type="StyleBoxEmpty" id=51]
+
+[sub_resource type="StyleBoxEmpty" id=52]
+
+[sub_resource type="StyleBoxEmpty" id=53]
+
+[sub_resource type="StyleBoxEmpty" id=54]
+
+[sub_resource type="StyleBoxEmpty" id=55]
+
+[sub_resource type="StyleBoxEmpty" id=56]
+
+[sub_resource type="StyleBoxFlat" id=57]
+bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+
+[sub_resource type="StyleBoxFlat" id=58]
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ShaderMaterial" id=41]
+[sub_resource type="ShaderMaterial" id=59]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="StyleBoxFlat" id=42]
+[sub_resource type="StyleBoxFlat" id=60]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
 border_width_top = 2
@@ -171,7 +284,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
-[sub_resource type="DynamicFont" id=43]
+[sub_resource type="DynamicFont" id=61]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -181,11 +294,13 @@ font_data = ExtResource( 6 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 __meta__ = {
+"_edit_horizontal_guides_": [ 128.0 ],
 "_edit_use_anchors_": false
 }
 
-[node name="Main Panel" type="Panel" parent="."]
+[node name="MainPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
@@ -193,7 +308,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="TextureRect" parent="Main Panel"]
+[node name="Background Rect" type="TextureRect" parent="MainPanel"]
 material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -203,7 +318,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Layer1 Rect" type="TextureRect" parent="Main Panel"]
+[node name="Layer1 Rect" type="TextureRect" parent="MainPanel"]
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -213,7 +328,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Main Panel"]
+[node name="TitleRocket" type="KinematicBody2D" parent="MainPanel" groups=["Player"]]
+position = Vector2( 96, 288 )
+rotation = 1.57079
+scale = Vector2( 4, 4 )
+script = ExtResource( 42 )
+
+[node name="P1_Display" type="Sprite" parent="MainPanel/TitleRocket"]
+material = SubResource( 4 )
+position = Vector2( -0.249992, -1.90735e-06 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 43 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainPanel/TitleRocket"]
+shape = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainPanel/TitleRocket"]
+anims/rescale_anim = SubResource( 6 )
+
+[node name="ShipBlurrer" type="ColorRect" parent="MainPanel"]
+visible = false
+material = SubResource( 7 )
+margin_right = 1023.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Walls" type="StaticBody2D" parent="MainPanel" groups=["Map"]]
+position = Vector2( 512, 320 )
+
+[node name="Top" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2( 0, -328 )
+shape = SubResource( 8 )
+
+[node name="Bottom" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2( 0, 288 )
+shape = SubResource( 9 )
+
+[node name="Right" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2( 520, -20 )
+shape = SubResource( 10 )
+
+[node name="Left" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2( -520, -20 )
+shape = SubResource( 10 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="MainPanel"]
 visible = false
 margin_left = 388.576
 margin_top = 147.151
@@ -223,7 +384,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rocket Editor Button" type="Button" parent="Main Panel"]
+[node name="Rocket Editor Button" type="Button" parent="MainPanel"]
 anchor_left = 0.429688
 anchor_top = 0.906667
 anchor_right = 0.570312
@@ -236,18 +397,25 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Main Panel/Rocket Editor Button"]
-anchor_right = 1.0
+[node name="Text" type="Label" parent="MainPanel/Rocket Editor Button"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
-text = "Rocket Editor"
+margin_left = -72.0002
+margin_top = -55.9998
+margin_right = 72.0002
+custom_fonts/font = SubResource( 11 )
+text = "Upgrades Shop"
 align = 1
 valign = 1
+autowrap = true
+clip_text = true
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Help" type="Button" parent="Main Panel"]
+[node name="Help" type="Button" parent="MainPanel"]
 anchor_left = 0.421875
 anchor_top = 0.586667
 anchor_right = 0.578125
@@ -260,19 +428,24 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Main Panel/Help"]
-anchor_top = -3.81471e-06
-anchor_right = 1.0
-anchor_bottom = 0.999996
-custom_fonts/font = SubResource( 4 )
+[node name="Text" type="Label" parent="MainPanel/Help"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -27.9999
+margin_right = 80.0
+margin_bottom = 27.9999
+custom_fonts/font = SubResource( 11 )
 text = "Help"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Play Button" type="Button" parent="Main Panel"]
+[node name="Play Button" type="Button" parent="MainPanel"]
 anchor_left = 0.392578
 anchor_top = 0.433333
 anchor_right = 0.607422
@@ -285,14 +458,14 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="Main Panel/Play Button"]
-material = SubResource( 5 )
-anchor_left = -0.00909034
+[node name="Text" type="Label" parent="MainPanel/Play Button"]
+material = SubResource( 12 )
+anchor_left = 5.59199e-07
 anchor_top = 2.28881e-06
-anchor_right = 0.99091
+anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 16 )
 text = "Play"
 align = 1
 valign = 1
@@ -300,45 +473,50 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Outline" type="Label" parent="Main Panel/Play Button"]
-anchor_left = -0.00909034
-anchor_top = 2.28881e-06
-anchor_right = 0.99091
-anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 12 )
+[node name="Outline" type="Label" parent="MainPanel/Play Button"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -40.0001
+margin_right = 110.0
+margin_bottom = 40.0001
 custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = ExtResource( 12 )
 text = "Play"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Settings" type="Button" parent="Main Panel"]
-anchor_top = 0.893333
-anchor_right = 0.0625
+[node name="Settings" type="Button" parent="MainPanel"]
+anchor_top = 1.0
 anchor_bottom = 1.0
+margin_top = -64.0002
+margin_right = 64.0
 rect_pivot_offset = Vector2( 0, 100 )
-custom_styles/hover = SubResource( 6 )
-custom_styles/pressed = SubResource( 7 )
-custom_styles/focus = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
 icon = ExtResource( 23 )
 expand_icon = true
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="Title" type="Label" parent="Main Panel"]
-material = SubResource( 10 )
+[node name="Title" type="Label" parent="MainPanel"]
+material = SubResource( 17 )
 anchor_left = 0.3125
 anchor_top = 0.106667
 anchor_right = 0.6875
 anchor_bottom = 0.266667
 margin_bottom = -1.52588e-05
 rect_pivot_offset = Vector2( -352, 24 )
-custom_fonts/font = ExtResource( 16 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 16 )
 text = "Crashteroids"
 align = 1
 valign = 1
@@ -346,15 +524,15 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title Outline" type="Label" parent="Main Panel"]
+[node name="Title Outline" type="Label" parent="MainPanel"]
 anchor_left = 0.3125
 anchor_top = 0.106667
 anchor_right = 0.6875
 anchor_bottom = 0.266667
 margin_bottom = -1.52588e-05
 rect_pivot_offset = Vector2( -352, 24 )
-custom_fonts/font = ExtResource( 12 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = ExtResource( 12 )
 text = "Crashteroids"
 align = 1
 valign = 1
@@ -362,7 +540,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Money Label" type="Label" parent="Main Panel"]
+[node name="Money Label" type="Label" parent="MainPanel"]
 anchor_left = 0.8125
 anchor_right = 0.999023
 anchor_bottom = 0.106667
@@ -370,21 +548,43 @@ custom_fonts/font = ExtResource( 10 )
 text = "£0"
 align = 2
 clip_text = true
+script = ExtResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Panel" type="Panel" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+[node name="VersionIndicator" type="Button" parent="MainPanel"]
+margin_right = 51.0
+margin_bottom = 24.0
+text = "v 0.01"
+flat = true
+script = ExtResource( 47 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Settings Panel"]
-material = SubResource( 12 )
+[node name="Console" type="LineEdit" parent="MainPanel/VersionIndicator"]
+visible = false
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 56.0
+placeholder_text = "Developer Console - type 'help' to get started..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsPanel" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 18 )
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background Rect" type="ColorRect" parent="SettingsPanel"]
+material = SubResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -392,19 +592,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Settings Panel"]
+[node name="Back" type="Button" parent="SettingsPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
+custom_fonts/font = ExtResource( 13 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 11 )
-custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title" type="Label" parent="Settings Panel"]
+[node name="Settings Title" type="Label" parent="SettingsPanel"]
 anchor_left = 0.375
 anchor_top = 0.106667
 anchor_right = 0.625
@@ -417,13 +617,13 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="Settings Panel"]
+[node name="Settings Title Outline" type="Label" parent="SettingsPanel"]
 anchor_left = 0.375
 anchor_top = 0.106667
 anchor_right = 0.625
 anchor_bottom = 0.24
-custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = ExtResource( 13 )
 text = "Settings"
 align = 1
 valign = 1
@@ -431,18 +631,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Left Panel" type="Panel" parent="Settings Panel"]
+[node name="LeftPanel" type="Panel" parent="SettingsPanel"]
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Settings Panel/Left Panel"]
-margin_right = 352.0
-margin_bottom = 72.0
+[node name="Title" type="Label" parent="SettingsPanel/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 15 )
 text = "Graphics Quality:"
 align = 1
@@ -451,79 +651,80 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Low" type="Button" parent="Settings Panel/Left Panel"]
-margin_top = 64.0
-margin_right = 352.0
-margin_bottom = 164.0
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/normal = SubResource( 17 )
-custom_fonts/font = ExtResource( 10 )
+[node name="Low" type="Button" parent="SettingsPanel/LeftPanel"]
+anchor_top = 0.135594
+anchor_right = 1.0
+anchor_bottom = 0.347458
 custom_colors/font_color = Color( 0.572549, 0.258824, 0.239216, 1 )
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 22 )
+custom_styles/focus = SubResource( 23 )
+custom_styles/normal = SubResource( 24 )
 text = "Low"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Medium" type="Button" parent="Settings Panel/Left Panel"]
-margin_top = 164.0
-margin_right = 352.0
-margin_bottom = 264.0
-custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
-custom_styles/focus = SubResource( 20 )
-custom_styles/normal = SubResource( 17 )
-custom_fonts/font = ExtResource( 10 )
+[node name="Medium" type="Button" parent="SettingsPanel/LeftPanel"]
+anchor_top = 0.347457
+anchor_right = 1.0
+anchor_bottom = 0.559322
 custom_colors/font_color = Color( 0.513726, 0.384314, 0.184314, 1 )
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/pressed = SubResource( 26 )
+custom_styles/focus = SubResource( 27 )
+custom_styles/normal = SubResource( 24 )
 text = "Medium"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="High" type="Button" parent="Settings Panel/Left Panel"]
-margin_top = 264.0
-margin_right = 352.0
-margin_bottom = 364.0
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 22 )
-custom_styles/focus = SubResource( 23 )
-custom_styles/normal = SubResource( 17 )
-custom_fonts/font = ExtResource( 10 )
+[node name="High" type="Button" parent="SettingsPanel/LeftPanel"]
+anchor_top = 0.559322
+anchor_right = 1.0
+anchor_bottom = 0.771186
 custom_colors/font_color = Color( 0.556863, 0.682353, 0.294118, 1 )
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+custom_styles/normal = SubResource( 24 )
 text = "High"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Sublime" type="Button" parent="Settings Panel/Left Panel"]
-margin_top = 364.0
-margin_right = 352.0
-margin_bottom = 464.0
-custom_styles/hover = SubResource( 24 )
-custom_styles/pressed = SubResource( 25 )
-custom_styles/focus = SubResource( 26 )
-custom_styles/normal = SubResource( 17 )
-custom_fonts/font = ExtResource( 10 )
+[node name="Sublime" type="Button" parent="SettingsPanel/LeftPanel"]
+anchor_top = 0.771186
+anchor_right = 1.0
+anchor_bottom = 0.98305
 custom_colors/font_color = Color( 0.0941176, 0.356863, 0.129412, 1 )
+custom_fonts/font = ExtResource( 10 )
+custom_styles/hover = SubResource( 31 )
+custom_styles/pressed = SubResource( 32 )
+custom_styles/focus = SubResource( 33 )
+custom_styles/normal = SubResource( 24 )
 text = "Sublime"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Centre Panel" type="Panel" parent="Settings Panel"]
+[node name="CentrePanel" type="Panel" parent="SettingsPanel"]
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.664062
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 27 )
+custom_styles/panel = SubResource( 34 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Settings Panel/Centre Panel"]
-margin_right = 328.0
-margin_bottom = 72.0
+[node name="Title" type="Label" parent="SettingsPanel/CentrePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.152542
+margin_right = 3.05176e-05
 custom_fonts/font = ExtResource( 15 )
 text = "Audio:"
 align = 1
@@ -532,80 +733,159 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" type="Control" parent="SettingsPanel/CentrePanel"]
 anchor_left = 0.146341
 anchor_top = 0.135593
 anchor_right = 0.829268
 anchor_bottom = 0.271186
-
-[node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox" index="0"]
-custom_styles/panel = SubResource( 28 )
-ConfigId = 5
-
-[node name="Label" parent="Settings Panel/Centre Panel/Checkbox/Checkbox" index="1"]
-text = "Music"
-
-[node name="Checkbox2" parent="Settings Panel/Centre Panel" instance=ExtResource( 17 )]
-anchor_left = 0.146341
-anchor_top = 0.271186
-anchor_right = 0.829268
-anchor_bottom = 0.40678
-
-[node name="Checkbox" parent="Settings Panel/Centre Panel/Checkbox2" index="0"]
-custom_styles/panel = SubResource( 29 )
-ConfigId = 6
-
-[node name="Label" parent="Settings Panel/Centre Panel/Checkbox2/Checkbox" index="1"]
-text = "Sound Effects"
-
-[node name="Right Panel" type="Panel" parent="Settings Panel"]
-anchor_left = 0.664062
-anchor_top = 0.213333
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Settings Panel/Right Panel"]
-margin_right = 344.0
-margin_bottom = 72.0
+[node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/Checkbox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 35 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Texture Button" type="TextureButton" parent="SettingsPanel/CentrePanel/Checkbox/Checkbox"]
+anchor_left = 9.53674e-07
+anchor_top = 4.29153e-06
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -0.000274658
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="SettingsPanel/CentrePanel/Checkbox/Checkbox"]
+anchor_left = 0.285714
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 36 )
+text = "Music"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Checkbox2" type="Control" parent="SettingsPanel/CentrePanel"]
+anchor_left = 0.146341
+anchor_top = 0.271186
+anchor_right = 0.829268
+anchor_bottom = 0.40678
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/Checkbox2"]
+anchor_right = 1.0
+anchor_bottom = 0.999994
+custom_styles/panel = SubResource( 37 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Texture Button" type="TextureButton" parent="SettingsPanel/CentrePanel/Checkbox2/Checkbox"]
+anchor_left = 9.53674e-07
+anchor_top = 5.72205e-06
+anchor_right = 1.0
+anchor_bottom = 1.00001
+margin_bottom = -0.000366211
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="SettingsPanel/CentrePanel/Checkbox2/Checkbox"]
+anchor_left = 0.285714
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 36 )
+text = "Sound Effects"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RightPanel" type="Panel" parent="SettingsPanel"]
+anchor_left = 0.664062
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 38 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="SettingsPanel/RightPanel"]
+anchor_right = 0.999999
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 15 )
-text = "Other"
+text = "Other:"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" type="Control" parent="SettingsPanel/RightPanel"]
 anchor_left = 0.209302
 anchor_top = 0.135593
-anchor_right = 0.428052
-anchor_bottom = 0.24226
+anchor_right = 0.860464
+anchor_bottom = 0.271186
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox" index="0"]
-custom_styles/panel = SubResource( 31 )
+[node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/Checkbox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 39 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Label" parent="Settings Panel/Right Panel/Checkbox/Checkbox" index="1"]
-text = "Help Btn Enabled"
+[node name="Texture Button" type="TextureButton" parent="SettingsPanel/RightPanel/Checkbox/Checkbox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Username Edit" type="LineEdit" parent="Settings Panel/Right Panel"]
+[node name="Label" type="Label" parent="SettingsPanel/RightPanel/Checkbox/Checkbox"]
+anchor_left = 0.285714
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 36 )
+text = "Tutorial Enabled"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="UsernameEdit" type="LineEdit" parent="SettingsPanel/RightPanel"]
 anchor_left = 0.209302
 anchor_top = 0.474576
 anchor_right = 0.837209
 anchor_bottom = 0.610169
+custom_colors/font_color = Color( 0.27451, 0.27451, 0.27451, 1 )
+custom_fonts/font = SubResource( 40 )
 custom_styles/focus = ExtResource( 24 )
 custom_styles/normal = ExtResource( 24 )
-custom_fonts/font = SubResource( 32 )
-custom_colors/font_color = Color( 0.27451, 0.27451, 0.27451, 1 )
 placeholder_text = "Username.."
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Username Label" type="RichTextLabel" parent="Settings Panel/Right Panel/Username Edit"]
+[node name="UsernameLabel" type="RichTextLabel" parent="SettingsPanel/RightPanel/UsernameEdit"]
 visible = false
 show_behind_parent = true
 margin_top = 64.0
@@ -618,37 +898,62 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="Settings Panel/Right Panel/Username Edit"]
+[node name="Tween" type="Tween" parent="SettingsPanel/RightPanel/UsernameEdit"]
 
-[node name="HTTPRequest" type="HTTPRequest" parent="Settings Panel/Right Panel/Username Edit"]
+[node name="HTTPRequest" type="HTTPRequest" parent="SettingsPanel/RightPanel/UsernameEdit"]
 download_file = "res://resources/username_filtered.xml"
 use_threads = true
 
-[node name="Checkbox2" parent="Settings Panel/Right Panel" instance=ExtResource( 17 )]
+[node name="Checkbox2" type="Control" parent="SettingsPanel/RightPanel"]
 anchor_left = 0.209302
 anchor_top = 0.271186
-anchor_right = 0.428052
-anchor_bottom = 0.377853
+anchor_right = 0.860464
+anchor_bottom = 0.406779
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Checkbox" parent="Settings Panel/Right Panel/Checkbox2" index="0"]
-custom_styles/panel = SubResource( 33 )
+[node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/Checkbox2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 41 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="Settings Panel/Right Panel/Checkbox2/Checkbox" index="1"]
+[node name="Texture Button" type="TextureButton" parent="SettingsPanel/RightPanel/Checkbox2/Checkbox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="SettingsPanel/RightPanel/Checkbox2/Checkbox"]
+anchor_left = 0.285714
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 36 )
 text = "Advertisements"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Username Label" type="Label" parent="Settings Panel/Right Panel"]
+[node name="Username Label" type="Label" parent="SettingsPanel/RightPanel"]
 anchor_left = 0.209302
 anchor_top = 0.40678
 anchor_right = 0.860465
 anchor_bottom = 0.474576
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 42 )
 text = "Set player username:"
 valign = 2
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Username Underline" type="ColorRect" parent="Settings Panel/Right Panel/Username Label"]
+[node name="Username Underline" type="ColorRect" parent="SettingsPanel/RightPanel/Username Label"]
 anchor_top = 0.75
 anchor_bottom = 0.75
 margin_top = 2.00021
@@ -658,19 +963,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel Tween" type="Tween" parent="Settings Panel"]
+[node name="Panel Tween" type="Tween" parent="SettingsPanel"]
 
-[node name="Gamemode Panel" type="Panel" parent="."]
+[node name="GamemodePanel" type="Panel" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Gamemode Panel"]
-material = SubResource( 35 )
+[node name="Background Rect" type="ColorRect" parent="GamemodePanel"]
+material = SubResource( 43 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -678,19 +983,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Gamemode Panel"]
+[node name="Back" type="Button" parent="GamemodePanel"]
 anchor_right = 0.265625
 anchor_bottom = 0.12
+custom_fonts/font = ExtResource( 13 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 11 )
-custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title" type="Label" parent="Gamemode Panel"]
+[node name="Settings Title" type="Label" parent="GamemodePanel"]
 anchor_left = 0.36377
 anchor_top = 0.106667
 anchor_right = 0.63623
@@ -703,13 +1008,13 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="Gamemode Panel"]
+[node name="Settings Title Outline" type="Label" parent="GamemodePanel"]
 anchor_left = 0.36377
 anchor_top = 0.106667
 anchor_right = 0.63623
 anchor_bottom = 0.24
-custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = ExtResource( 13 )
 text = "Pick Mode"
 align = 1
 valign = 1
@@ -717,18 +1022,18 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Left Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Left Panel" type="Panel" parent="GamemodePanel"]
 anchor_top = 0.213333
 anchor_right = 0.25
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Left Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+[node name="Title" type="Label" parent="GamemodePanel/Left Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Local 2 Player:"
 align = 1
@@ -737,13 +1042,17 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Rect Tween" type="Tween" parent="Gamemode Panel/Left Panel"]
+[node name="Rect Tween" type="Tween" parent="GamemodePanel/Left Panel"]
 
-[node name="TextureButton" type="TextureButton" parent="Gamemode Panel/Left Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+[node name="TextureButton" type="TextureButton" parent="GamemodePanel/Left Panel"]
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 22 )
 expand = true
@@ -751,19 +1060,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Centre Left Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Centre Left Panel" type="Panel" parent="GamemodePanel"]
 anchor_left = 0.25
 anchor_top = 0.213333
 anchor_right = 0.5
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Centre Left Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+[node name="Title" type="Label" parent="GamemodePanel/Centre Left Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Player vs AI:"
 align = 1
@@ -772,31 +1081,39 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton2" type="TextureButton" parent="Gamemode Panel/Centre Left Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+[node name="TextureButton2" type="TextureButton" parent="GamemodePanel/Centre Left Panel"]
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
+<<<<<<< HEAD
+texture_normal = ExtResource( 48 )
+=======
 disabled = true
 texture_normal = ExtResource( 19 )
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Centre Right Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Centre Right Panel" type="Panel" parent="GamemodePanel"]
 anchor_left = 0.5
 anchor_top = 0.213333
 anchor_right = 0.75
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Centre Right Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+[node name="Title" type="Label" parent="GamemodePanel/Centre Right Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Multiplayer:"
 align = 1
@@ -805,11 +1122,15 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton3" type="TextureButton" parent="Gamemode Panel/Centre Right Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+[node name="TextureButton3" type="TextureButton" parent="GamemodePanel/Centre Right Panel"]
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 disabled = true
 texture_normal = ExtResource( 19 )
 expand = true
@@ -817,19 +1138,19 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Right Panel" type="Panel" parent="Gamemode Panel"]
+[node name="Right Panel" type="Panel" parent="GamemodePanel"]
 anchor_left = 0.75
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 13 )
+custom_styles/panel = SubResource( 20 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Gamemode Panel/Right Panel"]
-margin_right = 256.0
-margin_bottom = 72.0
+[node name="Title" type="Label" parent="GamemodePanel/Right Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.152542
 custom_fonts/font = ExtResource( 10 )
 text = "Level designer:"
 align = 1
@@ -838,11 +1159,15 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton4" type="TextureButton" parent="Gamemode Panel/Right Panel"]
-anchor_left = 0.125
-anchor_top = 0.20339
-anchor_right = 0.875
-anchor_bottom = 0.881356
+[node name="TextureButton4" type="TextureButton" parent="GamemodePanel/Right Panel"]
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.5
+anchor_bottom = 0.136
+margin_left = -96.0
+margin_top = 31.8081
+margin_right = 96.0
+margin_bottom = 351.808
 disabled = true
 texture_normal = ExtResource( 19 )
 expand = true
@@ -850,19 +1175,23 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="Gamemode Panel"]
+[node name="Panel Tween" type="Tween" parent="GamemodePanel"]
 
-[node name="Matchsettings Panel" type="Panel" parent="."]
+[node name="TwoPlayerMatchPanel" type="Panel" parent="."]
+<<<<<<< HEAD
 visible = false
+=======
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 18 )
+script = ExtResource( 32 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Matchsettings Panel"]
-material = SubResource( 35 )
+[node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
+material = SubResource( 43 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -870,19 +1199,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Matchsettings Panel"]
+[node name="Back" type="Button" parent="TwoPlayerMatchPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
+custom_fonts/font = ExtResource( 13 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 11 )
-custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title" type="Label" parent="Matchsettings Panel"]
+[node name="Settings Title" type="Label" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
@@ -895,13 +1224,13 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Settings Title Outline" type="Label" parent="Matchsettings Panel"]
+[node name="Settings Title Outline" type="Label" parent="TwoPlayerMatchPanel"]
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
 anchor_bottom = 0.24
-custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = ExtResource( 13 )
 text = "Match Settings"
 align = 1
 valign = 1
@@ -909,175 +1238,411 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="Matchsettings Panel"]
+[node name="Panel Tween" type="Tween" parent="TwoPlayerMatchPanel"]
 
-[node name="Left Panel" type="Panel" parent="Matchsettings Panel"]
+[node name="LeftPanel" type="Panel" parent="TwoPlayerMatchPanel"]
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 36 )
+custom_styles/panel = SubResource( 44 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
+[node name="Checkbox" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.0909091
 anchor_top = 0.135593
-anchor_right = 0.0909091
-anchor_bottom = 0.135593
+anchor_right = 0.727
+anchor_bottom = 0.271
+margin_right = -223.904
+margin_bottom = -63.9121
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Checkbox" index="0"]
-ConfigId = 1
+[node name="Checkbox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="0"]
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox/Checkbox" index="1"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox"]
+margin_left = 64.0
+margin_top = 0.000274658
+margin_right = 224.0
+margin_bottom = 64.0003
+custom_fonts/font = SubResource( 45 )
 text = "Random map"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Checkbox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 17 )]
+[node name="Checkbox2" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.0909091
 anchor_top = 0.305085
-anchor_right = 0.0909091
-anchor_bottom = 0.305085
+anchor_right = 0.727
+anchor_bottom = 0.441
+margin_right = -223.904
+margin_bottom = -64.1519
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Checkbox2" index="0"]
-ConfigId = 2
+[node name="Checkbox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Texture Button" parent="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" index="0"]
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" parent="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" index="1"]
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox"]
+margin_left = 64.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 45 )
 text = "Special Abilitities"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Iteratebox" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 18 )]
+[node name="Iteratebox" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
 anchor_left = 0.091
 anchor_top = 0.475
-anchor_right = 0.091
-anchor_bottom = 0.475
+anchor_right = 0.727
+anchor_bottom = 0.61
 margin_left = -0.0320015
 margin_top = -0.200012
-margin_right = 223.968
-margin_bottom = 63.8
-
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Iteratebox" index="0"]
-ConfigId = 3
-
-[node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" index="1"]
-text = "Rocket Bounces"
-
-[node name="Iteratebox2" parent="Matchsettings Panel/Left Panel" instance=ExtResource( 18 )]
-anchor_left = 0.091
-anchor_top = 0.644
-anchor_right = 0.091
-anchor_bottom = 0.644
-margin_left = -0.0320015
-margin_top = 0.0319824
-margin_right = 223.968
-margin_bottom = 64.032
-
-[node name="Checkbox" parent="Matchsettings Panel/Left Panel/Iteratebox2" index="0"]
-ConfigId = 4
-
-[node name="Label" parent="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" index="1"]
-text = "Rounds"
-
-[node name="Centre Panel" type="Panel" parent="Matchsettings Panel"]
-anchor_left = 0.34375
-anchor_top = 0.213333
-anchor_right = 0.65625
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 37 )
+margin_right = 0.0959778
+margin_bottom = 0.0799561
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Rocket Editor Button" type="Button" parent="Matchsettings Panel/Centre Panel"]
-anchor_left = 0.275
-anchor_top = 0.881356
-anchor_right = 0.725
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 90, 70 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
+[node name="Iteratebox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 17 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
+Min = 2
 
-[node name="Text" type="Label" parent="Matchsettings Panel/Centre Panel/Rocket Editor Button"]
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 4 )
-text = "Rocket Editor"
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox/Texture Button"]
+margin_right = 64.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
+custom_fonts/font = ExtResource( 16 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox"]
+anchor_top = -0.499998
+anchor_bottom = -0.499998
+margin_left = 64.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 46 )
+text = "Rocket Bounces"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Iteratebox2" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
+anchor_left = 0.091
+anchor_top = 0.644
+anchor_right = 0.727
+anchor_bottom = 0.78
+margin_left = -0.0320015
+margin_top = 0.0319824
+margin_right = 0.0959778
+margin_bottom = -0.160065
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Iteratebox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2"]
+margin_right = 224.0
+margin_bottom = 64.0
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_normal = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button"]
+margin_right = 64.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
+custom_fonts/font = ExtResource( 16 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox"]
+margin_left = 64.0
+margin_right = 224.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 46 )
+text = "Rounds"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.135593
+custom_fonts/font = ExtResource( 10 )
+text = "Options:"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel" type="Panel" parent="Matchsettings Panel/Centre Panel"]
+[node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
+anchor_left = 0.34375
+anchor_top = 0.213333
+anchor_right = 0.65625
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 47 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/CentrePanel"]
+anchor_right = 1.0
+anchor_bottom = 0.135593
+custom_fonts/font = ExtResource( 10 )
+text = "Map selection:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Chooser" type="Control" parent="TwoPlayerMatchPanel/CentrePanel"]
 anchor_left = 0.1
-anchor_top = 0.135593
+anchor_top = 0.135594
 anchor_right = 0.9
 anchor_bottom = 0.542373
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Label" type="Label" parent="Matchsettings Panel/Centre Panel/Panel"]
-anchor_left = 0.25
-anchor_top = 0.333333
-anchor_right = 0.75
-anchor_bottom = 0.666667
-text = "MAP / Theme"
+[node name="Chooser" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 152, 72.0003 )
+custom_styles/panel = SubResource( 62 )
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+optionsNames = PoolStringArray( "Retro", "Vector", "Classic" )
+
+[node name="OptionName" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+anchor_left = 0.191
+anchor_top = 1.058
+anchor_right = 0.809
+anchor_bottom = 1.25
+margin_left = 0.103996
+margin_top = -3.13579
+margin_right = 0.895996
+margin_bottom = 0.000274658
+custom_fonts/font = SubResource( 48 )
+text = "null"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+anchor_left = 0.018
+anchor_top = 1.042
+anchor_right = 0.191
+anchor_bottom = 1.25
+margin_left = 0.392
+margin_top = -0.0639648
+margin_right = 0.103996
+margin_bottom = 9.15527e-05
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 1 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+anchor_left = 0.816
+anchor_top = 1.042
+anchor_right = 0.969
+anchor_bottom = 1.25
+margin_left = 0.103989
+margin_top = -0.0637817
+margin_right = -0.0640106
+margin_bottom = 0.000274658
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/normal = ExtResource( 1 )
+text = ">"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionsPanel" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -95.9999
+margin_right = 128.0
+margin_bottom = 95.9999
+rect_clip_content = true
+custom_styles/panel = SubResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel"]
+material = SubResource( 50 )
+anchor_top = -9.53673e-07
+anchor_right = 3.0
+anchor_bottom = 1.0
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/hover = SubResource( 51 )
+custom_styles/pressed = SubResource( 52 )
+custom_styles/focus = SubResource( 53 )
+custom_styles/disabled = SubResource( 54 )
+custom_styles/normal = SubResource( 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+anchor_left = 0.65625
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 56 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Start" type="Button" parent="TwoPlayerMatchPanel/RightPanel"]
+anchor_left = 0.181818
+anchor_top = 0.813559
+anchor_right = 0.818182
+anchor_bottom = 0.949153
+custom_fonts/font = ExtResource( 14 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 5 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+margin_left = 32.0
+margin_top = 136.0
+margin_right = 312.0
+margin_bottom = 256.0
+text = "skin choosers for players 1 and 2 go here!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.135593
+custom_fonts/font = ExtResource( 10 )
+text = "Skins:"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Right Panel" type="Panel" parent="Matchsettings Panel"]
-anchor_left = 0.65625
-anchor_top = 0.213333
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/panel = SubResource( 38 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Start" type="Button" parent="Matchsettings Panel/Right Panel"]
-anchor_left = 0.181818
-anchor_top = 0.813559
-anchor_right = 0.818182
-anchor_bottom = 0.949153
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
-custom_fonts/font = ExtResource( 14 )
-text = "Play"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Editor Panel" type="Panel" parent="."]
+[node name="ShopPanel" type="Panel" parent="."]
+<<<<<<< HEAD
+=======
 visible = false
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 11 )
+custom_styles/panel = SubResource( 18 )
+script = ExtResource( 34 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background Rect" type="ColorRect" parent="Editor Panel"]
-material = SubResource( 35 )
+[node name="Background Rect" type="ColorRect" parent="ShopPanel"]
+material = SubResource( 43 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.380392, 0.380392, 0.380392, 1 )
@@ -1085,104 +1650,200 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="Editor Panel"]
+[node name="Back" type="Button" parent="ShopPanel"]
 margin_right = 272.0
 margin_bottom = 72.0
+custom_fonts/font = ExtResource( 13 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 11 )
-custom_fonts/font = ExtResource( 13 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel Tween" type="Tween" parent="Editor Panel"]
+[node name="Panel Tween" type="Tween" parent="ShopPanel"]
 
-[node name="Main Panel" type="Panel" parent="Editor Panel"]
-anchor_left = 0.000489265
+[node name="MainPanel" type="Panel" parent="ShopPanel"]
 anchor_top = 0.52
-anchor_right = 1.0
+anchor_right = 0.999023
 anchor_bottom = 1.0
-margin_top = -184.0
-margin_right = -0.499023
-custom_styles/panel = SubResource( 39 )
+custom_styles/panel = SubResource( 57 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Items Panel" type="Panel" parent="Editor Panel/Main Panel"]
-anchor_top = 0.38983
-anchor_right = 1.0
+[node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_bottom = 3.05176e-05
-script = ExtResource( 21 )
+margin_left = -496.5
+margin_top = -280.0
+margin_right = 495.5
+margin_bottom = -8.0
+size_flags_horizontal = 2
+custom_constants/vseparation = 16
+custom_constants/hseparation = 16
+columns = 7
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
-[node name="1" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.0694037
-anchor_top = 0.0833333
-anchor_right = 0.178886
-anchor_bottom = 0.472222
+[node name="1" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
 rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+custom_styles/panel = SubResource( 58 )
+script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Price = 10000
+Price = 200
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/1"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/1"]
 anchor_right = 0.999997
 anchor_bottom = 1.0
-texture = ExtResource( 28 )
+texture = ExtResource( 39 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/1"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/1"]
-anchor_top = 0.785714
-anchor_right = 0.999997
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+anchor_top = 0.6875
+anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "Pen - Buy £200"
 align = 1
+autowrap = true
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/1"]
-anims/bought_anim = ExtResource( 32 )
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/1"]
 
-[node name="2" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.195014
-anchor_top = 0.0833342
-anchor_right = 0.304496
-anchor_bottom = 0.472223
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="2" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 144.0
+margin_right = 272.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+rect_pivot_offset = Vector2( 56, 56 )
+custom_styles/panel = SubResource( 58 )
+script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 1
-Price = 15000
+Price = 720
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/2"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+texture = ExtResource( 37 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_pressed = ExtResource( 29 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/normal = ExtResource( 31 )
+text = "Potractor - Buy £720"
+align = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+
+[node name="3" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 288.0
+margin_right = 416.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+rect_pivot_offset = Vector2( 56, 56 )
+custom_styles/panel = SubResource( 58 )
+script = ExtResource( 38 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Price = 1250
+
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+texture = ExtResource( 36 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_pressed = ExtResource( 29 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/normal = ExtResource( 31 )
+text = "Ruler - Buy £1,250"
+align = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+
+[node name="4" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 432.0
+margin_right = 560.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+rect_pivot_offset = Vector2( 56, 56 )
+custom_styles/panel = SubResource( 58 )
+script = ExtResource( 38 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Price = 8000
+
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/4"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 texture = ExtResource( 28 )
@@ -1192,622 +1853,490 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/2"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/2"]
-anchor_top = 0.785714
-anchor_right = 0.999999
-anchor_bottom = 0.999999
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "Laser - Buy £8,000"
 align = 1
+autowrap = true
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/2"]
+[node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/4"]
 
-[node name="3" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.320136
-anchor_top = 0.0833342
-anchor_right = 0.429618
-anchor_bottom = 0.472223
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-Id = 2
-
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/3"]
-anchor_right = 0.999999
-anchor_bottom = 0.999999
-texture = ExtResource( 28 )
-expand = true
-stretch_mode = 6
+[node name="5" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 576.0
+margin_right = 704.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/3"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/3"]
-anchor_top = 0.785714
-anchor_right = 0.999999
-anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/3"]
-
-[node name="4" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.445258
-anchor_top = 0.0833342
-anchor_right = 0.55474
-anchor_bottom = 0.472223
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-Id = 3
-
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/4"]
-anchor_right = 0.999999
-anchor_bottom = 0.999999
-texture = ExtResource( 28 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/4"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/4"]
-anchor_top = 0.785714
-anchor_right = 0.999999
-anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/4"]
-
-[node name="5" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.57038
-anchor_top = 0.0833342
-anchor_right = 0.679863
-anchor_bottom = 0.472223
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-Id = 4
-
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/5"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/5"]
 anchor_right = 0.99999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/5"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/5"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/5"]
 anchor_top = 0.785714
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/5"]
-
-[node name="6" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.695503
-anchor_top = 0.0833342
-anchor_right = 0.804985
-anchor_bottom = 0.472223
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="6" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 720.0
+margin_right = 848.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 5
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/6"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/6"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/6"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/6"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/6"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/6"]
-
-[node name="7" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.820625
-anchor_top = 0.0833342
-anchor_right = 0.930107
-anchor_bottom = 0.472223
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="7" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 864.0
+margin_right = 992.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 6
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/7"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/7"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/7"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/7"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/7"]
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/7"]
-
-[node name="8" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.0698915
-anchor_top = 0.527778
-anchor_right = 0.179374
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="8" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_top = 144.0
+margin_right = 128.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 7
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/8"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/8"]
 anchor_right = 0.999995
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/8"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/8"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/8"]
 anchor_top = 0.785713
 anchor_right = 0.999995
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/8"]
-
-[node name="9" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.195014
-anchor_top = 0.527778
-anchor_right = 0.304496
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="9" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 144.0
+margin_top = 144.0
+margin_right = 272.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 8
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/9"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/9"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/9"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/9"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/9"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/9"]
-
-[node name="10" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.320136
-anchor_top = 0.527778
-anchor_right = 0.429618
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="10" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 288.0
+margin_top = 144.0
+margin_right = 416.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 9
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/10"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/10"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/10"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/10"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/10"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/10"]
-
-[node name="11" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.445258
-anchor_top = 0.527778
-anchor_right = 0.55474
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="11" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 432.0
+margin_top = 144.0
+margin_right = 560.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 10
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/11"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/11"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/11"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/11"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/11"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/11"]
-
-[node name="12" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.57038
-anchor_top = 0.527778
-anchor_right = 0.679863
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="12" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 576.0
+margin_top = 144.0
+margin_right = 704.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 11
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/12"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/12"]
 anchor_right = 0.99999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/12"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/12"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/12"]
 anchor_top = 0.785713
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/12"]
-
-[node name="13" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.695503
-anchor_top = 0.527778
-anchor_right = 0.804985
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="13" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 720.0
+margin_top = 144.0
+margin_right = 848.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 12
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/13"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/13"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/13"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/13"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/13"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/13"]
-
-[node name="14" type="Panel" parent="Editor Panel/Main Panel/Items Panel"]
-anchor_left = 0.820625
-anchor_top = 0.527778
-anchor_right = 0.930107
-anchor_bottom = 0.916667
-custom_styles/panel = SubResource( 40 )
-script = ExtResource( 30 )
+[node name="14" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+margin_left = 864.0
+margin_top = 144.0
+margin_right = 992.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 128, 128 )
+custom_styles/panel = SubResource( 58 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-Id = 13
 
-[node name="Icon Texture" type="TextureRect" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/14"]
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
+texture = ExtResource( 35 )
 expand = true
 stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Button" type="TextureButton" parent="Editor Panel/Main Panel/Items Panel/14"]
-margin_left = 0.498993
-margin_right = 112.499
-margin_bottom = 112.0
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture_pressed = ExtResource( 29 )
 expand = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Description" type="Label" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/14"]
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £200"
+text = "? - Buy £999,999"
 align = 1
 clip_text = true
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Editor Panel/Main Panel/Items Panel/14"]
+[node name="Picker" parent="ShopPanel" instance=ExtResource( 20 )]
+anchor_left = 0.5
+anchor_top = 0.367
+anchor_right = 0.5
+anchor_bottom = 0.367
+margin_left = -256.0
+margin_top = -84.2
+margin_right = 256.0
+margin_bottom = 83.8
 
-[node name="Picker" parent="Editor Panel" instance=ExtResource( 20 )]
-anchor_left = 0.25
-anchor_top = 0.226667
-anchor_right = 0.75
-anchor_bottom = 0.506667
-margin_right = 0.0
-margin_bottom = 0.0
-
-[node name="Settings Title" type="Label" parent="Editor Panel"]
+[node name="Settings Title" type="Label" parent="ShopPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -192.0
+margin_left = -208.0
 margin_top = 64.0
-margin_right = 192.0
+margin_right = 208.0
 margin_bottom = 144.0
 custom_fonts/font = ExtResource( 14 )
-text = "Rocket Editor"
+text = "Upgrades Shop"
 align = 1
 valign = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings Title Outline" type="Label" parent="Editor Panel"]
+[node name="Settings Title Outline" type="Label" parent="ShopPanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -192.0
+margin_left = -208.0
 margin_top = 64.0
-margin_right = 192.0
+margin_right = 208.0
 margin_bottom = 144.0
-custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 0 )
-text = "Rocket Editor"
+custom_fonts/font = ExtResource( 13 )
+text = "Upgrades Shop"
 align = 1
 valign = 1
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money Label" type="Label" parent="Editor Panel"]
+[node name="Money Label" type="Label" parent="ShopPanel"]
 anchor_left = 0.8125
 anchor_right = 0.999023
 anchor_bottom = 0.106667
@@ -1815,13 +2344,14 @@ custom_fonts/font = ExtResource( 10 )
 text = "£0"
 align = 2
 clip_text = true
+script = ExtResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Help Panel" type="Panel" parent="."]
+[node name="HelpPanel" type="Panel" parent="."]
 visible = false
-material = SubResource( 41 )
+material = SubResource( 59 )
 anchor_left = 0.375
 anchor_top = 0.2
 anchor_right = 0.625
@@ -1831,15 +2361,15 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Border" type="Panel" parent="Help Panel"]
+[node name="Border" type="Panel" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 42 )
+custom_styles/panel = SubResource( 60 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Title" type="Label" parent="Help Panel"]
+[node name="Title" type="Label" parent="HelpPanel"]
 anchor_right = 1.0
 anchor_bottom = 0.113889
 custom_fonts/font = ExtResource( 10 )
@@ -1850,35 +2380,35 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Quit" type="Button" parent="Help Panel"]
+[node name="Quit" type="Button" parent="HelpPanel"]
 anchor_left = 0.0625
 anchor_top = 0.844444
 anchor_right = 0.46875
 anchor_bottom = 0.958333
+custom_fonts/font = ExtResource( 10 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 10 )
 text = "Close"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Credits" type="Button" parent="Help Panel"]
+[node name="Credits" type="Button" parent="HelpPanel"]
 anchor_left = 0.53125
 anchor_top = 0.844444
 anchor_right = 0.9375
 anchor_bottom = 0.958333
+custom_fonts/font = SubResource( 61 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = SubResource( 43 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Details" type="RichTextLabel" parent="Help Panel"]
+[node name="Details" type="RichTextLabel" parent="HelpPanel"]
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 0.844444
@@ -1899,11 +2429,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Panel Tween" type="Tween" parent="Help Panel"]
+[node name="Panel Tween" type="Tween" parent="HelpPanel"]
 
-[node name="Credits Panel" type="Panel" parent="Help Panel"]
+[node name="CreditsPanel" type="Panel" parent="HelpPanel"]
 visible = false
-material = SubResource( 41 )
+material = SubResource( 59 )
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1912,30 +2442,30 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Border" type="Panel" parent="Help Panel/Credits Panel"]
+[node name="Border" type="Panel" parent="HelpPanel/CreditsPanel"]
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 42 )
+custom_styles/panel = SubResource( 60 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Quit" type="Button" parent="Help Panel/Credits Panel"]
+[node name="Quit" type="Button" parent="HelpPanel/CreditsPanel"]
 anchor_left = 0.28125
 anchor_top = 0.825
 anchor_right = 0.71875
 anchor_bottom = 0.953125
+custom_fonts/font = ExtResource( 10 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 10 )
 text = "Close"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Details" type="RichTextLabel" parent="Help Panel/Credits Panel"]
+[node name="Details" type="RichTextLabel" parent="HelpPanel/CreditsPanel"]
 anchor_right = 1.0
 anchor_bottom = 0.825
 bbcode_enabled = true
@@ -1949,57 +2479,35 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TitleUIManager" type="Node" parent="."]
-script = ExtResource( 8 )
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="pressed" from="Main Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
-[connection signal="pressed" from="Main Panel/Help" to="TitleUIManager" method="_on_Help_pressed"]
-[connection signal="pressed" from="Main Panel/Play Button" to="TitleUIManager" method="_on_Gamemode_pressed"]
-[connection signal="pressed" from="Main Panel/Settings" to="TitleUIManager" method="_on_Settings_pressed"]
-[connection signal="pressed" from="Settings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/Low" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/Medium" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/High" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="Settings Panel/Left Panel/Sublime" to="TitleUIManager" method="_on_GraphicsQuality_pressed" binds= [ 4 ]]
-[connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Settings Panel/Centre Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="text_entered" from="Settings Panel/Right Panel/Username Edit" to="TitleUIManager" method="_on_Username_Edit_text_entered"]
-[connection signal="pressed" from="Gamemode Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="Gamemode Panel/Left Panel/TextureButton" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="Gamemode Panel/Centre Left Panel/TextureButton2" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="Gamemode Panel/Centre Right Panel/TextureButton3" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="Gamemode Panel/Right Panel/TextureButton4" to="TitleUIManager" method="_on_GamemodeOption_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="Matchsettings Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 3 ]]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Checkbox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Checkbox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="_on_Matchconfig_update" from="Matchsettings Panel/Left Panel/Iteratebox2/Checkbox" to="TitleUIManager" method="_on_Matchconfig_update"]
-[connection signal="pressed" from="Matchsettings Panel/Centre Panel/Rocket Editor Button" to="TitleUIManager" method="_on_Editor_pressed"]
-[connection signal="pressed" from="Matchsettings Panel/Right Panel/Start" to="TitleUIManager" method="_on_Start_pressed"]
-[connection signal="pressed" from="Editor Panel/Back" to="TitleUIManager" method="_on_Back_pressed" binds= [ 4 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/1/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 0 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/2/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 1 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/3/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 2 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/4/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 3 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/5/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 4 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/6/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 5 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/7/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 6 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/8/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 7 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/9/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 8 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/10/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 9 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/11/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 10 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/12/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 11 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/13/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 12 ]]
-[connection signal="pressed" from="Editor Panel/Main Panel/Items Panel/14/Button" to="Editor Panel/Main Panel/Items Panel" method="OnItemClick" binds= [ 13 ]]
-[connection signal="pressed" from="Help Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 5 ]]
-[connection signal="pressed" from="Help Panel/Credits" to="TitleUIManager" method="_on_Credits_pressed"]
-[connection signal="pressed" from="Help Panel/Credits Panel/Quit" to="TitleUIManager" method="_on_Back_pressed" binds= [ 6 ]]
-
-[editable path="Settings Panel/Centre Panel/Checkbox"]
-[editable path="Settings Panel/Centre Panel/Checkbox2"]
-[editable path="Settings Panel/Right Panel/Checkbox"]
-[editable path="Settings Panel/Right Panel/Checkbox2"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox"]
-[editable path="Matchsettings Panel/Left Panel/Checkbox2"]
-[editable path="Matchsettings Panel/Left Panel/Iteratebox"]
-[editable path="Matchsettings Panel/Left Panel/Iteratebox2"]
+[connection signal="pressed" from="MainPanel/Rocket Editor Button" to="." method="PanelPressed" binds= [ 4 ]]
+[connection signal="pressed" from="MainPanel/Help" to="." method="PanelPressed" binds= [ 5 ]]
+[connection signal="pressed" from="MainPanel/Play Button" to="." method="PanelPressed" binds= [ 2 ]]
+[connection signal="pressed" from="MainPanel/Settings" to="." method="PanelPressed" binds= [ 1 ]]
+[connection signal="pressed" from="SettingsPanel/Back" to="." method="BackPressed" binds= [ 1 ]]
+[connection signal="pressed" from="SettingsPanel/CentrePanel/Checkbox/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 0 ]]
+[connection signal="pressed" from="SettingsPanel/CentrePanel/Checkbox2/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 1 ]]
+[connection signal="pressed" from="SettingsPanel/RightPanel/Checkbox/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 2 ]]
+[connection signal="text_entered" from="SettingsPanel/RightPanel/UsernameEdit" to="SettingsPanel" method="UsernameEdited"]
+[connection signal="pressed" from="SettingsPanel/RightPanel/Checkbox2/Checkbox/Texture Button" to="SettingsPanel" method="SettingsChanged" binds= [ 3 ]]
+[connection signal="pressed" from="GamemodePanel/Back" to="." method="BackPressed" binds= [ 2 ]]
+[connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="PanelPressed" binds= [ 3 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/Back" to="." method="BackPressed" binds= [ 3 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 0 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 1 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 2 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button" to="TwoPlayerMatchPanel" method="MatchSettingsChanged" binds= [ 3 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 0 ]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button2" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 1 ]]
+[connection signal="button_down" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="DragStart"]
+[connection signal="button_up" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="DragEnd"]
+[connection signal="pressed" from="TwoPlayerMatchPanel/RightPanel/Start" to="TwoPlayerMatchPanel" method="StartPressed"]
+[connection signal="pressed" from="ShopPanel/Back" to="." method="BackPressed" binds= [ 4 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/3/Button" to="ShopPanel" method="UpgradePressed" binds= [ 2 ]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/4/Button" to="ShopPanel" method="UpgradePressed" binds= [ 3 ]]
+[connection signal="pressed" from="HelpPanel/Quit" to="." method="BackPressed" binds= [ 5 ]]
+[connection signal="pressed" from="HelpPanel/Credits" to="." method="PanelPressed" binds= [ 6 ]]
+[connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="BackPressed" binds= [ 6 ]]
