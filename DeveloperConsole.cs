@@ -61,7 +61,7 @@ public class DeveloperConsole : Button
 						Name = "TextEdit",
 						Text = file.GetAsText(),
 						RectSize = new Vector2(800, 500),
-						RectPosition = new Vector2(512 - (RectSize.x / 2), 300 - (RectSize.y / 2))
+						RectPosition = new Vector2(50 - (RectSize.x / 2), 100 - (RectSize.y / 2))
 					};
 					AddChild(textEdit);
 					configOpen = true;

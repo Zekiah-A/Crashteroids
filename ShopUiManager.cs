@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ShopUiManager : Panel
 {
@@ -33,7 +34,8 @@ public class ShopUiManager : Panel
 			{
 				GD.Print(e);
 			}
-			//if (GameData.BoughtTools.Contains(tool.Key.ToString().ToLower()))
+
+			if (GameData.BoughtTools.Contains(tool.Key.ToString()))
 				tool.Value.Buy();
 		}
 	}
@@ -46,8 +48,9 @@ public class ShopUiManager : Panel
 			{
 				tools[(ToolTypes) selected].Buy();
 				GameData.Money -= tools[(ToolTypes) selected].Price;
-				GameData.BoughtTools.Add(((ToolTypes) selected).ToString());
-
+				//Hack to append the bought tool to the end of the bought tools array
+				GameData.BoughtTools = GameData.BoughtTools.ToList().Append(((ToolTypes) selected).ToString()).ToArray();
+				
 				GD.Print($"Item {tools[(ToolTypes) selected].Name} bought. Old balance: {tools[(ToolTypes) selected].Price + GameData.Money}, current balance: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}");
 			}
 		}

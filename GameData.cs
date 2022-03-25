@@ -128,8 +128,8 @@ public static class GameData
 		}
 	}
 
-	private static List<string> boughtTools = new List<string>();
-	public static List<string> BoughtTools
+	private static string[] boughtTools;
+	public static string[] BoughtTools
 	{
 		get
 		{
