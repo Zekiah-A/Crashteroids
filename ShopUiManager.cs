@@ -50,7 +50,6 @@ public class ShopUiManager : Panel
 				GameData.Money -= tools[(ToolTypes) selected].Price;
 				//Hack to append the bought tool to the end of the bought tools array
 				GameData.BoughtTools = GameData.BoughtTools.ToList().Append(((ToolTypes) selected).ToString()).ToArray();
-				
 				GD.Print($"Item {tools[(ToolTypes) selected].Name} bought. Old balance: {tools[(ToolTypes) selected].Price + GameData.Money}, current balance: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}");
 			}
 		}

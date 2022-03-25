@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=111 format=2]
+=======
+[gd_scene load_steps=110 format=2]
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 
 [ext_resource path="res://styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -47,7 +51,10 @@
 [ext_resource path="res://shaders/alpha.shader" type="Shader" id=45]
 [ext_resource path="res://MoneyLabel.cs" type="Script" id=46]
 [ext_resource path="res://DeveloperConsole.cs" type="Script" id=47]
+<<<<<<< HEAD
 [ext_resource path="res://resources/player_vs_ai_banner.svg" type="Texture" id=48]
+=======
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -1083,7 +1090,12 @@ margin_left = -96.0
 margin_top = 31.8081
 margin_right = 96.0
 margin_bottom = 351.808
+<<<<<<< HEAD
 texture_normal = ExtResource( 48 )
+=======
+disabled = true
+texture_normal = ExtResource( 19 )
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 expand = true
 __meta__ = {
 "_edit_use_anchors_": true
@@ -1166,7 +1178,10 @@ __meta__ = {
 [node name="Panel Tween" type="Tween" parent="GamemodePanel"]
 
 [node name="TwoPlayerMatchPanel" type="Panel" parent="."]
+<<<<<<< HEAD
 visible = false
+=======
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 18 )
@@ -1614,6 +1629,10 @@ __meta__ = {
 }
 
 [node name="ShopPanel" type="Panel" parent="."]
+<<<<<<< HEAD
+=======
+visible = false
+>>>>>>> 833bee66b04773df61005fccb83894ff66df5f77
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 18 )
