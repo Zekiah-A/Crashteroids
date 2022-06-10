@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Resources/tools/ruler.png" type="Texture" id=1]
+
+[node name="Ruler" type="Node2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 0.5
+default_color = Color( 1, 0.00392157, 0.00392157, 0.392157 )
+__meta__ = {
+"_editor_description_": "Make two ruler points to drag this around with twofingers, maybe just rotate with end as a pivot, and a main move from the centre"
+}
+
+[node name="ruler" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 1 )

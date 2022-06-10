@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex"
+path="res://.import/pen.png-0430d6d0dc511c54d2cb884bb7fa9f2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fire_particle.png"
-dest_files=[ "res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex" ]
+source_file="res://Resources/tools/pen.png"
+dest_files=[ "res://.import/pen.png-0430d6d0dc511c54d2cb884bb7fa9f2e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

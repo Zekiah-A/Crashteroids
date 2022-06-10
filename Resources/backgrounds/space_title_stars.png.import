@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex"
+path="res://.import/space_title_stars.png-9c75c182968378841b65259b368659ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fire_particle.png"
-dest_files=[ "res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex" ]
+source_file="res://Resources/backgrounds/space_title_stars.png"
+dest_files=[ "res://.import/space_title_stars.png-9c75c182968378841b65259b368659ed.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex"
+path="res://.import/checkbox_full.png-add81ff3765c931abf66b86e56dd75b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fire_particle.png"
-dest_files=[ "res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex" ]
+source_file="res://Resources/image/checkbox_full.png"
+dest_files=[ "res://.import/checkbox_full.png-add81ff3765c931abf66b86e56dd75b6.stex" ]
 
 [params]
 

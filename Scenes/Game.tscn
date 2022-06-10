@@ -1,0 +1,187 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://TwoPlayerGame.cs" type="Script" id=2]
+[ext_resource path="res://Fonts/large_title_font_outline.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scenes/GameOver.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Resources/backgrounds/walls_horizontal.png" type="Texture" id=11]
+[ext_resource path="res://Resources/backgrounds/walls_vertical.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/LaunchTools.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Resources/backgrounds/space_title_stars.png" type="Texture" id=15]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 512, 8 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 512, 8 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 8, 300 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 520, 320 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 3840, 2160 )
+
+[node name="Walls" type="StaticBody2D" parent="." groups=["Map"]]
+position = Vector2( 512, 320 )
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 0, -328 )
+shape = SubResource( 6 )
+
+[node name="TopSprite" type="Sprite" parent="Walls"]
+position = Vector2( -2.67029e-05, -328 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 0, 288 )
+shape = SubResource( 7 )
+
+[node name="BottomSprite" type="Sprite" parent="Walls"]
+position = Vector2( 0, 288 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 11 )
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 520, -20 )
+shape = SubResource( 8 )
+
+[node name="RightSprite" type="Sprite" parent="Walls"]
+position = Vector2( -520, -20 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2( -520, -20 )
+shape = SubResource( 8 )
+
+[node name="LeftSprite" type="Sprite" parent="Walls"]
+position = Vector2( 520, -20 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="EndGameTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 504, 300 )
+offset = Vector2( 7, 0 )
+current = true
+smoothing_enabled = true
+
+[node name="CameraTween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerTurn" type="VBoxContainer" parent="CanvasLayer/Interface"]
+anchor_right = 1.0
+margin_bottom = 86.0
+mouse_filter = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CanvasLayer/Interface/PlayerTurn"]
+margin_right = 1024.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 4 )
+text = "Player 1's turn."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Label" parent="CanvasLayer/Interface/PlayerTurn"]
+margin_top = 72.0
+margin_right = 1024.0
+margin_bottom = 86.0
+text = "| Time taken: 000 | Current score: 00 |"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="GameOver" parent="CanvasLayer/Interface" instance=ExtResource( 10 )]
+visible = false
+
+[node name="MainPanel" parent="CanvasLayer/Interface/GameOver" index="0"]
+mouse_filter = 2
+
+[node name="Again" parent="CanvasLayer/Interface/GameOver/MainPanel" index="3"]
+mouse_filter = 2
+
+[node name="Quit" parent="CanvasLayer/Interface/GameOver/MainPanel" index="4"]
+mouse_filter = 2
+
+[node name="Details" parent="CanvasLayer/Interface/GameOver/MainPanel" index="5"]
+mouse_filter = 2
+
+[node name="DetailsPanel" parent="CanvasLayer/Interface/GameOver" index="1"]
+mouse_filter = 2
+
+[node name="Done" parent="CanvasLayer/Interface/GameOver/DetailsPanel" index="0"]
+mouse_filter = 2
+
+[node name="Details" parent="CanvasLayer/Interface/GameOver/DetailsPanel" index="1"]
+mouse_filter = 2
+
+[node name="LaunchTools" parent="CanvasLayer/Interface" instance=ExtResource( 14 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = -600.0
+margin_right = 512.0
+mouse_filter = 0
+
+[node name="TopBlur" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel" index="0"]
+mouse_filter = 2
+
+[node name="Background" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel" index="1"]
+mouse_filter = 2
+
+[node name="TopBackground" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel" index="2"]
+mouse_filter = 2
+
+[node name="Border" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel" index="3"]
+mouse_filter = 2
+
+[node name="TopBorder" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel" index="4"]
+mouse_filter = 2
+
+[node name="ScrollContainer" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel" index="7"]
+mouse_filter = 2
+
+[node name="GridContainer" parent="CanvasLayer/Interface/LaunchTools/ToolsPanel/ScrollContainer" index="0"]
+mouse_filter = 2
+
+[node name="Panel" parent="CanvasLayer/Interface/LaunchTools" index="1"]
+mouse_filter = 2
+
+[editable path="CanvasLayer/Interface/GameOver"]
+[editable path="CanvasLayer/Interface/LaunchTools"]

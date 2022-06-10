@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Fonts/typefaces/arial.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Resources/ui/tools_launch/ItemButton.tres" type="StyleBox" id=2]
+[ext_resource path="res://Resources/image/item_hilight.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="ItemButton" type="Panel"]
+anchor_right = 0.09375
+anchor_bottom = 0.16
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="IconTexture" type="TextureRect" parent="."]
+show_behind_parent = true
+anchor_left = 0.0833333
+anchor_top = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 0.916667
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Shadow" type="Panel" parent="."]
+anchor_left = 0.0833333
+anchor_top = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 0.916667
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+custom_styles/panel = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="TextureButton" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -7.62939e-06
+rect_min_size = Vector2( 96, 96 )
+size_flags_horizontal = 3
+texture_pressed = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Description" type="Label" parent="."]
+anchor_top = 0.40404
+anchor_right = 1.0
+anchor_bottom = 0.565657
+rect_rotation = -5.0
+rect_pivot_offset = Vector2( 48, 8 )
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 0.670588, 0.670588, 1 )
+custom_colors/font_color_shadow = Color( 0.4, 0.4, 0.4, 1 )
+text = "NULL"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
+}

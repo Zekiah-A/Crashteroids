@@ -1,0 +1,219 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Shaders/blur.shader" type="Shader" id=1]
+[ext_resource path="res://Fonts/smaller_title_font_outline.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Shaders/text_gradient.shader" type="Shader" id=3]
+[ext_resource path="res://Fonts/typefaces/arial.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Styles/grey_button_pressed_style.tres" type="StyleBox" id=5]
+[ext_resource path="res://Styles/green_button_style.tres" type="StyleBox" id=6]
+[ext_resource path="res://Styles/grey_button_style.tres" type="StyleBox" id=7]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/blur_amount = 4.0
+shader_param/translucency = 1.0
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/intensity = 1.885
+shader_param/x = false
+shader_param/r_horizontal = 0.0
+shader_param/g_horizontal = 0.0
+shader_param/b_horizontal = null
+shader_param/y = true
+shader_param/r_vertical = null
+shader_param/g_vertical = 8.006
+shader_param/b_vertical = null
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 1 )
+shader_param/blur_amount = 4.0
+shader_param/translucency = 1.0
+
+[sub_resource type="DynamicFont" id=6]
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 512, 300 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MainPanel" type="Panel" parent="."]
+material = SubResource( 1 )
+anchor_left = 0.375
+anchor_top = 0.213333
+anchor_right = 0.625
+anchor_bottom = 0.746667
+margin_top = 0.000205994
+margin_bottom = -0.000213623
+rect_pivot_offset = Vector2( 128, 148 )
+
+[node name="Game Over" type="Label" parent="MainPanel"]
+anchor_right = 1.0
+anchor_bottom = 0.128125
+custom_fonts/font = ExtResource( 2 )
+text = "Game Over"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Winner Outline" type="Label" parent="MainPanel"]
+anchor_top = 0.128125
+anchor_right = 1.0
+anchor_bottom = 0.3
+custom_colors/font_color = Color( 0, 0, 0, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Player 1 won!"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Winner" type="Label" parent="MainPanel"]
+material = SubResource( 3 )
+anchor_top = 0.128125
+anchor_right = 1.0
+anchor_bottom = 0.3
+custom_fonts/font = SubResource( 4 )
+text = "Player 1 won!"
+align = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Again" type="Button" parent="MainPanel"]
+anchor_left = 0.125
+anchor_top = 0.6
+anchor_right = 0.875
+anchor_bottom = 0.75
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+text = "Play Again"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Quit" type="Button" parent="MainPanel"]
+anchor_left = 0.125
+anchor_top = 0.799999
+anchor_right = 0.875
+anchor_bottom = 0.949999
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 7 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Details" type="RichTextLabel" parent="MainPanel"]
+anchor_top = 0.275
+anchor_right = 1.0
+anchor_bottom = 0.574999
+margin_top = 7.62939e-06
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave]
+Rounds: 
+Bounces:
+Match Length: "
+text = "Details:
+Rounds: 
+Bounces:
+Match Length: "
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="DetailsPanel" type="Panel" parent="."]
+material = SubResource( 5 )
+anchor_left = 0.375
+anchor_top = 0.373333
+anchor_right = 0.625
+anchor_bottom = 0.746667
+margin_top = 0.000198364
+margin_bottom = -0.000213623
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Done" type="Button" parent="DetailsPanel"]
+anchor_left = 0.125
+anchor_top = 0.67857
+anchor_right = 0.875
+anchor_bottom = 0.892856
+custom_fonts/font = ExtResource( 2 )
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 7 )
+text = "Done"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Details" type="RichTextLabel" parent="DetailsPanel"]
+anchor_top = -0.142857
+anchor_right = 1.0
+anchor_bottom = 0.67857
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Awards:[/center][/color][/wave]
+"
+text = "Awards:
+"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Border" type="Panel" parent="."]
+anchor_left = 0.375
+anchor_top = 0.213333
+anchor_right = 0.625
+anchor_bottom = 0.746667
+margin_top = 0.000205994
+margin_bottom = -0.000213623
+mouse_filter = 2
+custom_styles/panel = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="MainPanel/Again" to="." method="OptionPressed" binds= [ 1 ]]
+[connection signal="pressed" from="MainPanel/Quit" to="." method="OptionPressed" binds= [ 2 ]]
+[connection signal="pressed" from="DetailsPanel/Done" to="." method="DonePressed"]

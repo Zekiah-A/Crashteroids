@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex"
+path="res://.import/two_player_banner.svg-322edfc6c64224da6b86fed198662ff8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fire_particle.png"
-dest_files=[ "res://.import/fire_particle.png-282b12927cd5b1f6d9c0bfb485d448ae.stex" ]
+source_file="res://Resources/two_player_banner.svg"
+dest_files=[ "res://.import/two_player_banner.svg-322edfc6c64224da6b86fed198662ff8.stex" ]
 
 [params]
 

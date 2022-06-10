@@ -12,12 +12,12 @@ config_version=4
 
 config/name="Crashteroids"
 config/description=" An EPIC local and online 2D game where you act as a spaceship, bouncing off of asteroids and blowing up enemies. Be careful not to get hit!"
-run/main_scene="res://scenes/Title.tscn"
+run/main_scene="res://Scenes/Title.tscn"
 config/use_custom_user_dir=true
-boot_splash/image="res://resources/splash_tilt.png"
+boot_splash/image="res://Resources/splash_tilt.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
-config/icon="res://resources/splash.png"
+config/icon="res://Resources/splash.png"
 
 [display]
 
