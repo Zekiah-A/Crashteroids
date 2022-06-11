@@ -79,7 +79,7 @@ polygon = PoolVector2Array( 376, 142, 432, 110, 496, 118, 464, 182, 488, 246, 44
 [node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/StaticBody2D"]
-polygon = PoolVector2Array( 352, 232, 376, 142, 432, 112, 496, 118, 464, 182, 488, 248, 440, 222, 384, 264 )
+polygon = PoolVector2Array( 352, 232, 376, 142, 432, 110, 496, 118, 464, 182, 488, 248, 440, 222, 384, 264 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Polygon2D2"]
 polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Styles/green_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://LaunchToolsManager.cs" type="Script" id=2]
@@ -12,11 +12,6 @@ shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 3 )
-shader_param/blur_amount = 5.0
-shader_param/translucency = 1.8
-
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_left = 2
@@ -26,7 +21,7 @@ border_width_bottom = 2
 border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 15
+size = 20
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
@@ -58,47 +53,23 @@ __meta__ = {
 }
 
 [node name="ToolsPanel" type="Panel" parent="."]
-visible = false
 material = SubResource( 1 )
 anchor_left = 0.25
-anchor_top = 0.493333
+anchor_top = 0.427
 anchor_right = 0.75
 anchor_bottom = 0.893333
+margin_top = -0.200012
+margin_right = -6.10352e-05
 rect_pivot_offset = Vector2( 128, 148 )
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TopBlur" type="Panel" parent="ToolsPanel"]
-material = SubResource( 7 )
-margin_left = 136.0
-margin_top = -40.0
-margin_right = 376.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Background" type="ColorRect" parent="ToolsPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0901961, 0.0941176, 0.113725, 0.941176 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TopBackground" type="ColorRect" parent="ToolsPanel"]
-anchor_left = 0.266
-anchor_top = -0.167
-anchor_right = 0.734
-margin_left = -0.192001
-margin_top = 0.0800018
-margin_right = 0.191986
-margin_bottom = 1.0
-color = Color( 0.0901961, 0.0941176, 0.113725, 0.941176 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Border" type="Panel" parent="ToolsPanel"]
 anchor_right = 1.0
@@ -108,49 +79,30 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TopBorder" type="Panel" parent="ToolsPanel"]
-anchor_left = 0.265625
-anchor_top = -0.166667
-anchor_right = 0.734375
-anchor_bottom = 0.00416667
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
 [node name="TitleLabel" type="Label" parent="ToolsPanel"]
 anchor_left = 0.266
-anchor_top = -0.167
 anchor_right = 0.734
-anchor_bottom = 0.004
+anchor_bottom = 0.171
 margin_left = -0.192001
-margin_top = 0.0800018
+margin_top = -3.8147e-06
 margin_right = 0.191986
-margin_bottom = 0.04
+margin_bottom = -0.0400085
 custom_fonts/font = ExtResource( 6 )
 text = "Bought Tools:"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="EmptyWarningLabel" type="Label" parent="ToolsPanel"]
-anchor_left = 0.375
-anchor_top = 0.267
-anchor_right = 0.625
-anchor_bottom = 0.8
-margin_left = -1.52588e-05
-margin_top = -0.0800018
+anchor_left = 0.25
+anchor_right = 0.75
+anchor_bottom = 1.0
+margin_right = -3.05176e-05
 custom_colors/font_color = Color( 1, 1, 1, 0.45098 )
 custom_fonts/font = SubResource( 3 )
 text = "There seems to be no tools or upgrades here yet, earn money to buy some from the shop. ☺"
 align = 1
 valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ToolsPanel"]
 anchor_left = 0.016
@@ -158,13 +110,10 @@ anchor_top = 0.033
 anchor_right = 0.984
 anchor_bottom = 0.967
 margin_left = -0.192
-margin_top = 0.0799999
+margin_top = 38.76
 margin_right = 0.191986
-margin_bottom = -0.0800171
+margin_bottom = 0.23999
 scroll_deadzone = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GridContainer" type="GridContainer" parent="ToolsPanel/ScrollContainer"]
 columns = 5
