@@ -28,6 +28,7 @@ rotation = -3.14159
 cast_to = Vector2( 0, 20 )
 
 [node name="Laser" parent="Display" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( -6, -3.8147e-05 )
 rotation = -1.57079
 

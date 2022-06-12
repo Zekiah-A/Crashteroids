@@ -105,8 +105,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 504, 300 )
-offset = Vector2( 7, 0 )
+position = Vector2( 512, 300 )
+rotating = true
 current = true
 smoothing_enabled = true
 

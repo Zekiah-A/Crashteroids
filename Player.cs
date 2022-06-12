@@ -7,6 +7,8 @@ public class Player : KinematicBody2D
 
 	public Vector2 MovementDirection;
 	public Sprite PlayerSprite;
+	public bool Launched = false;
+	public bool MyTurn = false;
 	
 	public override void _Ready()
 	{
@@ -15,12 +17,26 @@ public class Player : KinematicBody2D
 
 	public override void _Input(InputEvent @event)
 	{
+		if (Launched) return;
+		if (!MyTurn) return;
+		var inputPosition = Vector2.Zero;
+		if (@event is InputEventScreenTouch screenTouch)
+			inputPosition = screenTouch.Position;
+		if (@event is InputEventMouse mouse)
+			inputPosition = mouse.Position;
 		
+		if (inputPosition != Vector2.Zero)
+		{
+			MovementDirection = ToLocal(inputPosition);
+			PlayerSprite.Rotation = GetAngleTo(inputPosition) + 1.5708f;
+		}
 	}
 
 	public override void _Process(float delta)
 	{
-		var collision = MoveAndCollide(MovementDirection * Speed * delta);
+		if (!Launched) return;
+		if (!MyTurn) return;
+		var collision = MoveAndCollide(MovementDirection.Normalized() * Speed * delta);
 		if (collision != null)
 		{
 			var hit = (Godot.Node2D) collision.Collider;
