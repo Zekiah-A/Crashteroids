@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/ui/ui_corner.png" type="Texture" id=1]
 [ext_resource path="res://TwoPlayerGame.cs" type="Script" id=2]
+[ext_resource path="res://Resources/backgrounds/stars_fg.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/large_title_font_outline.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/backgrounds/stars_mg.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/GameOver.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/backgrounds/walls_horizontal.png" type="Texture" id=11]
 [ext_resource path="res://Resources/backgrounds/walls_vertical.png" type="Texture" id=12]
@@ -24,7 +26,7 @@ script = ExtResource( 2 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 0.5 )
+motion_scale = Vector2( 0.4, 0.4 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -39,6 +41,27 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+
+[node name="Midground" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 600, 300 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4000, 4000 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 24, -24 )
+motion_scale = Vector2( 0.7, 0.7 )
+
+[node name="Foreground" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 512, 300 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 4000, 4000 )
 
 [node name="Walls" type="StaticBody2D" parent="." groups=["Map"]]
 position = Vector2( 512, 320 )
@@ -109,6 +132,7 @@ position = Vector2( 512, 300 )
 rotating = true
 current = true
 smoothing_enabled = true
+smoothing_speed = 10.0
 
 [node name="CameraTween" type="Tween" parent="."]
 
@@ -173,7 +197,6 @@ mouse_filter = 2
 mouse_filter = 2
 
 [node name="LaunchTools" parent="CanvasLayer/UI" instance=ExtResource( 14 )]
-visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -181,6 +204,9 @@ margin_left = -512.0
 margin_top = -600.0
 margin_right = 512.0
 mouse_filter = 0
+
+[node name="ToolsPanel" parent="CanvasLayer/UI/LaunchTools" index="0"]
+visible = false
 
 [node name="Background" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="0"]
 mouse_filter = 2

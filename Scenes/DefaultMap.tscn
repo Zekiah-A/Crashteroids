@@ -82,9 +82,11 @@ polygon = PoolVector2Array( 376, 142, 432, 110, 496, 118, 464, 182, 488, 246, 44
 polygon = PoolVector2Array( 352, 232, 376, 142, 432, 110, 496, 118, 464, 182, 488, 248, 440, 222, 384, 264 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Polygon2D2"]
-polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
+position = Vector2( -800, -530 )
+polygon = PoolVector2Array( 552, 664, 560, 584, 600, 592, 632, 560, 704, 584, 720, 568, 720, 632, 696, 656, 648, 664, 632, 728 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D2/Polygon2D"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D2/Polygon2D/StaticBody2D"]
-polygon = PoolVector2Array( 456, 608, 520, 520, 592, 512, 648, 576, 704, 584, 720, 568, 752, 584, 776, 608 )
+position = Vector2( 96, 56 )
+polygon = PoolVector2Array( 456, 608, 464, 528, 504, 536, 536, 504, 624, 512, 624, 576, 600, 600, 552, 608, 536, 672 )

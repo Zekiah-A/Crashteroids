@@ -150,6 +150,7 @@ public class TitleScreen : Control
 		);
 		graphicsSelectorTween.Start();
 	}
-
+	
+	public void TwoPlayerPlayPressed() => GetTree().ChangeScene("res://Scenes/Game.tscn");
 	public void OnWindowResize() => CallDeferred(nameof(UpdateGraphicsSelector));
 }

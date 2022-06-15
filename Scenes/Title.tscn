@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://Styles/grey_button_style.tres" type="StyleBox" id=1]
 [ext_resource path="res://Styles/green_button_pressed_style.tres" type="StyleBox" id=2]
@@ -294,122 +294,6 @@ public class DeveloperConsole : Button
 
 [sub_resource type="StyleBoxEmpty" id=18]
 
-[sub_resource type="CSharpScript" id=66]
-script/source = "using Godot;
-using System;
-using System.Xml;
-using System.Net.Http;
-using System.Collections.Generic;
-
-public class SettingsUiManager : Panel
-{
-	private List<Node> checkboxSettings;
-	private RichTextLabel usernameLabel;
-	private Tween usernameTween;
-	private HTTPRequest usernameHttpRequest;
-
-	public override void _Ready()
-	{
-		///<summary>
-		/// Music checkbox = 0, Sfx checkbox = 1, Tutorial enabled checkbox = 2, Advertisements enabled checkbox = 3
-		/// (Extra settings - Do not need to be on the list): Low graphics = 5, Medium graphics = 6, High = 7, Sublime = 8
-		///</summary>
-		checkboxSettings = new List<Node>
-		{
-			GetNode(\"CentrePanel\").GetNode(\"Checkbox\").GetNode<Checkbox>(\"Checkbox\"),
-			GetNode(\"CentrePanel\").GetNode(\"Checkbox2\").GetNode<Checkbox>(\"Checkbox\"),
-			GetNode(\"RightPanel\").GetNode(\"Checkbox\").GetNode<Checkbox>(\"Checkbox\"),
-			GetNode(\"RightPanel\").GetNode(\"Checkbox2\").GetNode<Checkbox>(\"Checkbox\"),
-		};
-
-		//GetNode(\"RightPanel\").GetNode<LineEdit>(\"UsernameEdit\");
-		usernameLabel = GetNode(\"RightPanel\").GetNode(\"UsernameEdit\").GetNode<RichTextLabel>(\"UsernameLabel\");
-		usernameTween = GetNode(\"RightPanel\").GetNode(\"UsernameEdit\").GetNode<Tween>(\"Tween\");
-		usernameHttpRequest = GetNode(\"RightPanel\").GetNode(\"UsernameEdit\").GetNode<HTTPRequest>(\"HTTPRequest\");
-	}
-
-	public void Opened()
-	{
-		GetNode(\"RightPanel\").GetNode<LineEdit>(\"UsernameEdit\").PlaceholderText = GameData.Username;
-		(checkboxSettings[0] as Checkbox).IsEnabled = GameData.Music;
-		(checkboxSettings[1] as Checkbox).IsEnabled = GameData.SoundEffects;
-		(checkboxSettings[2] as Checkbox).IsEnabled = GameData.TutorialEnabled;
-		(checkboxSettings[3] as Checkbox).IsEnabled = GameData.Advertisements;
-	}
-
-	///<summary> Called by a signal when a setting is interacted with. </summary>
-	private void SettingsChanged(int id)
-	{
-		(checkboxSettings[id] as Checkbox).IsEnabled = ((checkboxSettings[id] as Checkbox).IsEnabled ? false : true);
-		switch (id)
-		{
-			case 0:
-				GameData.Music = (checkboxSettings[id] as Checkbox).IsEnabled;
-				break;
-			case 1:
-				GameData.SoundEffects = (checkboxSettings[id] as Checkbox).IsEnabled;
-				break;
-			case 2:
-				GameData.TutorialEnabled = (checkboxSettings[id] as Checkbox).IsEnabled;
-				break;
-			case 3:
-				GameData.Advertisements = (checkboxSettings[id] as Checkbox).IsEnabled;
-				break;
-		}
-	}
-
-	private async void UsernameEdited(string newText)
-	{
-		using (HttpClient client = new HttpClient()) //TODO: May have to use GODOT HTTP service
-		{
-			try
-			{
-				///<summary> Send a request to moderate the username using the purgomalum API. </summary>
-				string responseBody = await client.GetStringAsync($\"https://www.purgomalum.com/service/xml?text={newText}\");
-
-				XmlDocument document = new XmlDocument();
-				document.LoadXml(responseBody);
-
-				///<summary> Get the XML tag containing the filtered username. </summary>
-				string filteredName = document.GetElementsByTagName(\"result\")[0].InnerText;
-
-				///<summary> If a change in the new username is found, set it to that, else, keep the username the same.</summary>
-				if (filteredName != newText)
-					newText = filteredName;
-			}
-			catch(Exception e)
-			{
-				if (e is HttpRequestException)
-					GD.Print($\"Could not access API to request username filter. {e}\\nAccepting unfiltered username.\");
-				else
-					GD.Print($\"Error requesting username filter. {e}\\nAccepting unfiltered username.\");
-			}
-		}
-
-		if (newText.Length <= Constants.MaxUsernameLength)
-			GameData.Username = newText;
-		else
-			GameData.Username = newText.Substring(0, Constants.MaxUsernameLength);
-
-		usernameLabel.Visible = true;
-		usernameTween.InterpolateProperty(
-			usernameLabel, //Object
-			\"rect_position\", //Property being tweened
-			new Vector2(0, 32), //from
-			new Vector2(0, 64), //to
-			0.5f, //speed
-			Tween.TransitionType.Cubic,
-			Tween.EaseType.Out
-		);
-		usernameTween.Start();
-
-		usernameLabel.BbcodeText = $\"[color=yellow]Username set to: {GameData.Username}[/color]\";
-
-	}
-}
-
-"
-
 [sub_resource type="ShaderMaterial" id=19]
 shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
@@ -475,46 +359,6 @@ shader = ExtResource( 3 )
 shader_param/blur_amount = 5.0
 shader_param/translucency = 1.0
 
-[sub_resource type="CSharpScript" id=67]
-script/source = "using Godot;
-using System;
-using System.Collections.Generic;
-
-public class TwoPlayerMatchUiManager : Panel
-{
-	private List<Node> matchSettings;
-	public override void _Ready()
-	{
-		///<summary> Random map = 1, Special abilities = 2, Rocket bounces = 3, Rounds = 4 </summary>
-		matchSettings = new List<Node>
-		{
-			GetNode(\"LeftPanel\").GetNode(\"Checkbox\").GetNode<Checkbox>(\"Checkbox\"),
-			GetNode(\"LeftPanel\").GetNode(\"Checkbox2\").GetNode<Checkbox>(\"Checkbox\"),
-			GetNode(\"LeftPanel\").GetNode(\"Iteratebox\").GetNode<Iteratebox>(\"Iteratebox\"),
-			GetNode(\"LeftPanel\").GetNode(\"Iteratebox2\").GetNode<Iteratebox>(\"Iteratebox\"),
-			//GetNode(\"CentrePanel\").GetNode<Picker>(\"MapPicker\"),
-			//GetNode(\"RightPanel\").GetNode<Picker>(\"PlayerOnePicker\"),
-			//GetNode(\"RightPanel\").GetNode<Picker>(\"PlayerTwoPicker\"),
-		};
-	}
-
-	private void MatchSettingsChanged(int id)
-	{
-		if (id < 2)
-			(matchSettings[id] as Checkbox).IsEnabled = ((matchSettings[id] as Checkbox).IsEnabled ? false : true);
-		else
-			(matchSettings[id] as Iteratebox).Increment();
-	}
-
-	private void StartPressed()
-	{
-		//TODO: scene can be changed in many ways, research more. https://docs.godotengine.org/en/stable/tutorials/misc/change_scenes_manually.html
-		GD.Print(\"Entering match.\");
-		GetTree().ChangeScene(\"res://scenes/Game.tscn\");
-	}
-}
-"
-
 [sub_resource type="StyleBoxEmpty" id=44]
 
 [sub_resource type="DynamicFont" id=45]
@@ -553,77 +397,6 @@ shader_param/scroll = 0.665
 [sub_resource type="StyleBoxEmpty" id=55]
 
 [sub_resource type="StyleBoxEmpty" id=56]
-
-[sub_resource type="CSharpScript" id=68]
-script/source = "using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-public class ShopUiManager : Panel
-{
-	//TODO: Make public in config?
-	private Dictionary<ToolTypes, Tool> tools;
-
-	public override void _Ready()
-	{
-		tools = new Dictionary<ToolTypes, Tool>
-		{
-			{ ToolTypes.Pen, GetNode(\"MainPanel\").GetNode(\"ToolsGrid\").GetNode(\"1\") as Tool },
-			{ ToolTypes.Potractor, GetNode(\"MainPanel\").GetNode(\"ToolsGrid\").GetNode(\"2\") as Tool },
-			{ ToolTypes.Ruler, GetNode(\"MainPanel\").GetNode(\"ToolsGrid\").GetNode(\"3\") as Tool },
-			{ ToolTypes.Laser, GetNode(\"MainPanel\").GetNode(\"ToolsGrid\").GetNode(\"4\") as Tool }
-		};
-		
-		//TODO: Initialise money, initialise all vars with default values when creating the config so no errors occur due to fields not existing
-		
-		//If they already have bought it, display as bought.
-		foreach (var tool in tools)
-		{
-			GD.Print(tool.Key.ToString().ToLower());
-			try
-			{
-				GD.Print(GameData.BoughtTools.ToString());
-				var toolname = tools[ToolTypes.Pen];
-				GD.Print(toolname);
-			}
-			catch (Exception e)
-			{
-				GD.Print(e);
-			}
-
-			if (GameData.BoughtTools.Contains(tool.Key.ToString()))
-				tool.Value.Buy();
-		}
-	}
-
-	private void UpgradePressed(int selected)
-	{
-		if (!tools[(ToolTypes) selected].Bought)
-		{
-			if (GameData.Money > tools[(ToolTypes) selected].Price)
-			{
-				tools[(ToolTypes) selected].Buy();
-				GameData.Money -= tools[(ToolTypes) selected].Price;
-				//Hack to append the bought tool to the end of the bought tools array
-				GameData.BoughtTools = GameData.BoughtTools.ToList().Append(((ToolTypes) selected).ToString()).ToArray();
-				GD.Print($\"Item {tools[(ToolTypes) selected].Name} bought. Old balance: {tools[(ToolTypes) selected].Price + GameData.Money}, current balance: {GameData.Money}, price: {tools[(ToolTypes) selected].Price}\");
-			}
-		}
-		
-		//TODO: Save bought to config & Deduct money.
-	}
-}
-
-//TODO: Move to it's own file?
-enum ToolTypes
-{
-	Pen,
-	Potractor,
-	Ruler,
-	Laser
-}
-"
 
 [sub_resource type="StyleBoxFlat" id=57]
 bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
@@ -972,7 +745,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 18 )
-script = SubResource( 66 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1593,10 +1365,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 18 )
-script = SubResource( 67 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
 material = SubResource( 43 )
@@ -2028,7 +1796,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 18 )
-script = SubResource( 68 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2892,7 +2659,7 @@ __meta__ = {
 [connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button2" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 1 ]]
 [connection signal="button_down" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="DragStart"]
 [connection signal="button_up" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="DragEnd"]
-[connection signal="pressed" from="TwoPlayerMatchPanel/RightPanel/Start" to="TwoPlayerMatchPanel" method="StartPressed"]
+[connection signal="pressed" from="TwoPlayerMatchPanel/RightPanel/Start" to="." method="TwoPlayerPlayPressed"]
 [connection signal="pressed" from="ShopPanel/Back" to="." method="ClosePanel" binds= [ 3 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
 [connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
