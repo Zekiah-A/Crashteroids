@@ -9,6 +9,7 @@ public class TwoPlayerGame : Node
 	private int currentTurn = 0;
 	private RichTextLabel playerTurnLabel;
 	private Control ingameNameLabel;
+	private bool cameraBlocked;
 	
 	public override void _Ready()
 	{
@@ -58,6 +59,7 @@ public class TwoPlayerGame : Node
 	{
 		var cameraTween = GetNode<Tween>("CameraTween");
 
+		cameraBlocked = true;
 		cameraTween.InterpolateProperty(
 			GetNode<Camera2D>("Camera2D"),
 			"zoom",
@@ -117,6 +119,7 @@ public class TwoPlayerGame : Node
 		((IngameNameLabel) ingameNameLabel).TargetNode = Players[0];
 		((IngameNameLabel) ingameNameLabel).Clampless = false;
 		((Player) Players[0]).MyTurn = true;
+		cameraBlocked = false;
 	}
 
 	private InputEventScreenTouch secondaryTouch;
@@ -124,6 +127,7 @@ public class TwoPlayerGame : Node
 	private bool draggingMouse;
 	public override void _Input(InputEvent inputEvent)
 	{
+		if (cameraBlocked) return;
 		if (inputEvent is InputEventMouseButton mouseButton)
 		{
 			draggingMouse = mouseButton.IsPressed();
