@@ -130,7 +130,7 @@ public class TwoPlayerGame : Node
 		if (cameraBlocked) return;
 		if (inputEvent is InputEventMouseButton mouseButton)
 		{
-			draggingMouse = mouseButton.IsPressed();
+			draggingMouse = mouseButton.Pressed;
 			
 			var zoom = Vector2.Zero;
 			if (mouseButton.ButtonIndex == (int) ButtonList.WheelUp)
@@ -157,17 +157,20 @@ public class TwoPlayerGame : Node
 		}
 		
 		if (inputEvent is InputEventScreenTouch screenTouch)
-			secondaryTouch = (screenTouch.Index == 1 ? (screenTouch.Pressed ? screenTouch : null) : null);
-
+		{
+			secondaryTouch = screenTouch.Index == 1 ? screenTouch.Pressed ? screenTouch : null : null;
+			GD.Print($"secondarytouch: {secondaryTouch} index: {screenTouch.Index}");
+		}
+		
 		if (inputEvent is InputEventScreenDrag screenDrag)
 		{
 			if (secondaryTouch != null)
 			{
-				var dragDistance = secondaryTouch.Position.DistanceTo(screenDrag.Position);
-				var zoom = (dragDistance < previousDragDistance ? 0.01f : -0.01f);
+				var dragDistance = Mathf.Abs(secondaryTouch.Position.DistanceTo(screenDrag.Position));
+				var zoom = dragDistance < previousDragDistance ? 0.01f : -0.01f;
 				GetNode<Camera2D>("Camera2D").Zoom = new Vector2(
-					Mathf.Clamp((GetNode<Camera2D>("Camera2D").Zoom.x + zoom), 0.15f, 2),
-					Mathf.Clamp((GetNode<Camera2D>("Camera2D").Zoom.y + zoom), 0.15f, 2)
+					Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom, 0.15f, 1),
+					Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom, 0.15f, 1)
 				);
 				previousDragDistance = dragDistance;
 			}

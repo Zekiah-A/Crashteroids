@@ -9,7 +9,8 @@ public class Player : KinematicBody2D
 	public Sprite PlayerSprite;
 	public bool Launched = false;
 	public bool MyTurn = false;
-	
+	private bool selected;
+
 	public override void _Ready()
 	{
 		PlayerSprite = GetNode<Sprite>("Display");
@@ -17,8 +18,7 @@ public class Player : KinematicBody2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (Launched) return;
-		if (!MyTurn) return;
+		if (Launched || !MyTurn || !selected) return;
 		var inputPosition = Vector2.Zero;
 		if (@event is InputEventScreenTouch screenTouch)
 			inputPosition = screenTouch.Position;
@@ -34,8 +34,7 @@ public class Player : KinematicBody2D
 
 	public override void _Process(float delta)
 	{
-		if (!Launched) return;
-		if (!MyTurn) return;
+		if (!Launched || !MyTurn) return;
 		var collision = MoveAndCollide(MovementDirection.Normalized() * Speed * delta);
 		if (collision != null)
 		{
@@ -46,7 +45,36 @@ public class Player : KinematicBody2D
 			PlayerSprite.Rotation = MovementDirection.Angle() + 1.5708f; //1.5708 radians is 90 degrees
 		}
 	}
-	
+	private void PlayerAreaInput(object viewport, InputEvent inputEvent, int shapeIndex)
+	{
+		if (Launched || !MyTurn || inputEvent.GetType() != typeof(InputEventMouseButton) && inputEvent.GetType() != typeof(InputEventScreenTouch)) 
+			return;
+		if (inputEvent is InputEventMouseButton mouseButton && mouseButton.Pressed || inputEvent is InputEventScreenTouch screenTouch && screenTouch.Pressed)
+			selected =! selected; //It will be selected = true, and then disabled by tapping anywhere on the screen when we switch to drag to rotate
+		if (selected)
+			GetNode<Tween>("PlayerTween").InterpolateProperty(
+					GetNode<Sprite>("Display"),
+					"scale",
+					new Vector2(1, 1),
+					new Vector2(1.5f, 1.5f),
+					0.2f,
+					Tween.TransitionType.Sine,
+					Tween.EaseType.In
+			);
+		else
+			GetNode<Tween>("PlayerTween").InterpolateProperty(
+				GetNode<Sprite>("Display"),
+				"scale",
+				new Vector2(1.5f, 1.5f),
+				new Vector2(1, 1),
+				0.2f,
+				Tween.TransitionType.Sine,
+				Tween.EaseType.Out,
+				0.1f //Delay
+			);
+		GetNode<Tween>("PlayerTween").Start();
+	}
+
 	private void InvalidAreaEntered(object body)
 	{
 		//if (body is StaticBody2D)
@@ -223,3 +251,4 @@ public class Player : KinematicBody2D
 		return vector;
 	}
  */
+ 
