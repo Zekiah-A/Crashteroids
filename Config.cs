@@ -12,7 +12,7 @@ public static class Config
 		{ "money", 0 },
 		{ "graphics_quality", 3 },
 		{ "name", "morbius" },
-		{ "bought_tools", new[]{""} }
+		{ "bought_tools", new[] {""} }
 	};
 
 	public static void Initialise()
@@ -20,7 +20,7 @@ public static class Config
 		var config = new ConfigFile();
 		var err = config.Load("user://crashteroids.cfg");
 		if (err == Error.Ok) return;
-		foreach (var configPair in defaultConfig) config.SetValue("settings", configPair.Key, configPair.Value);
+		foreach (var configPair in defaultConfig) config.SetValue("settings", configPair.Key, (Variant) configPair.Value);
 		config.Save("user://crashteroids.cfg");
 	}
 	
@@ -28,7 +28,7 @@ public static class Config
 	{
 		var config = new ConfigFile();
 		config.Load("user://crashteroids.cfg");
-		config.SetValue("settings", key, value);
+		config.SetValue("settings", key, (Variant) value);
 		config.Save("user://crashteroids.cfg");
 	}
 

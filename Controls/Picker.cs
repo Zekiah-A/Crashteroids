@@ -3,9 +3,9 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public class Picker : Control
+public partial class Picker : Control
 {
-	public static Texture[] RocketTextures;
+	public static Texture2D[] RocketTextures;
 	private TextureRect rocket;
 	private Tween rocketTween;
 	private int currentIndex;
@@ -17,15 +17,15 @@ public class Picker : Control
 
 		RocketTextures = new []
 		{
-			ResourceLoader.Load("res://Resources/rockets/rocket_retro_1.png") as Texture,
-			ResourceLoader.Load("res://Resources/rockets/rocket_retro_2.png") as Texture,
-			ResourceLoader.Load("res://Resources/rockets/rocket_dart_1.png") as Texture
+			ResourceLoader.Load("res://Resources/rockets/rocket_retro_1.png") as Texture2D,
+			ResourceLoader.Load("res://Resources/rockets/rocket_retro_2.png") as Texture2D,
+			ResourceLoader.Load("res://Resources/rockets/rocket_dart_1.png") as Texture2D
 		};
 	}
 
+	///<note> Forward button = 1 </note>
 	private async void _on_Button_pressed(int index)
 	{
-		///<note> Forward button = 1 </note>
 		if (index == 1)
 		{
 			if (currentIndex == RocketTextures.Length - 1)
@@ -50,7 +50,7 @@ public class Picker : Control
 		if (index == 1)
 		{
 			//<summary> Come off before coming on tween </summary>
-			rocketTween.InterpolateProperty(
+			/*rocketTween.InterpolateProperty(
 				rocket,
 				"rect_position",
 				new Vector2(192, 16),
@@ -68,13 +68,13 @@ public class Picker : Control
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
 			);
-			rocketTween.Start();
+			rocketTween.Start();*/
 			///<summary> Wait for the rocket to move out of view and change texture</summary>
 			await ToSignal(rocketTween, "tween_completed");
 			rocket.Texture = RocketTextures[currentIndex];
 
 			//<summary> "New" rocket comes on the screen </summary>
-			rocketTween.InterpolateProperty(
+			/*rocketTween.InterpolateProperty(
 				rocket,
 				"rect_position",
 				new Vector2(400, 16),
@@ -92,12 +92,12 @@ public class Picker : Control
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
-			rocketTween.Start();
+			rocketTween.Start();*/
 		}
 		else
 		{
 			//<summary> Come off before coming on tween </summary>
-			rocketTween.InterpolateProperty(
+			/*rocketTween.InterpolateProperty(
 				rocket,
 				"rect_position",
 				new Vector2(192, 16),
@@ -115,13 +115,13 @@ public class Picker : Control
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.In
 			);
-			rocketTween.Start();
+			rocketTween.Start();*/
 			///<summary> Wait for the rocket to move out of view and change texture</summary>
 			await ToSignal(rocketTween, "tween_completed");
 			rocket.Texture = RocketTextures[currentIndex];
 
 			//<summary> "New" rocket comes on the screen </summary>
-			rocketTween.InterpolateProperty(
+			/*rocketTween.InterpolateProperty(
 				rocket,
 				"rect_position",
 				new Vector2(0, 16),
@@ -139,7 +139,7 @@ public class Picker : Control
 				Tween.TransitionType.Cubic,
 				Tween.EaseType.Out
 			);
-			rocketTween.Start();
+			rocketTween.Start();*/
 		}
 	}
 }

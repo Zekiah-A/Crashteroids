@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Iteratebox : Control
+public partial class Iteratebox : Control
 {
 	public int Current;
 	[Export] public int Min = 1;
@@ -12,13 +12,13 @@ public class Iteratebox : Control
 
 	public override void _Ready()
 	{
-		button = GetNode<TextureButton>("Texture Button");
-		number = GetNode("Texture Button").GetNode<Label>("Number");
+		button = GetNode<TextureButton>("Texture2D Button");
+		number = GetNode("Texture2D Button").GetNode<Label>("Number");
 		
 		Current = Min;
 		number.Text = Current.ToString();
 
-		button.Connect("pressed", this, nameof(Increment));
+		button.Connect("pressed",new Callable(this,nameof(Increment)));
 	}
 
 	public void Increment()

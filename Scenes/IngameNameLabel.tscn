@@ -15,10 +15,10 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="IngameNameLabel" type="Control"]
-margin_left = -64.0
-margin_top = -7.99998
-margin_right = 64.0
-margin_bottom = 7.99998
+offset_left = -64.0
+offset_top = -7.99998
+offset_right = 64.0
+offset_bottom = 7.99998
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Checkbox : Control
+public partial class Checkbox : Control
 {
 	public bool IsEnabled
 	{
@@ -18,16 +18,16 @@ public class Checkbox : Control
 	}
 
 	private TextureButton image;
-	private Texture checkboxEmpty;
-	private Texture checkboxFull;
+	private Texture2D checkboxEmpty;
+	private Texture2D checkboxFull;
 	private bool enabled;
 
 	public override void _Ready()
 	{
-		image = (TextureButton)GetNode("Texture Button");
-		checkboxEmpty = ResourceLoader.Load("res://Resources/image/checkbox_empty.png") as Texture;
-		checkboxFull = ResourceLoader.Load("res://Resources/image/checkbox_full.png") as Texture;
-		image.Connect("pressed", this, nameof(Toggle));
+		image = (TextureButton)GetNode("Texture2D Button");
+		checkboxEmpty = ResourceLoader.Load("res://Resources/image/checkbox_empty.png") as Texture2D;
+		checkboxFull = ResourceLoader.Load("res://Resources/image/checkbox_full.png") as Texture2D;
+		image.Connect("pressed",new Callable(this,nameof(Toggle)));
 	}
 
 	private void Toggle() => IsEnabled = !IsEnabled;

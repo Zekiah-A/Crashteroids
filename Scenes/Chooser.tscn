@@ -1,98 +1,74 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://3h7tyd44vpu5"]
 
-[ext_resource path="res://Controls/Chooser.cs" type="Script" id=1]
-[ext_resource path="res://Resources/image/chooser_border.png" type="Texture" id=2]
-[ext_resource path="res://Shaders/image_scroller.shader" type="Shader" id=3]
-[ext_resource path="res://Styles/grey_button_style.tres" type="StyleBox" id=4]
-[ext_resource path="res://Styles/grey_button_pressed_style.tres" type="StyleBox" id=5]
-[ext_resource path="res://Fonts/typefaces/arial.ttf" type="DynamicFontData" id=6]
+[ext_resource type="Script" path="res://Controls/Chooser.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://cr35tonl4hfdb" path="res://Resources/Image/chooser_border.png" id="2"]
+[ext_resource type="Shader" path="res://Shaders/image_scroller.gdshader" id="3"]
 
-[sub_resource type="DynamicFont" id=49]
-size = 24
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5kr5"]
 
-[sub_resource type="StyleBoxEmpty" id=2]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2n3m3"]
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 3 )
-shader_param/scroll = 0.0
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("3")
+shader_parameter/scroll = 0.0
 
-[node name="Chooser" type="Control"]
-anchor_right = 0.25
-anchor_bottom = 0.32
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Chooser" type="Panel"]
+anchors_preset = -1
+anchor_right = 0.133333
+anchor_bottom = 0.237037
+pivot_offset = Vector2(152, 72.0003)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o5kr5")
+script = ExtResource("1")
+metadata/_edit_use_anchors_ = true
 
-[node name="Chooser" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 152, 72.0003 )
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OptionName" type="Label" parent="Chooser"]
-margin_left = 49.0
-margin_top = 200.0
-margin_right = 208.0
-margin_bottom = 240.0
-custom_fonts/font = SubResource( 49 )
-text = "null"
-align = 1
-valign = 1
+[node name="OptionName" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.191406
+anchor_top = 0.78125
+anchor_right = 0.8125
+anchor_bottom = 0.9375
+text = "undefined"
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="Chooser"]
-margin_left = 5.0
-margin_top = 200.0
-margin_right = 49.0
-margin_bottom = 240.0
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.0195312
+anchor_top = 0.78125
+anchor_right = 0.191406
+anchor_bottom = 0.9375
 text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+metadata/_edit_use_anchors_ = true
 
-[node name="Button2" type="Button" parent="Chooser"]
-margin_left = 209.0
-margin_top = 200.0
-margin_right = 248.0
-margin_bottom = 240.0
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/normal = ExtResource( 4 )
+[node name="Button2" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.816406
+anchor_top = 0.78125
+anchor_right = 0.96875
+anchor_bottom = 0.9375
 text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+metadata/_edit_use_anchors_ = true
 
-[node name="OptionsPanel" type="Panel" parent="Chooser"]
+[node name="OptionsPanel" type="Panel" parent="."]
+clip_children = true
+clip_contents = true
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 1.0
-rect_clip_content = true
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2n3m3")
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Chooser/OptionsPanel"]
-material = SubResource( 3 )
-anchor_top = -9.53673e-07
+[node name="TextureRect" type="TextureRect" parent="OptionsPanel"]
+material = SubResource("3")
+anchors_preset = -1
 anchor_right = 3.0
-anchor_bottom = 0.999999
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+anchor_bottom = 1.0
+texture = ExtResource("2")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Chooser/Button" to="Chooser" method="ButtonPressed" binds= [ 0 ]]
+[connection signal="pressed" from="Button" to="." method="ButtonPressed" binds= [0]]

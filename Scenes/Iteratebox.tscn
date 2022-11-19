@@ -1,61 +1,44 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://doxyv4n5mb66v"]
 
-[ext_resource path="res://Styles/grey_button_style.tres" type="StyleBox" id=1]
-[ext_resource path="res://Controls/Iteratebox.cs" type="Script" id=2]
-[ext_resource path="res://Fonts/typefaces/arial.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Fonts/title_font.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Resources/image/checkbox_empty.png" type="Texture" id=5]
+[ext_resource type="StyleBox" uid="uid://defk55l4vv8kw" path="res://Styles/grey_button_style.tres" id="1"]
+[ext_resource type="Script" path="res://Controls/Iteratebox.cs" id="2"]
+[ext_resource type="Texture2D" uid="uid://dytia4wr4yxfd" path="res://Resources/Image/checkbox_empty.png" id="5"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 20
-font_data = ExtResource( 3 )
+[node name="Checkbox" type="Panel"]
+offset_right = 416.0
+offset_bottom = 112.0
+theme_override_styles/panel = ExtResource("1")
+script = ExtResource("2")
 
-[node name="Iteratebox" type="Control"]
-anchor_right = 0.21875
-anchor_bottom = 0.106667
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Checkbox" type="Panel" parent="."]
-margin_right = 224.0
-margin_bottom = 64.0
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Texture Button" type="TextureButton" parent="Checkbox"]
+[node name="Texture2D Button" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture_normal = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5")
+stretch_mode = 4
 
-[node name="Number" type="Label" parent="Checkbox/Texture Button"]
-margin_right = 64.0
-margin_bottom = 64.0
-custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
+[node name="Number" type="Label" parent="Texture2D Button"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.321569, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 64
 text = "1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
 
-[node name="Label" type="Label" parent="Checkbox"]
-margin_left = 64.0
-margin_right = 224.0
-margin_bottom = 64.0
-custom_fonts/font = SubResource( 1 )
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 424.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 36
 text = "Label"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+vertical_alignment = 1
 
-[connection signal="pressed" from="Checkbox/Texture Button" to="Checkbox" method="_on_Click"]
+[connection signal="pressed" from="Texture2D Button" to="." method="_on_Click"]

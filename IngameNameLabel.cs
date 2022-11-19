@@ -1,31 +1,31 @@
 using Godot;
 using System;
 
-public class IngameNameLabel : Control
+public partial class IngameNameLabel : Control
 {
 	public Node2D TargetNode;
 	public bool Clampless = true;
 	
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		if (TargetNode == null) 
 			return;
 
 		if (Clampless)
 		{
-			RectPosition = new Vector2(
-				Mathf.Lerp(RectPosition.x, TargetNode.GetGlobalTransformWithCanvas().origin.x  - RectSize.x / 2, 0.6f),
-				Mathf.Lerp(RectPosition.y, TargetNode.GetGlobalTransformWithCanvas().origin.y - 84, 0.6f)
+			Position = new Vector2(
+				Mathf.Lerp(Position.x, TargetNode.GetGlobalTransformWithCanvas().origin.x  - Size.x / 2, 0.6f),
+				Mathf.Lerp(Position.y, TargetNode.GetGlobalTransformWithCanvas().origin.y - 84, 0.6f)
 			);
 		}
 		else
 		{
-			RectPosition = new Vector2(
-				Mathf.Clamp(TargetNode.GetGlobalTransformWithCanvas().origin.x  - RectSize.x / 2, 0, GetViewport().GetVisibleRect().Size.x - RectSize.x),
-				Mathf.Clamp(TargetNode.GetGlobalTransformWithCanvas().origin.y - 84, 0, GetViewport().GetVisibleRect().Size.y - RectSize.y)
+			Position = new Vector2(
+				Mathf.Clamp(TargetNode.GetGlobalTransformWithCanvas().origin.x  - Size.x / 2, 0, GetViewport().GetVisibleRect().Size.x - Size.x),
+				Mathf.Clamp(TargetNode.GetGlobalTransformWithCanvas().origin.y - 84, 0, GetViewport().GetVisibleRect().Size.y - Size.y)
 			);
 		}
 
-		RectSize = new Vector2(GetNode<Label>("Label").Text.Length * 7, GetNode<Label>("Label").RectSize.y);
+		Size = new Vector2(GetNode<Label>("Label").Text.Length * 8, GetNode<Label>("Label").Size.y);
 	}
 }

@@ -2,9 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public class TwoPlayerGame : Node
+public partial class TwoPlayerGame : Node
 {
-	public List<Node2D> Players = new List<Node2D>();
+	public List<Node2D> Players = new();
 	
 	private int currentTurn = 0;
 	private RichTextLabel playerTurnLabel;
@@ -25,31 +25,32 @@ public class TwoPlayerGame : Node
 			case 1: mapScene = GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"); break;
 			case 2: mapScene = GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"); break;
 		}
-		AddChild(mapScene.Instance());
+		AddChild(mapScene.Instantiate());
 		
 		//Spawn special abilities around map
 		if (TwoPlayerGameData.SpecialAbilities) { }
 		
 		//Add players to scene
-		for (int i = 0; i < 2; i++)
+		for (var i = 0; i < 2; i++)
 		{
 			var playerScene = GD.Load<PackedScene>("res://Scenes/Player.tscn");
-			var player = playerScene.Instance();
+			var player = playerScene.Instantiate();
 			AddChild(player);
 			Players.Add((Node2D) player);
 		}
+		
 		Players[0].Position = new Vector2(48, 300);
 		((Player) Players[0]).MovementDirection = Vector2.Right;
 		((Player) Players[0]).PlayerSprite.Rotation = 1.5708f;
-		Players[1].Position = new Vector2(976, 300);
+		Players[1].Position = new Vector2(996, 300);
 		((Player) Players[1]).MovementDirection = Vector2.Left;
 		((Player) Players[1]).PlayerSprite.Rotation = -1.5708f;
 
 		playerTurnLabel = GetNode<RichTextLabel>("CanvasLayer/UI/PlayerTurn/Title");
-		playerTurnLabel.BbcodeText = FormatPlayerTurnLabel();
+		playerTurnLabel.Text = FormatPlayerTurnLabel();
 		
 		var ingameNameScene = GD.Load<PackedScene>("res://Scenes/IngameNameLabel.tscn");
-		ingameNameLabel = (Control) ingameNameScene.Instance();
+		ingameNameLabel = (Control) ingameNameScene.Instantiate();
 		GetNode<CanvasLayer>("CanvasLayer").AddChild(ingameNameLabel);
 
 		StartGame();
@@ -60,7 +61,7 @@ public class TwoPlayerGame : Node
 		var cameraTween = GetNode<Tween>("CameraTween");
 
 		cameraBlocked = true;
-		cameraTween.InterpolateProperty(
+		/*cameraTween.InterpolateProperty(
 			GetNode<Camera2D>("Camera2D"),
 			"zoom",
 			GetNode<Camera2D>("Camera2D").Zoom,
@@ -68,19 +69,18 @@ public class TwoPlayerGame : Node
 			8,
 			Tween.TransitionType.Sine,
 			Tween.EaseType.Out
-		);
+		);*/
 		
-		for (int i = 0; i < Players.Count; i++)
+		for (var i = 0; i < Players.Count; i++)
 		{
-			if (i == 0)
-				ingameNameLabel.GetNode<Label>("Label").Text = $"{Config.Load("name")} (Player {i + 1})";
-			else
-				ingameNameLabel.GetNode<Label>("Label").Text = $"Guest (Player {i + 1})";
+			ingameNameLabel.GetNode<Label>("Label").Text = i == 0 ? $"{Config.Load("name")} (Player {i + 1})" : $"Guest (Player {i + 1})";
 			if (string.IsNullOrEmpty((string) Config.Load("name")))
+			{
 				ingameNameLabel.GetNode<Label>("Label").Text = $"Player {i + 1}";
-				
+			}
+			
 			((IngameNameLabel) ingameNameLabel).TargetNode = Players[i];
-			cameraTween.InterpolateProperty(
+			/*cameraTween.InterpolateProperty(
 				GetNode<Camera2D>("Camera2D"),
 				"position",
 				GetNode<Camera2D>("Camera2D").Position,
@@ -90,10 +90,10 @@ public class TwoPlayerGame : Node
 				Tween.EaseType.Out
 			);
 			cameraTween.Start();
-			await ToSignal(cameraTween, "tween_completed");
+			await ToSignal(cameraTween, "tween_completed");*/
 		}
 		
-		await ToSignal(cameraTween, "tween_completed");
+		/*await ToSignal(cameraTween, "tween_completed");
 		cameraTween.InterpolateProperty(
 			GetNode<Camera2D>("Camera2D"),
 			"position",
@@ -112,7 +112,7 @@ public class TwoPlayerGame : Node
 			Tween.TransitionType.Sine,
 			Tween.EaseType.In
 		);
-		cameraTween.Start();
+		cameraTween.Start();*/
 		await ToSignal(cameraTween, "tween_completed");
 		
 		ingameNameLabel.GetNode<Label>("Label").Text = FormatIngameNameLabel();
@@ -128,54 +128,57 @@ public class TwoPlayerGame : Node
 	public override void _Input(InputEvent inputEvent)
 	{
 		if (cameraBlocked) return;
-		if (inputEvent is InputEventMouseButton mouseButton)
+		switch (inputEvent)
 		{
-			draggingMouse = mouseButton.Pressed;
-			
-			var zoom = Vector2.Zero;
-			if (mouseButton.ButtonIndex == (int) ButtonList.WheelUp)
-				zoom = new Vector2(-0.2f, -0.2f);
-			else if (mouseButton.ButtonIndex == (int) ButtonList.WheelDown)
-				zoom = new Vector2(0.2f, 0.2f);
-			
-			GetNode<Tween>("CameraTween").InterpolateProperty(
-				GetNode<Camera2D>("Camera2D"),
-				"zoom",
-				GetNode<Camera2D>("Camera2D").Zoom,
-				new Vector2(Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom.x, 0.15f, 1), 
-					Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom.y, 0.15f, 1)),
-				0.1f,
-				Tween.TransitionType.Sine
-			);
-			GetNode<Tween>("CameraTween").Start();
-		}
-		
-		if (inputEvent is InputEventMouseMotion mouseMotion)
-		{
-			if (draggingMouse)
-				GetNode<Camera2D>("Camera2D").Position -= mouseMotion.Relative;
-		}
-		
-		if (inputEvent is InputEventScreenTouch screenTouch)
-		{
-			secondaryTouch = screenTouch.Index == 1 ? screenTouch.Pressed ? screenTouch : null : null;
-			GD.Print($"secondarytouch: {secondaryTouch} index: {screenTouch.Index}");
-		}
-		
-		if (inputEvent is InputEventScreenDrag screenDrag)
-		{
-			if (secondaryTouch != null)
+			case InputEventMouseButton mouseButton:
 			{
-				var dragDistance = Mathf.Abs(secondaryTouch.Position.DistanceTo(screenDrag.Position));
-				var zoom = dragDistance < previousDragDistance ? 0.01f : -0.01f;
-				GetNode<Camera2D>("Camera2D").Zoom = new Vector2(
-					Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom, 0.15f, 1),
-					Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom, 0.15f, 1)
+				draggingMouse = mouseButton.Pressed;
+
+				var zoom = mouseButton.ButtonIndex switch
+				{
+					MouseButton.WheelUp => new Vector2(-0.2f, -0.2f),
+					MouseButton.WheelDown => new Vector2(0.2f, 0.2f),
+					_ => Vector2.Zero
+				};
+
+				/*GetNode<Tween>("CameraTween").InterpolateProperty(
+					GetNode<Camera2D>("Camera2D"),
+					"zoom",
+					GetNode<Camera2D>("Camera2D").Zoom,
+					new Vector2(Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom.x, 0.15f, 1), 
+						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom.y, 0.15f, 1)),
+					0.1f,
+					Tween.TransitionType.Sine
 				);
-				previousDragDistance = dragDistance;
+				GetNode<Tween>("CameraTween").Start();*/
+				break;
 			}
+			case InputEventMouseMotion mouseMotion:
+			{
+				if (draggingMouse)
+					GetNode<Camera2D>("Camera2D").Position -= mouseMotion.Relative;
+				break;
+			}
+			case InputEventScreenTouch screenTouch:
+				secondaryTouch = screenTouch.Index == 1 ? screenTouch.Pressed ? screenTouch : null : null;
+				GD.Print($"secondarytouch: {secondaryTouch} index: {screenTouch.Index}");
+				break;
+			case InputEventScreenDrag screenDrag:
+			{
+				if (secondaryTouch != null)
+				{
+					var dragDistance = Mathf.Abs(secondaryTouch.Position.DistanceTo(screenDrag.Position));
+					var zoom = dragDistance < previousDragDistance ? 0.01f : -0.01f;
+					GetNode<Camera2D>("Camera2D").Zoom = new Vector2(
+						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom, 0.15f, 1),
+						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom, 0.15f, 1)
+					);
+					previousDragDistance = dragDistance;
+				}
 			
-			GetNode<Camera2D>("Camera2D").Position -= screenDrag.Relative;
+				GetNode<Camera2D>("Camera2D").Position -= screenDrag.Relative;
+				break;
+			}
 		}
 
 		GetNode<Camera2D>("Camera2D").Position = new Vector2(
@@ -188,19 +191,21 @@ public class TwoPlayerGame : Node
 	private string FormatIngameNameLabel()
 	{
 		if (string.IsNullOrEmpty((string) Config.Load("name")))
+		{
 			return $"Player {currentTurn + 1}";
-		if (currentTurn== 0)
-			return $"{Config.Load("name")} (Player {currentTurn + 1})";
-		return $"Guest (Player {currentTurn + 1})";
+		}
+		
+		return currentTurn== 0 ? $"{Config.Load("name")} (Player {currentTurn + 1})" : $"Guest (Player {currentTurn + 1})";
 	}
 
 	//If we have a username, it will be (p1) 'username', (p2) 'guest', if there is no username, it will be (p1) 'Player 1' (p2) 'Player 2'
 	private string FormatPlayerTurnLabel()
 	{
 		if (string.IsNullOrEmpty((string) Config.Load("name")))
+		{
 			return $"[center][wave amp=5 freq=2]Player {currentTurn + 1}'s turn.[/wave][/center]";
-		if (currentTurn == 0)
-			return $"[center][wave amp=5 freq=2]{Config.Load("name")}'s turn.[/wave][/center]";
-		return "[center][wave amp=5 freq=2]Guest's turn.[/wave][/center]";
+		}
+		
+		return currentTurn == 0 ? $"[center][wave amp=5 freq=2]{Config.Load("name")}'s turn.[/wave][/center]" : "[center][wave amp=5 freq=2]Guest's turn.[/wave][/center]";
 	}
 }

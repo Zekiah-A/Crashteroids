@@ -1,149 +1,119 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=43 format=3 uid="uid://cep15wln2qdxp"]
 
-[ext_resource path="res://Styles/grey_button_style.tres" type="StyleBox" id=1]
-[ext_resource path="res://Styles/green_button_pressed_style.tres" type="StyleBox" id=2]
-[ext_resource path="res://Shaders/blur.shader" type="Shader" id=3]
-[ext_resource path="res://Styles/grey_button_pressed_style.tres" type="StyleBox" id=4]
-[ext_resource path="res://Styles/green_button_style.tres" type="StyleBox" id=5]
-[ext_resource path="res://Fonts/typefaces/arial.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://Resources/two_player_banner.png" type="Texture" id=7]
-[ext_resource path="res://TitleScreen.cs" type="Script" id=8]
-[ext_resource path="res://Shaders/text_gradient.shader" type="Shader" id=9]
-[ext_resource path="res://Fonts/smaller_title_font_outline.tres" type="DynamicFont" id=10]
-[ext_resource path="res://Styles/back_button_style.tres" type="StyleBox" id=11]
-[ext_resource path="res://Fonts/title_font_outline.tres" type="DynamicFont" id=12]
-[ext_resource path="res://Fonts/large_title_font_outline.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Fonts/large_title_font.tres" type="DynamicFont" id=14]
-[ext_resource path="res://Fonts/smaller_title_font.tres" type="DynamicFont" id=15]
-[ext_resource path="res://Fonts/title_font.tres" type="DynamicFont" id=16]
-[ext_resource path="res://Controls/Iteratebox.cs" type="Script" id=17]
-[ext_resource path="res://Resources/image/chooser_border.png" type="Texture" id=18]
-[ext_resource path="res://Resources/disabled_banner.png" type="Texture" id=19]
-[ext_resource path="res://Scenes/Picker.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Resources/two_player_banner_grey.png" type="Texture" id=22]
-[ext_resource path="res://Resources/save_cog_2_icon.svg" type="Texture" id=23]
-[ext_resource path="res://Styles/lineedit_style.tres" type="StyleBox" id=24]
-[ext_resource path="res://Resources/backgrounds/space_title_stars.png" type="Texture" id=25]
-[ext_resource path="res://Shaders/warp.shader" type="Shader" id=26]
-[ext_resource path="res://Resources/backgrounds/space_title_galaxies.png" type="Texture" id=27]
-[ext_resource path="res://Resources/tools/laser.png" type="Texture" id=28]
-[ext_resource path="res://Resources/image/item_hilight.png" type="Texture" id=29]
-[ext_resource path="res://Resources/image/checkbox_empty.png" type="Texture" id=30]
-[ext_resource path="res://Styles/editoritem_available.tres" type="StyleBox" id=31]
-[ext_resource path="res://Controls/Checkbox.cs" type="Script" id=33]
-[ext_resource path="res://Resources/tools/not-unlocked.png" type="Texture" id=35]
-[ext_resource path="res://Resources/tools/ruler.png" type="Texture" id=36]
-[ext_resource path="res://Resources/tools/protractor.svg" type="Texture" id=37]
-[ext_resource path="res://Resources/tools/pen.png" type="Texture" id=39]
-[ext_resource path="res://Controls/Chooser.cs" type="Script" id=40]
-[ext_resource path="res://Shaders/image_scroller.shader" type="Shader" id=41]
-[ext_resource path="res://Controls/TitleRocket.cs" type="Script" id=42]
-[ext_resource path="res://Resources/rockets/rocket_retro_1.png" type="Texture" id=43]
-[ext_resource path="res://Shaders/radial_blur.shader" type="Shader" id=44]
-[ext_resource path="res://Shaders/alpha.shader" type="Shader" id=45]
-[ext_resource path="res://Resources/player_vs_ai_banner.svg" type="Texture" id=48]
+[ext_resource type="Theme" uid="uid://curw56ialcksi" path="res://Styles/ui_theme.tres" id="1_3urg4"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="3"]
+[ext_resource type="Texture2D" uid="uid://bs2e8eadsen4c" path="res://Resources/Backgrounds/space_title_stars.png" id="3_wxk3b"]
+[ext_resource type="Texture2D" uid="uid://e0c6cc5mhvnq" path="res://Resources/Backgrounds/space_title_galaxies.png" id="4_1h0lb"]
+[ext_resource type="Texture2D" uid="uid://cdhll8heisum7" path="res://Resources/Rockets/rocket_retro_1.png" id="5_lilw4"]
+[ext_resource type="Texture2D" uid="uid://cjb77lcnwi8tv" path="res://Resources/two_player_banner.png" id="7"]
+[ext_resource type="Script" path="res://TitleScreen.cs" id="8"]
+[ext_resource type="Shader" path="res://Shaders/text_gradient.gdshader" id="9"]
+[ext_resource type="PackedScene" uid="uid://biyc3vs7ee6qv" path="res://Scenes/Checkbox.tscn" id="18_hxqlj"]
+[ext_resource type="Texture2D" uid="uid://mc0vro3tnx8v" path="res://Resources/disabled_banner.png" id="19"]
+[ext_resource type="PackedScene" uid="uid://doxyv4n5mb66v" path="res://Scenes/Iteratebox.tscn" id="19_ixva3"]
+[ext_resource type="PackedScene" uid="uid://3h7tyd44vpu5" path="res://Scenes/Chooser.tscn" id="19_juqo5"]
+[ext_resource type="PackedScene" uid="uid://c4ivpksq53q57" path="res://Scenes/Picker.tscn" id="20"]
+[ext_resource type="Texture2D" uid="uid://cessfw5lvn5r0" path="res://Resources/two_player_banner_grey.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://brue07i62vwi6" path="res://Resources/save_cog_2_icon.svg" id="23"]
+[ext_resource type="Shader" path="res://Shaders/warp.gdshader" id="26"]
+[ext_resource type="Script" path="res://Controls/Checkbox.cs" id="33"]
+[ext_resource type="Script" path="res://Controls/TitleRocket.cs" id="42"]
+[ext_resource type="Shader" path="res://Shaders/radial_blur.gdshader" id="44"]
+[ext_resource type="Shader" path="res://Shaders/alpha.gdshader" id="45"]
+[ext_resource type="Texture2D" uid="uid://qyjq8utlpy47" path="res://Resources/player_vs_ai_banner.svg" id="48"]
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="ShaderMaterial" id="2"]
+shader = ExtResource("26")
+shader_parameter/speed = 3.0
 
-[sub_resource type="ShaderMaterial" id=2]
-shader = ExtResource( 26 )
-shader_param/speed = 3.0
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("26")
+shader_parameter/speed = -3.0
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = ExtResource( 26 )
-shader_param/speed = -3.0
+[sub_resource type="ShaderMaterial" id="4"]
+shader = ExtResource("45")
+shader_parameter/alpha = 1.0
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = ExtResource( 45 )
-shader_param/alpha = 1.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahkd3"]
+radius = 8.0
 
-[sub_resource type="CircleShape2D" id=5]
-radius = 2.0
-
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id="6"]
 resource_name = "rescale_anim"
 length = 12.0
 step = 1.0
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("P1_Display:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 3, 5, 7, 10, 12 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 3, 5, 7, 10, 12),
+"transitions": PackedFloat32Array(0.4, 0.4, 1, 1, 3, 1),
 "update": 0,
-"values": [ Vector2( 2, 2 ), Vector2( 0.6, 0.6 ), Vector2( 1, 1 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+"values": [Vector2(4, 4), Vector2(1.2, 1.2), Vector2(2, 2), Vector2(3, 3), Vector2(2, 2), Vector2(4, 4)]
 }
 tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("P1_Display:material:shader_param/alpha")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.3, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 0.75, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 3, 5, 7, 10, 12 )
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
 }
 
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 44 )
-shader_param/blur_center = Vector2( 0.5, 0.5 )
-shader_param/blur_power = 0.005
-shader_param/sampling_count = 8
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jgsi3"]
+_data = {
+"rescale_anim": SubResource("6")
+}
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 512, 8 )
+[sub_resource type="ShaderMaterial" id="7"]
+shader = ExtResource("44")
+shader_parameter/blur_center = Vector2(0.5, 0.5)
+shader_parameter/blur_power = 0.005
+shader_parameter/sampling_count = 8
 
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 512, 8 )
+[sub_resource type="RectangleShape2D" id="8"]
+size = Vector2(1920, 16)
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 8, 300 )
+[sub_resource type="RectangleShape2D" id="9"]
+size = Vector2(1920, 16)
 
-[sub_resource type="DynamicFont" id=11]
-size = 24
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-extra_spacing_top = -4
-extra_spacing_bottom = -1
-font_data = ExtResource( 6 )
+[sub_resource type="RectangleShape2D" id="10"]
+size = Vector2(16, 1080)
 
-[sub_resource type="ShaderMaterial" id=12]
-shader = ExtResource( 9 )
-shader_param/intensity = 2.0
-shader_param/x = false
-shader_param/r_horizontal = 0.0
-shader_param/g_horizontal = 0.0
-shader_param/b_horizontal = 0.0
-shader_param/y = true
-shader_param/r_vertical = 4.0
-shader_param/g_vertical = 10.0
-shader_param/b_vertical = 4.0
+[sub_resource type="ShaderMaterial" id="12"]
+shader = ExtResource("9")
+shader_parameter/b_horizontal = 0.0
+shader_parameter/b_vertical = 4.0
+shader_parameter/g_horizontal = 0.0
+shader_parameter/g_vertical = 10.0
+shader_parameter/intensity = 2.0
+shader_parameter/r_horizontal = 0.0
+shader_parameter/r_vertical = 4.0
+shader_parameter/x = false
+shader_parameter/y = true
 
-[sub_resource type="StyleBoxEmpty" id=13]
+[sub_resource type="SystemFont" id="SystemFont_h1r1b"]
 
-[sub_resource type="StyleBoxEmpty" id=14]
+[sub_resource type="ShaderMaterial" id="17"]
+shader = ExtResource("9")
+shader_parameter/b_horizontal = null
+shader_parameter/b_vertical = 10.0
+shader_parameter/g_horizontal = null
+shader_parameter/g_vertical = 10.0
+shader_parameter/intensity = 3.0
+shader_parameter/r_horizontal = null
+shader_parameter/r_vertical = 10.0
+shader_parameter/x = null
+shader_parameter/y = true
 
-[sub_resource type="StyleBoxEmpty" id=15]
+[sub_resource type="SystemFont" id="SystemFont_8y42s"]
 
-[sub_resource type="StyleBoxEmpty" id=16]
-
-[sub_resource type="ShaderMaterial" id=17]
-shader = ExtResource( 9 )
-shader_param/intensity = 3.0
-shader_param/x = null
-shader_param/r_horizontal = null
-shader_param/g_horizontal = null
-shader_param/b_horizontal = null
-shader_param/y = true
-shader_param/r_vertical = 10.0
-shader_param/g_vertical = 10.0
-shader_param/b_vertical = 10.0
-
-[sub_resource type="CSharpScript" id=64]
+[sub_resource type="CSharpScript" id="64"]
 script/source = "using Godot;
 using System;
 using System.Text;
@@ -179,7 +149,7 @@ public class MoneyLabel : Label
 }
 "
 
-[sub_resource type="CSharpScript" id=65]
+[sub_resource type="CSharpScript" id="65"]
 script/source = "using Godot;
 using System;
 using System.Net;
@@ -194,7 +164,7 @@ public class DeveloperConsole : Button
 	{
 		console = GetNode<LineEdit>(\"Console\");
 		Connect(\"pressed\", this, nameof(VersionIndicatiorPressed));
-		console.Connect(\"text_entered\", this, nameof(CommandEntered));
+		console.Connect(\"text_submitted\", this, nameof(CommandEntered));
 	}
 
 	private void VersionIndicatiorPressed()
@@ -219,7 +189,7 @@ public class DeveloperConsole : Button
 				var helpPopup = new AcceptDialog
 				{
 					WindowTitle = \"!!!! Crashteroids Developer Console !!!!\",
-					DialogText = \"If you do not know how you got here,\\n*exit by pressing on the version number\\nin the top right corner of the screen.*\\n\\n------------------\\nCommands:\\n------------------\\n- username \\n- money \\n- config \\n- sysinfo \\n- close / exit \\n- help (this) \\n- secret\",
+					DialogText = \"If you do not know how you got here,\\n*exit by pressing checked the version number\\nin the top right corner of the screen.*\\n\\n------------------\\nCommands:\\n------------------\\n- username \\n- money \\n- config \\n- sysinfo \\n- close / exit \\n- help (this) \\n- secret\",
 					Resizable = true,
 					Visible = true
 				};
@@ -292,122 +262,20 @@ public class DeveloperConsole : Button
 }
 "
 
-[sub_resource type="StyleBoxEmpty" id=18]
+[sub_resource type="ShaderMaterial" id="19"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
 
-[sub_resource type="ShaderMaterial" id=19]
-shader = ExtResource( 3 )
-shader_param/blur_amount = 5.0
-shader_param/translucency = 1.0
+[sub_resource type="ShaderMaterial" id="43"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
 
-[sub_resource type="StyleBoxEmpty" id=20]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es4d2"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
 
-[sub_resource type="StyleBoxEmpty" id=21]
-
-[sub_resource type="StyleBoxEmpty" id=22]
-
-[sub_resource type="StyleBoxEmpty" id=23]
-
-[sub_resource type="StyleBoxEmpty" id=24]
-
-[sub_resource type="StyleBoxEmpty" id=25]
-
-[sub_resource type="StyleBoxEmpty" id=26]
-
-[sub_resource type="StyleBoxEmpty" id=27]
-
-[sub_resource type="StyleBoxEmpty" id=28]
-
-[sub_resource type="StyleBoxEmpty" id=29]
-
-[sub_resource type="StyleBoxEmpty" id=30]
-
-[sub_resource type="StyleBoxEmpty" id=31]
-
-[sub_resource type="StyleBoxEmpty" id=32]
-
-[sub_resource type="StyleBoxEmpty" id=33]
-
-[sub_resource type="StyleBoxEmpty" id=34]
-
-[sub_resource type="StyleBoxEmpty" id=35]
-
-[sub_resource type="DynamicFont" id=36]
-size = 20
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxEmpty" id=37]
-
-[sub_resource type="StyleBoxEmpty" id=38]
-
-[sub_resource type="StyleBoxEmpty" id=39]
-
-[sub_resource type="DynamicFont" id=40]
-size = 20
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxEmpty" id=41]
-
-[sub_resource type="DynamicFont" id=42]
-size = 20
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
-
-[sub_resource type="ShaderMaterial" id=43]
-shader = ExtResource( 3 )
-shader_param/blur_amount = 5.0
-shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxEmpty" id=44]
-
-[sub_resource type="DynamicFont" id=45]
-size = 20
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=46]
-size = 20
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxEmpty" id=47]
-
-[sub_resource type="StyleBoxEmpty" id=62]
-
-[sub_resource type="DynamicFont" id=48]
-size = 24
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
-
-[sub_resource type="StyleBoxEmpty" id=49]
-
-[sub_resource type="ShaderMaterial" id=50]
-shader = ExtResource( 41 )
-shader_param/scroll = 0.665
-
-[sub_resource type="StyleBoxEmpty" id=51]
-
-[sub_resource type="StyleBoxEmpty" id=52]
-
-[sub_resource type="StyleBoxEmpty" id=53]
-
-[sub_resource type="StyleBoxEmpty" id=54]
-
-[sub_resource type="StyleBoxEmpty" id=55]
-
-[sub_resource type="StyleBoxEmpty" id=56]
-
-[sub_resource type="StyleBoxFlat" id=57]
-bg_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
-
-[sub_resource type="StyleBoxFlat" id=58]
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="CSharpScript" id=69]
+[sub_resource type="CSharpScript" id="69"]
 script/source = "using Godot;
 using System;
 using System.Text;
@@ -438,7 +306,7 @@ public class Tool : Panel
 		///<summary> Tool bought animation (done via godot tweening). </summary>
 		this.GetNode<Tween>(\"Tween\").InterpolateProperty(
 			this,
-			\"rect_scale\",
+			\"scale\",
 			new Vector2(1, 1),
 			new Vector2(1.2f, 1.2f),
 			0.2f,
@@ -446,10 +314,10 @@ public class Tool : Panel
 			Tween.EaseType.Out
 		);
 		this.GetNode<Tween>(\"Tween\").Start();
-		await ToSignal(this.GetNode<Tween>(\"Tween\"), \"tween_completed\");
+		await ToSignal(this.GetNode<Tween>(\"Tween\"), \"finished\");
 		this.GetNode<Tween>(\"Tween\").InterpolateProperty(
 			this,
-			\"rect_scale\",
+			\"scale\",
 			new Vector2(1.2f, 1.2f),
 			new Vector2(1, 1),
 			0.5f,
@@ -461,2210 +329,1565 @@ public class Tool : Panel
 }
 "
 
-[sub_resource type="ShaderMaterial" id=59]
-shader = ExtResource( 3 )
-shader_param/blur_amount = 5.0
-shader_param/translucency = 1.0
-
-[sub_resource type="StyleBoxFlat" id=60]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
-
-[sub_resource type="DynamicFont" id=61]
-size = 32
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-use_filter = true
-font_data = ExtResource( 6 )
+[sub_resource type="ShaderMaterial" id="59"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
 
 [node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 128.0 ]
-}
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3urg4")
+script = ExtResource("8")
 
 [node name="MainPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 1 )
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background Rect" type="TextureRect" parent="MainPanel"]
-material = SubResource( 2 )
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("2")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 25 )
-expand = true
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wxk3b")
 
 [node name="Layer1 Rect" type="TextureRect" parent="MainPanel"]
-material = SubResource( 3 )
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("3")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 27 )
-expand = true
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1h0lb")
 
-[node name="TitleRocket" type="KinematicBody2D" parent="MainPanel" groups=["Player"]]
-position = Vector2( 96, 288 )
+[node name="TitleRocket" type="CharacterBody2D" parent="MainPanel" groups=["Player"]]
+position = Vector2(96, 288)
 rotation = 1.57079
-scale = Vector2( 4, 4 )
-script = ExtResource( 42 )
+scale = Vector2(4, 4)
+script = ExtResource("42")
 
-[node name="P1_Display" type="Sprite" parent="MainPanel/TitleRocket"]
-material = SubResource( 4 )
-position = Vector2( -0.249992, -1.90735e-06 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 43 )
+[node name="P1_Display" type="Sprite2D" parent="MainPanel/TitleRocket"]
+texture_filter = 1
+material = SubResource("4")
+position = Vector2(-0.249992, -1.90735e-06)
+scale = Vector2(4, 4)
+texture = ExtResource("5_lilw4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainPanel/TitleRocket"]
-shape = SubResource( 5 )
+shape = SubResource("CircleShape2D_ahkd3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MainPanel/TitleRocket"]
-anims/rescale_anim = SubResource( 6 )
+libraries = {
+"": SubResource("AnimationLibrary_jgsi3")
+}
 
 [node name="ShipBlurrer" type="ColorRect" parent="MainPanel"]
 visible = false
-material = SubResource( 7 )
-margin_right = 1023.0
-margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+material = SubResource("7")
+layout_mode = 0
+offset_right = 1023.0
+offset_bottom = 600.0
 
 [node name="Walls" type="StaticBody2D" parent="MainPanel" groups=["Map"]]
-position = Vector2( 512, 320 )
+position = Vector2(512, 320)
 
 [node name="Top" type="CollisionShape2D" parent="MainPanel/Walls"]
-position = Vector2( 0, -328 )
-shape = SubResource( 8 )
+position = Vector2(448, -328)
+shape = SubResource("8")
 
 [node name="Bottom" type="CollisionShape2D" parent="MainPanel/Walls"]
-position = Vector2( 0, 288 )
-shape = SubResource( 9 )
+position = Vector2(448, 768)
+shape = SubResource("9")
 
 [node name="Right" type="CollisionShape2D" parent="MainPanel/Walls"]
-position = Vector2( 520, -20 )
-shape = SubResource( 10 )
+position = Vector2(1416, 220)
+shape = SubResource("10")
 
 [node name="Left" type="CollisionShape2D" parent="MainPanel/Walls"]
-position = Vector2( -520, -20 )
-shape = SubResource( 10 )
+position = Vector2(-520, 220)
+shape = SubResource("10")
 
-[node name="ViewportContainer" type="ViewportContainer" parent="MainPanel"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainPanel"]
 visible = false
-margin_left = 388.576
-margin_top = 147.151
-margin_right = 634.576
-margin_bottom = 395.151
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 0
+offset_left = 388.576
+offset_top = 147.151
+offset_right = 634.576
+offset_bottom = 395.151
 
 [node name="Rocket Editor Button" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.429688
 anchor_top = 0.906667
 anchor_right = 0.570312
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 90, 70 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = -1.00098
+offset_top = -3.20038
+offset_right = 1.00098
+pivot_offset = Vector2(90, 70)
 
 [node name="Text" type="Label" parent="MainPanel/Rocket Editor Button"]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -72.0002
-margin_top = -55.9998
-margin_right = 72.0002
-custom_fonts/font = SubResource( 11 )
+offset_left = -135.0
+offset_top = -104.0
+offset_right = 136.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "Upgrades Shop"
-align = 1
-valign = 1
-autowrap = true
+horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 
 [node name="Help" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.421875
 anchor_top = 0.586667
 anchor_right = 0.578125
 anchor_bottom = 0.68
-rect_pivot_offset = Vector2( 72, 27 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 1 )
-custom_styles/normal = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = -2.0
+offset_top = -1.60034
+offset_right = 2.0
+offset_bottom = 1.59998
+pivot_offset = Vector2(72, 27)
 
 [node name="Text" type="Label" parent="MainPanel/Help"]
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -80.0
-margin_top = -27.9999
-margin_right = 80.0
-margin_bottom = 27.9999
-custom_fonts/font = SubResource( 11 )
+offset_left = -152.0
+offset_top = -52.0
+offset_right = 152.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Help"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Play Button" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.392578
 anchor_top = 0.433333
 anchor_right = 0.607422
 anchor_bottom = 0.566667
-rect_pivot_offset = Vector2( 110, 40 )
-custom_styles/hover = ExtResource( 2 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = -1.74976
+offset_top = 4.00034
+offset_right = 1.74976
+offset_bottom = -4.00037
+pivot_offset = Vector2(110, 40)
 
 [node name="Text" type="Label" parent="MainPanel/Play Button"]
-material = SubResource( 12 )
-anchor_left = 5.59199e-07
-anchor_top = 2.28881e-06
+material = SubResource("12")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 16 )
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_h1r1b")
+theme_override_font_sizes/font_size = 64
 text = "Play"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Outline" type="Label" parent="MainPanel/Play Button"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -40.0001
-margin_right = 110.0
-margin_bottom = 40.0001
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-custom_fonts/font = ExtResource( 12 )
-text = "Play"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Settings" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = -72.0001
-margin_right = 72.0
-margin_bottom = -7.99988
-rect_pivot_offset = Vector2( 0, 100 )
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 14 )
-custom_styles/focus = SubResource( 15 )
-custom_styles/normal = SubResource( 16 )
-icon = ExtResource( 23 )
+offset_left = 8.0
+offset_top = -112.0
+offset_right = 120.0
+offset_bottom = -8.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+icon = ExtResource("23")
+flat = true
 expand_icon = true
 
 [node name="Title" type="Label" parent="MainPanel"]
-material = SubResource( 17 )
+material = SubResource("17")
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.3125
 anchor_top = 0.106667
 anchor_right = 0.6875
 anchor_bottom = 0.266667
-margin_bottom = -1.52588e-05
-rect_pivot_offset = Vector2( -352, 24 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_fonts/font = ExtResource( 16 )
+offset_bottom = -1.52588e-05
+pivot_offset = Vector2(-352, 24)
+theme_override_fonts/font = SubResource("SystemFont_8y42s")
+theme_override_font_sizes/font_size = 96
 text = "Crashteroids"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Title Outline" type="Label" parent="MainPanel"]
-anchor_left = 0.3125
-anchor_top = 0.106667
-anchor_right = 0.6875
-anchor_bottom = 0.266667
-margin_bottom = -1.52588e-05
-rect_pivot_offset = Vector2( -352, 24 )
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-custom_fonts/font = ExtResource( 12 )
-text = "Crashteroids"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Money Label" type="Label" parent="MainPanel"]
+[node name="MoneyLabel" type="Label" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -200.0
-margin_top = 8.0
-margin_right = -9.00037
-margin_bottom = 72.0002
-custom_fonts/font = ExtResource( 10 )
+offset_left = -200.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 72.0
+grow_horizontal = 0
 text = "£0"
-align = 2
+horizontal_alignment = 2
 clip_text = true
-script = SubResource( 64 )
+script = SubResource("64")
 
 [node name="VersionIndicator" type="Button" parent="MainPanel"]
-margin_right = 51.0
-margin_bottom = 24.0
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 32.0
 text = "v 0.01"
 flat = true
-script = SubResource( 65 )
+script = SubResource("65")
 
 [node name="Console" type="LineEdit" parent="MainPanel/VersionIndicator"]
 visible = false
-margin_top = 24.0
-margin_right = 320.0
-margin_bottom = 56.0
+layout_mode = 0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 56.0
 placeholder_text = "Developer Console - type 'help' to get started..."
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SettingsPanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background Rect" type="ColorRect" parent="SettingsPanel"]
-material = SubResource( 19 )
+material = SubResource("19")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.380392, 0.380392, 0.380392, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="SettingsPanel"]
-margin_right = 272.0
-margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/normal = ExtResource( 11 )
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 96.0
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Settings Title" type="Label" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.375
 anchor_top = 0.106667
 anchor_right = 0.625
 anchor_bottom = 0.24
-custom_fonts/font = ExtResource( 14 )
 text = "Settings"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Settings Title Outline" type="Label" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.375
 anchor_top = 0.106667
 anchor_right = 0.625
 anchor_bottom = 0.24
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-custom_fonts/font = ExtResource( 13 )
 text = "Settings"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LeftPanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
-custom_fonts/font = ExtResource( 15 )
 text = "Graphics Quality:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GraphicsSelector" type="Control" parent="SettingsPanel/LeftPanel"]
-anchor_top = 0.135593
-anchor_right = 1.0
-anchor_bottom = 0.347457
-margin_top = -7.62939e-06
-__meta__ = {
-"_edit_use_anchors_": true
-}
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.134181
+anchor_right = 0.993939
+anchor_bottom = 0.347222
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="SelectorRect" type="ColorRect" parent="SettingsPanel/LeftPanel/GraphicsSelector"]
-anchor_left = 0.0909091
-anchor_top = 0.16
-anchor_right = 0.909091
-anchor_bottom = 0.8
-margin_bottom = 4.0
-color = Color( 1, 1, 1, 0.180392 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.180392)
 
 [node name="GraphicsSelectorTween" type="Tween" parent="SettingsPanel/LeftPanel/GraphicsSelector"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="Low" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.135594
 anchor_right = 1.0
 anchor_bottom = 0.347458
-custom_colors/font_color = Color( 0.572549, 0.258824, 0.239216, 1 )
-custom_fonts/font = ExtResource( 10 )
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 22 )
-custom_styles/focus = SubResource( 23 )
-custom_styles/normal = SubResource( 24 )
+theme_override_font_sizes/font_size = 36
 text = "Low"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+flat = true
 
 [node name="Medium" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.347457
 anchor_right = 1.0
 anchor_bottom = 0.559322
-custom_colors/font_color = Color( 0.513726, 0.384314, 0.184314, 1 )
-custom_fonts/font = ExtResource( 10 )
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/focus = SubResource( 27 )
-custom_styles/normal = SubResource( 24 )
+theme_override_font_sizes/font_size = 36
 text = "Medium"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+flat = true
 
 [node name="High" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.559322
 anchor_right = 1.0
 anchor_bottom = 0.771186
-custom_colors/font_color = Color( 0.556863, 0.682353, 0.294118, 1 )
-custom_fonts/font = ExtResource( 10 )
-custom_styles/hover = SubResource( 28 )
-custom_styles/pressed = SubResource( 29 )
-custom_styles/focus = SubResource( 30 )
-custom_styles/normal = SubResource( 24 )
+theme_override_font_sizes/font_size = 36
 text = "High"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+flat = true
 
 [node name="Sublime" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.771186
 anchor_right = 1.0
 anchor_bottom = 0.98305
-custom_colors/font_color = Color( 0.0941176, 0.356863, 0.129412, 1 )
-custom_fonts/font = ExtResource( 10 )
-custom_styles/hover = SubResource( 31 )
-custom_styles/pressed = SubResource( 32 )
-custom_styles/focus = SubResource( 33 )
-custom_styles/normal = SubResource( 24 )
+theme_override_font_sizes/font_size = 36
 text = "Sublime"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+flat = true
 
 [node name="CentrePanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.664062
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 34 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="SettingsPanel/CentrePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
-margin_right = 3.05176e-05
-custom_fonts/font = ExtResource( 15 )
+offset_right = 3.05176e-05
 text = "Audio:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MusicCheckbox" type="Control" parent="SettingsPanel/CentrePanel"]
+unique_name_in_owner = true
+layout_mode = 1
 anchor_left = 0.146341
 anchor_top = 0.135593
 anchor_right = 0.829268
 anchor_bottom = 0.271186
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = 0.000427246
+offset_top = -0.19986
+offset_right = -0.998993
+offset_bottom = 3.60028
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/MusicCheckbox"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 35 )
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("33")
 
-[node name="Texture Button" type="TextureButton" parent="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox"]
-anchor_left = 9.53674e-07
-anchor_top = 4.29153e-06
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -0.000274658
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox"]
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 36 )
-text = "Music"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_bottom = -0.000274658
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="SfxCheckbox" type="Control" parent="SettingsPanel/CentrePanel"]
+unique_name_in_owner = true
+layout_mode = 1
 anchor_left = 0.146341
 anchor_top = 0.271186
 anchor_right = 0.829268
 anchor_bottom = 0.40678
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/SfxCheckbox"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.999994
-custom_styles/panel = SubResource( 37 )
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+script = ExtResource("33")
 
-[node name="Texture Button" type="TextureButton" parent="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox"]
-anchor_left = 9.53674e-07
-anchor_top = 5.72205e-06
-anchor_right = 1.0
-anchor_bottom = 1.00001
-margin_bottom = -0.000366211
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox"]
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 36 )
-text = "Sound Effects"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_bottom = -0.000366211
 
 [node name="RightPanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.664062
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 38 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="SettingsPanel/RightPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.152542
-custom_fonts/font = ExtResource( 15 )
 text = "Other:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TutorialCheckbox" type="Control" parent="SettingsPanel/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
 anchor_left = 0.209302
 anchor_top = 0.135593
 anchor_right = 0.860464
 anchor_bottom = 0.271186
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/TutorialCheckbox"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 39 )
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("33")
 
-[node name="Texture Button" type="TextureButton" parent="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox"]
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 36 )
-text = "Tutorial Enabled"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="UsernameEdit" type="LineEdit" parent="SettingsPanel/RightPanel"]
-anchor_left = 0.209302
-anchor_top = 0.474576
-anchor_right = 0.837209
-anchor_bottom = 0.610169
-custom_colors/font_color = Color( 0.27451, 0.27451, 0.27451, 1 )
-custom_fonts/font = SubResource( 40 )
-custom_styles/focus = ExtResource( 24 )
-custom_styles/normal = ExtResource( 24 )
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.206203
+anchor_top = 0.510358
+anchor_right = 0.83876
+anchor_bottom = 0.642185
+offset_top = -3.05176e-05
+theme_override_font_sizes/font_size = 36
 placeholder_text = "Username.."
-__meta__ = {
-"_edit_use_anchors_": true
-}
+metadata/_edit_use_anchors_ = true
 
 [node name="UsernameLabel" type="RichTextLabel" parent="SettingsPanel/RightPanel/UsernameEdit"]
-visible = false
 show_behind_parent = true
-margin_top = 64.0
-margin_right = 216.0
-margin_bottom = 80.0
+layout_mode = 0
+offset_top = 120.0
+offset_right = 408.0
+offset_bottom = 144.0
 bbcode_enabled = true
-bbcode_text = "[color=yellow]Username set to:[/color]"
 text = "Username set to:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="SettingsPanel/RightPanel/UsernameEdit"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="HTTPRequest" type="HTTPRequest" parent="SettingsPanel/RightPanel/UsernameEdit"]
 download_file = "res://resources/username_filtered.xml"
 use_threads = true
 
 [node name="AdvertisementsCheckbox" type="Control" parent="SettingsPanel/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
 anchor_left = 0.209302
 anchor_top = 0.271186
 anchor_right = 0.860464
 anchor_bottom = 0.406779
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 41 )
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("33")
 
-[node name="Texture Button" type="TextureButton" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox"]
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 36 )
-text = "Advertisements"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Username Label" type="Label" parent="SettingsPanel/RightPanel"]
-anchor_left = 0.209302
-anchor_top = 0.40678
-anchor_right = 0.860465
-anchor_bottom = 0.474576
-custom_fonts/font = SubResource( 42 )
-text = "Set player username:"
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Username Underline" type="ColorRect" parent="SettingsPanel/RightPanel/Username Label"]
-anchor_top = 0.75
-anchor_bottom = 0.75
-margin_top = 2.00021
-margin_right = 192.0
-margin_bottom = 3.00021
-__meta__ = {
-"_edit_use_anchors_": false
-}
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.206201
+anchor_top = 0.444915
+anchor_right = 0.857363
+anchor_bottom = 0.510828
+text = "Set username"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel Tween" type="Tween" parent="SettingsPanel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="GamemodePanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background Rect" type="ColorRect" parent="GamemodePanel"]
-material = SubResource( 43 )
+material = SubResource("43")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.380392, 0.380392, 0.380392, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.265625
 anchor_bottom = 0.12
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/normal = ExtResource( 11 )
+offset_right = -190.0
+offset_bottom = -33.6
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Settings Title" type="Label" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.36377
 anchor_top = 0.106667
 anchor_right = 0.63623
 anchor_bottom = 0.24
-custom_fonts/font = ExtResource( 14 )
+offset_left = 5.56158
+offset_top = 4.79964
+offset_right = -5.56152
+offset_bottom = -3.19998
 text = "Pick Mode"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Settings Title Outline" type="Label" parent="GamemodePanel"]
-anchor_left = 0.36377
-anchor_top = 0.106667
-anchor_right = 0.63623
-anchor_bottom = 0.24
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-custom_fonts/font = ExtResource( 13 )
-text = "Pick Mode"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Left Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.213333
 anchor_right = 0.25
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="GamemodePanel/Left Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
-custom_fonts/font = ExtResource( 10 )
 text = "Local 2 Player:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Rect Tween" type="Tween" parent="GamemodePanel/Left Panel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="TextureButton" type="TextureButton" parent="GamemodePanel/Left Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.136
 anchor_right = 0.5
 anchor_bottom = 0.136
-margin_left = -96.0
-margin_top = 31.8081
-margin_right = 96.0
-margin_bottom = 351.808
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 22 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = -192.0
+offset_top = 31.4543
+offset_right = 192.0
+offset_bottom = 646.454
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("22")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Centre Left Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.213333
 anchor_right = 0.5
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="GamemodePanel/Centre Left Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
-custom_fonts/font = ExtResource( 10 )
 text = "Player vs AI:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureButton2" type="TextureButton" parent="GamemodePanel/Centre Left Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.136
 anchor_right = 0.5
 anchor_bottom = 0.136
-margin_left = -96.0
-margin_top = 31.8081
-margin_right = 96.0
-margin_bottom = 351.808
-texture_normal = ExtResource( 48 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = -192.0
+offset_top = 31.4543
+offset_right = 192.0
+offset_bottom = 646.454
+texture_normal = ExtResource("48")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Centre Right Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.213333
 anchor_right = 0.75
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="GamemodePanel/Centre Right Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
-custom_fonts/font = ExtResource( 10 )
 text = "Multiplayer:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureButton3" type="TextureButton" parent="GamemodePanel/Centre Right Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.136
 anchor_right = 0.5
 anchor_bottom = 0.136
-margin_left = -96.0
-margin_top = 31.8081
-margin_right = 96.0
-margin_bottom = 351.808
+offset_left = -192.0
+offset_top = 31.4543
+offset_right = 192.0
+offset_bottom = 646.454
 disabled = true
-texture_normal = ExtResource( 19 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+texture_normal = ExtResource("19")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Right Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.75
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 20 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="GamemodePanel/Right Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
-custom_fonts/font = ExtResource( 10 )
 text = "Level designer:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureButton4" type="TextureButton" parent="GamemodePanel/Right Panel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.136
 anchor_right = 0.5
 anchor_bottom = 0.136
-margin_left = -96.0
-margin_top = 31.8081
-margin_right = 96.0
-margin_bottom = 351.808
+offset_left = -192.0
+offset_top = 31.4543
+offset_right = 192.0
+offset_bottom = 646.454
 disabled = true
-texture_normal = ExtResource( 19 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+texture_normal = ExtResource("19")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Panel Tween" type="Tween" parent="GamemodePanel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="TwoPlayerMatchPanel" type="Panel" parent="."]
-visible = false
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 18 )
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
-material = SubResource( 43 )
+material = SubResource("43")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.380392, 0.380392, 0.380392, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="TwoPlayerMatchPanel"]
-margin_right = 272.0
-margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/normal = ExtResource( 11 )
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 96.0
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Settings Title" type="Label" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
 anchor_bottom = 0.24
-custom_fonts/font = ExtResource( 14 )
 text = "Match Settings"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Settings Title Outline" type="Label" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.296875
 anchor_top = 0.106667
 anchor_right = 0.703125
 anchor_bottom = 0.24
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-custom_fonts/font = ExtResource( 13 )
 text = "Match Settings"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel Tween" type="Tween" parent="TwoPlayerMatchPanel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="LeftPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 44 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Checkbox" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
-anchor_left = 0.0909091
-anchor_top = 0.135593
-anchor_right = 0.727
-anchor_bottom = 0.271
-margin_right = -223.904
-margin_bottom = -63.9121
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Checkbox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
-margin_right = 224.0
-margin_bottom = 64.0
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = ExtResource( 30 )
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox/Checkbox"]
-margin_left = 64.0
-margin_right = 224.0
-margin_bottom = 64.0
-custom_fonts/font = SubResource( 45 )
-text = "Random map"
-valign = 1
-
-[node name="Checkbox2" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
-anchor_left = 0.0909091
-anchor_top = 0.305085
-anchor_right = 0.727
-anchor_bottom = 0.441
-margin_right = -223.904
-margin_bottom = -64.1519
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Checkbox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
-margin_right = 224.0
-margin_bottom = 64.0
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 33 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2/Checkbox"]
-margin_left = 64.0
-margin_right = 224.0
-margin_bottom = 64.0
-custom_fonts/font = SubResource( 45 )
-text = "Special Abilitities"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Iteratebox" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
-anchor_left = 0.091
-anchor_top = 0.475
-anchor_right = 0.727
-anchor_bottom = 0.61
-margin_left = -0.0320015
-margin_top = -0.200012
-margin_right = 0.0959778
-margin_bottom = 0.0799561
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Iteratebox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox"]
-margin_right = 224.0
-margin_bottom = 64.0
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-Min = 2
-
-[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Number" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox/Texture Button"]
-margin_right = 64.0
-margin_bottom = 64.0
-custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
-custom_fonts/font = ExtResource( 16 )
-text = "1"
-align = 1
-valign = 1
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox/Iteratebox"]
-anchor_top = -0.499998
-anchor_bottom = -0.499998
-margin_left = 64.0
-margin_top = 31.9999
-margin_right = 224.0
-margin_bottom = 95.9999
-custom_fonts/font = SubResource( 46 )
-text = "Rocket Bounces"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Iteratebox2" type="Control" parent="TwoPlayerMatchPanel/LeftPanel"]
-anchor_left = 0.091
-anchor_top = 0.644
-anchor_right = 0.727
-anchor_bottom = 0.78
-margin_left = -0.0320015
-margin_top = 0.0319824
-margin_right = 0.0959778
-margin_bottom = -0.160065
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Iteratebox" type="Panel" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2"]
-margin_right = 224.0
-margin_bottom = 64.0
-custom_styles/panel = ExtResource( 1 )
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Texture Button" type="TextureButton" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_normal = ExtResource( 30 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Number" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox/Texture Button"]
-margin_right = 64.0
-margin_bottom = 64.0
-custom_colors/font_color = Color( 0.466667, 0.466667, 0.466667, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 0.392157 )
-custom_fonts/font = ExtResource( 16 )
-text = "1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/LeftPanel/Iteratebox2/Iteratebox"]
-margin_left = 64.0
-margin_right = 224.0
-margin_bottom = 64.0
-custom_fonts/font = SubResource( 46 )
-text = "Rounds"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="TwoPlayerMatchPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
-custom_fonts/font = ExtResource( 10 )
 text = "Options:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 113.6
+offset_right = 480.0
+offset_bottom = 225.6
+
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="0"]
+layout_mode = 0
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="1"]
+layout_mode = 0
+offset_top = 0.000366211
+text = "Random map"
+
+[node name="Checkbox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 241.6
+offset_right = 480.0
+offset_bottom = 353.6
+
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="0"]
+layout_mode = 0
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="1"]
+layout_mode = 0
+offset_top = 0.000366211
+text = "Special abilities"
+
+[node name="Checkbox3" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 370.0
+offset_right = 480.0
+offset_bottom = 482.0
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3" index="1"]
+offset_right = 416.0
+offset_bottom = 112.0
+text = "Rocket bounces"
+
+[node name="Checkbox4" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 497.6
+offset_right = 480.0
+offset_bottom = 609.6
+
+[node name="Number" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4/Texture2D Button" index="0"]
+text = "5"
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4" index="1"]
+offset_right = 416.0
+offset_bottom = 112.0
+text = "Rounds"
 
 [node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.34375
 anchor_top = 0.213333
 anchor_right = 0.65625
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 47 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Title" type="Label" parent="TwoPlayerMatchPanel/CentrePanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
-custom_fonts/font = ExtResource( 10 )
 text = "Map selection:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Chooser" type="Control" parent="TwoPlayerMatchPanel/CentrePanel"]
-anchor_left = 0.1
-anchor_top = 0.135594
-anchor_right = 0.9
-anchor_bottom = 0.542373
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Chooser" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 152, 72.0003 )
-custom_styles/panel = SubResource( 62 )
-script = ExtResource( 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-optionsNames = PoolStringArray( "Retro", "Vector", "Classic" )
-
-[node name="OptionName" type="Label" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-anchor_left = 0.191
-anchor_top = 1.058
-anchor_right = 0.809
-anchor_bottom = 1.25
-margin_left = 0.103996
-margin_top = -3.13579
-margin_right = 0.895996
-margin_bottom = 0.000274658
-custom_fonts/font = SubResource( 48 )
-text = "null"
-align = 1
-valign = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-anchor_left = 0.018
-anchor_top = 1.042
-anchor_right = 0.191
-anchor_bottom = 1.25
-margin_left = 0.392
-margin_top = -0.0639648
-margin_right = 0.103996
-margin_bottom = 9.15527e-05
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/normal = ExtResource( 1 )
-text = "<"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-anchor_left = 0.816
-anchor_top = 1.042
-anchor_right = 0.969
-anchor_bottom = 1.25
-margin_left = 0.103989
-margin_top = -0.0637817
-margin_right = -0.0640106
-margin_bottom = 0.000274658
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/normal = ExtResource( 1 )
-text = ">"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="OptionsPanel" type="Panel" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -128.0
-margin_top = -95.9999
-margin_right = 128.0
-margin_bottom = 95.9999
-rect_clip_content = true
-custom_styles/panel = SubResource( 49 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel"]
-material = SubResource( 50 )
-anchor_top = -9.53673e-07
-anchor_right = 3.0
-anchor_bottom = 1.0
-texture = ExtResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Button" type="Button" parent="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_styles/hover = SubResource( 51 )
-custom_styles/pressed = SubResource( 52 )
-custom_styles/focus = SubResource( 53 )
-custom_styles/disabled = SubResource( 54 )
-custom_styles/normal = SubResource( 55 )
+[node name="Chooser" parent="TwoPlayerMatchPanel/CentrePanel" instance=ExtResource("19_juqo5")]
+layout_mode = 1
+anchor_left = 0.055
+anchor_top = 0.124765
+anchor_right = 0.945
+anchor_bottom = 0.783898
 
 [node name="RightPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.65625
 anchor_top = 0.213333
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 56 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Start" type="Button" parent="TwoPlayerMatchPanel/RightPanel"]
-anchor_left = 0.181818
-anchor_top = 0.813559
-anchor_right = 0.818182
-anchor_bottom = 0.949153
-custom_fonts/font = ExtResource( 14 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/normal = ExtResource( 5 )
-text = "Play"
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Label" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
-margin_left = 32.0
-margin_top = 136.0
-margin_right = 312.0
-margin_bottom = 256.0
-text = "skin choosers for players 1 and 2 go here!"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
-custom_fonts/font = ExtResource( 10 )
+offset_left = 4.0
+offset_bottom = -0.19986
 text = "Skins:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComingSoon" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 136.0
+offset_right = 660.0
+offset_bottom = 275.0
+text = "Watch this space...
+Custom skins coming soon!"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175758
+anchor_top = 0.80273
+anchor_right = 0.806061
+anchor_bottom = 0.934557
+text = "Play"
+metadata/_edit_use_anchors_ = true
 
 [node name="ShopPanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 18 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background Rect" type="ColorRect" parent="ShopPanel"]
-material = SubResource( 43 )
+material = SubResource("43")
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.380392, 0.380392, 0.380392, 1 )
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="ShopPanel"]
-margin_right = 272.0
-margin_bottom = 72.0
-custom_fonts/font = ExtResource( 13 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 11 )
-custom_styles/normal = ExtResource( 11 )
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 96.0
 text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel Tween" type="Tween" parent="ShopPanel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="MainPanel" type="Panel" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.52
 anchor_right = 0.999023
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 57 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+theme_override_styles/panel = SubResource("StyleBoxFlat_es4d2")
 
 [node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -496.5
-margin_top = -280.0
-margin_right = 495.5
-margin_bottom = -8.0
+offset_left = -959.062
+offset_top = -536.4
+offset_right = 960.938
+offset_bottom = -0.400024
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 2
-custom_constants/vseparation = 16
-custom_constants/hseparation = 16
 columns = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="1" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_right = 128.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 58 )
-script = SubResource( 69 )
+layout_mode = 2
+pivot_offset = Vector2(56, 56)
+script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
 }
 Price = 200
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999997
 anchor_bottom = 1.0
-texture = ExtResource( 39 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/1"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/normal = ExtResource( 31 )
-text = "Pen - Buy £200"
-align = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="2" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 144.0
-margin_right = 272.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 58 )
-script = SubResource( 69 )
+layout_mode = 2
+offset_left = 4.0
+offset_right = 4.0
+pivot_offset = Vector2(56, 56)
+script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
 }
 Price = 720
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 37 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/normal = ExtResource( 31 )
-text = "Potractor - Buy £720"
-align = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="3" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 288.0
-margin_right = 416.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 58 )
-script = SubResource( 69 )
+layout_mode = 2
+offset_left = 8.0
+offset_right = 8.0
+pivot_offset = Vector2(56, 56)
+script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
 }
 Price = 1250
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 36 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/3"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/normal = ExtResource( 31 )
-text = "Ruler - Buy £1,250"
-align = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="4" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 432.0
-margin_right = 560.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-rect_pivot_offset = Vector2( 56, 56 )
-custom_styles/panel = SubResource( 58 )
-script = SubResource( 69 )
+layout_mode = 2
+offset_left = 12.0
+offset_right = 12.0
+pivot_offset = Vector2(56, 56)
+script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
 }
 Price = 8000
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 28 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/4"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/normal = ExtResource( 31 )
-text = "Laser - Buy £8,000"
-align = 1
-autowrap = true
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Tween" type="Tween" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="5" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 576.0
-margin_right = 704.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 16.0
+offset_right = 16.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.99999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/5"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785714
 anchor_right = 0.99999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="6" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 720.0
-margin_right = 848.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 20.0
+offset_right = 20.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/6"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="7" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 864.0
-margin_right = 992.0
-margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 24.0
+offset_right = 24.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/7"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785714
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="8" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_top = 144.0
-margin_right = 128.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_top = 4.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999995
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/8"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999995
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="9" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 144.0
-margin_top = 144.0
-margin_right = 272.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/9"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="10" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 288.0
-margin_top = 144.0
-margin_right = 416.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 8.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/10"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="11" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 432.0
-margin_top = 144.0
-margin_right = 560.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 12.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/11"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="12" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 576.0
-margin_top = 144.0
-margin_right = 704.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 16.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.99999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/12"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.99999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="13" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 720.0
-margin_top = 144.0
-margin_right = 848.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 20.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/13"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="14" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-margin_left = 864.0
-margin_top = 144.0
-margin_right = 992.0
-margin_bottom = 272.0
-rect_min_size = Vector2( 128, 128 )
-custom_styles/panel = SubResource( 58 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+layout_mode = 2
+offset_left = 24.0
+offset_top = 4.0
+offset_right = 24.0
+offset_bottom = 4.0
 
-[node name="Icon Texture" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-texture = ExtResource( 35 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/14"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture_pressed = ExtResource( 29 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
-
-[node name="Description" type="Label" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
 anchor_bottom = 0.999999
-custom_styles/normal = ExtResource( 31 )
-text = "? - Buy £999,999"
-align = 1
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": true
-}
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Picker" parent="ShopPanel" instance=ExtResource( 20 )]
+[node name="Picker" parent="ShopPanel" instance=ExtResource("20")]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.367
 anchor_right = 0.5
 anchor_bottom = 0.367
-margin_left = -256.0
-margin_top = -84.2
-margin_right = 256.0
-margin_bottom = 83.8
+offset_left = -456.0
+offset_top = -204.36
+offset_right = 448.0
+offset_bottom = 147.64
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Settings Title" type="Label" parent="ShopPanel"]
+[node name="ShopTitle" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -208.0
-margin_top = 48.0
-margin_right = 208.0
-margin_bottom = 128.0
-custom_fonts/font = ExtResource( 14 )
+offset_left = -208.0
+offset_top = 48.0
+offset_right = 208.0
+offset_bottom = 128.0
+grow_horizontal = 2
 text = "Upgrades Shop"
-align = 1
-valign = 1
+horizontal_alignment = 1
 clip_text = true
 
-[node name="Settings Title Outline" type="Label" parent="ShopPanel"]
+[node name="ShopTitleOutline" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -208.0
-margin_top = 48.0
-margin_right = 208.0
-margin_bottom = 128.0
-custom_colors/font_color = Color( 0, 0, 0, 0 )
-custom_fonts/font = ExtResource( 13 )
+offset_left = -208.0
+offset_top = 48.0
+offset_right = 208.0
+offset_bottom = 128.0
+grow_horizontal = 2
 text = "Upgrades Shop"
-align = 1
-valign = 1
+horizontal_alignment = 1
 clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Money Label" type="Label" parent="ShopPanel"]
-anchor_left = 0.8125
-anchor_right = 0.999023
-anchor_bottom = 0.106667
-custom_fonts/font = ExtResource( 10 )
+[node name="MoneyLabel" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.805664
+anchor_top = 0.0133333
+anchor_right = 0.992187
+anchor_bottom = 0.12
 text = "£0"
-align = 2
 clip_text = true
-script = SubResource( 64 )
+script = SubResource("64")
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="HelpPanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
-material = SubResource( 59 )
+material = SubResource("59")
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.367188
 anchor_top = 0.2
 anchor_right = 0.632812
 anchor_bottom = 0.8
-rect_pivot_offset = Vector2( 128, 148 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_left = -0.000976562
+offset_right = 0.000976562
+pivot_offset = Vector2(128, 148)
 
 [node name="Border" type="Panel" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 60 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+offset_right = 1.00195
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Title" type="Label" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.113889
-custom_fonts/font = ExtResource( 10 )
 text = "Game info:"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Quit" type="Button" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.0625
 anchor_top = 0.844444
 anchor_right = 0.46875
 anchor_bottom = 0.958333
-custom_fonts/font = ExtResource( 10 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/normal = ExtResource( 1 )
 text = "Close"
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Credits" type="Button" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.53125
 anchor_top = 0.844444
 anchor_right = 0.9375
 anchor_bottom = 0.958333
-custom_fonts/font = SubResource( 61 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/normal = ExtResource( 1 )
 text = "Credits"
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Details" type="RichTextLabel" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.0330882
 anchor_top = 0.111111
 anchor_right = 0.970588
 anchor_bottom = 0.822222
 bbcode_enabled = true
-bbcode_text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
-Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game.
-[shake rate=5 level=10][color=yellow][center]Playing the game:[/center][/color][/shake]
- - Click / press to move the rocket in a certain direction.
- - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
- - Crash into your opponent in order to win."
 text = "The background:
-Crashteroids is based off a pen and paper game where you play as a ship (originally a dot on the page), and must aim and bounce off of of \"asteroids\" to hit into your opponent, killing them and winning the game.
+Crashteroids is based unchecked a pen and paper game where you play as a ship (originally a dot checked the page), and must aim and bounce unchecked of of \"asteroids\" to hit into your opponent, killing them and winning the game.
 Playing the game:
  - Click / press to move the rocket in a certain direction.
  - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
  - Crash into your opponent in order to win."
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Panel Tween" type="Tween" parent="HelpPanel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
 
 [node name="CreditsPanel" type="Panel" parent="HelpPanel"]
 visible = false
-material = SubResource( 59 )
+material = SubResource("59")
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 128, 148 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
+pivot_offset = Vector2(128, 148)
 
 [node name="Border" type="Panel" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = SubResource( 60 )
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Quit" type="Button" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.28125
 anchor_top = 0.825
 anchor_right = 0.71875
 anchor_bottom = 0.953125
-custom_fonts/font = ExtResource( 10 )
-custom_styles/hover = ExtResource( 1 )
-custom_styles/pressed = ExtResource( 4 )
-custom_styles/normal = ExtResource( 1 )
 text = "Close"
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="Details" type="RichTextLabel" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.0294118
 anchor_right = 0.970588
 anchor_bottom = 0.8
 bbcode_enabled = true
-bbcode_text = "[tornado radius=2 freq=2][color=yellow][center]Credits:[/center][/color][/tornado]
- - StarlkYT,  big brain power.
- - Zekiah-A, main development."
 text = "Credits:
  - StarlkYT,  big brain power.
  - Zekiah-A, main development."
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="resized" from="." to="." method="OnWindowResize"]
-[connection signal="pressed" from="MainPanel/Rocket Editor Button" to="." method="OpenPanel" binds= [ 3 ]]
-[connection signal="pressed" from="MainPanel/Help" to="." method="OpenPanel" binds= [ 4 ]]
-[connection signal="pressed" from="MainPanel/Play Button" to="." method="OpenPanel" binds= [ 1 ]]
-[connection signal="pressed" from="MainPanel/Settings" to="." method="OpenPanel" binds= [ 0 ]]
-[connection signal="pressed" from="SettingsPanel/Back" to="." method="ClosePanel" binds= [ 0 ]]
-[connection signal="pressed" from="SettingsPanel/LeftPanel/Low" to="." method="GraphicsSettingPressed" binds= [ 0 ]]
-[connection signal="pressed" from="SettingsPanel/LeftPanel/Medium" to="." method="GraphicsSettingPressed" binds= [ 1 ]]
-[connection signal="pressed" from="SettingsPanel/LeftPanel/High" to="." method="GraphicsSettingPressed" binds= [ 2 ]]
-[connection signal="pressed" from="SettingsPanel/LeftPanel/Sublime" to="." method="GraphicsSettingPressed" binds= [ 3 ]]
-[connection signal="pressed" from="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox/Texture Button" to="." method="OnSettingsCheckboxChanged" binds= [ "music" ]]
-[connection signal="pressed" from="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox/Texture Button" to="." method="OnSettingsCheckboxChanged" binds= [ "sfx" ]]
-[connection signal="pressed" from="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox/Texture Button" to="." method="OnSettingsCheckboxChanged" binds= [ "tutorial" ]]
+[connection signal="pressed" from="MainPanel/Rocket Editor Button" to="." method="OpenPanel" binds= [3]]
+[connection signal="pressed" from="MainPanel/Help" to="." method="OpenPanel" binds= [4]]
+[connection signal="pressed" from="MainPanel/Play Button" to="." method="OpenPanel" binds= [1]]
+[connection signal="pressed" from="MainPanel/Settings" to="." method="OpenPanel" binds= [0]]
+[connection signal="pressed" from="SettingsPanel/Back" to="." method="ClosePanel" binds= [0]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/Low" to="." method="GraphicsSettingPressed" binds= [0]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/Medium" to="." method="GraphicsSettingPressed" binds= [1]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/High" to="." method="GraphicsSettingPressed" binds= [2]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/Sublime" to="." method="GraphicsSettingPressed" binds= [3]]
+[connection signal="pressed" from="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["music"]]
+[connection signal="pressed" from="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["sfx"]]
+[connection signal="pressed" from="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["tutorial"]]
 [connection signal="text_changed" from="SettingsPanel/RightPanel/UsernameEdit" to="." method="OnUsernameTextChanged"]
-[connection signal="text_entered" from="SettingsPanel/RightPanel/UsernameEdit" to="SettingsPanel" method="UsernameEdited"]
-[connection signal="pressed" from="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox/Texture Button" to="." method="OnSettingsCheckboxChanged" binds= [ "adverts" ]]
-[connection signal="pressed" from="GamemodePanel/Back" to="." method="ClosePanel" binds= [ 1 ]]
-[connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="OpenPanel" binds= [ 6 ]]
-[connection signal="pressed" from="TwoPlayerMatchPanel/Back" to="." method="ClosePanel" binds= [ 6 ]]
-[connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 0 ]]
-[connection signal="pressed" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/Button2" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="ButtonPressed" binds= [ 1 ]]
-[connection signal="button_down" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="DragStart"]
-[connection signal="button_up" from="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser/OptionsPanel/Button" to="TwoPlayerMatchPanel/CentrePanel/Chooser/Chooser" method="DragEnd"]
+[connection signal="text_submitted" from="SettingsPanel/RightPanel/UsernameEdit" to="SettingsPanel" method="UsernameEdited"]
+[connection signal="pressed" from="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["adverts"]]
+[connection signal="pressed" from="GamemodePanel/Back" to="." method="ClosePanel" binds= [1]]
+[connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="OpenPanel" binds= [6]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/Back" to="." method="ClosePanel" binds= [6]]
 [connection signal="pressed" from="TwoPlayerMatchPanel/RightPanel/Start" to="." method="TwoPlayerPlayPressed"]
-[connection signal="pressed" from="ShopPanel/Back" to="." method="ClosePanel" binds= [ 3 ]]
-[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [ 0 ]]
-[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [ 1 ]]
-[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/3/Button" to="ShopPanel" method="UpgradePressed" binds= [ 2 ]]
-[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/4/Button" to="ShopPanel" method="UpgradePressed" binds= [ 3 ]]
-[connection signal="pressed" from="HelpPanel/Quit" to="." method="ClosePanel" binds= [ 4 ]]
-[connection signal="pressed" from="HelpPanel/Credits" to="." method="OpenPanel" binds= [ 5 ]]
-[connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="ClosePanel" binds= [ 5 ]]
+[connection signal="pressed" from="ShopPanel/Back" to="." method="ClosePanel" binds= [3]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [0]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [1]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/3/Button" to="ShopPanel" method="UpgradePressed" binds= [2]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/4/Button" to="ShopPanel" method="UpgradePressed" binds= [3]]
+[connection signal="pressed" from="HelpPanel/Quit" to="." method="ClosePanel" binds= [4]]
+[connection signal="pressed" from="HelpPanel/Credits" to="." method="OpenPanel" binds= [5]]
+[connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="ClosePanel" binds= [5]]
+
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox3"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox4"]

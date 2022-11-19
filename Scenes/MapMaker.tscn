@@ -3,8 +3,8 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 600.0
+offset_right = 1024.0
+offset_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -14,20 +14,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -32.0
-margin_right = 128.0
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
 text = "^"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AcceptDialog" type="AcceptDialog" parent="Control"]
 visible = true
-margin_left = 312.0
-margin_top = 144.0
-margin_right = 816.0
-margin_bottom = 432.0
+offset_left = 312.0
+offset_top = 144.0
+offset_right = 816.0
+offset_bottom = 432.0
 window_title = "Crashteroids Map Maker!"
 dialog_text = "Welcome to the map maker, use the tools provided to create your own levels that you can play!"
 dialog_autowrap = true

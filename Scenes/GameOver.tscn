@@ -1,19 +1,19 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=15 format=3]
 
-[ext_resource path="res://Shaders/blur.shader" type="Shader" id=1]
-[ext_resource path="res://Fonts/smaller_title_font_outline.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Shaders/text_gradient.shader" type="Shader" id=3]
-[ext_resource path="res://Fonts/typefaces/arial.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://Styles/grey_button_pressed_style.tres" type="StyleBox" id=5]
-[ext_resource path="res://Styles/green_button_style.tres" type="StyleBox" id=6]
-[ext_resource path="res://Styles/grey_button_style.tres" type="StyleBox" id=7]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="1"]
+[ext_resource type="FontFile" path="res://Fonts/smaller_title_font_outline.tres" id="2"]
+[ext_resource type="Shader" path="res://Shaders/text_gradient.gdshader" id="3"]
+[ext_resource type="FontFile" uid="uid://cgatfarg2e8ea" path="res://Fonts/Typefaces/arial.ttf" id="4"]
+[ext_resource type="StyleBox" path="res://Styles/grey_button_pressed_style.tres" id="5"]
+[ext_resource type="StyleBox" path="res://Styles/green_button_style.tres" id="6"]
+[ext_resource type="StyleBox" path="res://Styles/grey_button_style.tres" id="7"]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/blur_amount = 4.0
 shader_param/translucency = 1.0
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 40
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -32,7 +32,7 @@ shader_param/r_vertical = null
 shader_param/g_vertical = 8.006
 shader_param/b_vertical = null
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 40
 outline_color = Color( 0, 0, 0, 1 )
 use_filter = true
@@ -43,7 +43,7 @@ shader = ExtResource( 1 )
 shader_param/blur_amount = 4.0
 shader_param/translucency = 1.0
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 use_filter = true
 font_data = ExtResource( 4 )
 
@@ -58,7 +58,7 @@ border_color = Color( 0.356863, 0.356863, 0.356863, 1 )
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 512, 300 )
+pivot_offset = Vector2( 512, 300 )
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": true
@@ -70,9 +70,9 @@ anchor_left = 0.375
 anchor_top = 0.213333
 anchor_right = 0.625
 anchor_bottom = 0.746667
-margin_top = 0.000205994
-margin_bottom = -0.000213623
-rect_pivot_offset = Vector2( 128, 148 )
+offset_top = 0.000205994
+offset_bottom = -0.000213623
+pivot_offset = Vector2( 128, 148 )
 
 [node name="Game Over" type="Label" parent="MainPanel"]
 anchor_right = 1.0
@@ -143,10 +143,10 @@ __meta__ = {
 anchor_top = 0.275
 anchor_right = 1.0
 anchor_bottom = 0.574999
-margin_top = 7.62939e-06
+offset_top = 7.62939e-06
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave]
+text = "[wave amp=10 freq=5][color=yellow][center]Details:[/center][/color][/wave]
 Rounds: 
 Bounces:
 Match Length: "
@@ -164,8 +164,8 @@ anchor_left = 0.375
 anchor_top = 0.373333
 anchor_right = 0.625
 anchor_bottom = 0.746667
-margin_top = 0.000198364
-margin_bottom = -0.000213623
+offset_top = 0.000198364
+offset_bottom = -0.000213623
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -191,7 +191,7 @@ anchor_bottom = 0.67857
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.784314 )
 custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
-bbcode_text = "[wave amp=10 freq=5][color=yellow][center]Awards:[/center][/color][/wave]
+text = "[wave amp=10 freq=5][color=yellow][center]Awards:[/center][/color][/wave]
 "
 text = "Awards:
 "
@@ -204,8 +204,8 @@ anchor_left = 0.375
 anchor_top = 0.213333
 anchor_right = 0.625
 anchor_bottom = 0.746667
-margin_top = 0.000205994
-margin_bottom = -0.000213623
+offset_top = 0.000205994
+offset_bottom = -0.000213623
 mouse_filter = 2
 custom_styles/panel = SubResource( 7 )
 __meta__ = {

@@ -10,6 +10,6 @@ public static class TwoPlayerGameData
     public static int[] PlayerSkins;
 }
 
-public class PlayerAiGameData { }
+public partial class PlayerAiGameData { }
 
-public class MultiplayerGameData { }
+public partial class MultiplayerGameData { }

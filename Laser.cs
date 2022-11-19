@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Laser : Node
+public partial class Laser : Node
 {
 	//Stand-in to prevent dependency errors
 }
