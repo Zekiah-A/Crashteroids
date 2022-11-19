@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static class Config
 {
-	private static Dictionary<string, object> defaultConfig = new Dictionary<string, object>()
+	private static Dictionary<string, object> defaultConfig = new()
 	{
 		{ "music", true },
 		{ "sfx",  true },
@@ -11,8 +11,8 @@ public static class Config
 		{ "adverts", false },
 		{ "money", 0 },
 		{ "graphics_quality", 3 },
-		{ "name", "morbius" },
-		{ "bought_tools", new[] {""} }
+		{ "name", "Player" },
+		{ "bought_tools", System.Array.Empty<string>() }
 	};
 
 	public static void Initialise()

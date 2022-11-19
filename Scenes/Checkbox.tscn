@@ -5,23 +5,31 @@
 [ext_resource type="StyleBox" uid="uid://defk55l4vv8kw" path="res://Styles/grey_button_style.tres" id="4"]
 
 [node name="Checkbox" type="Panel"]
-offset_right = 416.0
-offset_bottom = 112.0
+anchors_preset = -1
+anchor_right = 0.216667
+anchor_bottom = 0.103704
 theme_override_styles/panel = ExtResource("4")
 script = ExtResource("3")
+metadata/_edit_use_anchors_ = true
 
 [node name="Texture2D Button" type="TextureButton" parent="."]
-offset_right = 416.0
-offset_bottom = 112.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("1")
 ignore_texture_size = true
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 clip_contents = true
-offset_left = 120.0
-offset_right = 416.0
-offset_bottom = 112.0
+anchors_preset = -1
+anchor_left = 0.288462
+anchor_right = 1.0
+anchor_bottom = 1.0
 theme_override_font_sizes/font_size = 36
 text = "Label"
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

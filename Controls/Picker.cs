@@ -17,9 +17,9 @@ public partial class Picker : Control
 
 		RocketTextures = new []
 		{
-			ResourceLoader.Load("res://Resources/rockets/rocket_retro_1.png") as Texture2D,
-			ResourceLoader.Load("res://Resources/rockets/rocket_retro_2.png") as Texture2D,
-			ResourceLoader.Load("res://Resources/rockets/rocket_dart_1.png") as Texture2D
+			ResourceLoader.Load("res://Resources/Rockets/rocket_retro_1.png") as Texture2D,
+			ResourceLoader.Load("res://Resources/Rockets/rocket_retro_2.png") as Texture2D,
+			ResourceLoader.Load("res://Resources/Rockets/rocket_dart_1.png") as Texture2D
 		};
 	}
 

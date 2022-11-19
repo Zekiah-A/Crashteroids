@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public partial class TitleRocket : CharacterBody2D
 {
-	private readonly Random random = new Random();
+	private readonly Random random = new();
 	private Vector2 movement;
 
 	public override void _Ready() =>

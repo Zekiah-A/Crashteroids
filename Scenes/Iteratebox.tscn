@@ -5,13 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://dytia4wr4yxfd" path="res://Resources/Image/checkbox_empty.png" id="5"]
 
 [node name="Checkbox" type="Panel"]
-offset_right = 416.0
-offset_bottom = 112.0
+anchors_preset = -1
+anchor_right = 0.216667
+anchor_bottom = 0.103704
 theme_override_styles/panel = ExtResource("1")
 script = ExtResource("2")
+metadata/_edit_use_anchors_ = true
 
 [node name="Texture2D Button" type="TextureButton" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,11 +20,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("5")
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Number" type="Label" parent="Texture2D Button"]
-layout_mode = 0
-offset_right = 112.0
-offset_bottom = 112.0
+anchors_preset = -1
+anchor_right = 0.269231
+anchor_bottom = 1.0
 theme_override_colors/font_color = Color(0.321569, 0.321569, 0.321569, 1)
 theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 64
@@ -31,14 +33,17 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 128.0
-offset_right = 424.0
-offset_bottom = 120.0
+anchors_preset = -1
+anchor_left = 0.307692
+anchor_right = 1.01923
+anchor_bottom = 1.0
+offset_right = 3.05176e-05
 theme_override_font_sizes/font_size = 36
 text = "Label"
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Texture2D Button" to="." method="_on_Click"]

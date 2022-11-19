@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cep15wln2qdxp"]
+[gd_scene load_steps=44 format=3 uid="uid://cep15wln2qdxp"]
 
 [ext_resource type="Theme" uid="uid://curw56ialcksi" path="res://Styles/ui_theme.tres" id="1_3urg4"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="3"]
@@ -35,7 +35,7 @@ shader = ExtResource("45")
 shader_parameter/alpha = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahkd3"]
-radius = 8.0
+radius = 4.0
 
 [sub_resource type="Animation" id="6"]
 resource_name = "rescale_anim"
@@ -334,6 +334,14 @@ shader = ExtResource("3")
 shader_parameter/blur_amount = 5.0
 shader_parameter/translucency = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pio3y"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 5
+border_color = Color(0.392157, 0.392157, 0.392157, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -352,6 +360,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="TextureRect" parent="MainPanel"]
 texture_filter = 1
@@ -589,6 +598,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="SettingsPanel"]
 material = SubResource("19")
@@ -914,6 +924,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="GamemodePanel"]
 material = SubResource("43")
@@ -1097,12 +1108,14 @@ script = null
 
 [node name="TwoPlayerMatchPanel" type="Panel" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
 material = SubResource("43")
@@ -1167,60 +1180,66 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
-layout_mode = 0
+layout_mode = 1
+anchor_top = 0.000470802
+anchor_right = 0.0
+anchor_bottom = 0.000470802
 offset_left = 64.0
 offset_top = 113.6
 offset_right = 480.0
 offset_bottom = 225.6
 
 [node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="0"]
-layout_mode = 0
+layout_mode = 1
 
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="1"]
-layout_mode = 0
-offset_top = 0.000366211
+layout_mode = 1
 text = "Random map"
 
 [node name="Checkbox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
-layout_mode = 0
+layout_mode = 1
+anchor_top = 0.000470802
+anchor_right = 0.0
+anchor_bottom = 0.000470802
 offset_left = 64.0
 offset_top = 241.6
 offset_right = 480.0
 offset_bottom = 353.6
 
 [node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="0"]
-layout_mode = 0
+layout_mode = 1
 
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="1"]
-layout_mode = 0
-offset_top = 0.000366211
+layout_mode = 1
 text = "Special abilities"
 
 [node name="Checkbox3" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 370.0
-offset_right = 480.0
-offset_bottom = 482.0
+layout_mode = 1
+anchor_left = 0.0969697
+anchor_top = 0.435499
+anchor_right = 0.727273
+anchor_bottom = 0.567326
+Current = 1
 
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3" index="1"]
-offset_right = 416.0
-offset_bottom = 112.0
+anchor_left = 0.269231
+anchor_right = 1.0
+offset_right = 0.0
 text = "Rocket bounces"
 
 [node name="Checkbox4" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 497.6
-offset_right = 480.0
-offset_bottom = 609.6
-
-[node name="Number" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4/Texture2D Button" index="0"]
-text = "5"
+layout_mode = 1
+anchor_left = 0.0969697
+anchor_top = 0.585688
+anchor_right = 0.727273
+anchor_bottom = 0.717514
+offset_top = -3.05176e-05
+Current = 3
 
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4" index="1"]
-offset_right = 416.0
-offset_bottom = 112.0
+anchor_left = 0.269231
+anchor_right = 1.0
+offset_right = 0.0
 text = "Rounds"
 
 [node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
@@ -1295,6 +1314,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="ShopPanel"]
 material = SubResource("43")
@@ -1701,8 +1721,6 @@ offset_left = -456.0
 offset_top = -204.36
 offset_right = 448.0
 offset_bottom = 147.64
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="ShopTitle" type="Label" parent="ShopPanel"]
 layout_mode = 1
@@ -1748,7 +1766,6 @@ __meta__ = {
 
 [node name="HelpPanel" type="Panel" parent="."]
 unique_name_in_owner = true
-visible = false
 material = SubResource("59")
 layout_mode = 1
 anchors_preset = -1
@@ -1756,18 +1773,8 @@ anchor_left = 0.367188
 anchor_top = 0.2
 anchor_right = 0.632812
 anchor_bottom = 0.8
-offset_left = -0.000976562
-offset_right = 0.000976562
 pivot_offset = Vector2(128, 148)
-
-[node name="Border" type="Panel" parent="HelpPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1.00195
-grow_horizontal = 2
-grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="HelpPanel"]
 layout_mode = 1
@@ -1803,13 +1810,17 @@ anchor_left = 0.0330882
 anchor_top = 0.111111
 anchor_right = 0.970588
 anchor_bottom = 0.822222
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "The background:
-Crashteroids is based unchecked a pen and paper game where you play as a ship (originally a dot checked the page), and must aim and bounce unchecked of of \"asteroids\" to hit into your opponent, killing them and winning the game.
-Playing the game:
- - Click / press to move the rocket in a certain direction.
- - Use Tools or items from the Rocket Editor in order to predict where it will bounce.
- - Crash into your opponent in order to win."
+text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
+Crashteroids is based off a pen and paper game where you play as a ship, and must aim and bounce off of of asteroids to hit into your opponent, killing them and winning the game.
+
+[shake rate=5 level=10][color=yellow][center]Playing the game:[/center][/color][/shake]
+1. Click / press to move the rocket in a certain direction.
+
+2. Use Tools or items from the Rocket Editor in order to predict where it will bounce.
+
+3. Crash into your opponent in order to win."
 
 [node name="Panel Tween" type="Tween" parent="HelpPanel"]
 _import_path = NodePath("")
@@ -1820,13 +1831,15 @@ editor_description = ""
 script = null
 
 [node name="CreditsPanel" type="Panel" parent="HelpPanel"]
-visible = false
+unique_name_in_owner = true
 material = SubResource("59")
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.111111
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 6.86646e-05
 pivot_offset = Vector2(128, 148)
 
 [node name="Border" type="Panel" parent="HelpPanel/CreditsPanel"]
@@ -1851,10 +1864,23 @@ anchors_preset = -1
 anchor_left = 0.0294118
 anchor_right = 0.970588
 anchor_bottom = 0.8
+theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "Credits:
+text = "[wave amp=20 freq=5][color=yellow][center]Credits:[/center][/color][/wave]
  - StarlkYT,  big brain power.
  - Zekiah-A, main development."
+
+[node name="Border" type="Panel" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.00196
+anchor_bottom = 1.0
+offset_right = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pio3y")
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

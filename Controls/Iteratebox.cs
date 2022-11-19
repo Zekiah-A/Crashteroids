@@ -3,7 +3,7 @@ using System;
 
 public partial class Iteratebox : Control
 {
-	public int Current;
+	[Export] public int Current;
 	[Export] public int Min = 1;
 	[Export] public int Max = 5;
 
@@ -18,7 +18,7 @@ public partial class Iteratebox : Control
 		Current = Min;
 		number.Text = Current.ToString();
 
-		button.Connect("pressed",new Callable(this,nameof(Increment)));
+		button.Connect("pressed", new Callable(this, nameof(Increment)));
 	}
 
 	public void Increment()

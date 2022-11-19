@@ -6,7 +6,7 @@ public partial class TwoPlayerGame : Node
 {
 	public List<Node2D> Players = new();
 	
-	private int currentTurn = 0;
+	private int currentTurn;
 	private RichTextLabel playerTurnLabel;
 	private Control ingameNameLabel;
 	private bool cameraBlocked;
