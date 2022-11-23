@@ -17,7 +17,6 @@ shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lms58"]
 bg_color = Color(1, 1, 1, 0)
-border_width_bottom = 1
 
 [resource]
 Button/styles/green_button = ExtResource("1")

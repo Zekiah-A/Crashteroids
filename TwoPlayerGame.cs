@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class TwoPlayerGame : Node
 {
@@ -13,25 +14,33 @@ public partial class TwoPlayerGame : Node
 	
 	public override void _Ready()
 	{
+		GD.Print("1");
 		var random = new Random();
+
 		//Initialise Map
 		if (TwoPlayerGameData.RandomMap)
-			TwoPlayerGameData.Map = random.Next(3);
-
-		var mapScene = GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn");
-		switch (TwoPlayerGameData.Map)
 		{
-			case 0: mapScene = GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"); break;
-			case 1: mapScene = GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"); break;
-			case 2: mapScene = GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"); break;
+			TwoPlayerGameData.Map = random.Next(3);
 		}
+
+		var mapScene = TwoPlayerGameData.Map switch
+		{
+			0 => GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"),
+			1 => GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"),
+			2 => GD.Load<PackedScene>("res://Scenes/DefaultMap.tscn"),
+			_ => throw new ArgumentOutOfRangeException()
+		};
+		
 		AddChild(mapScene.Instantiate());
 		
 		//Spawn special abilities around map
-		if (TwoPlayerGameData.SpecialAbilities) { }
+		if (TwoPlayerGameData.SpecialAbilities)
+		{
+			
+		}
 		
 		//Add players to scene
-		for (var i = 0; i < 2; i++)
+		for (var i = 0; i < Players.Count; i++)
 		{
 			var playerScene = GD.Load<PackedScene>("res://Scenes/Player.tscn");
 			var player = playerScene.Instantiate();
@@ -53,24 +62,18 @@ public partial class TwoPlayerGame : Node
 		ingameNameLabel = (Control) ingameNameScene.Instantiate();
 		GetNode<CanvasLayer>("CanvasLayer").AddChild(ingameNameLabel);
 
-		StartGame();
+		PlayIntroAnimation();
 	}
 
-	public async void StartGame()
+	private void PlayIntroAnimation()
 	{
-		var cameraTween = GetNode<Tween>("CameraTween");
-
 		cameraBlocked = true;
-		/*cameraTween.InterpolateProperty(
-			GetNode<Camera2D>("Camera2D"),
-			"zoom",
-			GetNode<Camera2D>("Camera2D").Zoom,
-			new Vector2(0.3f, 0.3f),
-			8,
-			Tween.TransitionType.Sine,
-			Tween.EaseType.Out
-		);*/
-		
+		var tween = CreateTween();
+		var camera = GetNode<Camera2D>("Camera2D");
+		tween.TweenProperty(camera, "zoom", new Vector2(0.3f, 0.3f), 8)
+			.SetTrans(Tween.TransitionType.Sine)
+			.SetEase(Tween.EaseType.Out);
+
 		for (var i = 0; i < Players.Count; i++)
 		{
 			ingameNameLabel.GetNode<Label>("Label").Text = i == 0 ? $"{Config.Load("name")} (Player {i + 1})" : $"Guest (Player {i + 1})";
@@ -80,40 +83,22 @@ public partial class TwoPlayerGame : Node
 			}
 			
 			((IngameNameLabel) ingameNameLabel).TargetNode = Players[i];
-			/*cameraTween.InterpolateProperty(
-				GetNode<Camera2D>("Camera2D"),
-				"position",
-				GetNode<Camera2D>("Camera2D").Position,
-				Players[i].Position,
-				4,
-				Tween.TransitionType.Back,
-				Tween.EaseType.Out
-			);
-			cameraTween.Start();
-			await ToSignal(cameraTween, "tween_completed");*/
+			tween.Chain().TweenProperty(camera, "position", Players[i].Position, 4)
+				.SetTrans(Tween.TransitionType.Back)
+				.SetEase(Tween.EaseType.Out);
+			
+			tween.Play();
 		}
-		
-		/*await ToSignal(cameraTween, "tween_completed");
-		cameraTween.InterpolateProperty(
-			GetNode<Camera2D>("Camera2D"),
-			"position",
-			GetNode<Camera2D>("Camera2D").Position,
-			new Vector2(512, 300),
-			2,
-			Tween.TransitionType.Quad,
-			Tween.EaseType.Out
-		);
-		cameraTween.InterpolateProperty(
-			GetNode<Camera2D>("Camera2D"),
-			"zoom",
-			GetNode<Camera2D>("Camera2D").Zoom,
-			new Vector2(1, 1),
-			2,
-			Tween.TransitionType.Sine,
-			Tween.EaseType.In
-		);
-		cameraTween.Start();*/
-		await ToSignal(cameraTween, "tween_completed");
+
+		tween.Chain().TweenProperty(camera, "position", GetViewport().GetVisibleRect().Size / 2, 2)
+			.SetTrans(Tween.TransitionType.Quad)
+			.SetEase(Tween.EaseType.Out);
+
+		tween.Chain().TweenProperty(camera, "zoom", Vector2.One, 2)
+			.SetTrans(Tween.TransitionType.Sine)
+			.SetEase(Tween.EaseType.In);
+
+		tween.Play();
 		
 		ingameNameLabel.GetNode<Label>("Label").Text = FormatIngameNameLabel();
 		((IngameNameLabel) ingameNameLabel).TargetNode = Players[0];
@@ -141,16 +126,19 @@ public partial class TwoPlayerGame : Node
 					_ => Vector2.Zero
 				};
 
-				/*GetNode<Tween>("CameraTween").InterpolateProperty(
-					GetNode<Camera2D>("Camera2D"),
-					"zoom",
-					GetNode<Camera2D>("Camera2D").Zoom,
-					new Vector2(Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom.x, 0.15f, 1), 
-						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom.y, 0.15f, 1)),
-					0.1f,
-					Tween.TransitionType.Sine
-				);
-				GetNode<Tween>("CameraTween").Start();*/
+				var tween = CreateTween();
+				var camera = GetNode<Camera2D>("Camera2D");
+				tween.TweenProperty
+					(
+						camera,
+						"zoom",
+						new Vector2(Mathf.Clamp(camera.Zoom.x + zoom.x, 0.15f, 1),
+							Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom.y, 0.15f, 1)),
+						0.1f
+					)
+					.SetTrans(Tween.TransitionType.Sine)
+					.SetEase(Tween.EaseType.Out);
+				tween.Play();
 				break;
 			}
 			case InputEventMouseMotion mouseMotion:

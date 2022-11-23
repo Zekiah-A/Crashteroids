@@ -36,70 +36,35 @@ public partial class TitleScreen : Control
 
 	private void OpenPanel(int i)
 	{
-		///<summary> Object, Property being tweened, From, To, Time, Ease type, Tween type </summary>
+		var tween = CreateTween();
+		panels[i].Visible = true;
+
 		switch (i)
 		{
-			case 0:
-				panels[i].Visible = true;
-
-				/*panels[i].GetNode<Tween>("Panel Tween").InterpolateProperty(
-					panels[i],
-					"rect_position",
-					new Vector2(-1024, 0),
-					new Vector2(0, 0),
-					1,
-					Tween.TransitionType.Cubic,
-					Tween.EaseType.Out
-				);
-				panels[i].GetNode<Tween>("Panel Tween").Start();*/
-				break;
-			case 1:
-			case 2:
-				panels[i].Visible = true;
-
-				/*panels[i].GetNode<Tween>("Panel Tween").InterpolateProperty(
-					panels[i],
-					"rect_position",
-					new Vector2(-1024, 0),
-					new Vector2(0, 0),
-					1,
-					Tween.TransitionType.Cubic,
-					Tween.EaseType.Out
-				);
-				panels[i].GetNode<Tween>("Panel Tween").Start();*/
+			case 0 or 1 or 2:
+				panels[i].Position = new Vector2(-GetViewportRect().Size.x, 0);
+				tween.TweenProperty(panels[i], "position", Vector2.Zero, 1)
+					.SetTrans(Tween.TransitionType.Cubic)
+					.SetEase(Tween.EaseType.Out);
 				break;
 			case 3:
-				panels[i].Visible = true;
-
-				/*panels[i].GetNode<Tween>("Panel Tween").InterpolateProperty(
-					panels[i],
-					"rect_position",
-					new Vector2(0, 600),
-					new Vector2(0, 0),
-					1,
-					Tween.TransitionType.Cubic,
-					Tween.EaseType.Out
-				);
-				panels[i].GetNode<Tween>("Panel Tween").Start();*/
+				panels[i].Position = new Vector2(0, GetViewportRect().Size.y);
+				tween.TweenProperty(panels[i], "position", Vector2.Zero, 1)
+					.SetTrans(Tween.TransitionType.Cubic)
+					.SetEase(Tween.EaseType.Out);
 				break;
-			case 4:
-			case 6:
-				panels[i].Visible = true;
-				/*panels[i].GetNode<Tween>("Panel Tween").InterpolateProperty(
-					panels[i],
-					"rect_scale",
-					new Vector2(0, 0),
-					new Vector2(1, 1),
-					1,
-					Tween.TransitionType.Back,
-					Tween.EaseType.Out
-				);
-				panels[i].GetNode<Tween>("Panel Tween").Start();*/
+			case 4 or 6:
+				panels[i].Scale = Vector2.Zero;
+				tween.TweenProperty(panels[i], "scale", Vector2.One, 1)
+					.SetTrans(Tween.TransitionType.Back)
+					.SetEase(Tween.EaseType.Out);
 				break;
 			default:
 				panels[i].Visible = true;
 				break;
 		}
+		
+		tween.Play();
 	}
 	private void ClosePanel(int i) => panels[i].Visible = false;
 

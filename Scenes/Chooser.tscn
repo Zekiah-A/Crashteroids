@@ -19,13 +19,14 @@ anchor_bottom = 0.237037
 pivot_offset = Vector2(152, 72.0003)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_o5kr5")
 script = ExtResource("1")
+optionsNames = PackedStringArray("Retro", "Vector", "Classic")
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionName" type="Label" parent="."]
 anchors_preset = -1
-anchor_left = 0.191406
+anchor_left = 0.1875
 anchor_top = 0.78125
-anchor_right = 0.8125
+anchor_right = 0.812502
 anchor_bottom = 0.9375
 text = "undefined"
 horizontal_alignment = 1
@@ -35,9 +36,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="."]
 anchors_preset = -1
-anchor_left = 0.0195312
+anchor_left = 0.0312501
 anchor_top = 0.78125
-anchor_right = 0.191406
+anchor_right = 0.1875
 anchor_bottom = 0.9375
 text = "<"
 metadata/_edit_use_anchors_ = true
@@ -72,3 +73,5 @@ ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Button" to="." method="ButtonPressed" binds= [0]]
+[connection signal="pressed" from="Button2" to="." method="ButtonPressed" binds= [1]]
+[connection signal="gui_input" from="OptionsPanel/TextureRect" to="." method="OnTextureInput"]

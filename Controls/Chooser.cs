@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class Chooser : Node
@@ -7,16 +8,51 @@ public partial class Chooser : Node
 	[Export] private float scrollSpeed = 0.075f;
 	[Export] private string[] optionsNames;
 	private bool dragInitiated;
-	private Control optionsPanel;
+	private Control optionsTexture;
 	private ShaderMaterial imageMaterial;
 	private Label optionName;
 	private Vector2 startPos = Vector2.Zero;
 
 	public override void _Ready()
 	{
-		optionsPanel = GetNode("OptionsPanel").GetNode<Control >("TextureRect");
-		imageMaterial = (ShaderMaterial) optionsPanel.Material;
+		optionsTexture = GetNode<Control>("OptionsPanel/TextureRect");
+		imageMaterial = (ShaderMaterial) optionsTexture.Material;
 		optionName = GetNode<Label>("OptionName");
+	}
+
+	private void OnTextureInput(InputEvent @event)
+	{
+		
+		if (@event.IsPressed())
+		{
+			if (dragInitiated) return;
+			dragInitiated = true;
+			startPos = GetViewport().GetMousePosition();
+		}
+		else
+		{
+			dragInitiated = false;
+			var endPos = GetViewport().GetMousePosition();
+			var dragX = endPos.x - startPos.x;
+
+			switch (dragX)
+			{
+				case > 50 when current <= 0:
+					current = 0;
+					break;
+				case > 50:
+					current--;
+					break;
+				case < -50 when current == optionsCount - 1:
+					current = optionsCount - 1;
+					break;
+				case < -50:
+					current++;
+					break;
+			}
+
+			UpdateTexture();
+		}
 	}
 
 	///<note> Forward button = 1 </note>
@@ -24,70 +60,34 @@ public partial class Chooser : Node
 	{
 		if (index == 1)
 		{
-			if (current == optionsCount - 1)
-				current = optionsCount - 1; //current = 0;
-			else
-				current++;
+			current = current == optionsCount - 1 ? optionsCount - 1 : current + 1;
+			return;
 		}
-		else
-		{
-			if (current <= 0)
-				current = 0; //current = optionsCount - 1;
-			else
-				current--;
-		}
+		
+		current = current <= 0 ? 0 : current - 1;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		UpdateTexture(); //could also just be on process, not that taxing?
+		UpdateTexture();
+
 		if (dragInitiated && Input.IsMouseButtonPressed(MouseButton.Left))
+		{
 			WhileDragging();
+		}
 	}
 
 	private void UpdateTexture()
 	{
-		var scroll = current / optionsCount;
+		var scroll = (float) current / optionsCount;
 		imageMaterial.SetShaderParameter("scroll", Mathf.Lerp((float) imageMaterial.GetShaderParameter("scroll"), scroll, scrollSpeed));
 		optionName.Text = $"{current + 1}. {optionsNames[current]}";
-	}
-
-	private void DragStart()
-	{
-		startPos = GetViewport().GetMousePosition();
-		dragInitiated = true;
 	}
 
 	private void WhileDragging()
 	{
 		var endPos = GetViewport().GetMousePosition();
-		var dragX = (startPos.x - endPos.x) + (current * optionsPanel.Size.x / optionsCount);
-		imageMaterial.SetShaderParameter("scroll",  dragX / optionsPanel.Size.x);
-	}
-
-	///<summary> Less than 50, do nothing at all. More than 50, scroll by one. </summary>
-	private void DragEnd()
-	{
-		dragInitiated = false;
-		var endPos = GetViewport().GetMousePosition();
-		var dragX = endPos.x - startPos.x;
-
-		switch (dragX)
-		{
-			case > 50 when current <= 0:
-				current = 0; //current = optionsCount - 1;
-				break;
-			case > 50:
-				current--;
-				break;
-			case < -50 when current == optionsCount - 1:
-				current = optionsCount - 1; //current = 0;
-				break;
-			case < -50:
-				current++;
-				break;
-		}
-
-		UpdateTexture();
+		var dragX = startPos.x - endPos.x + current * optionsTexture.Size.x / optionsCount;
+		imageMaterial.SetShaderParameter("scroll",  dragX / optionsTexture.Size.x);
 	}
 }

@@ -1,14 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://c6ikmwpx3fwju"]
+[gd_scene load_steps=16 format=3 uid="uid://c6ikmwpx3fwju"]
 
 [ext_resource type="Texture2D" uid="uid://bfsjens0ygokk" path="res://Resources/Interface/ui_corner.png" id="1"]
+[ext_resource type="Script" path="res://TwoPlayerGame.cs" id="1_hou6m"]
 [ext_resource type="Texture2D" uid="uid://cfmnjc2bdrdgr" path="res://Resources/Backgrounds/stars_fg.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bip3tq0t505fl" path="res://Resources/Backgrounds/stars_mg.png" id="5"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="6"]
 [ext_resource type="Theme" uid="uid://curw56ialcksi" path="res://Styles/ui_theme.tres" id="8_jccor"]
-[ext_resource type="PackedScene" path="res://Scenes/GameOver.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://b5iin2oni0cri" path="res://Scenes/GameOver.tscn" id="10"]
 [ext_resource type="Texture2D" uid="uid://b7jmjgocwshoh" path="res://Resources/Backgrounds/walls_horizontal.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://becjxkhr5r0p2" path="res://Resources/Backgrounds/walls_vertical.png" id="12"]
-[ext_resource type="PackedScene" path="res://Scenes/LaunchTools.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://ij2hdp3uys3t" path="res://Scenes/LaunchTools.tscn" id="14"]
 [ext_resource type="Texture2D" uid="uid://bs2e8eadsen4c" path="res://Resources/Backgrounds/space_title_stars.png" id="15"]
 
 [sub_resource type="RectangleShape2D" id="6"]
@@ -26,6 +27,7 @@ shader_parameter/blur_amount = 1.2
 shader_parameter/translucency = 1.0
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_hou6m")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -137,14 +139,6 @@ one_shot = true
 position = Vector2(960, 540)
 position_smoothing_speed = 10.0
 
-[node name="CameraTween" type="Tween" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
@@ -158,6 +152,7 @@ mouse_filter = 2
 theme = ExtResource("8_jccor")
 
 [node name="PlayerTurn" type="VBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 86.0
@@ -166,6 +161,7 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/UI/PlayerTurn"]
+layout_mode = 2
 offset_top = 41.0
 offset_right = 1920.0
 offset_bottom = 41.0
@@ -173,6 +169,7 @@ bbcode_enabled = true
 text = "Player 1's turn."
 
 [node name="Description" type="RichTextLabel" parent="CanvasLayer/UI/PlayerTurn"]
+layout_mode = 2
 offset_top = 45.0
 offset_right = 1920.0
 offset_bottom = 45.0
@@ -182,67 +179,49 @@ scroll_active = false
 
 [node name="GameOver" parent="CanvasLayer/UI" instance=ExtResource("10")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
+layout_mode = 1
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MainPanel" parent="CanvasLayer/UI/GameOver" index="0"]
-anchors_preset = -1
+layout_mode = 1
 mouse_filter = 2
 
 [node name="Game Over" parent="CanvasLayer/UI/GameOver/MainPanel" index="0"]
-anchors_preset = -1
+layout_mode = 1
 
-[node name="Winner Outline" parent="CanvasLayer/UI/GameOver/MainPanel" index="1"]
-anchors_preset = -1
+[node name="Winner" parent="CanvasLayer/UI/GameOver/MainPanel" index="1"]
+layout_mode = 1
 
-[node name="Winner" parent="CanvasLayer/UI/GameOver/MainPanel" index="2"]
-anchors_preset = -1
-
-[node name="Again" parent="CanvasLayer/UI/GameOver/MainPanel" index="3"]
-anchors_preset = -1
+[node name="Again" parent="CanvasLayer/UI/GameOver/MainPanel" index="2"]
+layout_mode = 1
 mouse_filter = 2
 
-[node name="Quit" parent="CanvasLayer/UI/GameOver/MainPanel" index="4"]
-anchors_preset = -1
+[node name="Quit" parent="CanvasLayer/UI/GameOver/MainPanel" index="3"]
+layout_mode = 1
 mouse_filter = 2
 
-[node name="Details" parent="CanvasLayer/UI/GameOver/MainPanel" index="5"]
-anchors_preset = -1
+[node name="Details" parent="CanvasLayer/UI/GameOver/MainPanel" index="4"]
+layout_mode = 1
 mouse_filter = 2
-text = "Details:
-Rounds: 
-Bounces:
-Match Length: "
 
 [node name="DetailsPanel" parent="CanvasLayer/UI/GameOver" index="1"]
-anchors_preset = -1
+layout_mode = 1
 mouse_filter = 2
 
 [node name="Done" parent="CanvasLayer/UI/GameOver/DetailsPanel" index="0"]
-anchors_preset = -1
+layout_mode = 1
 mouse_filter = 2
 
 [node name="Details" parent="CanvasLayer/UI/GameOver/DetailsPanel" index="1"]
-anchors_preset = -1
+layout_mode = 1
 mouse_filter = 2
-text = "Awards:
-"
 
 [node name="Border" parent="CanvasLayer/UI/GameOver" index="2"]
-anchors_preset = -1
-
-[node name="Tween" parent="CanvasLayer/UI/GameOver" index="3"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
+layout_mode = 1
 
 [node name="LaunchTools" parent="CanvasLayer/UI" instance=ExtResource("14")]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -255,54 +234,42 @@ grow_vertical = 0
 
 [node name="ToolsPanel" parent="CanvasLayer/UI/LaunchTools" index="0"]
 visible = false
-anchors_preset = -1
 
 [node name="Background" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="0"]
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
 [node name="Border" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="1"]
-anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TitleLabel" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="2"]
-anchors_preset = -1
-
-[node name="EmptyWarningLabel" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="3"]
-anchors_preset = -1
-
 [node name="ScrollContainer" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="4"]
-anchors_preset = -1
 mouse_filter = 2
 
 [node name="GridContainer" parent="CanvasLayer/UI/LaunchTools/ToolsPanel/ScrollContainer" index="0"]
 mouse_filter = 2
 
 [node name="Panel" parent="CanvasLayer/UI/LaunchTools" index="1"]
-anchors_preset = -1
-anchor_left = 0.34375
-anchor_top = 0.853333
-anchor_right = 0.664062
+anchor_left = 0.375
+anchor_top = 0.84
+anchor_right = 0.625
+anchor_bottom = 0.986667
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Tools" parent="CanvasLayer/UI/LaunchTools/Panel" index="0"]
-anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.0
+offset_right = 3.05176e-05
+pivot_offset = Vector2(84, 44)
+metadata/_edit_use_anchors_ = true
 
 [node name="Launch" parent="CanvasLayer/UI/LaunchTools/Panel" index="1"]
-anchors_preset = -1
-
-[node name="PanelTween" parent="CanvasLayer/UI/LaunchTools" index="3"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
+anchor_right = 0.75
+pivot_offset = Vector2(96, 44)
+metadata/_edit_use_anchors_ = true
 
 [editable path="CanvasLayer/UI/GameOver"]
 [editable path="CanvasLayer/UI/LaunchTools"]

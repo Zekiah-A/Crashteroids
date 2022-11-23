@@ -8,14 +8,12 @@
 [node name="Picker" type="Control"]
 material = SubResource("1")
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -512.0
-offset_bottom = -440.0
+anchor_right = 0.733333
+anchor_bottom = 0.592593
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2")
+metadata/_edit_use_anchors_ = true
 
 [node name="Rocket" type="TextureRect" parent="."]
 texture_filter = 1
