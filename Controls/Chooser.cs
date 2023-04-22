@@ -6,11 +6,11 @@ public partial class Chooser : Node
 	[Export] private int current;
 	[Export] private int optionsCount = 3;
 	[Export] private float scrollSpeed = 0.075f;
-	[Export] private string[] optionsNames;
+	[Export] private string[] optionsNames = null!;
 	private bool dragInitiated;
-	private Control optionsTexture;
-	private ShaderMaterial imageMaterial;
-	private Label optionName;
+	private Control optionsTexture = null!;
+	private ShaderMaterial imageMaterial = null!;
+	private Label optionName = null!;
 	private Vector2 startPos = Vector2.Zero;
 
 	public override void _Ready()
@@ -33,7 +33,7 @@ public partial class Chooser : Node
 		{
 			dragInitiated = false;
 			var endPos = GetViewport().GetMousePosition();
-			var dragX = endPos.x - startPos.x;
+			var dragX = endPos.X - startPos.X;
 
 			switch (dragX)
 			{
@@ -87,7 +87,7 @@ public partial class Chooser : Node
 	private void WhileDragging()
 	{
 		var endPos = GetViewport().GetMousePosition();
-		var dragX = startPos.x - endPos.x + current * optionsTexture.Size.x / optionsCount;
-		imageMaterial.SetShaderParameter("scroll",  dragX / optionsTexture.Size.x);
+		var dragX = startPos.X - endPos.X + current * optionsTexture.Size.X / optionsCount;
+		imageMaterial.SetShaderParameter("scroll",  dragX / optionsTexture.Size.X);
 	}
 }

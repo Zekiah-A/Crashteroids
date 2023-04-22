@@ -7,8 +7,8 @@ public partial class Iteratebox : Control
 	[Export] public int Min = 1;
 	[Export] public int Max = 5;
 
-	private TextureButton button;
-	private Label number;
+	private TextureButton button = null!;
+	private Label number = null!;
 
 	public override void _Ready()
 	{

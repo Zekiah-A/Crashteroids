@@ -13,7 +13,7 @@ script = ExtResource("2")
 metadata/_edit_use_anchors_ = true
 
 [node name="Texture2D Button" type="TextureButton" parent="."]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -23,7 +23,7 @@ stretch_mode = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="Number" type="Label" parent="Texture2D Button"]
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 0.269231
 anchor_bottom = 1.0
 theme_override_colors/font_color = Color(0.321569, 0.321569, 0.321569, 1)
@@ -36,7 +36,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.307692
 anchor_right = 1.01923
 anchor_bottom = 1.0

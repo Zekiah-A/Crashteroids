@@ -13,7 +13,7 @@ script = ExtResource("3")
 metadata/_edit_use_anchors_ = true
 
 [node name="Texture2D Button" type="TextureButton" parent="."]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -25,7 +25,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 clip_contents = true
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.288462
 anchor_right = 1.0
 anchor_bottom = 1.0

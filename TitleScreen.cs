@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public partial class TitleScreen : Control
 {
 	private Panel[] panels;
-	//private Tween graphicsSelectorTween;
-	private Control graphicsSelected;
+	private Control graphicsSelected = null!;
 
 	public override void _Ready()
 	{
@@ -34,48 +33,59 @@ public partial class TitleScreen : Control
 		UpdateMoneyLabels();
 	}
 
-	private void OpenPanel(int i)
+	private void OpenPanel(int index)
 	{
 		var tween = CreateTween();
-		panels[i].Visible = true;
+		panels[index].Visible = true;
 
-		switch (i)
+		switch (index)
 		{
 			case 0 or 1 or 2:
-				panels[i].Position = new Vector2(-GetViewportRect().Size.x, 0);
-				tween.TweenProperty(panels[i], "position", Vector2.Zero, 1)
+				panels[index].Position = new Vector2(-GetViewportRect().Size.X, 0);
+				tween.TweenProperty(panels[index], "position", Vector2.Zero, 1)
 					.SetTrans(Tween.TransitionType.Cubic)
 					.SetEase(Tween.EaseType.Out);
 				break;
 			case 3:
-				panels[i].Position = new Vector2(0, GetViewportRect().Size.y);
-				tween.TweenProperty(panels[i], "position", Vector2.Zero, 1)
+				panels[index].Position = new Vector2(0, GetViewportRect().Size.Y);
+				tween.TweenProperty(panels[index], "position", Vector2.Zero, 1)
 					.SetTrans(Tween.TransitionType.Cubic)
 					.SetEase(Tween.EaseType.Out);
 				break;
 			case 4 or 6:
-				panels[i].Scale = Vector2.Zero;
-				tween.TweenProperty(panels[i], "scale", Vector2.One, 1)
+				panels[index].Scale = Vector2.Zero;
+				tween.TweenProperty(panels[index], "scale", Vector2.One, 1)
 					.SetTrans(Tween.TransitionType.Back)
 					.SetEase(Tween.EaseType.Out);
 				break;
 			default:
-				panels[i].Visible = true;
+				panels[index].Visible = true;
 				break;
 		}
 		
 		tween.Play();
 	}
-	private void ClosePanel(int i) => panels[i].Visible = false;
 
-	public void GraphicsSettingPressed(int i) //should be On - Event
+	private void ClosePanel(int index)
 	{
-		if (i == (int) Config.Load("graphics_quality")) return;
-		Config.Save("graphics_quality", i);
+		panels[index].Visible = false;
+	}
+
+	public void GraphicsSettingPressed(int index)
+	{
+		if (index == Config.Load<int>("graphics_quality"))
+		{
+			return;
+		}
+		
+		Config.Save("graphics_quality", index);
 		UpdateGraphicsSelector();
 	}
 
-	public void OnUsernameTextChanged(string input) => Config.Save("name", input);
+	public void OnUsernameTextChanged(string input)
+	{
+		Config.Save("name", input);
+	}
 
 	public void OnSettingsCheckboxChanged(string setting) //Make a dictionary between setting name and corresponding value
 	{
@@ -98,32 +108,30 @@ public partial class TitleScreen : Control
 	
 	public void UpdateMoneyLabels()
 	{
-		GetNode<Label>("%MainPanel/MoneyLabel").Text = "£" + $"{Config.Load("money"):#,##0.##}";
-		GetNode<Label>("%ShopPanel/MoneyLabel").Text = "£" + $"{Config.Load("money"):#,##0.##}";
+		GetNode<Label>("%MainPanel/MoneyLabel").Text = "£" + $"{Config.Load<int>("money"):#,##0.##}";
+		GetNode<Label>("%ShopPanel/MoneyLabel").Text = "£" + $"{Config.Load<int>("money"):#,##0.##}";
 	}
 
 	public void ApplyConfigSettings()
 	{
-		((Checkbox) GetNode("%MusicCheckbox").GetChild(0)).IsEnabled = (bool) Config.Load("music");
-		((Checkbox) GetNode("%SfxCheckbox").GetChild(0)).IsEnabled = (bool) Config.Load("sfx");
-		((Checkbox) GetNode("%TutorialCheckbox").GetChild(0)).IsEnabled = (bool) Config.Load("tutorial");
-		((Checkbox) GetNode("%AdvertisementsCheckbox").GetChild(0)).IsEnabled = (bool) Config.Load("adverts");
-		((LineEdit) GetNode("%UsernameEdit")).Text = (string) Config.Load("name");
+		((Checkbox) GetNode("%MusicCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("music");
+		((Checkbox) GetNode("%SfxCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("sfx");
+		((Checkbox) GetNode("%TutorialCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("tutorial");
+		((Checkbox) GetNode("%AdvertisementsCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("adverts");
+		((LineEdit) GetNode("%UsernameEdit")).Text = Config.Load<string>("name");
 		UpdateGraphicsSelector();
 	}
 
 	private void UpdateGraphicsSelector()
 	{
-		/*graphicsSelectorTween.InterpolateProperty(
-			graphicsSelected, //SettingsPanel/LeftPanel/Title
-			"rect_position",
-			graphicsSelected.RectPosition,
-			new Vector2(graphicsSelected.Size.x, GetNode<Control>("SettingsPanel/LeftPanel/Low").Size.y * (int) Config.Load("graphics_quality") + GetNode<Control>("SettingsPanel/LeftPanel/Title").Size.y),
-			0.2f,
-			Tween.TransitionType.Sine,
-			Tween.EaseType.Out
-		);
-		graphicsSelectorTween.Start();*/
+		var tween = CreateTween()
+			.SetEase(Tween.EaseType.Out)
+			.SetTrans(Tween.TransitionType.Sine);
+		tween.TweenProperty(graphicsSelected, "position",
+			new Vector2(graphicsSelected.Size.Y,
+				GetNode<Control>("SettingsPanel/LeftPanel/Low").Size.Y * Config.Load<int>("graphics_quality") +
+				GetNode<Control>("SettingsPanel/LeftPanel/Title").Size.Y), 0.2f);
+		tween.Play();
 	}
 	
 	public void TwoPlayerPlayPressed() => GetTree().ChangeSceneToFile("res://Scenes/Game.tscn");

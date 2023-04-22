@@ -8,8 +8,8 @@ public partial class TwoPlayerGame : Node
 	public List<Node2D> Players = new();
 	
 	private int currentTurn;
-	private RichTextLabel playerTurnLabel;
-	private Control ingameNameLabel;
+	private RichTextLabel playerTurnLabel = null!;
+	private Control ingameNameLabel = null!;
 	private bool cameraBlocked;
 	
 	public override void _Ready()
@@ -76,8 +76,8 @@ public partial class TwoPlayerGame : Node
 
 		for (var i = 0; i < Players.Count; i++)
 		{
-			ingameNameLabel.GetNode<Label>("Label").Text = i == 0 ? $"{Config.Load("name")} (Player {i + 1})" : $"Guest (Player {i + 1})";
-			if (string.IsNullOrEmpty((string) Config.Load("name")))
+			ingameNameLabel.GetNode<Label>("Label").Text = i == 0 ? $"{Config.Load<string>("name")} (Player {i + 1})" : $"Guest (Player {i + 1})";
+			if (string.IsNullOrEmpty(Config.Load<string>("name")))
 			{
 				ingameNameLabel.GetNode<Label>("Label").Text = $"Player {i + 1}";
 			}
@@ -107,7 +107,7 @@ public partial class TwoPlayerGame : Node
 		cameraBlocked = false;
 	}
 
-	private InputEventScreenTouch secondaryTouch;
+	private InputEventScreenTouch? secondaryTouch;
 	private float previousDragDistance;
 	private bool draggingMouse;
 	public override void _Input(InputEvent inputEvent)
@@ -132,8 +132,8 @@ public partial class TwoPlayerGame : Node
 					(
 						camera,
 						"zoom",
-						new Vector2(Mathf.Clamp(camera.Zoom.x + zoom.x, 0.15f, 1),
-							Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom.y, 0.15f, 1)),
+						new Vector2(Mathf.Clamp(camera.Zoom.X + zoom.X, 0.15f, 1),
+							Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.Y + zoom.Y, 0.15f, 1)),
 						0.1f
 					)
 					.SetTrans(Tween.TransitionType.Sine)
@@ -158,8 +158,8 @@ public partial class TwoPlayerGame : Node
 					var dragDistance = Mathf.Abs(secondaryTouch.Position.DistanceTo(screenDrag.Position));
 					var zoom = dragDistance < previousDragDistance ? 0.01f : -0.01f;
 					GetNode<Camera2D>("Camera2D").Zoom = new Vector2(
-						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.x + zoom, 0.15f, 1),
-						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.y + zoom, 0.15f, 1)
+						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.X + zoom, 0.15f, 1),
+						Mathf.Clamp(GetNode<Camera2D>("Camera2D").Zoom.Y + zoom, 0.15f, 1)
 					);
 					previousDragDistance = dragDistance;
 				}
@@ -170,30 +170,30 @@ public partial class TwoPlayerGame : Node
 		}
 
 		GetNode<Camera2D>("Camera2D").Position = new Vector2(
-			Mathf.Clamp(GetNode<Camera2D>("Camera2D").Position.x, 0, 1024),
-			Mathf.Clamp(GetNode<Camera2D>("Camera2D").Position.y, 0, 600)
+			Mathf.Clamp(GetNode<Camera2D>("Camera2D").Position.X, 0, 1024),
+			Mathf.Clamp(GetNode<Camera2D>("Camera2D").Position.Y, 0, 600)
 		);
 	}
 
 	//If we have a username, it will be (p1) 'username (Player 1)', (p2) 'guest (Player 2)', if there is no username, it will be (p1) 'Player 1' (p2) 'Player 2'
 	private string FormatIngameNameLabel()
 	{
-		if (string.IsNullOrEmpty((string) Config.Load("name")))
+		if (string.IsNullOrEmpty(Config.Load<string>("name")))
 		{
 			return $"Player {currentTurn + 1}";
 		}
 		
-		return currentTurn== 0 ? $"{Config.Load("name")} (Player {currentTurn + 1})" : $"Guest (Player {currentTurn + 1})";
+		return currentTurn== 0 ? $"{Config.Load<string>("name")} (Player {currentTurn + 1})" : $"Guest (Player {currentTurn + 1})";
 	}
 
 	//If we have a username, it will be (p1) 'username', (p2) 'guest', if there is no username, it will be (p1) 'Player 1' (p2) 'Player 2'
 	private string FormatPlayerTurnLabel()
 	{
-		if (string.IsNullOrEmpty((string) Config.Load("name")))
+		if (string.IsNullOrEmpty(Config.Load<string>("name")))
 		{
 			return $"[center][wave amp=5 freq=2]Player {currentTurn + 1}'s turn.[/wave][/center]";
 		}
 		
-		return currentTurn == 0 ? $"[center][wave amp=5 freq=2]{Config.Load("name")}'s turn.[/wave][/center]" : "[center][wave amp=5 freq=2]Guest's turn.[/wave][/center]";
+		return currentTurn == 0 ? $"[center][wave amp=5 freq=2]{Config.Load<string>("name")}'s turn.[/wave][/center]" : "[center][wave amp=5 freq=2]Guest's turn.[/wave][/center]";
 	}
 }

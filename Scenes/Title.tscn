@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://cep15wln2qdxp"]
+[gd_scene load_steps=45 format=3 uid="uid://cep15wln2qdxp"]
 
 [ext_resource type="Theme" uid="uid://curw56ialcksi" path="res://Styles/ui_theme.tres" id="1_3urg4"]
 [ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="3"]
@@ -21,7 +21,6 @@
 [ext_resource type="Script" path="res://Controls/Checkbox.cs" id="33"]
 [ext_resource type="Script" path="res://Controls/TitleRocket.cs" id="42"]
 [ext_resource type="Shader" path="res://Shaders/radial_blur.gdshader" id="44"]
-[ext_resource type="Shader" path="res://Shaders/alpha.gdshader" id="45"]
 [ext_resource type="Texture2D" uid="uid://qyjq8utlpy47" path="res://Resources/player_vs_ai_banner.svg" id="48"]
 
 [sub_resource type="ShaderMaterial" id="2"]
@@ -32,12 +31,23 @@ shader_parameter/speed = 3.0
 shader = ExtResource("26")
 shader_parameter/speed = -3.0
 
-[sub_resource type="ShaderMaterial" id="4"]
-shader = ExtResource("45")
-shader_parameter/alpha = 1.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ahkd3"]
 radius = 4.0
+
+[sub_resource type="Animation" id="Animation_b2e2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("P1_Display:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="6"]
 resource_name = "rescale_anim"
@@ -55,20 +65,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(4, 4), Vector2(1.2, 1.2), Vector2(2, 2), Vector2(3, 3), Vector2(2, 2), Vector2(4, 4)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("P1_Display:material:shader_param/alpha")
+tracks/1/path = NodePath("P1_Display:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(),
-"points": PackedFloat32Array(),
-"times": PackedFloat32Array()
+"times": PackedFloat32Array(0, 3, 5, 7, 10, 12),
+"transitions": PackedFloat32Array(1, 0.4, 1, 1, 3, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.243137), Color(1, 1, 1, 0.741176), Color(1, 1, 1, 1), Color(1, 1, 1, 0.580392), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jgsi3"]
 _data = {
+"RESET": SubResource("Animation_b2e2i"),
 "rescale_anim": SubResource("6")
 }
 
@@ -89,29 +101,23 @@ size = Vector2(16, 1080)
 
 [sub_resource type="ShaderMaterial" id="12"]
 shader = ExtResource("9")
-shader_parameter/b_horizontal = 0.0
-shader_parameter/b_vertical = 4.0
-shader_parameter/g_horizontal = 0.0
-shader_parameter/g_vertical = 10.0
-shader_parameter/intensity = 2.0
-shader_parameter/r_horizontal = 0.0
-shader_parameter/r_vertical = 4.0
-shader_parameter/x = false
-shader_parameter/y = true
+shader_parameter/stretch = 4.618
+shader_parameter/horizontal = false
+shader_parameter/r = 0.17
+shader_parameter/g = 3.932
+shader_parameter/b = 0.454
+shader_parameter/height = null
 
 [sub_resource type="SystemFont" id="SystemFont_h1r1b"]
 
 [sub_resource type="ShaderMaterial" id="17"]
 shader = ExtResource("9")
-shader_parameter/b_horizontal = null
-shader_parameter/b_vertical = 10.0
-shader_parameter/g_horizontal = null
-shader_parameter/g_vertical = 10.0
-shader_parameter/intensity = 3.0
-shader_parameter/r_horizontal = null
-shader_parameter/r_vertical = 10.0
-shader_parameter/x = null
-shader_parameter/y = true
+shader_parameter/stretch = 8.643
+shader_parameter/horizontal = false
+shader_parameter/r = 1.0
+shader_parameter/g = 1.0
+shader_parameter/b = 1.0
+shader_parameter/height = null
 
 [sub_resource type="SystemFont" id="SystemFont_8y42s"]
 
@@ -358,6 +364,7 @@ script = ExtResource("8")
 
 [node name="MainPanel" type="Panel" parent="."]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -369,6 +376,7 @@ metadata/_edit_use_anchors_ = true
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("2")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -380,6 +388,7 @@ texture = ExtResource("3_wxk3b")
 texture_filter = 1
 texture_repeat = 2
 material = SubResource("3")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -395,9 +404,8 @@ script = ExtResource("42")
 
 [node name="P1_Display" type="Sprite2D" parent="MainPanel/TitleRocket"]
 texture_filter = 1
-material = SubResource("4")
 position = Vector2(-0.249992, -1.90735e-06)
-scale = Vector2(4, 4)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("5_lilw4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MainPanel/TitleRocket"]
@@ -411,6 +419,7 @@ libraries = {
 [node name="ShipBlurrer" type="ColorRect" parent="MainPanel"]
 visible = false
 material = SubResource("7")
+layout_mode = 0
 offset_right = 1023.0
 offset_bottom = 600.0
 
@@ -435,12 +444,14 @@ shape = SubResource("10")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="MainPanel"]
 visible = false
+layout_mode = 0
 offset_left = 388.576
 offset_top = 147.151
 offset_right = 634.576
 offset_bottom = 395.151
 
 [node name="Rocket Editor Button" type="Button" parent="MainPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.429167
 anchor_top = 0.903704
@@ -449,6 +460,7 @@ anchor_bottom = 1.0
 pivot_offset = Vector2(136, 48)
 
 [node name="Text" type="Label" parent="MainPanel/Rocket Editor Button"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00367647
 anchor_right = 1.0
@@ -462,6 +474,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Help" type="Button" parent="MainPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.421875
 anchor_top = 0.586667
@@ -474,6 +487,7 @@ offset_bottom = 1.59998
 pivot_offset = Vector2(72, 27)
 
 [node name="Text" type="Label" parent="MainPanel/Help"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -485,6 +499,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Play Button" type="Button" parent="MainPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.391667
 anchor_top = 0.437037
@@ -498,6 +513,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Text" type="Label" parent="MainPanel/Play Button"]
 material = SubResource("12")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -510,6 +526,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Settings" type="Button" parent="MainPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00416667
 anchor_top = 0.896296
@@ -524,6 +541,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="MainPanel"]
 material = SubResource("17")
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3125
 anchor_top = 0.106667
@@ -531,6 +549,8 @@ anchor_right = 0.6875
 anchor_bottom = 0.266667
 offset_bottom = -1.52588e-05
 pivot_offset = Vector2(-352, 24)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("SystemFont_8y42s")
 theme_override_font_sizes/font_size = 96
 text = "Crashteroids"
@@ -538,6 +558,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VersionIndicator" type="Button" parent="MainPanel"]
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 32.0
 text = "v 0.01"
@@ -546,6 +567,7 @@ script = SubResource("65")
 
 [node name="Console" type="LineEdit" parent="MainPanel/VersionIndicator"]
 visible = false
+layout_mode = 0
 offset_top = 24.0
 offset_right = 320.0
 offset_bottom = 56.0
@@ -554,6 +576,7 @@ placeholder_text = "Developer Console - type 'help' to get started..."
 [node name="ShopPanel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -563,6 +586,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="ShopPanel"]
 material = SubResource("43")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -571,11 +595,13 @@ grow_vertical = 2
 color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="ShopPanel"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 96.0
 text = "Back"
 
 [node name="MainPanel" type="Panel" parent="ShopPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.52
 anchor_right = 0.999023
@@ -583,6 +609,7 @@ anchor_bottom = 1.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_es4d2")
 
 [node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -598,7 +625,7 @@ size_flags_horizontal = 2
 columns = 7
 
 [node name="1" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-pivot_offset = Vector2(56, 56)
+layout_mode = 2
 script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
@@ -606,11 +633,13 @@ __meta__ = {
 Price = 200
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999997
 anchor_bottom = 1.0
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
@@ -619,9 +648,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="2" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 4.0
-offset_right = 4.0
-pivot_offset = Vector2(56, 56)
+layout_mode = 2
 script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
@@ -629,11 +656,13 @@ __meta__ = {
 Price = 720
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
@@ -642,9 +671,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="3" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 8.0
-offset_right = 8.0
-pivot_offset = Vector2(56, 56)
+layout_mode = 2
 script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
@@ -652,11 +679,13 @@ __meta__ = {
 Price = 1250
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
@@ -665,9 +694,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="4" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 12.0
-offset_right = 12.0
-pivot_offset = Vector2(56, 56)
+layout_mode = 2
 script = SubResource("69")
 __meta__ = {
 "_edit_use_anchors_": true
@@ -675,11 +702,13 @@ __meta__ = {
 Price = 8000
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.6875
 anchor_right = 1.0
@@ -688,15 +717,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="5" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 16.0
-offset_right = 16.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785714
 anchor_right = 0.99999
@@ -705,15 +735,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="6" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 20.0
-offset_right = 20.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785714
 anchor_right = 0.999999
@@ -722,15 +753,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="7" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 24.0
-offset_right = 24.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785714
 anchor_right = 0.999999
@@ -739,15 +771,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="8" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_top = 4.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999995
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999995
@@ -756,17 +789,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="9" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 4.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
@@ -775,17 +807,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="10" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 8.0
-offset_top = 4.0
-offset_right = 8.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
@@ -794,17 +825,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="11" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 12.0
-offset_top = 4.0
-offset_right = 12.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
@@ -813,17 +843,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="12" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 16.0
-offset_top = 4.0
-offset_right = 16.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.99999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.99999
@@ -832,17 +861,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="13" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 20.0
-offset_top = 4.0
-offset_right = 20.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
@@ -851,17 +879,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="14" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
-offset_left = 24.0
-offset_top = 4.0
-offset_right = 24.0
-offset_bottom = 4.0
+layout_mode = 2
 
 [node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.999999
 
 [node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.785713
 anchor_right = 0.999999
@@ -870,12 +897,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Picker" parent="ShopPanel" instance=ExtResource("20")]
+layout_mode = 1
 anchor_left = 0.2625
 anchor_top = 0.177778
 anchor_bottom = 0.503704
 offset_left = 3.05176e-05
 
 [node name="ShopTitle" type="Label" parent="ShopPanel"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -889,6 +918,7 @@ horizontal_alignment = 1
 clip_text = true
 
 [node name="ShopTitleOutline" type="Label" parent="ShopPanel"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -902,6 +932,7 @@ horizontal_alignment = 1
 clip_text = true
 
 [node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -918,6 +949,7 @@ script = SubResource("64")
 [node name="SettingsPanel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -927,6 +959,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="SettingsPanel"]
 material = SubResource("19")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -935,11 +968,13 @@ grow_vertical = 2
 color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="SettingsPanel"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 96.0
 text = "Back"
 
 [node name="Settings Title" type="Label" parent="SettingsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.375
 anchor_top = 0.106667
@@ -950,6 +985,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Settings Title Outline" type="Label" parent="SettingsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.375
 anchor_top = 0.106667
@@ -960,12 +996,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LeftPanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
@@ -975,7 +1013,7 @@ vertical_alignment = 1
 
 [node name="GraphicsSelector" type="Control" parent="SettingsPanel/LeftPanel"]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchor_top = 0.134181
 anchor_right = 1.0
 anchor_bottom = 0.347222
@@ -984,6 +1022,7 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="SelectorRect" type="ColorRect" parent="SettingsPanel/LeftPanel/GraphicsSelector"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1000,6 +1039,7 @@ editor_description = ""
 script = null
 
 [node name="Low" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.135594
 anchor_right = 1.0
@@ -1009,6 +1049,7 @@ text = "Low"
 flat = true
 
 [node name="Medium" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.347457
 anchor_right = 1.0
@@ -1018,6 +1059,7 @@ text = "Medium"
 flat = true
 
 [node name="High" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.559322
 anchor_right = 1.0
@@ -1027,6 +1069,7 @@ text = "High"
 flat = true
 
 [node name="Sublime" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.771186
 anchor_right = 1.0
@@ -1036,6 +1079,7 @@ text = "Sublime"
 flat = true
 
 [node name="CentrePanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.34375
 anchor_top = 0.213333
@@ -1043,6 +1087,7 @@ anchor_right = 0.664062
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="SettingsPanel/CentrePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
@@ -1053,7 +1098,7 @@ vertical_alignment = 1
 
 [node name="MusicCheckbox" type="Control" parent="SettingsPanel/CentrePanel"]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchor_left = 0.146341
 anchor_top = 0.135593
 anchor_right = 0.829268
@@ -1064,6 +1109,7 @@ offset_right = -0.998993
 offset_bottom = 3.60028
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/MusicCheckbox"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1072,6 +1118,7 @@ grow_vertical = 2
 script = ExtResource("33")
 
 [node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
@@ -1082,19 +1129,21 @@ grow_vertical = 2
 
 [node name="SfxCheckbox" type="Control" parent="SettingsPanel/CentrePanel"]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchor_left = 0.146341
 anchor_top = 0.271186
 anchor_right = 0.829268
 anchor_bottom = 0.40678
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/SfxCheckbox"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.999994
 script = ExtResource("33")
 
 [node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
@@ -1102,6 +1151,7 @@ anchor_bottom = 1.0
 offset_bottom = -0.000366211
 
 [node name="RightPanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.664062
 anchor_top = 0.213333
@@ -1109,6 +1159,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="SettingsPanel/RightPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.999999
 anchor_bottom = 0.152542
@@ -1118,13 +1169,14 @@ vertical_alignment = 1
 
 [node name="TutorialCheckbox" type="Control" parent="SettingsPanel/RightPanel"]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchor_left = 0.209302
 anchor_top = 0.135593
 anchor_right = 0.860464
 anchor_bottom = 0.271186
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/TutorialCheckbox"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1133,6 +1185,7 @@ grow_vertical = 2
 script = ExtResource("33")
 
 [node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
@@ -1142,6 +1195,7 @@ grow_vertical = 2
 
 [node name="UsernameEdit" type="LineEdit" parent="SettingsPanel/RightPanel"]
 unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.206201
 anchor_top = 0.510828
@@ -1154,6 +1208,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="UsernameLabel" type="RichTextLabel" parent="SettingsPanel/RightPanel/UsernameEdit"]
 show_behind_parent = true
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_right = 1.0
@@ -1168,13 +1223,14 @@ use_threads = true
 
 [node name="AdvertisementsCheckbox" type="Control" parent="SettingsPanel/RightPanel"]
 unique_name_in_owner = true
-layout_mode = 3
+layout_mode = 1
 anchor_left = 0.209302
 anchor_top = 0.271186
 anchor_right = 0.860464
 anchor_bottom = 0.406779
 
 [node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1183,6 +1239,7 @@ grow_vertical = 2
 script = ExtResource("33")
 
 [node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.321429
 anchor_right = 1.0
@@ -1191,6 +1248,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Username Label" type="Label" parent="SettingsPanel/RightPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.206201
 anchor_top = 0.444915
@@ -1203,6 +1261,7 @@ metadata/_edit_use_anchors_ = true
 [node name="GamemodePanel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1212,6 +1271,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="GamemodePanel"]
 material = SubResource("43")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1220,6 +1280,7 @@ grow_vertical = 2
 color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="GamemodePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.265625
 anchor_bottom = 0.12
@@ -1228,6 +1289,7 @@ offset_bottom = -33.6
 text = "Back"
 
 [node name="Settings Title" type="Label" parent="GamemodePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.36377
 anchor_top = 0.106667
@@ -1242,12 +1304,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Left Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.213333
 anchor_right = 0.25
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="GamemodePanel/Left Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
@@ -1256,6 +1320,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="GamemodePanel/Left Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.173022
@@ -1268,6 +1333,7 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Centre Left Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
 anchor_top = 0.213333
@@ -1275,6 +1341,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="GamemodePanel/Centre Left Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
@@ -1283,6 +1350,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton2" type="TextureButton" parent="GamemodePanel/Centre Left Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.173022
@@ -1294,6 +1362,7 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Centre Right Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.213333
@@ -1301,6 +1370,7 @@ anchor_right = 0.75
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="GamemodePanel/Centre Right Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
@@ -1309,6 +1379,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton3" type="TextureButton" parent="GamemodePanel/Centre Right Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.173022
@@ -1321,6 +1392,7 @@ stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="Right Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
 anchor_top = 0.213333
@@ -1328,6 +1400,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="GamemodePanel/Right Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.152542
@@ -1336,6 +1409,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton4" type="TextureButton" parent="GamemodePanel/Right Panel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
 anchor_top = 0.173022
@@ -1350,6 +1424,7 @@ metadata/_edit_use_anchors_ = true
 [node name="TwoPlayerMatchPanel" type="Panel" parent="."]
 unique_name_in_owner = true
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1359,6 +1434,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
 material = SubResource("43")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1367,11 +1443,13 @@ grow_vertical = 2
 color = Color(0.380392, 0.380392, 0.380392, 1)
 
 [node name="Back" type="Button" parent="TwoPlayerMatchPanel"]
+layout_mode = 0
 offset_right = 320.0
 offset_bottom = 96.0
 text = "Back"
 
 [node name="Settings Title" type="Label" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296875
 anchor_top = 0.106667
@@ -1382,6 +1460,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Settings Title Outline" type="Label" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.296875
 anchor_top = 0.106667
@@ -1392,12 +1471,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LeftPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.213333
 anchor_right = 0.34375
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="TwoPlayerMatchPanel/LeftPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
@@ -1406,37 +1487,63 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
+layout_mode = 1
 anchor_left = 0.0969697
 anchor_top = 0.134181
 anchor_right = 0.727273
 anchor_bottom = 0.266007
 
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="1"]
+layout_mode = 1
+anchors_preset = -1
 text = "Random map"
 
 [node name="Checkbox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
+layout_mode = 1
 anchor_left = 0.0969697
 anchor_top = 0.28484
 anchor_right = 0.727273
 anchor_bottom = 0.416667
 
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="1"]
+layout_mode = 1
+anchors_preset = -1
 text = "Special abilities"
 
 [node name="Checkbox3" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
+layout_mode = 1
 anchor_left = 0.0969697
 anchor_top = 0.435499
 anchor_right = 0.727273
 anchor_bottom = 0.567326
 Current = 1
 
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
+[node name="Number" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3/Texture2D Button" index="0"]
+layout_mode = 1
+anchors_preset = -1
+
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3" index="1"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.269231
 anchor_right = 1.0
 offset_right = 0.0
 text = "Rocket bounces"
 
 [node name="Checkbox4" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
+layout_mode = 1
 anchor_left = 0.0969697
 anchor_top = 0.585688
 anchor_right = 0.727273
@@ -1444,13 +1551,24 @@ anchor_bottom = 0.717514
 offset_top = -3.05176e-05
 Current = 3
 
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
+[node name="Number" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4/Texture2D Button" index="0"]
+layout_mode = 1
+anchors_preset = -1
+
 [node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4" index="1"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.269231
 anchor_right = 1.0
 offset_right = 0.0
 text = "Rounds"
 
 [node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.34375
 anchor_top = 0.213333
@@ -1458,6 +1576,7 @@ anchor_right = 0.65625
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="TwoPlayerMatchPanel/CentrePanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
@@ -1466,12 +1585,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Chooser" parent="TwoPlayerMatchPanel/CentrePanel" instance=ExtResource("19_juqo5")]
+layout_mode = 1
 anchor_left = 0.055
 anchor_top = 0.124765
 anchor_right = 0.945
 anchor_bottom = 0.783898
 
 [node name="RightPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.65625
 anchor_top = 0.213333
@@ -1479,6 +1600,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.135593
@@ -1489,6 +1611,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ComingSoon" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 136.0
 offset_right = 660.0
@@ -1498,6 +1621,7 @@ Custom skins coming soon!"
 horizontal_alignment = 1
 
 [node name="Start" type="Button" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.175758
 anchor_top = 0.80273
@@ -1510,6 +1634,7 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 visible = false
 material = SubResource("59")
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.367188
 anchor_top = 0.2
@@ -1521,6 +1646,7 @@ pivot_offset = Vector2(255, 324)
 metadata/_edit_use_anchors_ = true
 
 [node name="Title" type="Label" parent="HelpPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.113889
@@ -1529,6 +1655,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Quit" type="Button" parent="HelpPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0625
 anchor_top = 0.844444
@@ -1537,6 +1664,7 @@ anchor_bottom = 0.958333
 text = "Close"
 
 [node name="Credits" type="Button" parent="HelpPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.53125
 anchor_top = 0.844444
@@ -1545,6 +1673,7 @@ anchor_bottom = 0.958333
 text = "Credits"
 
 [node name="Details" type="RichTextLabel" parent="HelpPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0330882
 anchor_top = 0.111111
@@ -1573,6 +1702,7 @@ script = null
 [node name="CreditsPanel" type="Panel" parent="HelpPanel"]
 unique_name_in_owner = true
 material = SubResource("59")
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.111111
 anchor_right = 1.0
@@ -1582,12 +1712,14 @@ offset_top = 6.86646e-05
 pivot_offset = Vector2(128, 148)
 
 [node name="Border" type="Panel" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.125
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Quit" type="Button" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.28125
 anchor_top = 0.825
@@ -1596,6 +1728,7 @@ anchor_bottom = 0.953125
 text = "Close"
 
 [node name="Details" type="RichTextLabel" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0294118
 anchor_right = 0.970588
@@ -1607,6 +1740,7 @@ text = "[wave amp=20 freq=5][color=yellow][center]Credits:[/center][/color][/wav
  - Zekiah-A, main development."
 
 [node name="Border" type="Panel" parent="HelpPanel"]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.00196
 anchor_bottom = 1.0

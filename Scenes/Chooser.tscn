@@ -23,7 +23,7 @@ optionsNames = PackedStringArray("Retro", "Vector", "Classic")
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionName" type="Label" parent="."]
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.1875
 anchor_top = 0.78125
 anchor_right = 0.812502
@@ -35,7 +35,7 @@ clip_text = true
 metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="."]
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.0312501
 anchor_top = 0.78125
 anchor_right = 0.1875
@@ -44,7 +44,7 @@ text = "<"
 metadata/_edit_use_anchors_ = true
 
 [node name="Button2" type="Button" parent="."]
-anchors_preset = -1
+layout_mode = 0
 anchor_left = 0.816406
 anchor_top = 0.78125
 anchor_right = 0.96875
@@ -53,9 +53,9 @@ text = ">"
 metadata/_edit_use_anchors_ = true
 
 [node name="OptionsPanel" type="Panel" parent="."]
-clip_children = true
+clip_children = 1
 clip_contents = true
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 0.75
 grow_horizontal = 2
@@ -65,11 +65,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="OptionsPanel"]
 material = SubResource("3")
-anchors_preset = -1
+layout_mode = 0
 anchor_right = 3.0
 anchor_bottom = 1.0
 texture = ExtResource("2")
-ignore_texture_size = true
+expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Button" to="." method="ButtonPressed" binds= [0]]

@@ -8,7 +8,7 @@ public partial class Checkbox : Control
 		get => enabled;
 		set
 		{
-			///<summary> Set the correct texture of the checkbox - in case that enabled wasn't set by another script </summary>
+			// Set the correct texture of the checkbox - in case that enabled wasn't set by another script
 			enabled = value;
 			image.TextureNormal = enabled ? checkboxFull : checkboxEmpty;
 		}

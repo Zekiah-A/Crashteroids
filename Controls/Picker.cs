@@ -1,20 +1,20 @@
 using Godot;
-/*using Crashteroids;*/
-using System;
 using System.Threading.Tasks;
 
 public partial class Picker : Control
 {
-	public static Texture2D[] RocketTextures;
-	private TextureRect rocket;
-	private Tween rocketTween;
+	public static Texture2D?[] RocketTextures = null!;
+	private TextureRect rocket = null!;
 	private int currentIndex;
+	private Control buttonLeft = null!;
+	private Control buttonRight = null!;
 
 	public override void _Ready()
 	{
 		rocket = GetNode<TextureRect>("Rocket");
-		rocketTween = GetNode("Rocket").GetNode<Tween>("Tween");
-
+		buttonLeft = GetNode<Control>("ButtonBack");
+		buttonRight = GetNode<Control>("ButtonForward");
+		
 		RocketTextures = new []
 		{
 			ResourceLoader.Load("res://Resources/Rockets/rocket_retro_1.png") as Texture2D,
@@ -24,122 +24,65 @@ public partial class Picker : Control
 	}
 
 	///<note> Forward button = 1 </note>
-	private async void _on_Button_pressed(int index)
+	private void _on_Button_pressed(int index) //TODO: Fix method casing
 	{
 		if (index == 1)
 		{
-			if (currentIndex == RocketTextures.Length - 1)
-				currentIndex = 0;
-			else
-				currentIndex++;
+			currentIndex = currentIndex == RocketTextures.Length - 1 ? 0 : currentIndex++;
 		}
 		else
 		{
-			if (currentIndex <= 0)
-				currentIndex = RocketTextures.Length - 1;
-			else
-				currentIndex--;
+			currentIndex = currentIndex <= 0 ? RocketTextures.Length - 1 : currentIndex - 1;
 		}
 
-		//await ToSignal(rocketTween, "tween_completed");
-		await UpdateTexture(index);
+		UpdateTexture(index);
 	}
 
-	private async Task UpdateTexture(int index)
+	private void UpdateTexture(int index)
 	{
+		var tween = CreateTween()
+			.SetEase(Tween.EaseType.In)
+			.SetTrans(Tween.TransitionType.Cubic)
+			.SetParallel();
+		var parentCentre = Size / 2 - rocket.Size / 2;
+
 		if (index == 1)
 		{
-			//<summary> Come off before coming on tween </summary>
-			/*rocketTween.InterpolateProperty(
-				rocket,
-				"rect_position",
-				new Vector2(192, 16),
-				new Vector2(0, 16),
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.In
-			);
-			rocketTween.InterpolateProperty(
-				rocket,
-				"rect_rotation",
-				0,
-				-20,
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.In
-			);
-			rocketTween.Start();*/
-			///<summary> Wait for the rocket to move out of view and change texture</summary>
-			await ToSignal(rocketTween, "tween_completed");
-			rocket.Texture = RocketTextures[currentIndex];
-
-			//<summary> "New" rocket comes on the screen </summary>
-			/*rocketTween.InterpolateProperty(
-				rocket,
-				"rect_position",
-				new Vector2(400, 16),
-				new Vector2(192, 16),
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out
-			);
-			rocketTween.InterpolateProperty(
-				rocket,
-				"rect_rotation",
-				-20, 
-				0,
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out
-			);
-			rocketTween.Start();*/
+			// Come off before coming on tween & wait for the rocket to move out of view to change texture
+			rocket.Position = parentCentre;
+			rocket.Rotation = 0;
+			tween.TweenProperty(rocket, "position", buttonLeft.Position, 0.5f);
+			tween.TweenProperty(rocket, "rotation", -0.3491, 0.5f);
+			tween.TweenCallback(Callable.From(() =>
+			{
+				rocket.Texture = RocketTextures[currentIndex];
+				rocket.Position = buttonRight.Position;
+				rocket.Rotation = -0.3491f;
+			})).SetDelay(0.5f);
+			// "New" rocket comes on the screen
+			tween.Chain().SetEase(Tween.EaseType.Out);
+			tween.TweenProperty(rocket, "position", parentCentre, 0.5f);
+			tween.TweenProperty(rocket, "rotation", 0, 0.5f);
+			tween.Play();
 		}
 		else
 		{
-			//<summary> Come off before coming on tween </summary>
-			/*rocketTween.InterpolateProperty(
-				rocket,
-				"rect_position",
-				new Vector2(192, 16),
-				new Vector2(400, 16),
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.In
-			);
-			rocketTween.InterpolateProperty(
-				rocket, 
-				"rect_rotation",
-				0,
-				20,
-				0.5f, 
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.In
-			);
-			rocketTween.Start();*/
-			///<summary> Wait for the rocket to move out of view and change texture</summary>
-			await ToSignal(rocketTween, "tween_completed");
-			rocket.Texture = RocketTextures[currentIndex];
-
-			//<summary> "New" rocket comes on the screen </summary>
-			/*rocketTween.InterpolateProperty(
-				rocket,
-				"rect_position",
-				new Vector2(0, 16),
-				new Vector2(192, 16),
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out
-			);
-			rocketTween.InterpolateProperty(
-				rocket,
-				"rect_rotation",
-				20,
-				0,
-				0.5f,
-				Tween.TransitionType.Cubic,
-				Tween.EaseType.Out
-			);
-			rocketTween.Start();*/
+			// Come off before coming on tween & wait for the rocket to move out of view to change texture
+			rocket.Position = parentCentre;
+			rocket.Rotation = 0;
+			tween.TweenProperty(rocket, "position", buttonRight.Position, 0.5f);
+			tween.TweenProperty(rocket, "rotation", 0.3491, 0.5f);
+			tween.TweenCallback(Callable.From(() =>
+			{
+				rocket.Texture = RocketTextures[currentIndex];
+				rocket.Position = buttonLeft.Position;
+				rocket.Rotation = -0.3491f;
+			})).SetDelay(0.5f);
+			// "New" rocket comes on the screen
+			tween.Chain().SetEase(Tween.EaseType.Out);
+			tween.TweenProperty(rocket, "position", parentCentre, 0.5f);
+			tween.TweenProperty(rocket, "rotation", 0, 0.5f);
+			tween.Play();
 		}
 	}
 }

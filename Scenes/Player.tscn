@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cdhll8heisum7" path="res://Resources/Rockets/rocket_retro_1.png" id="1"]
 [ext_resource type="PackedScene" uid="uid://5s2uohp11chm" path="res://Scenes/Explosion.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Scenes/Laser.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dmd7rdtjr07jl" path="res://Scenes/Laser.tscn" id="3"]
 [ext_resource type="Gradient" path="res://Styles/dragline_white.tres" id="4"]
 [ext_resource type="Script" path="res://Player.cs" id="6"]
 

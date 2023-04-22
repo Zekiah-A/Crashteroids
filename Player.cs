@@ -86,11 +86,11 @@ public partial class Player : CharacterBody2D
 	///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
 	private Vector2 ClampMagnitude(Vector2 vector, float maxLength)
 	{
-		var sqrMagnitude = vector.x * vector.x + vector.y * vector.y;
+		var sqrMagnitude = vector.X * vector.X + vector.Y * vector.Y;
 		if (!(sqrMagnitude > maxLength * maxLength)) return vector;
 		var mag = (float)Math.Sqrt(sqrMagnitude);
-		var normalizedX = vector.x / mag;
-		var normalizedY = vector.y / mag;
+		var normalizedX = vector.X / mag;
+		var normalizedY = vector.Y / mag;
 		return new Vector2(normalizedX * maxLength, normalizedY * maxLength);
 	}
 }
