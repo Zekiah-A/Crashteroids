@@ -1,5 +1,3 @@
-using System;
-
 public static class TwoPlayerGameData
 {
     public static bool RandomMap;

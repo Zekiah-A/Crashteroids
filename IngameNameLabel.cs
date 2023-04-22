@@ -1,15 +1,16 @@
 using Godot;
-using System;
 
 public partial class IngameNameLabel : Control
 {
-	public Node2D TargetNode;
+	public Node2D? TargetNode;
 	public bool Clampless = true;
 	
 	public override void _Process(double delta)
 	{
-		if (TargetNode == null) 
+		if (TargetNode == null)
+		{
 			return;
+		}
 
 		if (Clampless)
 		{

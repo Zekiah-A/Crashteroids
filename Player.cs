@@ -44,32 +44,33 @@ public partial class Player : CharacterBody2D
 	}
 	private void PlayerAreaInput(object viewport, InputEvent inputEvent, int shapeIndex)
 	{
-		if (Launched || !MyTurn || inputEvent.GetType() != typeof(InputEventMouseButton) && inputEvent.GetType() != typeof(InputEventScreenTouch)) 
+		if (Launched || !MyTurn || inputEvent.GetType() != typeof(InputEventMouseButton) &&
+			inputEvent.GetType() != typeof(InputEventScreenTouch))
+		{
 			return;
-		if (inputEvent is InputEventMouseButton mouseButton && mouseButton.Pressed || inputEvent is InputEventScreenTouch screenTouch && screenTouch.Pressed)
-			selected =! selected; //It will be selected = true in the future, and then disabled by tapping anywhere on the screen when we switch to drag to rotate
-		//if (selected)
-			/*GetNode<Tween>("PlayerTween").InterpolateProperty(
-					GetNode<Sprite2D>("Display"),
-					"scale",
-					new Vector2(1, 1),
-					new Vector2(1.5f, 1.5f),
-					0.2f,
-					Tween.TransitionType.Sine,
-					Tween.EaseType.In
-			);*/
-		//else
-			/*GetNode<Tween>("PlayerTween").InterpolateProperty(
-				GetNode<Sprite2D>("Display"),
-				"scale",
-				new Vector2(1.5f, 1.5f),
-				new Vector2(1, 1),
-				0.2f,
-				Tween.TransitionType.Sine,
-				Tween.EaseType.Out,
-				0.1f //Delay
-			);
-		GetNode<Tween>("PlayerTween").Start();*/
+		}
+
+		//It will be selected = true in the future, and then disabled by tapping anywhere on the screen when we switch to drag to rotate
+		if (inputEvent is InputEventMouseButton { Pressed: true } or InputEventScreenTouch { Pressed: true })
+		{
+			selected =! selected;
+		}
+
+		var tween = CreateTween()
+			.SetTrans(Tween.TransitionType.Sine);
+
+		if (selected)
+		{
+			tween.SetEase(Tween.EaseType.In);
+			tween.TweenProperty(GetNode<Sprite2D>("Display"), "scale", new Vector2(1.5f, 1.5f), 0.2f);
+		}
+		else
+		{
+			tween.SetEase(Tween.EaseType.Out);
+			tween.TweenProperty(GetNode<Sprite2D>("Display"), "scale", new Vector2(1, 1), 0.2f);
+		}
+		
+		tween.Play();
 	}
 
 	private void InvalidAreaEntered(object body)
@@ -87,8 +88,12 @@ public partial class Player : CharacterBody2D
 	private Vector2 ClampMagnitude(Vector2 vector, float maxLength)
 	{
 		var sqrMagnitude = vector.X * vector.X + vector.Y * vector.Y;
-		if (!(sqrMagnitude > maxLength * maxLength)) return vector;
-		var mag = (float)Math.Sqrt(sqrMagnitude);
+		if (!(sqrMagnitude > maxLength * maxLength))
+		{
+			return vector;
+		}
+		
+		var mag = (float) Math.Sqrt(sqrMagnitude);
 		var normalizedX = vector.X / mag;
 		var normalizedY = vector.Y / mag;
 		return new Vector2(normalizedX * maxLength, normalizedY * maxLength);

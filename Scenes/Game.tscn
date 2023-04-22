@@ -30,6 +30,7 @@ shader_parameter/translucency = 1.0
 script = ExtResource("1_hou6m")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.4, 0.4)
@@ -171,14 +172,9 @@ text = "Match length: 0 | Score: 0 "
 scroll_active = false
 
 [node name="GameOver" parent="CanvasLayer/UI" instance=ExtResource("10")]
-visible = false
 layout_mode = 1
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="MainPanel" parent="CanvasLayer/UI/GameOver" index="0"]
-layout_mode = 0
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -188,21 +184,19 @@ offset_bottom = 0.0
 mouse_filter = 2
 
 [node name="Game Over" parent="CanvasLayer/UI/GameOver/MainPanel" index="0"]
-layout_mode = 0
-anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 1.0
+offset_bottom = 23.0
 
 [node name="Winner" parent="CanvasLayer/UI/GameOver/MainPanel" index="1"]
-layout_mode = 0
-anchors_preset = 0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 1.0
+offset_bottom = 23.0
 
 [node name="Again" parent="CanvasLayer/UI/GameOver/MainPanel" index="2"]
-layout_mode = 0
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -214,25 +208,22 @@ offset_bottom = 8.0
 mouse_filter = 2
 
 [node name="Quit" parent="CanvasLayer/UI/GameOver/MainPanel" index="3"]
-layout_mode = 0
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
 mouse_filter = 2
 
 [node name="Details" parent="CanvasLayer/UI/GameOver/MainPanel" index="4"]
-layout_mode = 0
-anchors_preset = 0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 1.0
 mouse_filter = 2
 
 [node name="DetailsPanel" parent="CanvasLayer/UI/GameOver" index="1"]
-layout_mode = 0
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -240,24 +231,21 @@ anchor_bottom = 0.0
 mouse_filter = 2
 
 [node name="Done" parent="CanvasLayer/UI/GameOver/DetailsPanel" index="0"]
-layout_mode = 0
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
 mouse_filter = 2
 
 [node name="Details" parent="CanvasLayer/UI/GameOver/DetailsPanel" index="1"]
-layout_mode = 0
-anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 1.0
 mouse_filter = 2
 
 [node name="Border" parent="CanvasLayer/UI/GameOver" index="2"]
-layout_mode = 0
-anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -267,99 +255,9 @@ offset_bottom = 0.0
 
 [node name="LaunchTools" parent="CanvasLayer/UI" instance=ExtResource("14")]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-offset_left = -512.0
-offset_top = -600.0
-offset_right = 512.0
+anchors_preset = -1
+anchor_left = 0.000520833
 grow_vertical = 0
-
-[node name="ToolsPanel" parent="CanvasLayer/UI/LaunchTools" index="0"]
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.200012
-
-[node name="Background" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="0"]
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-
-[node name="Border" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="1"]
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-mouse_filter = 2
-
-[node name="TitleLabel" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="2"]
-anchor_left = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_right = 1.0
-offset_bottom = 23.0
-
-[node name="EmptyWarningLabel" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="3"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1.0
-offset_bottom = 23.0
-
-[node name="ScrollContainer" parent="CanvasLayer/UI/LaunchTools/ToolsPanel" index="4"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.383986
-offset_bottom = 0.0
-mouse_filter = 2
-
-[node name="GridContainer" parent="CanvasLayer/UI/LaunchTools/ToolsPanel/ScrollContainer" index="0"]
-mouse_filter = 2
-
-[node name="Panel" parent="CanvasLayer/UI/LaunchTools" index="1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.375
-anchor_top = 0.866667
-anchor_right = 0.625
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="Tools" parent="CanvasLayer/UI/LaunchTools/Panel" index="0"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.65625
-anchor_top = 0.0
-anchor_bottom = 0.9
-offset_right = 3.05176e-05
-offset_bottom = 8.0
-pivot_offset = Vector2(84, 44)
-metadata/_edit_use_anchors_ = true
-
-[node name="Launch" parent="CanvasLayer/UI/LaunchTools/Panel" index="1"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.275
-anchor_right = 0.625
-anchor_bottom = 0.9
-offset_right = 8.0
-offset_bottom = 8.0
-pivot_offset = Vector2(96, 44)
 metadata/_edit_use_anchors_ = true
 
 [editable path="CanvasLayer/UI/GameOver"]
-[editable path="CanvasLayer/UI/LaunchTools"]

@@ -62,14 +62,6 @@ z_index = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("5")
 
-[node name="PlayerTween" type="Tween" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-editor_description = ""
-script = null
-
 [connection signal="body_entered" from="Display/InvalidArea" to="." method="InvalidAreaEntered"]
 [connection signal="body_exited" from="Display/InvalidArea" to="." method="InvalidAreaExited"]
 [connection signal="input_event" from="Area2D" to="." method="PlayerAreaInput"]

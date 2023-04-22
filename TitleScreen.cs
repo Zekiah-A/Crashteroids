@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
 public partial class TitleScreen : Control
 {
@@ -84,10 +82,11 @@ public partial class TitleScreen : Control
 
 	public void OnUsernameTextChanged(string input)
 	{
+		((Label) GetNode("%UsernameLabel")).Text = "Username is: " + input;
 		Config.Save("name", input);
 	}
 
-	public void OnSettingsCheckboxChanged(string setting) //Make a dictionary between setting name and corresponding value
+	public void OnSettingsCheckboxChanged(string setting)
 	{
 		switch (setting)
 		{
@@ -118,7 +117,7 @@ public partial class TitleScreen : Control
 		((Checkbox) GetNode("%SfxCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("sfx");
 		((Checkbox) GetNode("%TutorialCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("tutorial");
 		((Checkbox) GetNode("%AdvertisementsCheckbox").GetChild(0)).IsEnabled = Config.Load<bool>("adverts");
-		((LineEdit) GetNode("%UsernameEdit")).Text = Config.Load<string>("name");
+		((Label) GetNode("%UsernameLabel")).Text = "Username is: " + Config.Load<string>("name");
 		UpdateGraphicsSelector();
 	}
 
@@ -128,9 +127,9 @@ public partial class TitleScreen : Control
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Sine);
 		tween.TweenProperty(graphicsSelected, "position",
-			new Vector2(graphicsSelected.Size.Y,
-				GetNode<Control>("SettingsPanel/LeftPanel/Low").Size.Y * Config.Load<int>("graphics_quality") +
-				GetNode<Control>("SettingsPanel/LeftPanel/Title").Size.Y), 0.2f);
+			new Vector2(0,
+				GetNode<Control>("SettingsPanel/LeftPanel/Low").Size.Y * Config.Load<int>("graphics_quality")
+					+ GetNode<Control>("SettingsPanel/LeftPanel/Title").Size.Y), 0.2f);
 		tween.Play();
 	}
 	

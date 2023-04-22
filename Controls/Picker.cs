@@ -1,5 +1,4 @@
 using Godot;
-using System.Threading.Tasks;
 
 public partial class Picker : Control
 {
@@ -28,11 +27,11 @@ public partial class Picker : Control
 	{
 		if (index == 1)
 		{
-			currentIndex = currentIndex == RocketTextures.Length - 1 ? 0 : currentIndex++;
+			currentIndex = currentIndex == RocketTextures.Length - 1 ? 0 : ++currentIndex;
 		}
 		else
 		{
-			currentIndex = currentIndex <= 0 ? RocketTextures.Length - 1 : currentIndex - 1;
+			currentIndex = currentIndex <= 0 ? RocketTextures.Length - 1 : --currentIndex ;
 		}
 
 		UpdateTexture(index);
