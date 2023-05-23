@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=3 uid="uid://ij2hdp3uys3t"]
+
+[ext_resource type="Script" path="res://LaunchToolsManager.cs" id="2"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="3"]
+[ext_resource type="FontFile" uid="uid://cgatfarg2e8ea" path="res://Fonts/Typefaces/arial.ttf" id="3_pey43"]
+[ext_resource type="StyleBox" uid="uid://defk55l4vv8kw" path="res://Styles/grey_button_style.tres" id="4_uvmhv"]
+[ext_resource type="StyleBox" path="res://Styles/grey_button_pressed_style.tres" id="5_1avng"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l83mj"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2r6tf"]
+
+[node name="LaunchTools" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2")
+
+[node name="ToolsPanel" type="Panel" parent="."]
+visible = false
+material = SubResource("1")
+layout_mode = 0
+anchor_left = 0.25
+anchor_top = 0.427
+anchor_right = 0.75
+anchor_bottom = 0.893333
+offset_top = -0.200012
+offset_right = -6.10352e-05
+pivot_offset = Vector2(128, 148)
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="ToolsPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.0941176, 0.113725, 0.941176)
+
+[node name="Border" type="Panel" parent="ToolsPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l83mj")
+
+[node name="TitleLabel" type="Label" parent="ToolsPanel"]
+layout_mode = 0
+anchor_left = 0.266
+anchor_right = 0.734
+anchor_bottom = 0.171
+offset_left = -0.192001
+offset_right = 0.191986
+offset_bottom = -0.0400085
+theme_override_font_sizes/font_size = 32
+text = "Bought Tools:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptyWarningLabel" type="Label" parent="ToolsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00833333
+anchor_top = 0.101223
+anchor_right = 0.991667
+anchor_bottom = 0.974516
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_pey43")
+theme_override_font_sizes/font_size = 18
+text = "There seems to be no tools or upgrades here yet, earn money to buy some from the shop. ☺"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ToolsPanel"]
+layout_mode = 0
+anchor_left = 0.016
+anchor_top = 0.033
+anchor_right = 0.984
+anchor_bottom = 0.967
+offset_left = -0.192
+offset_top = 38.76
+offset_right = 0.191986
+offset_bottom = 0.23999
+scroll_deadzone = 8
+
+[node name="GridContainer" type="GridContainer" parent="ToolsPanel/ScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+anchor_left = 0.40625
+anchor_top = 0.92
+anchor_right = 0.59375
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2r6tf")
+
+[node name="Tools" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.541667
+anchor_top = 0.166667
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.00012207
+offset_top = -14.4
+offset_bottom = -0.399963
+pivot_offset = Vector2(16, -40)
+text = "Tools"
+clip_text = true
+
+[node name="Launch" type="Button" parent="Panel"]
+layout_mode = 0
+anchor_right = 0.583333
+anchor_bottom = 1.0
+pivot_offset = Vector2(16, -40)
+theme_override_styles/normal = ExtResource("4_uvmhv")
+theme_override_styles/hover = ExtResource("4_uvmhv")
+theme_override_styles/pressed = ExtResource("5_1avng")
+text = "Launch"
+clip_text = true
+
+[node name="ButtonTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="pressed" from="Panel/Tools" to="." method="ToolsPressed"]
+[connection signal="pressed" from="Panel/Launch" to="." method="LaunchPressed"]

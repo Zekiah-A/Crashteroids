@@ -1,8 +1,105 @@
 using Godot;
 using System;
 
-public class Player : KinematicBody2D
-{
+public partial class Player : CharacterBody2D
+{ 
+	private const float Speed = 100;
+
+	public Vector2 MovementDirection;
+	public Sprite2D PlayerSprite;
+	public bool Launched = false;
+	public bool MyTurn = false;
+	private bool selected;
+
+	public override void _Ready()
+	{
+		PlayerSprite = GetNode<Sprite2D>("Display");
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (Launched || !MyTurn || !selected) return;
+		var inputPosition = @event switch
+		{
+			InputEventScreenTouch screenTouch => screenTouch.Position,
+			InputEventMouse mouse => mouse.Position,
+			_ => Vector2.Zero
+		};
+
+		if (inputPosition == Vector2.Zero) return;
+		MovementDirection = ToLocal(inputPosition);
+		PlayerSprite.Rotation = GetAngleTo(inputPosition) + 1.5708f;
+	}
+
+	public override void _Process(double delta)
+	{
+		if (!Launched || !MyTurn) return;
+		var collision = MoveAndCollide(MovementDirection.Normalized() * Speed * (float) delta);
+		if (collision == null) return;
+		var hit = (Node2D) collision.GetCollider();
+		//if (hit.IsInGroup("Player"))
+		//	GameManager.GameMatch.Crash((Player) hit, this);
+		MovementDirection = MovementDirection.Bounce(collision.GetNormal());
+		PlayerSprite.Rotation = MovementDirection.Angle() + 1.5708f; //1.5708 radians is 90 degrees
+	}
+	private void PlayerAreaInput(object viewport, InputEvent inputEvent, int shapeIndex)
+	{
+		if (Launched || !MyTurn || inputEvent.GetType() != typeof(InputEventMouseButton) &&
+			inputEvent.GetType() != typeof(InputEventScreenTouch))
+		{
+			return;
+		}
+
+		//It will be selected = true in the future, and then disabled by tapping anywhere on the screen when we switch to drag to rotate
+		if (inputEvent is InputEventMouseButton { Pressed: true } or InputEventScreenTouch { Pressed: true })
+		{
+			selected =! selected;
+		}
+
+		var tween = CreateTween()
+			.SetTrans(Tween.TransitionType.Sine);
+
+		if (selected)
+		{
+			tween.SetEase(Tween.EaseType.In);
+			tween.TweenProperty(GetNode<Sprite2D>("Display"), "scale", new Vector2(1.5f, 1.5f), 0.2f);
+		}
+		else
+		{
+			tween.SetEase(Tween.EaseType.Out);
+			tween.TweenProperty(GetNode<Sprite2D>("Display"), "scale", new Vector2(1, 1), 0.2f);
+		}
+		
+		tween.Play();
+	}
+
+	private void InvalidAreaEntered(object body)
+	{
+		//if (body is StaticBody2D)
+		//	invalid = true;
+	}
+	private void InvalidAreaExited(object body)
+	{
+		//if (body is StaticBody2D)
+		//	invalid = false;
+	}
+
+	///<summary> Used for circular clamp, code "borrowed" from unity Mathf @https://github.com/Unity-Technologies/UnityCsReference/ </summary>
+	private Vector2 ClampMagnitude(Vector2 vector, float maxLength)
+	{
+		var sqrMagnitude = vector.X * vector.X + vector.Y * vector.Y;
+		if (!(sqrMagnitude > maxLength * maxLength))
+		{
+			return vector;
+		}
+		
+		var mag = (float) Math.Sqrt(sqrMagnitude);
+		var normalizedX = vector.X / mag;
+		var normalizedY = vector.Y / mag;
+		return new Vector2(normalizedX * maxLength, normalizedY * maxLength);
+	}
+}
+/*
 	[Export] public bool StartFlipped = false;
 	[Export] public float Speed = 1000;
 	[Export] public float RotateSpeed = 0.2f;
@@ -12,7 +109,7 @@ public class Player : KinematicBody2D
 	public bool IsCurrent = false;
 	public bool IsDead = false;
 
-	private Sprite player;
+	private Sprite2D player;
 #warning "[rayCast/Player.cs] This field should have a better name."
 	private RayCast2D rayCast;
 	private Line2D dragLine;
@@ -31,7 +128,7 @@ public class Player : KinematicBody2D
 
 	public override void _Ready()
 	{
-		player = GetNode<Sprite>("P1_Display");
+		player = GetNode<Sprite2D>("P1_Display");
 	 	rayCast = GetNode("P1_Display").GetNode<RayCast2D>("RayCast2D");
 	 	dragLine = GetNode<Line2D>($"DragLine");
 	 	invalidArea = GetNode("P1_Display").GetNode<Area2D>("InvalidArea");
@@ -152,4 +249,5 @@ public class Player : KinematicBody2D
 		}
 		return vector;
 	}
-}
+ */
+ 

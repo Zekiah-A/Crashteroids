@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5iin2oni0cri"]
+
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="1"]
+[ext_resource type="Theme" uid="uid://curw56ialcksi" path="res://Styles/ui_theme.tres" id="1_mvlyk"]
+[ext_resource type="Shader" path="res://Shaders/text_gradient.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("1")
+shader_parameter/blur_amount = 4.0
+shader_parameter/translucency = 1.0
+
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("3")
+shader_parameter/stretch = 3.411
+shader_parameter/horizontal = false
+shader_parameter/r = 4.478
+shader_parameter/g = 3.363
+shader_parameter/b = 0.648
+shader_parameter/height = null
+
+[sub_resource type="ShaderMaterial" id="5"]
+shader = ExtResource("1")
+shader_parameter/blur_amount = 4.0
+shader_parameter/translucency = 1.0
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(512, 300)
+mouse_filter = 2
+theme = ExtResource("1_mvlyk")
+
+[node name="MainPanel" type="Panel" parent="."]
+material = SubResource("1")
+layout_mode = 0
+anchor_left = 0.375
+anchor_top = 0.213333
+anchor_right = 0.625
+anchor_bottom = 0.746667
+offset_top = 0.000205994
+offset_bottom = -0.000213623
+pivot_offset = Vector2(128, 148)
+
+[node name="Game Over" type="Label" parent="MainPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 0.128125
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Winner" type="Label" parent="MainPanel"]
+material = SubResource("3")
+layout_mode = 0
+anchor_top = 0.128125
+anchor_right = 1.0
+anchor_bottom = 0.3
+text = "Player 1 won!"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Again" type="Button" parent="MainPanel"]
+layout_mode = 0
+anchor_left = 0.125
+anchor_top = 0.6
+anchor_right = 0.875
+anchor_bottom = 0.75
+offset_left = -4.0
+offset_top = 0.39978
+offset_right = 4.0
+offset_bottom = 1.99973
+text = "Play Again"
+
+[node name="Quit" type="Button" parent="MainPanel"]
+layout_mode = 0
+anchor_left = 0.116667
+anchor_top = 0.795138
+anchor_right = 0.883333
+anchor_bottom = 0.947916
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="Details" type="RichTextLabel" parent="MainPanel"]
+layout_mode = 0
+anchor_top = 0.275
+anchor_right = 1.0
+anchor_bottom = 0.574999
+bbcode_enabled = true
+text = "Details:
+Rounds: 
+Bounces:
+Match Length: "
+
+[node name="DetailsPanel" type="Panel" parent="."]
+material = SubResource("5")
+layout_mode = 0
+anchor_left = 0.375
+anchor_top = 0.355556
+anchor_right = 0.625
+anchor_bottom = 0.746296
+metadata/_edit_use_anchors_ = true
+
+[node name="Done" type="Button" parent="DetailsPanel"]
+layout_mode = 0
+anchor_left = 0.116667
+anchor_top = 0.720379
+anchor_right = 0.883333
+anchor_bottom = 0.92891
+text = "Done"
+metadata/_edit_use_anchors_ = true
+
+[node name="Details" type="RichTextLabel" parent="DetailsPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 0.677725
+bbcode_enabled = true
+text = "Awards:
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Border" type="Panel" parent="."]
+layout_mode = 0
+anchor_left = 0.375
+anchor_top = 0.213333
+anchor_right = 0.625
+anchor_bottom = 0.746667
+offset_top = 0.000205994
+offset_bottom = -0.000213623
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="MainPanel/Again" to="." method="OptionPressed" binds= [1]]
+[connection signal="pressed" from="MainPanel/Quit" to="." method="OptionPressed" binds= [2]]
+[connection signal="pressed" from="DetailsPanel/Done" to="." method="DonePressed"]

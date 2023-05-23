@@ -13,19 +13,13 @@ The game features multiple modes, currently 2 player has been implemented, but i
 
 ## Todo:
 
-* Add background match space parrallax effects
-* Add shadows coming off of ships, rocket booster lighting, and other cool lighting
 * Map maker
 * Implement rounds system
 * Fix all "TODO"s
-* Unjank the saving and loading system, also fix saving/loading on android.
-* Make Match.cs just be part of GameManager
-* Fix UI scaling
 * Tools
 * Rank sytem
 * Control options in settings
 * Implement all gamemodes.
-* Update to Godot 4 (when stable).
 * Much more!
 
 ## Contributions:

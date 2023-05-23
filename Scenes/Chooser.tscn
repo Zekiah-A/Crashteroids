@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://3h7tyd44vpu5"]
+
+[ext_resource type="Script" path="res://Controls/Chooser.cs" id="1"]
+[ext_resource type="Texture2D" uid="uid://cr35tonl4hfdb" path="res://Resources/Image/chooser_border.png" id="2"]
+[ext_resource type="Shader" path="res://Shaders/image_scroller.gdshader" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5kr5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2n3m3"]
+
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("3")
+shader_parameter/scroll = 0.0
+
+[node name="Chooser" type="Panel"]
+anchors_preset = -1
+anchor_right = 0.133333
+anchor_bottom = 0.237037
+pivot_offset = Vector2(152, 72.0003)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_o5kr5")
+script = ExtResource("1")
+optionsNames = PackedStringArray("Retro", "Vector", "Classic")
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionName" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.1875
+anchor_top = 0.78125
+anchor_right = 0.812502
+anchor_bottom = 0.9375
+text = "undefined"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.0312501
+anchor_top = 0.78125
+anchor_right = 0.1875
+anchor_bottom = 0.9375
+text = "<"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.816406
+anchor_top = 0.78125
+anchor_right = 0.96875
+anchor_bottom = 0.9375
+text = ">"
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionsPanel" type="Panel" parent="."]
+clip_children = 1
+clip_contents = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2n3m3")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="OptionsPanel"]
+material = SubResource("3")
+layout_mode = 0
+anchor_right = 3.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="ButtonPressed" binds= [0]]
+[connection signal="pressed" from="Button2" to="." method="ButtonPressed" binds= [1]]
+[connection signal="gui_input" from="OptionsPanel/TextureRect" to="." method="OnTextureInput"]

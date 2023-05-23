@@ -1,0 +1,1782 @@
+[gd_scene load_steps=45 format=3 uid="uid://cep15wln2qdxp"]
+
+[ext_resource type="Theme" uid="uid://curw56ialcksi" path="res://Styles/ui_theme.tres" id="1_3urg4"]
+[ext_resource type="Shader" path="res://Shaders/blur.gdshader" id="3"]
+[ext_resource type="Texture2D" uid="uid://bs2e8eadsen4c" path="res://Resources/Backgrounds/space_title_stars.png" id="3_wxk3b"]
+[ext_resource type="Texture2D" uid="uid://e0c6cc5mhvnq" path="res://Resources/Backgrounds/space_title_galaxies.png" id="4_1h0lb"]
+[ext_resource type="Texture2D" uid="uid://cdhll8heisum7" path="res://Resources/Rockets/rocket_retro_1.png" id="5_lilw4"]
+[ext_resource type="Texture2D" uid="uid://cjb77lcnwi8tv" path="res://Resources/two_player_banner.png" id="7"]
+[ext_resource type="Script" path="res://TitleScreen.cs" id="8"]
+[ext_resource type="Shader" path="res://Shaders/text_gradient.gdshader" id="9"]
+[ext_resource type="StyleBox" path="res://Styles/green_button_style.tres" id="10_3iai1"]
+[ext_resource type="StyleBox" path="res://Styles/green_button_pressed_style.tres" id="11_ms120"]
+[ext_resource type="PackedScene" uid="uid://biyc3vs7ee6qv" path="res://Scenes/Checkbox.tscn" id="18_hxqlj"]
+[ext_resource type="Texture2D" uid="uid://mc0vro3tnx8v" path="res://Resources/disabled_banner.png" id="19"]
+[ext_resource type="PackedScene" uid="uid://doxyv4n5mb66v" path="res://Scenes/Iteratebox.tscn" id="19_ixva3"]
+[ext_resource type="PackedScene" uid="uid://3h7tyd44vpu5" path="res://Scenes/Chooser.tscn" id="19_juqo5"]
+[ext_resource type="PackedScene" uid="uid://c4ivpksq53q57" path="res://Scenes/Picker.tscn" id="20"]
+[ext_resource type="Texture2D" uid="uid://cessfw5lvn5r0" path="res://Resources/two_player_banner_grey.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://brue07i62vwi6" path="res://Resources/save_cog_2_icon.svg" id="23"]
+[ext_resource type="Shader" path="res://Shaders/warp.gdshader" id="26"]
+[ext_resource type="Script" path="res://Controls/Checkbox.cs" id="33"]
+[ext_resource type="Script" path="res://Controls/TitleRocket.cs" id="42"]
+[ext_resource type="Shader" path="res://Shaders/radial_blur.gdshader" id="44"]
+[ext_resource type="Texture2D" uid="uid://qyjq8utlpy47" path="res://Resources/player_vs_ai_banner.svg" id="48"]
+
+[sub_resource type="ShaderMaterial" id="2"]
+shader = ExtResource("26")
+shader_parameter/speed = 3.0
+
+[sub_resource type="ShaderMaterial" id="3"]
+shader = ExtResource("26")
+shader_parameter/speed = -3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ahkd3"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_b2e2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("P1_Display:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="6"]
+resource_name = "rescale_anim"
+length = 12.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("P1_Display:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 5, 7, 10, 12),
+"transitions": PackedFloat32Array(0.4, 0.4, 1, 1, 3, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(1.2, 1.2), Vector2(2, 2), Vector2(3, 3), Vector2(2, 2), Vector2(4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("P1_Display:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 5, 7, 10, 12),
+"transitions": PackedFloat32Array(1, 0.4, 1, 1, 3, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.243137), Color(1, 1, 1, 0.741176), Color(1, 1, 1, 1), Color(1, 1, 1, 0.580392), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jgsi3"]
+_data = {
+"RESET": SubResource("Animation_b2e2i"),
+"rescale_anim": SubResource("6")
+}
+
+[sub_resource type="ShaderMaterial" id="7"]
+shader = ExtResource("44")
+shader_parameter/blur_center = Vector2(0.5, 0.5)
+shader_parameter/blur_power = 0.005
+shader_parameter/sampling_count = 8
+
+[sub_resource type="RectangleShape2D" id="8"]
+size = Vector2(1920, 16)
+
+[sub_resource type="RectangleShape2D" id="9"]
+size = Vector2(1920, 16)
+
+[sub_resource type="RectangleShape2D" id="10"]
+size = Vector2(16, 1080)
+
+[sub_resource type="ShaderMaterial" id="12"]
+shader = ExtResource("9")
+shader_parameter/stretch = 4.618
+shader_parameter/horizontal = false
+shader_parameter/r = 0.17
+shader_parameter/g = 3.932
+shader_parameter/b = 0.454
+shader_parameter/height = null
+
+[sub_resource type="SystemFont" id="SystemFont_h1r1b"]
+
+[sub_resource type="ShaderMaterial" id="17"]
+shader = ExtResource("9")
+shader_parameter/stretch = 8.643
+shader_parameter/horizontal = false
+shader_parameter/r = 1.0
+shader_parameter/g = 1.0
+shader_parameter/b = 1.0
+shader_parameter/height = null
+
+[sub_resource type="SystemFont" id="SystemFont_8y42s"]
+
+[sub_resource type="CSharpScript" id="65"]
+script/source = "using Godot;
+using System;
+using System.Net;
+
+public class DeveloperConsole : Button
+{
+	private int clicks = 1;
+	private bool configOpen;
+	private LineEdit console;
+	
+	public override void _Ready()
+	{
+		console = GetNode<LineEdit>(\"Console\");
+		Connect(\"pressed\", this, nameof(VersionIndicatiorPressed));
+		console.Connect(\"text_submitted\", this, nameof(CommandEntered));
+	}
+
+	private void VersionIndicatiorPressed()
+	{
+		if (clicks == 3 && !console.Visible)
+		{
+			console.Visible = true;
+			clicks = -1;
+		}
+		else if (console.Visible)
+			console.Visible = false;
+		clicks++;
+	}
+
+	private void CommandEntered(string input)
+	{
+		console.Text = \"\";
+		
+		switch (input.Split(\" \")[0].ToLower())
+		{
+			case \"help\":
+				var helpPopup = new AcceptDialog
+				{
+					WindowTitle = \"!!!! Crashteroids Developer Console !!!!\",
+					DialogText = \"If you do not know how you got here,\\n*exit by pressing checked the version number\\nin the top right corner of the screen.*\\n\\n------------------\\nCommands:\\n------------------\\n- username \\n- money \\n- config \\n- sysinfo \\n- close / exit \\n- help (this) \\n- secret\",
+					Resizable = true,
+					Visible = true
+				};
+				AddChild(helpPopup);
+				helpPopup.Popup_();
+				break;
+			case \"username\":
+				GameData.Username = input.Split(\" \")[1];
+				break;
+			case \"money\":
+					if (Int32.TryParse(input.Split(\" \")[1], out int money));
+						GameData.Money = money;
+					break;
+			case \"config\":
+				var file = new File();
+				file.Open(\"user://game_config_crashteroids.cfg\", File.ModeFlags.ReadWrite);
+				if (!configOpen)
+				{
+					var textEdit = new TextEdit
+					{
+						Name = \"TextEdit\",
+						Text = file.GetAsText(),
+						RectSize = new Vector2(800, 500),
+						RectPosition = new Vector2(50 - (RectSize.x / 2), 100 - (RectSize.y / 2))
+					};
+					AddChild(textEdit);
+					configOpen = true;
+				}
+				else
+				{
+					var textEdit = GetNode<TextEdit>(\"TextEdit\");
+					file.StoreString(textEdit.Text);
+					file.Close();
+					textEdit.QueueFree();
+					configOpen = false;
+					console.Text = \"\";
+					console.PlaceholderText = \"*Game must be reloaded*\";
+				}
+				break;
+			case \"sysinfo\":
+				var sysinfoPopup = new AcceptDialog
+				{
+					WindowTitle = \"System Info:\",
+					DialogText = $\"version: {Text} \\nresolution: {OS.GetScreenSize()} \\ndpi: {OS.GetScreenDpi()} \\nconfig: {OS.GetDataDir()} \\nlocale: {OS.GetLocale()} \\ndriver: {OS.GetCurrentVideoDriver()}\",
+					Resizable = false,
+					Visible = true
+				};
+				AddChild(sysinfoPopup);
+				sysinfoPopup.Popup_();
+				break;
+			case \"close\":
+				console.Visible = false;
+				break;
+			case \"exit\":
+				console.Visible = false;
+				break;
+			case \"secret\":
+			#if GODOT_X11
+				for (int i = 1; i < 5; i++)
+					OS.Execute(\"notify-send\", new []{\"Crashteroids is the coolest!\"}, false);
+			#endif
+				Input.VibrateHandheld(1000);
+				break;
+			default:
+				console.Text = \"\";
+				console.PlaceholderText = \"Error: Could not parse input\";
+				break;
+		}
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="43"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es4d2"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[sub_resource type="CSharpScript" id="69"]
+script/source = "using Godot;
+using System;
+using System.Text;
+
+public class Tool : Panel
+{
+	public bool Bought;
+	[Export] public int Price;
+	
+	private StyleBoxFlat defaultStyle;
+	private StyleBoxFlat boughtStyle;
+	private Label description;
+
+	public override void _Ready()
+	{
+		defaultStyle = ResourceLoader.Load(\"res://styles/editoritem_available.tres\") as StyleBoxFlat;
+		boughtStyle = ResourceLoader.Load(\"res://styles/editoritem_bought.tres\") as StyleBoxFlat;
+
+		description = GetNode<Label>(\"Description\");
+	}
+
+	public async void Buy()
+	{
+		Bought = true;
+		description.Text = $\"Bought {description.Text.Split(' ')[0]}\";
+		description.AddStyleboxOverride(\"normal\", boughtStyle);
+
+		///<summary> Tool bought animation (done via godot tweening). </summary>
+		this.GetNode<Tween>(\"Tween\").InterpolateProperty(
+			this,
+			\"scale\",
+			new Vector2(1, 1),
+			new Vector2(1.2f, 1.2f),
+			0.2f,
+			Tween.TransitionType.Quad,
+			Tween.EaseType.Out
+		);
+		this.GetNode<Tween>(\"Tween\").Start();
+		await ToSignal(this.GetNode<Tween>(\"Tween\"), \"finished\");
+		this.GetNode<Tween>(\"Tween\").InterpolateProperty(
+			this,
+			\"scale\",
+			new Vector2(1.2f, 1.2f),
+			new Vector2(1, 1),
+			0.5f,
+			Tween.TransitionType.Back,
+			Tween.EaseType.Out
+		);
+		this.GetNode<Tween>(\"Tween\").Start();
+	}
+}
+"
+
+[sub_resource type="CSharpScript" id="64"]
+script/source = "using Godot;
+using System;
+using System.Text;
+
+public class MoneyLabel : Label
+{
+	public override void _Ready()
+	{
+		GameData.ConfigSaveEvent += OnConfigChanged;
+		Text = AddCommasToNumber(GameData.Money.ToString());
+	}
+
+	private void OnConfigChanged(object sender, ConfigChangeEventArgs eventArgs)
+	{
+		if (eventArgs.ConfigName == \"money\")
+			Text = AddCommasToNumber(eventArgs.Config.ToString());
+	}
+
+	private string AddCommasToNumber(string input)
+	{
+		StringBuilder stringBuilder = new StringBuilder(input);
+		int commasAdded = 0;
+		for (int index = 0; index < stringBuilder.Length; index++)
+		{
+			if (index % 3 == 0 && index != 0)
+			{
+				stringBuilder.Insert(stringBuilder.Length - (index + commasAdded), \",\");
+				commasAdded++;
+			}
+		}
+		return $\"£{stringBuilder}\";
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="19"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
+
+[sub_resource type="ShaderMaterial" id="59"]
+shader = ExtResource("3")
+shader_parameter/blur_amount = 5.0
+shader_parameter/translucency = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pio3y"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 5
+border_color = Color(0.392157, 0.392157, 0.392157, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_3urg4")
+script = ExtResource("8")
+
+[node name="MainPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background Rect" type="TextureRect" parent="MainPanel"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_wxk3b")
+
+[node name="Layer1 Rect" type="TextureRect" parent="MainPanel"]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1h0lb")
+
+[node name="TitleRocket" type="CharacterBody2D" parent="MainPanel" groups=["Player"]]
+position = Vector2(112, 541)
+rotation = 1.57079
+scale = Vector2(4, 4)
+script = ExtResource("42")
+
+[node name="P1_Display" type="Sprite2D" parent="MainPanel/TitleRocket"]
+texture_filter = 1
+position = Vector2(-0.249992, -1.90735e-06)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_lilw4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainPanel/TitleRocket"]
+shape = SubResource("CircleShape2D_ahkd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainPanel/TitleRocket"]
+libraries = {
+"": SubResource("AnimationLibrary_jgsi3")
+}
+
+[node name="ShipBlurrer" type="ColorRect" parent="MainPanel"]
+visible = false
+material = SubResource("7")
+layout_mode = 0
+offset_right = 1023.0
+offset_bottom = 600.0
+
+[node name="Walls" type="StaticBody2D" parent="MainPanel" groups=["Map"]]
+position = Vector2(512, 320)
+
+[node name="Top" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2(448, -328)
+shape = SubResource("8")
+
+[node name="Bottom" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2(448, 768)
+shape = SubResource("9")
+
+[node name="Right" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2(1416, 220)
+shape = SubResource("10")
+
+[node name="Left" type="CollisionShape2D" parent="MainPanel/Walls"]
+position = Vector2(-520, 220)
+shape = SubResource("10")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainPanel"]
+visible = false
+layout_mode = 0
+offset_left = 388.576
+offset_top = 147.151
+offset_right = 634.576
+offset_bottom = 395.151
+
+[node name="Rocket Editor Button" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.429167
+anchor_top = 0.903704
+anchor_right = 0.570833
+anchor_bottom = 1.0
+pivot_offset = Vector2(136, 48)
+
+[node name="Text" type="Label" parent="MainPanel/Rocket Editor Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00367647
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Upgrades Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Help" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.421875
+anchor_top = 0.586667
+anchor_right = 0.578125
+anchor_bottom = 0.68
+offset_left = -2.0
+offset_top = -1.60034
+offset_right = 2.0
+offset_bottom = 1.59998
+pivot_offset = Vector2(72, 27)
+
+[node name="Text" type="Label" parent="MainPanel/Help"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Help"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Play Button" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.391667
+anchor_top = 0.437037
+anchor_right = 0.608333
+anchor_bottom = 0.562963
+pivot_offset = Vector2(110, 40)
+theme_override_styles/normal = ExtResource("10_3iai1")
+theme_override_styles/hover = ExtResource("10_3iai1")
+theme_override_styles/pressed = ExtResource("11_ms120")
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="Label" parent="MainPanel/Play Button"]
+material = SubResource("12")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_h1r1b")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Button" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00416667
+anchor_top = 0.896296
+anchor_right = 0.0625
+anchor_bottom = 0.992593
+grow_vertical = 0
+pivot_offset = Vector2(0, 100)
+icon = ExtResource("23")
+flat = true
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="MainPanel"]
+material = SubResource("17")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3125
+anchor_top = 0.106667
+anchor_right = 0.6875
+anchor_bottom = 0.266667
+offset_bottom = -1.52588e-05
+pivot_offset = Vector2(-352, 24)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_8y42s")
+theme_override_font_sizes/font_size = 96
+text = "Crashteroids"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VersionIndicator" type="Button" parent="MainPanel"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 32.0
+text = "v 0.01"
+flat = true
+script = SubResource("65")
+
+[node name="Console" type="LineEdit" parent="MainPanel/VersionIndicator"]
+visible = false
+layout_mode = 0
+offset_top = 24.0
+offset_right = 320.0
+offset_bottom = 56.0
+placeholder_text = "Developer Console - type 'help' to get started..."
+
+[node name="ShopPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background Rect" type="ColorRect" parent="ShopPanel"]
+material = SubResource("43")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[node name="Back" type="Button" parent="ShopPanel"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 96.0
+text = "Back"
+
+[node name="MainPanel" type="Panel" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.52
+anchor_right = 0.999023
+anchor_bottom = 1.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_es4d2")
+
+[node name="ToolsGrid" type="GridContainer" parent="ShopPanel/MainPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -959.062
+offset_top = -536.4
+offset_right = 960.938
+offset_bottom = -0.400024
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 2
+columns = 7
+
+[node name="1" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+script = SubResource("69")
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Price = 200
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999997
+anchor_bottom = 1.0
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="2" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+script = SubResource("69")
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Price = 720
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="3" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+script = SubResource("69")
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Price = 1250
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="4" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+script = SubResource("69")
+__meta__ = {
+"_edit_use_anchors_": true
+}
+Price = 8000
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.6875
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="5" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785714
+anchor_right = 0.99999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="6" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="7" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785714
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="8" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999995
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.999995
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="9" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="10" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="11" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="12" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.99999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="13" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/13"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="14" type="Panel" parent="ShopPanel/MainPanel/ToolsGrid"]
+layout_mode = 2
+
+[node name="Icon Texture2D" type="TextureRect" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+
+[node name="Button" type="TextureButton" parent="ShopPanel/MainPanel/ToolsGrid/14"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.785713
+anchor_right = 0.999999
+anchor_bottom = 0.999999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Picker" parent="ShopPanel" instance=ExtResource("20")]
+layout_mode = 1
+anchor_left = 0.2625
+anchor_top = 0.177778
+anchor_bottom = 0.503704
+offset_left = 3.05176e-05
+
+[node name="ShopTitle" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_top = 48.0
+offset_right = 208.0
+offset_bottom = 128.0
+grow_horizontal = 2
+text = "Upgrades Shop"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="ShopTitleOutline" type="Label" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -208.0
+offset_top = 48.0
+offset_right = 208.0
+offset_bottom = 128.0
+grow_horizontal = 2
+text = "Upgrades Shop"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 72.0
+grow_horizontal = 0
+text = "£0"
+horizontal_alignment = 2
+clip_text = true
+script = SubResource("64")
+
+[node name="SettingsPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background Rect" type="ColorRect" parent="SettingsPanel"]
+material = SubResource("19")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[node name="Back" type="Button" parent="SettingsPanel"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 96.0
+text = "Back"
+
+[node name="Settings Title" type="Label" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.106667
+anchor_right = 0.625
+anchor_bottom = 0.24
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings Title Outline" type="Label" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.106667
+anchor_right = 0.625
+anchor_bottom = 0.24
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftPanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.213333
+anchor_right = 0.34375
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.135593
+text = "Graphics Quality:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GraphicsSelector" type="Control" parent="SettingsPanel/LeftPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_top = 0.134181
+anchor_right = 1.0
+anchor_bottom = 0.347222
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SelectorRect" type="ColorRect" parent="SettingsPanel/LeftPanel/GraphicsSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.180392)
+
+[node name="GraphicsSelectorTween" type="Tween" parent="SettingsPanel/LeftPanel/GraphicsSelector"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
+
+[node name="Low" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.135594
+anchor_right = 1.0
+anchor_bottom = 0.347458
+theme_override_font_sizes/font_size = 36
+text = "Low"
+flat = true
+
+[node name="Medium" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.347457
+anchor_right = 1.0
+anchor_bottom = 0.559322
+theme_override_font_sizes/font_size = 36
+text = "Medium"
+flat = true
+
+[node name="High" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.559322
+anchor_right = 1.0
+anchor_bottom = 0.771186
+theme_override_font_sizes/font_size = 36
+text = "High"
+flat = true
+
+[node name="Sublime" type="Button" parent="SettingsPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.771186
+anchor_right = 1.0
+anchor_bottom = 0.98305
+theme_override_font_sizes/font_size = 36
+text = "Sublime"
+flat = true
+
+[node name="CentrePanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34375
+anchor_top = 0.213333
+anchor_right = 0.664062
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="SettingsPanel/CentrePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.152542
+offset_right = 3.05176e-05
+text = "Audio:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicCheckbox" type="Control" parent="SettingsPanel/CentrePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.146341
+anchor_top = 0.135593
+anchor_right = 0.829268
+anchor_bottom = 0.271186
+offset_left = 0.000427246
+offset_top = -0.19986
+offset_right = -0.998993
+offset_bottom = 3.60028
+
+[node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/MusicCheckbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("33")
+
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321429
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.000274658
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SfxCheckbox" type="Control" parent="SettingsPanel/CentrePanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.146341
+anchor_top = 0.271186
+anchor_right = 0.829268
+anchor_bottom = 0.40678
+
+[node name="Checkbox" type="Panel" parent="SettingsPanel/CentrePanel/SfxCheckbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.999994
+script = ExtResource("33")
+
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321429
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -0.000366211
+
+[node name="RightPanel" type="Panel" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.664062
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="SettingsPanel/RightPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.999999
+anchor_bottom = 0.152542
+text = "Other:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialCheckbox" type="Control" parent="SettingsPanel/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.209302
+anchor_top = 0.135593
+anchor_right = 0.860464
+anchor_bottom = 0.271186
+
+[node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/TutorialCheckbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("33")
+
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321429
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UsernameEdit" type="LineEdit" parent="SettingsPanel/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.206201
+anchor_top = 0.510828
+anchor_right = 0.801549
+anchor_bottom = 0.633239
+offset_top = -3.05176e-05
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.686275, 0.686275, 0.686275, 1)
+theme_override_colors/font_outline_color = Color(0.490196, 0.643137, 0.494118, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 36
+placeholder_text = "Change username.."
+metadata/_edit_use_anchors_ = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="SettingsPanel/RightPanel/UsernameEdit"]
+download_file = "res://resources/username_filtered.xml"
+use_threads = true
+
+[node name="AdvertisementsCheckbox" type="Control" parent="SettingsPanel/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.209302
+anchor_top = 0.271186
+anchor_right = 0.860464
+anchor_bottom = 0.406779
+
+[node name="Checkbox" type="Panel" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("33")
+
+[node name="Texture2D Button" type="TextureButton" parent="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.321429
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UsernameLabel" type="Label" parent="SettingsPanel/RightPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.206201
+anchor_top = 0.444915
+anchor_right = 0.801549
+anchor_bottom = 0.510828
+text = "Username is: Player"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="GamemodePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background Rect" type="ColorRect" parent="GamemodePanel"]
+material = SubResource("43")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[node name="Back" type="Button" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.265625
+anchor_bottom = 0.12
+offset_right = -190.0
+offset_bottom = -33.6
+text = "Back"
+
+[node name="Settings Title" type="Label" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36377
+anchor_top = 0.106667
+anchor_right = 0.63623
+anchor_bottom = 0.24
+offset_left = 5.56158
+offset_top = 4.79964
+offset_right = -5.56152
+offset_bottom = -3.19998
+text = "Pick Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Left Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.213333
+anchor_right = 0.25
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="GamemodePanel/Left Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.152542
+text = "Local 2 Player:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="GamemodePanel/Left Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.173022
+anchor_right = 0.9
+anchor_bottom = 0.896892
+texture_normal = ExtResource("7")
+texture_pressed = ExtResource("22")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Centre Left Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.213333
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="GamemodePanel/Centre Left Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.152542
+text = "Player vs AI:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton2" type="TextureButton" parent="GamemodePanel/Centre Left Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.173022
+anchor_right = 0.9
+anchor_bottom = 0.896892
+texture_normal = ExtResource("48")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Centre Right Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.213333
+anchor_right = 0.75
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="GamemodePanel/Centre Right Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.152542
+text = "Multiplayer:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton3" type="TextureButton" parent="GamemodePanel/Centre Right Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.173022
+anchor_right = 0.9
+anchor_bottom = 0.896892
+disabled = true
+texture_normal = ExtResource("19")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Right Panel" type="Panel" parent="GamemodePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="GamemodePanel/Right Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.152542
+text = "Level designer:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton4" type="TextureButton" parent="GamemodePanel/Right Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.173022
+anchor_right = 0.9
+anchor_bottom = 0.896892
+disabled = true
+texture_normal = ExtResource("19")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="TwoPlayerMatchPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background Rect" type="ColorRect" parent="TwoPlayerMatchPanel"]
+material = SubResource("43")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.380392, 0.380392, 0.380392, 1)
+
+[node name="Back" type="Button" parent="TwoPlayerMatchPanel"]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 96.0
+text = "Back"
+
+[node name="Settings Title" type="Label" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.296875
+anchor_top = 0.106667
+anchor_right = 0.703125
+anchor_bottom = 0.24
+text = "Match Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings Title Outline" type="Label" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.296875
+anchor_top = 0.106667
+anchor_right = 0.703125
+anchor_bottom = 0.24
+text = "Match Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.213333
+anchor_right = 0.34375
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/LeftPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.135593
+text = "Options:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Checkbox" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
+layout_mode = 1
+anchor_left = 0.0969697
+anchor_top = 0.134181
+anchor_right = 0.727273
+anchor_bottom = 0.266007
+
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox" index="1"]
+layout_mode = 1
+anchors_preset = -1
+text = "Random map"
+
+[node name="Checkbox2" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("18_hxqlj")]
+layout_mode = 1
+anchor_left = 0.0969697
+anchor_top = 0.28484
+anchor_right = 0.727273
+anchor_bottom = 0.416667
+
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox2" index="1"]
+layout_mode = 1
+anchors_preset = -1
+text = "Special abilities"
+
+[node name="Checkbox3" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
+layout_mode = 1
+anchor_left = 0.0969697
+anchor_top = 0.435499
+anchor_right = 0.727273
+anchor_bottom = 0.567326
+Current = 1
+
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
+[node name="Number" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3/Texture2D Button" index="0"]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox3" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.269231
+anchor_right = 1.0
+offset_right = 0.0
+text = "Rocket bounces"
+
+[node name="Checkbox4" parent="TwoPlayerMatchPanel/LeftPanel" instance=ExtResource("19_ixva3")]
+layout_mode = 1
+anchor_left = 0.0969697
+anchor_top = 0.585688
+anchor_right = 0.727273
+anchor_bottom = 0.717514
+offset_top = -3.05176e-05
+Current = 3
+
+[node name="Texture2D Button" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4" index="0"]
+layout_mode = 1
+anchors_preset = 15
+
+[node name="Number" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4/Texture2D Button" index="0"]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="Label" parent="TwoPlayerMatchPanel/LeftPanel/Checkbox4" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.269231
+anchor_right = 1.0
+offset_right = 0.0
+text = "Rounds"
+
+[node name="CentrePanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34375
+anchor_top = 0.213333
+anchor_right = 0.65625
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/CentrePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.135593
+text = "Map selection:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chooser" parent="TwoPlayerMatchPanel/CentrePanel" instance=ExtResource("19_juqo5")]
+layout_mode = 1
+anchor_left = 0.055
+anchor_top = 0.124765
+anchor_right = 0.945
+anchor_bottom = 0.783898
+
+[node name="RightPanel" type="Panel" parent="TwoPlayerMatchPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65625
+anchor_top = 0.213333
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Title" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.135593
+offset_left = 4.0
+offset_bottom = -0.19986
+text = "Skins:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComingSoon" type="Label" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 136.0
+offset_right = 660.0
+offset_bottom = 275.0
+text = "Watch this space...
+Custom skins coming soon!"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="TwoPlayerMatchPanel/RightPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.175758
+anchor_top = 0.80273
+anchor_right = 0.806061
+anchor_bottom = 0.934557
+text = "Play"
+metadata/_edit_use_anchors_ = true
+
+[node name="HelpPanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("59")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.367188
+anchor_top = 0.2
+anchor_right = 0.632812
+anchor_bottom = 0.8
+offset_left = -0.000976562
+offset_right = 0.000976562
+pivot_offset = Vector2(255, 324)
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.113889
+text = "Game info:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0625
+anchor_top = 0.844444
+anchor_right = 0.46875
+anchor_bottom = 0.958333
+text = "Close"
+
+[node name="Credits" type="Button" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.53125
+anchor_top = 0.844444
+anchor_right = 0.9375
+anchor_bottom = 0.958333
+text = "Credits"
+
+[node name="Details" type="RichTextLabel" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0330882
+anchor_top = 0.111111
+anchor_right = 0.970588
+anchor_bottom = 0.822222
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=20 freq=5][color=yellow][center]The background:[/center][/color][/wave]
+Crashteroids is based off a pen and paper game where you play as a ship, and must aim and bounce off of of asteroids to hit into your opponent, killing them and winning the game.
+
+[shake rate=5 level=10][color=yellow][center]Playing the game:[/center][/color][/shake]
+1. Click / press to move the rocket in a certain direction.
+
+2. Use Tools or items from the Rocket Editor in order to predict where it will bounce.
+
+3. Crash into your opponent in order to win."
+
+[node name="Panel Tween" type="Tween" parent="HelpPanel"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null
+
+[node name="CreditsPanel" type="Panel" parent="HelpPanel"]
+unique_name_in_owner = true
+material = SubResource("59")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.111111
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 6.86646e-05
+pivot_offset = Vector2(128, 148)
+
+[node name="Border" type="Panel" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.125
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Quit" type="Button" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28125
+anchor_top = 0.825
+anchor_right = 0.71875
+anchor_bottom = 0.953125
+text = "Close"
+
+[node name="Details" type="RichTextLabel" parent="HelpPanel/CreditsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0294118
+anchor_right = 0.970588
+anchor_bottom = 0.8
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=20 freq=5][color=yellow][center]Credits:[/center][/color][/wave]
+ - StarlkYT,  big brain power.
+ - Zekiah-A, main development."
+
+[node name="Border" type="Panel" parent="HelpPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.00196
+anchor_bottom = 1.0
+offset_right = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pio3y")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[connection signal="resized" from="." to="." method="OnWindowResize"]
+[connection signal="pressed" from="MainPanel/Rocket Editor Button" to="." method="OpenPanel" binds= [3]]
+[connection signal="pressed" from="MainPanel/Help" to="." method="OpenPanel" binds= [4]]
+[connection signal="pressed" from="MainPanel/Play Button" to="." method="OpenPanel" binds= [1]]
+[connection signal="pressed" from="MainPanel/Settings" to="." method="OpenPanel" binds= [0]]
+[connection signal="pressed" from="ShopPanel/Back" to="." method="ClosePanel" binds= [3]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/1/Button" to="ShopPanel" method="UpgradePressed" binds= [0]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/2/Button" to="ShopPanel" method="UpgradePressed" binds= [1]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/3/Button" to="ShopPanel" method="UpgradePressed" binds= [2]]
+[connection signal="pressed" from="ShopPanel/MainPanel/ToolsGrid/4/Button" to="ShopPanel" method="UpgradePressed" binds= [3]]
+[connection signal="pressed" from="SettingsPanel/Back" to="." method="ClosePanel" binds= [0]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/Low" to="." method="GraphicsSettingPressed" binds= [0]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/Medium" to="." method="GraphicsSettingPressed" binds= [1]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/High" to="." method="GraphicsSettingPressed" binds= [2]]
+[connection signal="pressed" from="SettingsPanel/LeftPanel/Sublime" to="." method="GraphicsSettingPressed" binds= [3]]
+[connection signal="pressed" from="SettingsPanel/CentrePanel/MusicCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["music"]]
+[connection signal="pressed" from="SettingsPanel/CentrePanel/SfxCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["sfx"]]
+[connection signal="pressed" from="SettingsPanel/RightPanel/TutorialCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["tutorial"]]
+[connection signal="text_changed" from="SettingsPanel/RightPanel/UsernameEdit" to="." method="OnUsernameTextChanged"]
+[connection signal="text_submitted" from="SettingsPanel/RightPanel/UsernameEdit" to="." method="OnUsernameTextChanged"]
+[connection signal="pressed" from="SettingsPanel/RightPanel/AdvertisementsCheckbox/Checkbox/Texture2D Button" to="." method="OnSettingsCheckboxChanged" binds= ["adverts"]]
+[connection signal="pressed" from="GamemodePanel/Back" to="." method="ClosePanel" binds= [1]]
+[connection signal="pressed" from="GamemodePanel/Left Panel/TextureButton" to="." method="OpenPanel" binds= [6]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/Back" to="." method="ClosePanel" binds= [6]]
+[connection signal="pressed" from="TwoPlayerMatchPanel/RightPanel/Start" to="." method="TwoPlayerPlayPressed"]
+[connection signal="pressed" from="HelpPanel/Quit" to="." method="ClosePanel" binds= [4]]
+[connection signal="pressed" from="HelpPanel/Credits" to="." method="OpenPanel" binds= [5]]
+[connection signal="pressed" from="HelpPanel/CreditsPanel/Quit" to="." method="ClosePanel" binds= [5]]
+
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox2"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox3"]
+[editable path="TwoPlayerMatchPanel/LeftPanel/Checkbox4"]

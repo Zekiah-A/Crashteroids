@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://curw56ialcksi"]
+
+[ext_resource type="StyleBox" path="res://Styles/green_button_style.tres" id="1"]
+[ext_resource type="StyleBox" path="res://Styles/green_button_pressed_style.tres" id="2_4cqpu"]
+[ext_resource type="StyleBox" path="res://Styles/lineedit_style.tres" id="2_6egah"]
+[ext_resource type="StyleBox" uid="uid://defk55l4vv8kw" path="res://Styles/grey_button_style.tres" id="2_himvx"]
+[ext_resource type="StyleBox" path="res://Styles/grey_button_pressed_style.tres" id="3_h2ymh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvvti"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_size = 3
+
+[sub_resource type="SystemFont" id="SystemFont_l585h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lms58"]
+bg_color = Color(1, 1, 1, 0)
+
+[resource]
+Button/styles/green_button = ExtResource("1")
+Button/styles/green_button_pressed = ExtResource("2_4cqpu")
+Button/styles/hover = SubResource("StyleBoxFlat_tvvti")
+Button/styles/normal = ExtResource("2_himvx")
+Button/styles/pressed = ExtResource("3_h2ymh")
+Label/font_sizes/font_size = 36
+Label/fonts/font = SubResource("SystemFont_l585h")
+LineEdit/styles/normal = ExtResource("2_6egah")
+Panel/styles/panel = SubResource("StyleBoxFlat_lms58")

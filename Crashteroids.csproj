@@ -1,10 +1,11 @@
-<Project Sdk="Godot.NET.Sdk/3.3.0"> 
-    <PropertyGroup>
-        <TargetFramework>net472</TargetFramework>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="System.Json" Version="4.7.1" />
-        <PackageReference Include="System.Net.Http" Version="4.3.4" />
-        <PackageReference Include="System.Text.Json" Version="6.0.0-preview.5.21301.5" />
-    </ItemGroup>
+<Project Sdk="Godot.NET.Sdk/4.0.0">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Json" Version="4.7.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.Json" Version="6.0.0-preview.5.21301.5" />
+  </ItemGroup>
 </Project>

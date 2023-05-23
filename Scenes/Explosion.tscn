@@ -1,0 +1,88 @@
+[gd_scene load_steps=16 format=3 uid="uid://5s2uohp11chm"]
+
+[ext_resource type="Texture2D" uid="uid://civhfp7vijukf" path="res://fire_particle.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ffcbcsn4niux" path="res://Resources/Image/square.png" id="1_hur1e"]
+
+[sub_resource type="Gradient" id="1"]
+offsets = PackedFloat32Array(0, 0.145749, 0.765182, 1)
+colors = PackedColorArray(1, 0.980164, 0.492188, 1, 0.960938, 0.658535, 0.165161, 1, 0.632812, 0.266873, 0.177979, 1, 0.917969, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="2"]
+gradient = SubResource("1")
+
+[sub_resource type="Curve" id="3"]
+min_value = 0.99
+max_value = 3.0
+_data = [Vector2(0, 2.67109), 0.0, 0.103295, 0, 0, Vector2(1, 0.99), -0.935505, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="4"]
+curve = SubResource("3")
+
+[sub_resource type="ParticleProcessMaterial" id="5"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 43.8
+scale_curve = SubResource("4")
+color_ramp = SubResource("2")
+
+[sub_resource type="CanvasItemMaterial" id="6"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="7"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 85.0781), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="8"]
+curve = SubResource("7")
+
+[sub_resource type="Gradient" id="9"]
+offsets = PackedFloat32Array(0, 0.668103, 1)
+colors = PackedColorArray(1, 0.357422, 0, 1, 0.978343, 0.607581, 0.193581, 1, 0.952148, 0.910153, 0.427723, 1)
+
+[sub_resource type="GradientTexture2D" id="10"]
+gradient = SubResource("9")
+
+[sub_resource type="Curve" id="11"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="12"]
+curve = SubResource("11")
+
+[sub_resource type="ParticleProcessMaterial" id="13"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector3(0, -16, 0)
+angular_velocity_curve = SubResource("8")
+scale_curve = SubResource("12")
+color_ramp = SubResource("10")
+
+[node name="Explosion" type="GPUParticles2D"]
+amount = 100
+sub_emitter = NodePath("Fire")
+lifetime = 0.6
+explosiveness = 0.7
+randomness = 1.0
+process_material = SubResource("5")
+texture = ExtResource("1_hur1e")
+
+[node name="Fire" type="GPUParticles2D" parent="."]
+material = SubResource("6")
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 1
+lifetime = 5.0
+preprocess = 0.1
+explosiveness = 0.6
+trail_enabled = true
+trail_length_secs = 1.0
+process_material = SubResource("13")
+texture = ExtResource("1")
